@@ -1,6 +1,7 @@
 ## Home
 * Make something so aliases are shared between different shells
 * My derivations are loaded with fetchGit, do it using flakes
+* Disable scrolling in st since now I use tmux for it
 
 ### emacs
 * Maybe use a different style for counsel-projectile-ag? Searching text fuzzily might be too much

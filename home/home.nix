@@ -39,7 +39,10 @@ in
   # paths it should manage.
   home.username = user;
   home.homeDirectory = "/home/${user}";
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    LESS = "--mouse --wheel-lines=3"; # be able to scroll less with mouse
+  };
 
   home.packages = with pkgs; [
     anki
