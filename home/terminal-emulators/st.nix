@@ -3,7 +3,7 @@
 let
   mydrvs = builtins.fetchGit {
     url = "https://github.com/huuff/derivations.git";
-    rev = "f3a2cf75c796db6e10a871af681ba52a18ff7388";
+    rev = "3c6ce143ad885d7cc44347541a414962cca45f91";
   };
 in
 {
@@ -18,10 +18,10 @@ in
     fontSize = 16;
     scrollback = true;
     blinkingCursor = true;
-    #exec = "tmux";
-    flags = {
-      f = "FiraCode Nerd Font";
-    };
+    exec = "tmux";
+    flags = [
+      {f = "FiraCode Nerd Font";}
+    ];
   };
 
 }
