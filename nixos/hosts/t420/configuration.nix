@@ -9,6 +9,7 @@
     [
     ./hardware-configuration.nix
   ];
+  # It gets too slow without this
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   boot.kernelParams = [ "intel_pstate=active" ];
 

@@ -1,12 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
     ./hardware-configuration.nix
   ];
 
@@ -33,30 +29,11 @@
     keyMap = "es";
   };
 
-  users.users.fran = {
-    extraGroups = [ "docker" ]; #TODO: Put docker into a separate file
-  };
-
   services.xserver.displayManager.setupCommands = ''
     RIGHT='VGA-1'
     LEFT='HDMI-1'
     ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
   '';
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "fran" ];
-
-  virtualisation.libvirtd.enable = true;
-  users.extraUsers.fran.extraGroups = [ "libvirtd" ];
-  networking.firewall.checkReversePath = false;
-
-  virtualisation.docker.enable = true;
-
-
-  networking.firewall.extraCommands = ''
-    ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
-  '';
-  networking.firewall.allowedTCPPorts = [ 2049 ];
 
   security.wrappers."mount.nfs".source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
 

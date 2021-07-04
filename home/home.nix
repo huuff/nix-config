@@ -1,4 +1,4 @@
-secrets: 
+secrets: user:
 { config, pkgs, lib, ... }:
 let
   mydrvs = builtins.fetchGit {
@@ -37,8 +37,8 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "haf";
-  home.homeDirectory = "/home/haf";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
   home.sessionVariables.EDITOR = "nvim";
 
   home.packages = with pkgs; [

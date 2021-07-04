@@ -29,15 +29,6 @@
      keyMap = "es";
    };
 
-   users.users.haf = {
-     extraGroups = [ "libvirtd" ]; # move this to a virtualisation module
-   };
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "haf" ];
-  virtualisation.libvirtd.enable = true;
-  networking.firewall.checkReversePath = false;
-
   nixpkgs.config.allowUnfree = true;
 
   # This value determines the NixOS release from which the default
