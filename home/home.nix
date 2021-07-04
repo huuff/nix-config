@@ -9,7 +9,6 @@ in
 {
     imports = [
       ./editors/vim/nvim.nix
-      #./editors/emacs/doom-emacs.nix
       ./editors/emacs/emacs.nix
 
       ./browsers/firefox.nix

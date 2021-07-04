@@ -20,12 +20,13 @@
       system = "x86_64-linux";
       modules = [ 
         { nixpkgs.overlays = [ nur.overlay emacs-overlay.overlay ];}
+        ./nixos/user.nix { users.mainUser = "haf"; }
         ./nixos/hosts/t420/configuration.nix
         ./nixos/wireless.nix { wifi.networks = secrets.networks; }
         ./nixos/fonts.nix
         ./nixos/xorg.nix
         ./nixos/cachix.nix
-        ./nixos/audio.nix { users.audio = "haf"; }
+        ./nixos/audio.nix
         nixos-hardware.nixosModules.lenovo-thinkpad-t420
 
         home-manager.nixosModules.home-manager
@@ -41,11 +42,12 @@
         system = "x86_64-linux";
         modules = [
         { nixpkgs.overlays = [ nur.overlay emacs-overlay.overlay ];}
+          ./nixos/user.nix { users.mainUser = "haf"; }
           ./nixos/hosts/desktop/configuration.nix
           ./nixos/fonts.nix
           ./nixos/xorg.nix
           ./nixos/cachix.nix
-          ./nixos/audio.nix { users.audio = "haf"; }
+          ./nixos/audio.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -60,10 +62,11 @@
         system = "x86_64-linux";
         modules = [
         { nixpkgs.overlays = [ nur.overlay emacs-overlay.overlay ];}
+          ./nixos/user.nix { users.mainUser = "fran"; }
           ./nixos/hosts/office/configuration.nix
           ./nixos/fonts.nix
           ./nixos/xorg.nix
-          ./nixos/audio.nix { users.audio = "fran"; }
+          ./nixos/audio.nix
 
           home-manager.nixosModules.home-manager
           {
