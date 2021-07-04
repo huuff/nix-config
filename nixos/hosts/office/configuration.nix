@@ -34,8 +34,7 @@
   };
 
   users.users.fran = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; #TODO: Put docker into a separate file
+    extraGroups = [ "docker" ]; #TODO: Put docker into a separate file
   };
 
   services.xserver.displayManager.setupCommands = ''

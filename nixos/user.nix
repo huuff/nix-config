@@ -1,5 +1,8 @@
 { config, lib, ... }:
 with lib;
+let
+  user = config.users.mainUser;
+in
 {
   options.users.mainUser = mkOption {
     type = types.str;
@@ -10,13 +13,18 @@ with lib;
   config = {
     assertions = [
       {
-        assertion = config.users.mainUser != null;
+        assertion = user != null;
         message = "users.mainUser must be set!";
       }
       {
-        assertion = config.users.mainUser != "";
+        assertion = user != "";
         message = "users.mainUser must be non-empty!";
       }
     ];
+
+    users.users.${user} = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
   };
 }

@@ -37,13 +37,7 @@
     keyMap = "es";
   };
 
-  users.users.haf = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-  };
-
-
-    environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     jdk16_headless
   ];
 

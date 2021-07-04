@@ -30,8 +30,7 @@
    };
 
    users.users.haf = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "libvirtd" ]; # move this to a virtualisation module
+     extraGroups = [ "libvirtd" ]; # move this to a virtualisation module
    };
 
   virtualisation.virtualbox.host.enable = true;
