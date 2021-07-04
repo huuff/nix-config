@@ -59,3 +59,7 @@ endif
 " move lines using C-up and C-down
 :nnoremap <C-Up> <Up>"add"ap<Up>
 :nnoremap <C-Down> "add"ap
+
+" search ignores cases unless an uppercase is used
+set ignorecase
+set smartcase

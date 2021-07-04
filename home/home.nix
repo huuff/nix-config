@@ -100,6 +100,7 @@ in
         bind c new-window -c "#{pane_current_path}"  
     '';
     plugins = with pkgs; [
+      tmuxPlugins.yank
       {
         plugin = tmuxPlugins.better-mouse-mode;
         extraConfig = "set-option -g mouse on";
