@@ -29,13 +29,13 @@
           home-manager.useUserPackages = true;
           home-manager.users.${mainUser} = (import ./home/home.nix) secrets mainUser;
         }
-      ];
+      ] ++ extraModules;
     };
   in
   {
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
     [
-      ./nixos/wireless { wifi.networks = secrets.networks; }
+      ./nixos/wireless.nix { wifi.networks = secrets.networks; }
       nixos-hardware.nixosModules.lenovo-thinkpad-t420
     ];
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" 
