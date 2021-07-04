@@ -10,11 +10,6 @@
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, secrets }:
-  let
-    pkgs = import nixpkgs {
-      system = "x86_64-linux";
-    };
-  in
   {
     nixosConfigurations.t420 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
