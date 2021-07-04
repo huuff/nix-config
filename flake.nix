@@ -6,17 +6,18 @@
     nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    mydrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, secrets }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, mydrvs, secrets }:
   let
     mkConfig = host: mainUser: extraModules : nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         host
 
-        { nixpkgs.overlays = [ nur.overlay emacs-overlay.overlay ];}
+        { nixpkgs.overlays = [ nur.overlay emacs-overlay.overlay mydrvs.overlays.tmux-plugins ];}
         ./nixos/user.nix { users.mainUser = mainUser; }
         ./nixos/fonts.nix
         ./nixos/xorg.nix

@@ -99,6 +99,12 @@ in
         bind - split-window -v -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"  
     '';
+    plugins = with pkgs; [
+      {
+        plugin = tmuxPlugins.better-mouse-mode;
+        extraConfig = "set-option -g mouse on";
+      }
+    ];
   };
 
   services.gpg-agent.enable = true;
