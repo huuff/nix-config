@@ -11,6 +11,7 @@
       sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       oplogin = "eval $(op signin my)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
+      removekey = ''ssh-keygen -f $HOME/.ssh/known_hosts -R'';
     };
 
     initExtra = ''
