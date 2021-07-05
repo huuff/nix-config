@@ -67,7 +67,13 @@
   [
     php
     php74Extensions.xdebug
+    jdk16_headless
   ];
+
+  environment.etc = with pkgs; {
+    "jdk16".source = jdk16_headless;
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
