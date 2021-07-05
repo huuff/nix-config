@@ -118,11 +118,6 @@ in
   programs.ssh = {
     enable = true;
     matchBlocks = secrets.ssh-match-blocks;
-    extraConfig = ''
-        IdentityFile ~/.ssh/id_rsa
-        IdentityFile ~/.ssh/cf_id_rsa
-        IdentityFile ~/.ssh/atlas_rsa
-      '';
   };
 
   programs.chromium = {
