@@ -103,7 +103,10 @@ in
       tmuxPlugins.yank
       {
         plugin = tmuxPlugins.better-mouse-mode;
-        extraConfig = "set-option -g mouse on";
+        extraConfig = ''
+          set-option -g mouse on
+          set-option -g @emulate-scroll-for-no-mouse-alternate-buffer on
+          '';
       }
     ];
   };

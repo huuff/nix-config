@@ -67,11 +67,10 @@
   [
     php
     php74Extensions.xdebug
-    jdk16_headless
   ];
 
   environment.etc = with pkgs; {
-    "jdk16".source = jdk16_headless;
+    "jdk11".source = jdk11_headless;
   };
 
 
