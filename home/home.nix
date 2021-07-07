@@ -41,7 +41,10 @@ in
   home.homeDirectory = "/home/${user}";
   home.sessionVariables = {
     EDITOR = "nvim";
-    LESS = "--mouse --wheel-lines=3"; # be able to scroll less with mouse
+    # -X: keep output in terminal
+    # -r: preserve colors
+    # --mouse --wheel-lines: mouse scroll, speed
+    LESS = "-Xr --mouse --wheel-lines=3";
   };
 
   home.packages = with pkgs; [
