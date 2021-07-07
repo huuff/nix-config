@@ -77,9 +77,9 @@ in
     shellcheck
     shfmt
     nodePackages.diagnostic-languageserver
+    maven
 
     simplescreenrecorder
-    #google-chrome
     teams
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
