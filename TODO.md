@@ -9,3 +9,6 @@
 
 ## Flake
 * Maybe switch to DevOS? it looks fine
+
+## Other
+* A module for java related stuff
