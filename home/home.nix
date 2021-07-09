@@ -43,8 +43,9 @@ in
     EDITOR = "nvim";
     # -X: keep output in terminal
     # -r: preserve colors
+    # -F: exit immediately if the entire output fits the screen
     # --mouse --wheel-lines: mouse scroll, speed
-    LESS = "-Xr --mouse --wheel-lines=3";
+    LESS = "-XFr --mouse --wheel-lines=3";
   };
 
   home.packages = with pkgs; [
