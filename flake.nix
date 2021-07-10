@@ -17,7 +17,14 @@
       modules = [
         host
 
-        { nixpkgs.overlays = [ nur.overlay emacs-overlay.overlay mydrvs.overlays.tmux-plugins ];}
+        { 
+          nixpkgs.overlays = [ 
+          nur.overlay 
+          emacs-overlay.overlay 
+          mydrvs.overlays.tmux-plugins 
+          mydrvs.overlays.st
+        ];
+      }
         ./nixos/user.nix { users.mainUser = mainUser; }
         ./nixos/fonts.nix
         ./nixos/xorg.nix
@@ -28,7 +35,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${mainUser} = (import ./home/home.nix) secrets mainUser;
+          home-manager.users.${mainUser} = (import ./home/home.nix) secrets mainUser mydrvs;
         }
       ] ++ extraModules;
     };

@@ -1,11 +1,5 @@
-secrets: user:
+secrets: user: mydrvs:
 { config, pkgs, lib, ... }:
-let
-  mydrvs = builtins.fetchGit {
-    url="https://github.com/huuff/derivations.git";
-    rev="155235db8fe7d680fb4c3c1a45d70579d29f07e0";
-  };
-in
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -14,11 +8,12 @@ in
       ./browsers/firefox.nix
       # ./browsers/surf.nix
 
-      ./terminal-emulators/st.nix
+      mydrvs.nixosModules.home-st
+      ./terminal-emulators/st.nix 
       ./terminal-emulators/alacritty.nix
 
-      "${mydrvs}/scripts.nix"
-      "${mydrvs}/autocutsel.nix"
+      mydrvs.nixosModules.scripts
+      mydrvs.nixosModules.autocutsel
 
       ./git.nix
       ./bash.nix
