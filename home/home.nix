@@ -15,6 +15,8 @@ secrets: user: mydrvs:
       mydrvs.nixosModules.scripts
       mydrvs.nixosModules.autocutsel
 
+      mydrvs.nixosModules.maven
+
       ./git.nix
       ./bash.nix
       ./starship.nix
@@ -76,11 +78,20 @@ secrets: user: mydrvs:
     shellcheck
     shfmt
     nodePackages.diagnostic-languageserver
-    maven
 
     simplescreenrecorder
     teams
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
+
+  programs.maven = {
+    enable = true;
+    options = {
+      "maven.wagon.http.ssl.insecure"="true";
+      "maven.wagon.http.ssl.allowall"="true";
+      "maven.wagon.http.ssl.ignore.validity"="true";
+    };
+    settings = secrets.mavenSettings;
+  };
 
 
   programs.mpv = {

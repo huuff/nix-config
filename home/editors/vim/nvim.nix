@@ -42,5 +42,5 @@
   };
 
 
-  xdg.configFile."nvim/coc-settings.json".text = builtins.readFile ./my-coc-settings.json;
+  xdg.configFile."nvim/coc-settings.json".text = builtins.readFile ./coc-settings.json;
 }

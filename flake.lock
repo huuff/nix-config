@@ -72,11 +72,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1625926350,
-        "narHash": "sha256-+FlJgOyO6Onec2CUImq5CTX0s1WEYMm3L6aV9iCPzuo=",
+        "lastModified": 1625938071,
+        "narHash": "sha256-tOxxbHofRTsHnYy/lVWbmvzHPZEMWqpmlKW4/1/KnFc=",
         "owner": "huuff",
         "repo": "derivations",
-        "rev": "4c3644cf68c5074d5d9fd85205af35b86cd3ecbe",
+        "rev": "3c743648c9d30a28e49d4cb12506382e76f2ca6d",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1625777770,
-        "narHash": "sha256-vVPvpcP/KSKF3095e/zRfOifqRKjL4qWw7IqcxBiG2M=",
+        "lastModified": 1625937793,
+        "narHash": "sha256-FFicHXT09A4Nur//vfPNtsZADciqnyPjXKwjKE7c7GI=",
         "ref": "master",
-        "rev": "bd70f3035dc5b1d468c3e3779569ea05f974398c",
-        "revCount": 18,
+        "rev": "a600f5330d078b696f6eb7f521e853f26c24db07",
+        "revCount": 20,
         "type": "git",
         "url": "ssh://git@github.com/huuff/secrets.git"
       },
