@@ -39,11 +39,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    jdk16_headless
+    jdk11_headless
   ];
 
   environment.etc = with pkgs; {
-    "jdk16".source = jdk16_headless;
+    "jdk11".source = jdk11_headless;
   };
 }
 
