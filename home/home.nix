@@ -78,6 +78,7 @@ secrets: user: mydrvs:
     shellcheck
     shfmt
     nodePackages.diagnostic-languageserver
+    postman
 
     simplescreenrecorder
     teams
