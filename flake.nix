@@ -9,22 +9,28 @@
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, mydrvs, secrets }:
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, mydrvs, secrets }:
   let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [ 
+        nur.overlay 
+        emacs-overlay.overlay 
+        mydrvs.overlays.tmux-plugins 
+        mydrvs.overlays.st
+      ];
+      config.allowUnfree = true;
+    };
     mkConfig = host: mainUser: extraModules : nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system pkgs;
+      
+      specialArgs = { inherit inputs; };
+
       modules = [
         host
 
-        { 
-          nixpkgs.overlays = [ 
-          nur.overlay 
-          emacs-overlay.overlay 
-          mydrvs.overlays.tmux-plugins 
-          mydrvs.overlays.st
-        ];
-      }
-        ./nixos/user.nix { users.mainUser = mainUser; }
+       ./nixos/user.nix { users.mainUser = mainUser; }
         ./nixos/fonts.nix
         ./nixos/xorg.nix
         ./nixos/cachix.nix
@@ -34,7 +40,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${mainUser} = (import ./home/home.nix) secrets mainUser mydrvs;
+          home-manager.users.${mainUser} = (import ./home/home.nix) mainUser {
+            inherit pkgs inputs;
+          };
         }
       ] ++ extraModules;
     };

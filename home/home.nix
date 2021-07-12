@@ -1,5 +1,9 @@
-secrets: user: mydrvs:
-{ config, pkgs, lib, ... }:
+user:
+{ pkgs, inputs, ... }:
+let
+  mydrvs = inputs.mydrvs;
+  secrets = inputs.secrets;
+in
 {
     imports = [
       ./editors/vim/nvim.nix
