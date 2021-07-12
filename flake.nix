@@ -22,10 +22,9 @@
       ];
       config.allowUnfree = true;
     };
+    specialArgs = { inherit inputs; };
     mkConfig = host: mainUser: extraModules : nixpkgs.lib.nixosSystem {
-      inherit system pkgs;
-      
-      specialArgs = { inherit inputs; };
+      inherit system pkgs specialArgs;
 
       modules = [
         host
@@ -40,9 +39,8 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${mainUser} = (import ./home/home.nix) mainUser {
-            inherit pkgs inputs;
-          };
+          home-manager.users.${mainUser} = import ./home/home.nix mainUser;
+          home-manager.extraSpecialArgs = specialArgs;
         }
       ] ++ extraModules;
     };
