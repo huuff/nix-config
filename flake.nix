@@ -19,7 +19,7 @@
       inherit system;
 
       specialArgs = { 
-        inherit inputs user emacs-overlay nur; 
+        inherit inputs user emacs-overlay nur secrets; 
         myOverlays = mydrvs.overlays;
       };
 
