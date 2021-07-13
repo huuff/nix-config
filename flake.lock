@@ -67,7 +67,7 @@
         "type": "github"
       }
     },
-    "mydrvs": {
+    "myDrvs": {
       "inputs": {
         "flake-compat": "flake-compat",
         "nixpkgs": "nixpkgs",
@@ -168,7 +168,7 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "mydrvs": "mydrvs",
+        "myDrvs": "myDrvs",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",

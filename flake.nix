@@ -8,20 +8,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    mydrvs.url = "github:huuff/derivations";
+    myDrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, mydrvs, secrets }:
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets }:
   let
     system = "x86_64-linux";
-    mkConfig = host: user: extraModules : nixpkgs.lib.nixosSystem rec {
+    mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
       inherit system;
 
       specialArgs = { 
         inherit user emacs-overlay nur secrets; 
-        myOverlays = mydrvs.overlays;
-        myModules = mydrvs.nixosModules;
+        myOverlays = myDrvs.overlays;
+        myModules = myDrvs.nixosModules;
       };
 
       modules = [
