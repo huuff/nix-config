@@ -1,5 +1,7 @@
-{pkgs, ...}:
+{pkgs, nur, ...}:
 {
+  nixpkgs.overlays = [ nur.overlay ];
+
   programs.firefox = {
     enable = true;
     profiles = {

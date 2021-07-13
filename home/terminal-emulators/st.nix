@@ -1,6 +1,8 @@
-{pkgs, ...}:
+{ pkgs, myOverlays, ...}:
 
 {
+  nixpkgs.overlays = [ myOverlays.st ];
+
   programs.st = {
     enable = true;
     colorscheme = "dracula";

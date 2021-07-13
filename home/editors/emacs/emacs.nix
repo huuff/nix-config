@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, emacs-overlay, ... }:
 {
+  nixpkgs.overlays = [ emacs-overlay.overlay ];
 
   home.packages = with pkgs; [
     python3 # currently using for treemacs thugh I'm not sure it's detecting it

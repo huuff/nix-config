@@ -14,18 +14,15 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [ 
-        nur.overlay 
-        emacs-overlay.overlay 
-        mydrvs.overlays.tmux-plugins 
-        mydrvs.overlays.st
-      ];
       config.allowUnfree = true;
     };
     mkConfig = host: user: extraModules : nixpkgs.lib.nixosSystem rec {
       inherit system pkgs;
 
-      specialArgs = { inherit inputs user; };
+      specialArgs = { 
+        inherit inputs user emacs-overlay nur; 
+        myOverlays = mydrvs.overlays;
+      };
 
       modules = [
         host
@@ -38,7 +35,7 @@
 
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
+          #home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${user} = import ./home/home.nix;
           home-manager.extraSpecialArgs = specialArgs;
@@ -49,7 +46,7 @@
   {
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
     [
-      ./nixos/wireless.nix { wifi.networks = secrets.networks; }
+      ./nixos/wireless.nix { wifi.networks = secrets.networks; } # TODO: use inputs specialArgs to improve this, but do it on my t420
       nixos-hardware.nixosModules.lenovo-thinkpad-t420
     ];
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" 
