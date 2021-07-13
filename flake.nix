@@ -12,12 +12,8 @@
   outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, mydrvs, secrets }:
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
     mkConfig = host: user: extraModules : nixpkgs.lib.nixosSystem rec {
-      inherit system pkgs;
+      inherit system;
 
       specialArgs = { 
         inherit inputs user emacs-overlay nur; 
