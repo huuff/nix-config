@@ -37,6 +37,7 @@
 
   security.wrappers."mount.nfs".source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
 
+  # Am I using this?
   fileSystems."/export/clickferry" = {
     device="/home/fran/clickferry";
     options=["bind"];

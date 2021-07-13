@@ -3,6 +3,7 @@
 * My derivations are loaded with fetchGit, do it using flakes
 * Disable scrolling in st since now I use tmux for it
 * I'm not even using surf, maybe I should fix it since I want to use it in emacs
+* Using inputs, passed as specialArgs, load overlays in the modules that use them
 
 ## emacs
 * Maybe use a different style for counsel-projectile-ag? Searching text fuzzily might be too much

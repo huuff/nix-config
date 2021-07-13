@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, user, ... }:
 with lib;
 {
   config = {
@@ -6,7 +6,7 @@ with lib;
     hardware.pulseaudio.enable = true;
     hardware.pulseaudio.support32Bit = true;
 
-    users.users.${config.users.mainUser} = {
+    users.users.${user} = {
       extraGroups = [ "audio" ];
     };
   };

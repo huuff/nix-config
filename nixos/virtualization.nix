@@ -1,10 +1,10 @@
-{ config, lib, ... }:
+{ config, lib, user, ... }:
 with lib;
 {
   config = {
     # I'm not sure whether this works, I have like 3 different ways of setting groups
     # in my previous files. Check it out.
-    users.users.${config.users.mainUser}.extraGroups = [ "docker" "libvirtd" "vboxusers" ];
+    users.users.${user}.extraGroups = [ "docker" "libvirtd" "vboxusers" ];
 
     virtualisation = {
       virtualbox.host.enable = true;

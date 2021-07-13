@@ -30,7 +30,7 @@
       modules = [
         host
 
-       ./nixos/user.nix { users.mainUser = user; }
+        ./nixos/user.nix
         ./nixos/fonts.nix
         ./nixos/xorg.nix
         ./nixos/cachix.nix
