@@ -19,8 +19,9 @@
       inherit system;
 
       specialArgs = { 
-        inherit inputs user emacs-overlay nur secrets; 
+        inherit user emacs-overlay nur secrets; 
         myOverlays = mydrvs.overlays;
+        myModules = mydrvs.nixosModules;
       };
 
       modules = [

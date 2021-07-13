@@ -1,7 +1,4 @@
-{ pkgs, inputs, user, secrets, ... }:
-let
-  mydrvs = inputs.mydrvs;
-in
+{ pkgs, user, secrets, myModules, ... }:
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -10,14 +7,14 @@ in
       ./browsers/firefox.nix
       # ./browsers/surf.nix
 
-      mydrvs.nixosModules.home-st
+      myModules.home-st
       ./terminal-emulators/st.nix 
       ./terminal-emulators/alacritty.nix
 
-      mydrvs.nixosModules.scripts
-      mydrvs.nixosModules.autocutsel
+      myModules.scripts
+      myModules.autocutsel
 
-      mydrvs.nixosModules.maven
+      myModules.maven
 
       ./git.nix
       ./bash.nix
