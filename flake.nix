@@ -39,8 +39,8 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${mainUser} = import ./home/home.nix mainUser;
-          home-manager.extraSpecialArgs = specialArgs;
+          home-manager.users.${mainUser} = import ./home/home.nix;
+          home-manager.extraSpecialArgs = specialArgs // { user = mainUser; };
         }
       ] ++ extraModules;
     };

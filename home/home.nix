@@ -1,5 +1,4 @@
-user:
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, user, ... }:
 let
   mydrvs = inputs.mydrvs;
   secrets = inputs.secrets;
