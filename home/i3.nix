@@ -51,7 +51,7 @@
             settings = {
               format = "♪ %volume";
               format_muted = "♪ muted (%volume)";
-              device = "pulse:1";
+              device = "pulse:0";
             };
         };
 
