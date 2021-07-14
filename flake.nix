@@ -45,7 +45,7 @@
   {
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
     [
-      ./nixos/wireless.nix { wifi.networks = secrets.networks; } # TODO: use inputs specialArgs to improve this, but do it on my t420
+      ./nixos/wireless.nix 
       nixos-hardware.nixosModules.lenovo-thinkpad-t420
     ];
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" 
