@@ -80,6 +80,7 @@
     shfmt
     nodePackages.diagnostic-languageserver
     postman
+    feh
 
     simplescreenrecorder
     teams
