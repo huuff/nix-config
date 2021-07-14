@@ -1,7 +1,7 @@
 ## Home
 * Make something so aliases are shared between different shells
-* Disable scrolling in st since now I use tmux for it
 * I'm not even using surf, maybe I should fix it since I want to use it in emacs
+* Remove stuff I don't use from i3status
 
 ## emacs
 * Maybe use a different style for counsel-projectile-ag? Searching text fuzzily might be too much
