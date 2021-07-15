@@ -9,6 +9,7 @@
 
 ## vim
 * Fix coc diagnostic colors since I can't see shit
+* I have set move line with C^arrows, maybe set it to C+Shit+Arrows. I think that's what idea uses and would make it consistent
 
 ## Flake
 * Maybe switch to DevOS? it looks fine

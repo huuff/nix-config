@@ -54,19 +54,15 @@
     jetbrains.idea-ultimate
     xclip
     cloc
-    nixpkgs-fmt
-    nix-prefetch-git
     pavucontrol
     python3
     ntfs3g
     gnupg
     texlive.combined.scheme-medium
     keepassx2
-    himalaya
+    himalaya # not even using it yet
     _1password
-    nixopsUnstable
     sshfs
-    rnix-lsp
     vagrant
     libreoffice
     deluge
@@ -82,6 +78,12 @@
     nodePackages.diagnostic-languageserver
     postman
     feh
+
+    nixopsUnstable
+    nixpkgs-fmt
+    rnix-lsp
+    nix-prefetch-git
+    nixos-shell
 
     simplescreenrecorder
     teams
