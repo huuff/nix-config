@@ -83,7 +83,7 @@
 
   programs.rofi = {
     enable = true;
-    theme = "dmenu";
+    theme = ./rofi-dmenu-theme.rasi;
   };
 
   services.screen-locker = {
