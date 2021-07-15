@@ -15,6 +15,7 @@
       myModules.autocutsel
 
       myModules.maven
+      myModules.mycli
 
       ./git.nix
       ./bash.nix
@@ -122,6 +123,11 @@
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
       { id = "eadndfjplgieldjbigjakmdgkmoaaaoc"; } # xdebug helper
     ];
+  };
+
+  programs.mycli = {
+    enable = true;
+    favoriteQueries = secrets.cfQueries;
   };
 
   # This value determines the Home Manager release that your
