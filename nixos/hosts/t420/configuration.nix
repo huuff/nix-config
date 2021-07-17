@@ -37,13 +37,5 @@
     font = "Lat2-Terminus16";
     keyMap = "es";
   };
-
-  environment.systemPackages = with pkgs; [
-    jdk11_headless
-  ];
-
-  environment.etc = with pkgs; {
-    "jdk11".source = jdk11_headless;
-  };
 }
 

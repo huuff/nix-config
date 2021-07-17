@@ -32,6 +32,7 @@
         ./nixos/xorg.nix
         ./nixos/cachix.nix
         ./nixos/audio.nix
+        ./nixos/java.nix
 
         home-manager.nixosModules.home-manager
         {

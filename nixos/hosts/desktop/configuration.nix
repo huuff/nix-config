@@ -18,7 +18,6 @@
     '';
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Madrid";
 
   networking.useDHCP = false;
@@ -30,14 +29,6 @@
    };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs;
-  [
-    jdk11_headless
-  ];
-
-  environment.etc = with pkgs; {
-    "jdk11".source = jdk11_headless;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
