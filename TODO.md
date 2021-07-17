@@ -12,4 +12,7 @@
 * I have set move line with C^arrows, maybe set it to C+Shit+Arrows. I think that's what idea uses and would make it consistent
 
 ## Flake
-* Maybe switch to DevOS? it looks fine
+* Maybe switch to DevOS? it looks fine. Update: I dunno man, I'm doing fine
+
+## tmux
+* Put number of detached sessions in status bar.
