@@ -1,4 +1,5 @@
 { pkgs, user, secrets, myModules, ... }:
+# TODO: moving importing my modules to their own Nix files
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -16,6 +17,7 @@
 
       myModules.maven
       myModules.mycli
+      myModules.thefuck
 
       ./git.nix
       ./bash.nix
