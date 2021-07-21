@@ -23,7 +23,7 @@
       ./git.nix
       ./bash.nix
       ./starship.nix
-      ./i3.nix
+      ./desktop-environment/i3.nix
       ./tmux.nix
     ];
 
