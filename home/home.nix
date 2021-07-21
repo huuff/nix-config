@@ -18,6 +18,7 @@
       myModules.maven
       myModules.mycli
       myModules.thefuck
+      ./thefuck
 
       ./git.nix
       ./bash.nix
