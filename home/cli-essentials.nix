@@ -1,6 +1,7 @@
 { pkgs, ... }: with pkgs;
 [
   jq
+  yq # like jq but for yaml, also provides xq for xml
   git
   zip
   unzip
