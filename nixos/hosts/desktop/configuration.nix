@@ -29,6 +29,11 @@
      keyMap = "es";
    };
 
+   programs.ssh = {
+     startAgent = true;
+     agentTimeout = "1h";
+   };
+
   nixpkgs.config.allowUnfree = true;
 
   # This value determines the NixOS release from which the default
