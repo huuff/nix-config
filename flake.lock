@@ -74,11 +74,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1626856562,
-        "narHash": "sha256-/A4i2CiAIAIFg1fs+pPSFpGW7+NP825GREnBW+PE6zk=",
+        "lastModified": 1627220339,
+        "narHash": "sha256-wqHtLYSyROM7hzORaqlXUYSJy5xLOH4kOIaXEC3N+Kk=",
         "owner": "huuff",
         "repo": "derivations",
-        "rev": "362338e3f94a69400f50392c7959033e7f60226a",
+        "rev": "0ca265ddc6a4c07cd3a5dd117354950c1f0d25e3",
         "type": "github"
       },
       "original": {

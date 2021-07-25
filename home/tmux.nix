@@ -1,6 +1,6 @@
 { pkgs, myOverlays, ... }:
 {
-  nixpkgs.overlays = [ myOverlays.tmux-plugins ];
+  nixpkgs.overlays = [ myOverlays.tmuxPlugins ];
 
   programs.tmux = {
     enable = true;
