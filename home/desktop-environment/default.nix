@@ -1,4 +1,3 @@
-# TODO: This isn't really just about i3, there's also rofi and screen-locking
 { pkgs, ... }:
 {
   xsession = {
