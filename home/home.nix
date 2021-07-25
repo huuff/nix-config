@@ -130,6 +130,8 @@
   programs.mycli = {
     enable = true;
     favoriteQueries = secrets.cfQueries;
+    multiline = true;
+    autoVerticalOutput = true;
   };
 
   # This value determines the Home Manager release that your
