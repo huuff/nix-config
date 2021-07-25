@@ -116,7 +116,7 @@
 
   programs.ssh = {
     enable = true;
-    matchBlocks = secrets.ssh-match-blocks;
+    matchBlocks = secrets.sshMatchBlocks;
   };
 
   programs.chromium = {
