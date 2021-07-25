@@ -1,5 +1,7 @@
-{ ... }:
+{ myModules, ... }:
 {
+  imports = [ myModules.thefuck ];
+
   programs.thefuck = {
     enable = true;
 

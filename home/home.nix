@@ -1,5 +1,4 @@
 { pkgs, user, secrets, myModules, ... }:
-# TODO: moving importing my modules to their own Nix files
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -8,7 +7,6 @@
       ./browsers/firefox.nix
       # ./browsers/surf.nix
 
-      myModules.home-st
       ./terminal-emulators/st.nix 
       ./terminal-emulators/alacritty.nix
 
@@ -17,9 +15,8 @@
 
       myModules.maven
       myModules.mycli
-      myModules.thefuck
-      ./thefuck
 
+      ./thefuck
       ./git.nix
       ./bash.nix
       ./starship.nix

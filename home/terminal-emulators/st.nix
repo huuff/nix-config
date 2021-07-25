@@ -1,6 +1,8 @@
-{ pkgs, myOverlays, ...}:
+{ pkgs, myOverlays, myModules, ...}:
 
 {
+  imports = [ myModules.home-st ];
+
   nixpkgs.overlays = [ myOverlays.st ];
 
   programs.st = {
