@@ -12,8 +12,10 @@
 * Fix coc diagnostic colors since I can't see shit
 * I have set move line with C^arrows, maybe set it to C+Shit+Arrows. I think that's what idea uses and would make it consistent
 
-## Flake
+## NixOS
 * Maybe switch to DevOS? it looks fine. Update: I dunno man, I'm doing fine
+* Module for ssh-agent
+* Module for nix config (flakes, non-free)
 
 ## tmux
 * Put number of detached sessions in status bar.
