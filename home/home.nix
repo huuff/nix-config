@@ -66,11 +66,10 @@
     deluge
     slack
     jetbrains.phpstorm
-    mycli
     tealdeer # tldr command, for quick manpages
     sshpass
     nodePackages.bash-language-server
-    thefuck
+
     shellcheck
     shfmt
     nodePackages.diagnostic-languageserver
