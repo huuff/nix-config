@@ -1,12 +1,29 @@
 { config, lib, secrets, ... }:
-  {
+with lib;
+{
+  options = {
+    haf.networking.interface = mkOption {
+      type = types.str;
+      default = null;
+      example = "wlp3s0";
+    };
+  };
 
-      networking = {
-        wireless = {
-          enable = true;  # Enables wireless support via wpa_supplicant.
-          userControlled.enable = true;
-          interfaces = [ "wlp3s0" ]; # TODO: make this configurable, without it wireless fails to start sometimes
-          networks = secrets.networks;
-        };
+  config = {
+    assertions = [
+      {
+        assertion = config.haf.networking.interface != null;
+        message = "You have to set a networking interface (haf.networking.interface) or else the wireless will randomly fail to start at boot";
+      }
+    ];
+
+    networking = {
+      wireless = {
+        enable = true;  # Enables wireless support via wpa_supplicant.
+        userControlled.enable = true;
+        interfaces = [ config.haf.networking.interface ];
+        networks = secrets.networks;
       };
-  }
+    };
+  };
+}

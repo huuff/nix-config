@@ -47,7 +47,7 @@
   {
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
     [
-      ./nixos/wireless.nix 
+      ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
       nixos-hardware.nixosModules.lenovo-thinkpad-t420
     ];
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" 
