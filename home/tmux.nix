@@ -30,20 +30,16 @@
           set -g @yank_action 'copy-pipe-no-clear' # Do not exit copy mode when selecting text
 
           # Copy to word to primary on double click, line on triple click
-          bind -T copy-mode    DoubleClick1Pane select-pane \; send -X select-word \; send -X copy-pipe-no-clear "${copyToPrimary}"
-          bind -T copy-mode-vi DoubleClick1Pane select-pane \; send -X select-word \; send -X copy-pipe-no-clear "${copyToPrimary}"
-          bind -n DoubleClick1Pane select-pane \; copy-mode -M \; send -X select-word \; send -X copy-pipe-no-clear "${copyToPrimary}"
-          bind -T copy-mode    TripleClick1Pane select-pane \; send -X select-line \; send -X copy-pipe-no-clear "${copyToPrimary}"
-          bind -T copy-mode-vi TripleClick1Pane select-pane \; send -X select-line \; send -X copy-pipe-no-clear "${copyToPrimary}"
-          bind -n TripleClick1Pane select-pane \; copy-mode -M \; send -X select-line \; send -X copy-pipe-no-clear "${copyToPrimary}"
+          bind -T copy-mode    DoubleClick1Pane select-pane \; send -X select-word \; send -X copy-pipe-and-cancel "${copyToPrimary}"
+          bind -T copy-mode-vi DoubleClick1Pane select-pane \; send -X select-word \; send -X copy-pipe-and-cancel "${copyToPrimary}"
+          bind -n DoubleClick1Pane select-pane \; copy-mode -M \; send -X select-word \; send -X copy-pipe-and-cancel "${copyToPrimary}"
+          bind -T copy-mode    TripleClick1Pane select-pane \; send -X select-line \; send -X copy-pipe-and-cancel "${copyToPrimary}"
+          bind -T copy-mode-vi TripleClick1Pane select-pane \; send -X select-line \; send -X copy-pipe-and-cancel "${copyToPrimary}"
+          bind -n TripleClick1Pane select-pane \; copy-mode -M \; send -X select-line \; send -X copy-pipe-and-cancel "${copyToPrimary}"
 
           # Copy to clipboard on Ctrl + C
           bind -T copy-mode    C-c send -X copy-pipe-no-clear "${copyToClipboard}"
           bind -T copy-mode-vi C-c send -X copy-pipe-no-clear "${copyToClipboard}"
-
-          # Which means I need a different command for exiting copy mode, say Ctrl + X
-          bind -T copy-mode    C-x send -X cancel
-          bind -T copy-mode-vi C-x send -X cancel
 
           # Paste on middle click
           bind -n MouseDown2Pane run "tmux set-buffer -b primary_selection \"$(${pasteFromPrimary})\"; tmux paste-buffer -b primary_selection; tmux delete-buffer -b primary_selection"
