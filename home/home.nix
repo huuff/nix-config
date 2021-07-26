@@ -15,6 +15,8 @@
       myModules.maven
       myModules.mycli
 
+      myModules.autocutsel
+
       ./thefuck
       ./git.nix
       ./bash.nix
@@ -31,6 +33,7 @@
   programs.fzf.enable = true;
 
   haf.scripts.enable = true;
+  haf.autocutsel.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
