@@ -7,7 +7,7 @@
       config = {
         modifier = "Mod4";
         window.titlebar = false;
-        terminal = "st";
+        terminal = "alacritty";
         menu = "rofi -show run";
       };
     };

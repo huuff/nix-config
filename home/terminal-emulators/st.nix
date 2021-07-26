@@ -9,7 +9,7 @@
     enable = true;
     colorscheme = "dracula";
     fontSize = 16;
-    scrollback = false; # I use tmux for it
+    scrollback = true;
     blinkingCursor = true;
     exec = "tmux";
     flags = [
