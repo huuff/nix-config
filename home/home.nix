@@ -53,7 +53,7 @@
     zathura
     scrot
     jetbrains.idea-ultimate
-    xclip
+    xsel
     cloc
     pavucontrol
     python3
