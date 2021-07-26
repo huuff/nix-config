@@ -5,13 +5,16 @@
   programs.tmux = {
     enable = true;
     extraConfig = ''
-        # easy to remember keybindings for splits
+        # Easy to remember keybindings for splits
         bind | split-window -h -c "#{pane_current_path}"
         bind - split-window -v -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"  
 
-        # clear history with C-k
+        # Clear history with C-k
         bind -n C-k clear-history
+
+        # Enable vi mode because I like searching with /
+        set -g mode-keys vi
     '';
     plugins = with pkgs; [
       {
