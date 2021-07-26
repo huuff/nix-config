@@ -12,13 +12,6 @@
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostName = "desktop";
  
-  nix = {
-    package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   time.timeZone = "Europe/Madrid";
 
   networking.useDHCP = false;
@@ -33,8 +26,6 @@
      startAgent = true;
      agentTimeout = "1h";
    };
-
-  nixpkgs.config.allowUnfree = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

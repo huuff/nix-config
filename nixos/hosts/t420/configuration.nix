@@ -13,15 +13,6 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   boot.kernelParams = [ "intel_pstate=active" ];
 
-  nix = {
-    package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

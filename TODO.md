@@ -14,7 +14,7 @@
 ## NixOS
 * Maybe switch to DevOS? it looks fine. Update: I dunno man, I'm doing fine
 * Module for ssh-agent
-* Module for nix config (flakes, non-free)
+* My prod_jdk script is not working.
 
 ## tmux
 * Put number of detached sessions in status bar.

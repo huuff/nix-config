@@ -10,14 +10,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "office";
-  nixpkgs.config.allowUnfree = true;
-
-  nix = {
-    package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
 
   time.timeZone = "Europe/Madrid";
 

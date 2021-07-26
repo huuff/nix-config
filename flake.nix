@@ -33,6 +33,7 @@
         ./nixos/cachix.nix
         ./nixos/audio.nix
         ./nixos/java.nix
+        ./nixos/nixconf.nix
 
         home-manager.nixosModules.home-manager
         {
