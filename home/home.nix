@@ -11,7 +11,6 @@
       ./terminal-emulators/alacritty.nix
 
       myModules.scripts
-      myModules.autocutsel
 
       myModules.maven
       myModules.mycli
@@ -32,7 +31,6 @@
   programs.fzf.enable = true;
 
   haf.scripts.enable = true;
-  haf.autocutsel.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
