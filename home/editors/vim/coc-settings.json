@@ -12,6 +12,10 @@
     }
   },
 
+  "eslint": {
+    "probe":  ["javascript","javascriptreact","typescript","typescriptreact","html","vue" ] 
+  },
+
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   },
