@@ -16,5 +16,5 @@
 
 ## tmux
 * Put number of detached sessions in status bar.
-* Scrolling in copy mode when text is selected extends the selection. (Maybe this has something to do with better mouse mode and mouse mode emulation?)
+* Scrolling in copy mode when text is selected extends the selection.
 * Double clicking in vim selects as visual selection but immediately then selects as tmux. I'd probably only want the first one.
