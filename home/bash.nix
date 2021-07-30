@@ -6,10 +6,11 @@
 
     shellAliases = {
       perms = ''stat -c "%a %n"'';
-      trace-net = ''strace -f -e trace=network'';
+      trace-net = ''strace -f -e trace=network''; # is it useful?
       sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       oplogin = "eval $(op signin my)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
+      ssh = "TERM=xterm-color ssh"; # for some servers that don't accept my terminals
     };
 
     initExtra = ''
