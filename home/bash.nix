@@ -11,11 +11,11 @@
       oplogin = "eval $(op signin my)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
       ssh = "TERM=xterm-256color ssh"; # for some servers that don't accept my terminals
-      "sys s" = "systemctl status";
-      "sys f" = "systemctl --failed";
-      "sys j" = "systemctl list-jobs";
-      "sys l" = "journalctl -u";
-      "sys lf" = "journalctl -fu";
+      "syss" = "systemctl status";
+      "sysf" = "systemctl --failed";
+      "sysj" = "systemctl list-jobs";
+      "jrn" = "journalctl -u";
+      "jrnf" = "journalctl -fu";
     };
 
     initExtra = ''
