@@ -10,7 +10,7 @@
       sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       oplogin = "eval $(op signin my)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
-      ssh = "TERM=xterm-color ssh"; # for some servers that don't accept my terminals
+      ssh = "TERM=xterm-256color ssh"; # for some servers that don't accept my terminals
     };
 
     initExtra = ''
