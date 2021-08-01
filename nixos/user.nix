@@ -5,4 +5,6 @@ with lib;
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
+
+  nix.trustedUsers = [ user ];
 }
