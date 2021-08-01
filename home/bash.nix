@@ -11,11 +11,13 @@
       oplogin = "eval $(op signin my)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
       ssh = "TERM=xterm-256color ssh"; # for some servers that don't accept my terminals
-      "syss" = "systemctl status";
-      "sysf" = "systemctl --failed";
-      "sysj" = "systemctl list-jobs";
-      "jrn" = "journalctl -u";
-      "jrnf" = "journalctl -fu";
+      syss = "systemctl status";
+      sysf = "systemctl --failed";
+      sysj = "systemctl list-jobs";
+      jrn = "journalctl -u";
+      jrnf = "journalctl -fu";
+      watch = "watch "; # same as sudo
+
     };
 
     initExtra = ''
