@@ -17,7 +17,7 @@
       jrn = "journalctl -u";
       jrnf = "journalctl -fu";
       watch = "watch "; # same as sudo
-      spdate = "date +'%d/%m%Y'";
+      spdate = "date +'%d/%m/%Y'";
 
     };
 
