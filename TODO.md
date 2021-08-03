@@ -18,3 +18,6 @@
 * Put number of detached sessions in status bar.
 * Scrolling in copy mode when text is selected extends the selection.
 * Double clicking in vim selects as visual selection but immediately then selects as tmux. I'd probably only want the first one.
+
+## thefuck
+* A module to `rm -rf` git repos when I forget to add `-f`
