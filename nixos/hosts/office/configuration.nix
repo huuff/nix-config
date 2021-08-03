@@ -27,22 +27,6 @@
     ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
   '';
 
-  security.wrappers."mount.nfs".source = "${pkgs.nfs-utils.out}/bin/mount.nfs";
-
-  # Am I using this?
-  fileSystems."/export/clickferry" = {
-    device="/home/fran/clickferry";
-    options=["bind"];
-  };
-
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-    /export         192.168.56.108(rw,fsid=0,no_subtree_check)
-    /export/clickferry  192.168.56.108(rw,nohide,insecure,no_subtree_check)
-      '';
-  };
-
 
   environment.systemPackages = with pkgs; 
   let

@@ -37,7 +37,7 @@
       # Markdown
       #mkdx
       #vim-pandoc
-      #vim-pandoc-syntax
+      vim-pandoc-syntax
     ];
   };
 

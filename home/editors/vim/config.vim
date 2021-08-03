@@ -63,3 +63,8 @@ endif
 " search ignores cases unless an uppercase is used
 set ignorecase
 set smartcase
+
+" use vim-pandoc-syntax (this is necessary if not using vim-pandoc)
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
