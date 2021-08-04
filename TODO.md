@@ -21,3 +21,4 @@
 
 ## thefuck
 * A module to `rm -rf` git repos when I forget to add `-f`
+* A module to make a `cat` into a `bat`
