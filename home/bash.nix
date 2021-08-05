@@ -14,11 +14,14 @@
       syss = "systemctl status";
       sysf = "systemctl --failed";
       sysj = "systemctl list-jobs";
+      sysc = "systemctl cat";
       jrn = "journalctl -u";
       jrnf = "journalctl -fu";
       watch = "watch "; # same as sudo
-      spdate = "date +'%d/%m/%Y'";
-
+      vssh = "TERM=xterm-256color vagrant ssl";
+      vup = "vagrant up";
+      vhalt = "vagrant halt";
+      vss = "vagrant global-status";
     };
 
     initExtra = ''
