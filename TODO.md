@@ -5,6 +5,7 @@
 
 ## emacs
 * Maybe use a different style for counsel-projectile-ag? Searching text fuzzily might be too much
+* Some type of `nercommenter`
 
 ## vim
 * Fix coc diagnostic colors since I can't see shit
