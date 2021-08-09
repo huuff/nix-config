@@ -5,6 +5,7 @@
 
 ## emacs
 * Maybe use a different style for counsel-projectile-ag? Searching text fuzzily might be too much
+* Some type of `nercommenter`. UPDATE: I actually have `evil-nc`, but it's not working... is it because of `evilleader`?
 
 ## vim
 * Fix coc diagnostic colors since I can't see shit
@@ -21,3 +22,4 @@
 
 ## thefuck
 * A module to `rm -rf` git repos when I forget to add `-f`
+* A module to make a `cat` into a `bat`
