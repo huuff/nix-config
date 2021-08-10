@@ -18,7 +18,7 @@
       jrn = "journalctl -u";
       jrnf = "journalctl -fu";
       watch = "watch "; # same as sudo
-      vssh = "TERM=xterm-256color vagrant ssl";
+      vssh = "TERM=xterm-256color vagrant ssh";
       vup = "vagrant up";
       vhalt = "vagrant halt";
       vss = "vagrant global-status";
