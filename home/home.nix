@@ -69,6 +69,7 @@
     tealdeer # tldr command, for quick manpages
     sshpass
     nodePackages.bash-language-server
+    translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
 
     shellcheck
     shfmt
