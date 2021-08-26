@@ -181,11 +181,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1629446986,
-        "narHash": "sha256-Cb32QbB1Rcx9Xay9uaVB9a9XY4HJhJUw0TdzLEH6L4U=",
+        "lastModified": 1629978023,
+        "narHash": "sha256-RogM4yxmFfN3/5KlRJVE5OUhCrb4j68/rBSIodAgiPY=",
         "ref": "master",
-        "rev": "d6832a2e697fd76c65794078ec9a5e5b7ff6dbbf",
-        "revCount": 35,
+        "rev": "596a2b8e1f4e74b272dd71d069d8aa5f699869e2",
+        "revCount": 36,
         "type": "git",
         "url": "ssh://git@github.com/huuff/secrets.git"
       },
