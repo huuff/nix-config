@@ -149,9 +149,11 @@
 
 (use-package evil-nerd-commenter)
 (use-package evil-leader
+             :init (global-evil-leader-mode)
              :config
+             (evil-leader/set-leader "<SPC>")
              (evil-leader/set-key
-               "ci" 'evilnc-comment-or-uncomment-lines
+               "c SPC" 'evilnc-comment-or-uncomment-lines
                "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
                "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
                "cc" 'evilnc-copy-and-comment-lines
