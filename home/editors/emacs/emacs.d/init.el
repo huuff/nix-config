@@ -163,10 +163,14 @@
                "."  'evilnc-copy-and-comment-operator
                "\\" 'evilnc-comment-operator
                )
-             )
+)
+
+(use-package evil-snipe
+             :init (evil-snipe-mode +1)
+)
 
 (use-package php-mode
-:mode ("\\.php\\'" . php-mode)
+    :mode ("\\.php\\'" . php-mode)
 )
 
 (use-package nix-mode

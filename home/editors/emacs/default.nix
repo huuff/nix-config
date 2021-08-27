@@ -33,6 +33,7 @@
       centaur-tabs
       evil-nerd-commenter
       evil-leader
+      evil-snipe
       php-mode
       nix-mode
       dap-mode
