@@ -14,6 +14,7 @@
       syss = "systemctl status";
       sysf = "systemctl --failed";
       sysj = "systemctl list-jobs";
+      sysr = "systemctl restart";
       sysc = "systemctl cat";
       jrn = "journalctl -u";
       jrnf = "journalctl -fu";
