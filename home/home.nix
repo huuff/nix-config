@@ -47,6 +47,7 @@
 
   home.packages = with pkgs; [
     anki
+    gradle
     zathura
     scrot
     jetbrains.idea-ultimate
