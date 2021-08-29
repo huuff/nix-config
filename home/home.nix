@@ -45,9 +45,13 @@
     LESS = "-XFr --mouse --wheel-lines=3";
   };
 
+  # TODO: make java version more global so I can share it between files
   home.packages = with pkgs; [
     anki
-    gradle
+    ((gradleGen.override {
+      jdk = jdk11_headless;
+      java = jdk11_headless;
+    }).gradle_latest)
     zathura
     scrot
     jetbrains.idea-ultimate
