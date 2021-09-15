@@ -18,6 +18,7 @@
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
       inherit system;
 
+
       specialArgs = { 
         inherit user emacs-overlay nur secrets; 
         myOverlays = myDrvs.overlays;
@@ -26,6 +27,12 @@
 
       modules = [
         host
+
+        {
+          # Set the registry nixpkgs to the one currently in use
+          # This will avoid redownloading nixpkgs on every nix operation
+          nix.registry.nixpkgs.flake = nixpkgs; 
+        }
 
         ./nixos/user.nix
         ./nixos/fonts.nix
