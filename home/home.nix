@@ -91,6 +91,8 @@
     nix-prefetch-git
     nixos-shell
 
+    mongodb
+
     simplescreenrecorder
     teams
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
