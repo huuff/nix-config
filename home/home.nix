@@ -61,9 +61,7 @@
     python3
     ntfs3g
     gnupg
-    (texlive.combine {
-      inherit (texlive) scheme-small lastpage sectsty;
-    })
+    texlive.combined.scheme-full
     keepassx2
     himalaya # not even using it yet
     _1password
