@@ -3,6 +3,7 @@
 * I'm not even using surf, maybe I should fix it since I want to use it in emacs
 * Remove stuff I don't use from i3status. Also test if I need numbering because it's a chore. UPDATE: Pretty sure it's gonna need numbering since it's an attribute set and attribute set's properties are unordered, try something cute with a list and imap
 * Hide userland threads by default in `htop`
+* See if I can use `pipewire` with `pulseaudio` emulation instead of `pulseaudio` since I have audio problems. [Check this](https://discourse.nixos.org/t/sound-only-works-while-pavucontrol-is-open/15280/2)
 
 ## emacs
 * Maybe use a different style for counsel-projectile-ag? Searching text fuzzily might be too much
