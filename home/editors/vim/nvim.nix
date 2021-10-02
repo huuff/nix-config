@@ -13,10 +13,11 @@
     plugins = with pkgs.vimPlugins; [
       # Languages
       vim-nix
-      coc-eslint
-      coc-tsserver
       vim-twig
       vim-vagrant
+      coc-tsserver
+      coc-eslint
+      coc-yaml
 
       # Convenience
       vim-surround

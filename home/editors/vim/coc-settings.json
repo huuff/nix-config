@@ -22,6 +22,10 @@
 
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
+  },
+
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json": [ "*api.yaml" ]
   }
 
 }
