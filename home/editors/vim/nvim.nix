@@ -25,6 +25,7 @@
       fzf-vim
       fugitive
       coc-nvim
+      coc-pairs
       #coc-snippets # commented because I'm not using it, loads on every file and it's slow
       coc-diagnostic
       nerdcommenter
