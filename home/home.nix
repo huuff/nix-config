@@ -130,6 +130,7 @@
     extensions = [
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
       { id = "eadndfjplgieldjbigjakmdgkmoaaaoc"; } # xdebug helper
+      { id = "jnihajbhpnppcggbcgedagnkighmdlei"; } # livereload
     ];
   };
 
