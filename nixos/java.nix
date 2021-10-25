@@ -5,6 +5,7 @@
 
     etc = with pkgs; {
       "jdk11".source = jdk11_headless;
+      "jdk16".source = jdk16_headless;
     };
   };
 
