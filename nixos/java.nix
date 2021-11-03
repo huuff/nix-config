@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   environment = {
-    systemPackages = with pkgs; [ jdk11_headless ];
+    systemPackages = with pkgs; [ jdk11_headless jdk17_headless ];
 
     etc = with pkgs; {
       "jdk11".source = jdk11_headless;
-      "jdk16".source = jdk16_headless;
+      "jdk17".source = jdk17_headless;
     };
   };
 
