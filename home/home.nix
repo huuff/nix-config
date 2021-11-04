@@ -123,6 +123,9 @@
   programs.ssh = {
     enable = true;
     matchBlocks = secrets.sshMatchBlocks;
+    extraConfig = ''
+      PubkeyAcceptedKeyTypes +ssh-rsa
+    '';
   };
 
   programs.chromium = {
