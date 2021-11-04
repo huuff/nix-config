@@ -2,11 +2,6 @@
 {
   nixpkgs.overlays = [ emacs-overlay.overlay ];
 
-  home.packages = with pkgs; [
-    python3 # currently using for treemacs thugh I'm not sure it's detecting it
-    nodePackages.npm # autoinstall LSP
-    nodejs # idem
-  ];
   #services.emacs.enable = true;
   programs.emacs = {
     enable = true;
@@ -47,6 +42,11 @@
       treemacs-magit
       all-the-icons
       doom-themes   
+
+      # Required for treemacs, not sure it's working
+      pkgs.python3
+      pkgs.nodePackages.npm
+      pkgs.nodejs
     ]));
   };
 
