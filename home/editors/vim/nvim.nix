@@ -27,6 +27,7 @@
       fzf-vim # TODO: Not sure how to use it
       fugitive
       coc-nvim
+      coc-html
       coc-pairs # TODO: not sure I like it
       #coc-snippets # commented because I'm not using it, loads on every file and it's slow
       coc-diagnostic
