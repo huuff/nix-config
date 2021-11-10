@@ -15,6 +15,7 @@
       vim-nix
       vim-twig
       vim-vagrant
+      vim-vue
       coc-tsserver
       coc-eslint
       coc-yaml
@@ -32,10 +33,10 @@
       #coc-snippets # commented because I'm not using it, loads on every file and it's slow
       coc-diagnostic
       nerdcommenter
-      vim-gitgutter
+      vim-gitgutter # git indicators in the gutter
       vim-repeat # allows me to repeat some plugin commands with .
       suda-vim # use :SudaWrite to save as sudo
-      undotree
+      undotree # run :UndotreeTogglet to see the panel
       vim-sneak # use s to act like f but with two characters and in the whole buffer
       vim-airline
 
