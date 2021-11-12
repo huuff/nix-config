@@ -24,7 +24,7 @@
       vim-surround
       vim-visual-multi # start a cursor on a selection with `^N`, use `m<obj>` to match all occurrences inside text object
       vim-textobj-entire # provides `ae` as a textobject for the whole buffer
-      targets-vim # TODO: What targets does it provide?
+      vim-argumentative # shift arguments with `<,` and `>,`, move between argument boundaries with `[,` and `],`
       fzf-vim # TODO: Not sure how to use it
       fugitive
       coc-nvim
