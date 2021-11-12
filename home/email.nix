@@ -5,6 +5,6 @@
   };
 
   accounts.email.accounts = {
-    travail =  secrets.emailAccounts.work;
+    work =  secrets.emailAccounts.work;
   };
 }
