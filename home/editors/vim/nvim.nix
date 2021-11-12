@@ -15,7 +15,7 @@
       vim-nix
       vim-twig
       vim-vagrant
-      vim-vue
+      coc-vetur
       coc-tsserver
       coc-eslint
       coc-yaml
