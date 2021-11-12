@@ -21,6 +21,7 @@
       ./starship.nix
       ./desktop-environment
       ./tmux.nix
+      ./email.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
