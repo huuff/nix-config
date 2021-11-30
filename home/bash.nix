@@ -23,6 +23,7 @@
       vup = "vagrant up";
       vhalt = "vagrant halt";
       vss = "vagrant global-status";
+      cloc = "cloc --vcs=git";
     };
 
     initExtra = ''
