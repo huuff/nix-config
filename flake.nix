@@ -48,6 +48,10 @@
           home-manager.users.${user} = import ./home/home.nix;
           home-manager.extraSpecialArgs = specialArgs;
         }
+
+        {
+          boot.supportedFilesystems = [ "ntfs" ];
+        }
       ] ++ extraModules;
     };
   in
