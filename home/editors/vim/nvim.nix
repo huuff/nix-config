@@ -49,5 +49,6 @@
   };
 
 
+  # TODO: Looks like the home-manager module now has an option for coc huh
   xdg.configFile."nvim/coc-settings.json".text = builtins.readFile ./coc-settings.json;
 }
