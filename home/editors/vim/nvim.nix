@@ -15,10 +15,11 @@
       vim-nix
       vim-twig
       vim-vagrant
-      coc-vetur
+      #coc-vetur # TODO: Currently using coc-volar, but it's not in nixpkgs so just doing :CocInstall @yaegassy/coc-volar
       coc-tsserver
       coc-eslint
       coc-yaml
+      coc-html
 
       # Convenience
       vim-surround
@@ -26,13 +27,12 @@
       vim-textobj-entire # provides `ae` as a textobject for the whole buffer
       vim-argumentative # shift arguments with `<,` and `>,`, move between argument boundaries with `[,` and `],`
       fzf-vim # TODO: Not sure how to use it
-      fugitive
+      fugitive # I usually only do :Git blame honestly
       coc-nvim
-      coc-html
       coc-pairs # TODO: not sure I like it
       #coc-snippets # commented because I'm not using it, loads on every file and it's slow
       coc-diagnostic
-      nerdcommenter
+      nerdcommenter # <spc>C<spc> to toggle comment
       vim-gitgutter # git indicators in the gutter
       vim-repeat # allows me to repeat some plugin commands with .
       suda-vim # use :SudaWrite to save as sudo
@@ -46,7 +46,12 @@
       #vim-pandoc
       vim-pandoc-syntax
     ];
+
+    extraPackages = with pkgs; [
+      watchman # coc-volar needs it
+    ];
   };
+
 
 
   # TODO: Looks like the home-manager module now has an option for coc huh
