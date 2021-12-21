@@ -2,7 +2,7 @@
 {
     imports = [
       ./editors/vim/nvim.nix
-      ./editors/emacs
+      #./editors/emacs
 
       ./browsers/firefox.nix
       # ./browsers/surf.nix
@@ -49,10 +49,6 @@
   # TODO: make java version more global so I can share it between files
   home.packages = with pkgs; [
     anki
-    ((gradleGen.override {
-      jdk = jdk11_headless;
-      java = jdk11_headless;
-    }).gradle_latest)
     zathura
     scrot
     jetbrains.idea-ultimate
