@@ -80,7 +80,6 @@
     postman
     feh
 
-    nixopsUnstable
     nixpkgs-fmt
     rnix-lsp
     nix-prefetch-git
