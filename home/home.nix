@@ -100,6 +100,10 @@
     settings = secrets.mavenSettings;
   };
 
+  programs.zoxide = {
+    enable = true;
+  };
+
 
   programs.mpv = {
     enable = true;

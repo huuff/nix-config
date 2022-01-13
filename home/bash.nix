@@ -24,6 +24,7 @@
       vhalt = "vagrant halt";
       vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
+      z = "zoxide";
     };
 
     initExtra = ''
