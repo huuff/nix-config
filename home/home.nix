@@ -64,10 +64,8 @@
     _1password
     sshfs
     vagrant
-    libreoffice
     deluge
     slack
-    jetbrains.phpstorm
     tealdeer # tldr command, for quick manpages
     sshpass
     nodePackages.bash-language-server
@@ -84,9 +82,6 @@
     rnix-lsp
     nix-prefetch-git
     nixos-shell
-
-    simplescreenrecorder
-    teams
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
