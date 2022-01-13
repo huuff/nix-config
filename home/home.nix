@@ -86,8 +86,6 @@
     nix-prefetch-git
     nixos-shell
 
-    mongodb
-
     simplescreenrecorder
     teams
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
@@ -131,6 +129,7 @@
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
       { id = "eadndfjplgieldjbigjakmdgkmoaaaoc"; } # xdebug helper
       { id = "jnihajbhpnppcggbcgedagnkighmdlei"; } # livereload
+      { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1password
     ];
   };
 
