@@ -140,6 +140,17 @@
 
   programs.vscode = {
     enable = true;
+    keybindings = [ # Some keybindings as in Intellij IDEA
+      {
+        key = "ctrl+alt+l";
+        command = "editor.action.formatDocument";
+      }
+
+      {
+        key = "ctrl+alt+s";
+        command = "workbench.action.files.saveAll";
+      }
+    ];
   };
 
   # This value determines the Home Manager release that your
