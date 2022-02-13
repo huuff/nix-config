@@ -60,7 +60,6 @@
     gnupg
     texlive.combined.scheme-full
     keepassx2
-    himalaya # not even using it yet
     _1password
     sshfs
     vagrant
