@@ -55,11 +55,14 @@
       ] ++ extraModules;
     };
   in
+  # I've repeated adding the virtualization module to every
+  # configuration, maybe I should add it to the base
   {
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
     [
       ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
       nixos-hardware.nixosModules.lenovo-thinkpad-t420
+      ./nixos/virtualization.nix
     ];
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" 
     [
