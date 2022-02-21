@@ -7,7 +7,6 @@
     shellAliases = {
       perms = ''stat -c "%a %n"'';
       trace-net = ''strace -f -e trace=network''; # is it useful?
-      sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       oplogin = "eval $(op signin my)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
       ssh = "TERM=xterm-256color ssh"; # for some servers that don't accept my terminals
@@ -18,6 +17,7 @@
       sysc = "systemctl cat";
       jrn = "journalctl -u";
       jrnf = "journalctl -fu";
+      sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       watch = "watch "; # same as sudo
       vssh = "TERM=xterm-256color vagrant ssh";
       vup = "vagrant up";
@@ -25,6 +25,8 @@
       vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
       z = "zoxide";
+      startssh = "eval `ssh-agent -s`";
+      ag2 = "ag -B2 -A2";
     };
 
     initExtra = ''
