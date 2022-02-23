@@ -13,4 +13,5 @@
   lsd # ls replacement
   entr
   ncdu # see disk usage
+  expect # make the non-interactive, interactive
 ]
