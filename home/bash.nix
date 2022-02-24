@@ -25,8 +25,8 @@
       vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
       z = "zoxide";
-      startssh = "eval `ssh-agent -s`";
       ag2 = "ag -B2 -A2";
+      duh = "du -h --max-depth=1";
     };
 
     initExtra = ''
