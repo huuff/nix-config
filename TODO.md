@@ -14,7 +14,6 @@
 * I think I can't use `vim-surround` correctly anymore? Previously I was able to use `ci*` to edit inside markdown italics/bold, but now I can't
 
 ## NixOS
-* Module for ssh-agent
 * My prod_jdk script is not working. (Try using tmpfiles.d)
 
 ## tmux

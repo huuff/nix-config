@@ -41,6 +41,7 @@
         ./nixos/audio.nix
         ./nixos/java.nix
         ./nixos/nixconf.nix
+        ./nixos/ssh.nix
 
         home-manager.nixosModules.home-manager
         {
