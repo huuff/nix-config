@@ -6,5 +6,5 @@ with lib;
     extraGroups = [ "wheel" ];
   };
 
-  nix.trustedUsers = [ user ];
+  nix.settings.trusted-users = [ user ];
 }
