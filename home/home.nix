@@ -2,12 +2,9 @@
 {
     imports = [
       ./editors/vim/nvim.nix
-      #./editors/emacs
 
       ./browsers/firefox.nix
-      # ./browsers/surf.nix
 
-      ./terminal-emulators/st.nix 
       ./terminal-emulators/alacritty.nix
 
       myModules.scripts
