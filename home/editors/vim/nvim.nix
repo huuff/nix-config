@@ -42,8 +42,6 @@
       vim-indent-guides # show indentation level, I need it for yaml. TODO: configure it so it looks nice
 
       # Markdown
-      #mkdx
-      #vim-pandoc
       vim-pandoc-syntax
     ];
 
