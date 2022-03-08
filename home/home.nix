@@ -78,6 +78,7 @@
     rnix-lsp
     nix-prefetch-git
     nixos-shell
+    mongodb-4_2 # a couple hours of compilation time!!
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
