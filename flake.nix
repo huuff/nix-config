@@ -32,6 +32,9 @@
           # Set the registry nixpkgs to the one currently in use
           # This will avoid redownloading nixpkgs on every nix operation
           nix.registry.nixpkgs.flake = nixpkgs; 
+          nix.extraOptions = ''
+            netrc-file = /etc/nix/netrc
+          '';
         }
 
         ./nixos/user.nix
@@ -56,7 +59,7 @@
       ] ++ extraModules;
     };
   in
-  # I've repeated adding the virtualization module to every
+  # TODO: I've repeated adding the virtualization module to every
   # configuration, maybe I should add it to the base
   {
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
