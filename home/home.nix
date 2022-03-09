@@ -78,7 +78,7 @@
     rnix-lsp
     nix-prefetch-git
     nixos-shell
-    mongodb-4_2 # a couple hours of compilation time!!
+    mongodb-4_2 # a good 4-5 hours compilation time on my slowest computer, so plan ahead
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
