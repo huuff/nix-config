@@ -45,6 +45,7 @@
         ./nixos/java.nix
         ./nixos/nixconf.nix
         ./nixos/ssh.nix
+        ./nixos/virtualization.nix
 
         home-manager.nixosModules.home-manager
         {
@@ -56,25 +57,23 @@
         {
           boot.supportedFilesystems = [ "ntfs" ];
         }
+
+        {
+          # Use all features of declarative containers for imperative containers
+          # https://github.com/erikarvstedt/extra-container
+          programs.extra-container.enable = true;
+        }
       ] ++ extraModules;
     };
   in
-  # TODO: I've repeated adding the virtualization module to every
-  # configuration, maybe I should add it to the base
   {
+
+    nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
+    nixosConfigurations.office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [];
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
     [
       ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
       nixos-hardware.nixosModules.lenovo-thinkpad-t420
-      ./nixos/virtualization.nix
-    ];
-    nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" 
-    [
-      ./nixos/virtualization.nix
-    ];
-    nixosConfigurations.office = mkConfig ./nixos/hosts/office/configuration.nix "fran" 
-    [
-      ./nixos/virtualization.nix
     ];
 
   };
