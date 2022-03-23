@@ -67,6 +67,7 @@
     nodePackages.bash-language-server
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     libxml2 # for xmllint --format
+    docker-compose
 
     shellcheck
     shfmt
