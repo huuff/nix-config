@@ -40,7 +40,7 @@
       vim-sneak # use s to act like f but with two characters and in the whole buffer
       vim-airline
       vim-indent-guides # show indentation level, I need it for yaml. TODO: configure it so it looks nice, turn it on by default for yaml
-      vim-grammarous
+      vim-grammarous # run :GrammarousCheck to check grammar TODO: Set it to run automatically in `.md` files?
 
       # Markdown
       vim-pandoc-syntax
