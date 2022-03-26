@@ -39,7 +39,8 @@
       undotree # run :UndotreeTogglet to see the panel
       vim-sneak # use s to act like f but with two characters and in the whole buffer
       vim-airline
-      vim-indent-guides # show indentation level, I need it for yaml. TODO: configure it so it looks nice
+      vim-indent-guides # show indentation level, I need it for yaml. TODO: configure it so it looks nice, turn it on by default for yaml
+      vim-grammarous
 
       # Markdown
       vim-pandoc-syntax
