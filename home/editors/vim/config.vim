@@ -69,3 +69,9 @@ set smartcase
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
+
+" do not add a newline if a file does not have it (this is some UNIX standard?)
+" this shows files as modified in VCS even though I did not edit them (but vim
+" just adds a newline). Also it fucks up big time OpenAPI's Mustache
+" templates.
+set nofixeol
