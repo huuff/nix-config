@@ -6,12 +6,12 @@
   zip
   unzip
   fd # find replacement
-  ag # grep replacement
+  silver-searcher # grep replacement
   fzf
   htop
   bat # cat replacement
   lsd # ls replacement
-  entr
+  entr # run command on file changes
   ncdu # see disk usage
   expect # make the non-interactive, interactive
 ]
