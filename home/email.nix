@@ -5,6 +5,6 @@
   };
 
   accounts.email.accounts = {
-    work =  secrets.emailAccounts.work;
+    work =  (secrets.emailAccounts { inherit pkgs; }).work;
   };
 }
