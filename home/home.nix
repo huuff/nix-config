@@ -56,7 +56,6 @@
     ntfs3g
     gnupg
     texlive.combined.scheme-full
-    keepassx2
     _1password
     sshfs
     vagrant
@@ -79,7 +78,8 @@
     rnix-lsp
     nix-prefetch-git
     nixos-shell
-    mongodb-4_2 # a good 4-5 hours compilation time on my slowest computer, so plan ahead
+    mongodb-4_2 # a good 4-5 hours compilation time on my slowest computer, so plan ahead TODO: Self-host a binary cache
+    kubectl
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
