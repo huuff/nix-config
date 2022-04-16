@@ -1,5 +1,6 @@
 { pkgs, ... }: with pkgs;
 [
+  wget
   jq
   yq # like jq but for yaml, also provides xq for xml
   git
