@@ -80,7 +80,6 @@
     nixos-shell
     mongodb-4_2 # a good 4-5 hours compilation time on my slowest computer, so plan ahead TODO: Self-host a binary cache
     kubectl
-    google-cloud-sdk
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
