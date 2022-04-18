@@ -15,4 +15,5 @@
   entr # run command on file changes
   ncdu # see disk usage
   expect # make the non-interactive, interactive
+  comma # run commands without installing e.g. `, cowsay hello`
 ]
