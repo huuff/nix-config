@@ -9,6 +9,7 @@
 * Fix coc diagnostic colors since I can't see shit
 * I have set move line with C^arrows, maybe set it to C+Shit+Arrows. I think that's what idea uses and would make it consistent
 * I think I can't use `vim-surround` correctly anymore? Previously I was able to use `ci*` to edit inside markdown italics/bold, but now I can't
+* Some plugin for grammar (grammarous is installed but not configured I think) both for english and spanish for `*.md` files and for `*.eml` (emails)
 
 ## tmux
 * Put number of detached sessions in status bar.
