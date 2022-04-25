@@ -8,7 +8,11 @@ with lib;
 
     virtualisation = {
       virtualbox.host.enable = true;
-      docker.enable = true;
+      # TODO: Enable UID remapping!
+      docker = {
+        enable = true;
+        autoPrune.enable = true;
+      };
       libvirtd.enable = true;
     };
 
