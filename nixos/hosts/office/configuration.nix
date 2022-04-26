@@ -13,8 +13,13 @@
 
   time.timeZone = "Europe/Madrid";
 
-  networking.useDHCP = false;
-  networking.interfaces.enp3s0.useDHCP = true;
+  networking = {
+    useDHCP = false;
+    interfaces.enp3s0.useDHCP = true;
+    firewall.allowedTCPPorts = [
+      9003 # For PHP's xdebug
+    ];
+  };
 
   console = {
     font = "Lat2-Terminus16";
