@@ -10,6 +10,7 @@ with lib;
       virtualbox.host.enable = true;
       docker.enable = true;
       libvirtd.enable = true;
+      podman.enable = true;
     };
 
     # Not entirely sure why I need this, might even be dangerous
