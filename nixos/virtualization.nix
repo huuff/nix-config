@@ -1,4 +1,4 @@
-{ config, lib, user, ... }:
+{ pkgs, config, lib, user, ... }:
 with lib;
 {
   config = {
@@ -9,6 +9,7 @@ with lib;
     virtualisation = {
       virtualbox.host.enable = true;
       # TODO: Enable UID remapping!
+      # TODO: Actually, remove it when I fix my usages that depend on root (mainly, COPY instructions)
       docker = {
         enable = true;
         autoPrune.enable = true;
@@ -17,12 +18,18 @@ with lib;
       podman.enable = true;
     };
 
-    # Not entirely sure why I need this, might even be dangerous
-    networking.firewall.extraCommands = ''
-      ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
-    '';
-    networking.firewall.allowedTCPPorts = [ 2049 ];
-    networking.firewall.checkReversePath = false;
+    # XXX: NFS port? I'm not sure why I did this and might be dangerous.
+    # Likely some app I used needed sharing a volume between a VM and host through NFS.
+    networking = {
+      firewall = {
+        extraCommands = ''
+          ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
+        '';
+        allowedTCPPorts = [ 2049 ];
+        checkReversePath = false;
+
+      };
+    };
   };
 
 }

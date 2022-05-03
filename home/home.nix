@@ -7,8 +7,8 @@
 
       ./terminal-emulators/alacritty.nix
 
+      # TODO: Improve my modules
       myModules.scripts
-
       myModules.maven
       myModules.mycli
 
@@ -16,6 +16,7 @@
       ./git.nix
       ./bash.nix
       ./starship.nix
+      ./development.nix
       ./desktop-environment
       ./tmux.nix
       ./email.nix
@@ -43,51 +44,43 @@
     LESS = "-XFr --mouse --wheel-lines=3";
   };
 
-  # TODO: make java version more global so I can share it between files
   home.packages = with pkgs; [
     anki
     zathura
     scrot
-    jetbrains.idea-ultimate
     xsel
     cloc
     pavucontrol
-    python3
-    ntfs3g
+    python3 # TODO: In nixos config?
+    ntfs3g # TODO: In nixos config?
     gnupg
     texlive.combined.scheme-full
     _1password
     sshfs
-    vagrant
     deluge
     slack
     tealdeer # tldr command, for quick manpages
-    sshpass
-    nodePackages.bash-language-server
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     libxml2 # for xmllint --format
-    docker-compose
 
-    shellcheck
-    shfmt
-    nodePackages.diagnostic-languageserver
     postman
     feh
 
-    nixpkgs-fmt
-    rnix-lsp
     nix-prefetch-git
     nixos-shell
     mongodb-4_2 # a good 4-5 hours compilation time on my slowest computer, so plan ahead TODO: Self-host a binary cache
     kubectl
+
+    vagrant
+    podman-compose
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
     enable = true;
     options = {
-      "maven.wagon.http.ssl.insecure"="true";
-      "maven.wagon.http.ssl.allowall"="true";
-      "maven.wagon.http.ssl.ignore.validity"="true";
+      "maven.wagon.http.ssl.insecure" = "true";
+      "maven.wagon.http.ssl.allowall" = "true";
+      "maven.wagon.http.ssl.ignore.validity" = "true";
     };
     settings = secrets.mavenSettings;
   };
