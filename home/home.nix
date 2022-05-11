@@ -73,6 +73,7 @@
     kubectl
     kubernetes-helm
     helmfile
+    kustomize
 
     vagrant
     podman-compose
