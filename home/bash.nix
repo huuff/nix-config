@@ -28,6 +28,8 @@
       ag2 = "ag -B2 -A2";
       duh = "du -h --max-depth=1";
       k = "kubectl";
+      hf = "helmfile";
+      hm = "himalaya";
     };
 
     initExtra = ''
