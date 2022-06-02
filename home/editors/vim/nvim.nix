@@ -9,6 +9,7 @@
 
     withNodeJs = true;
 
+    # TODO: Should add coc-phpls but it's not in nixpkgs
     extraConfig = builtins.readFile ./config.vim;
     plugins = with pkgs.vimPlugins; [
       # Languages
