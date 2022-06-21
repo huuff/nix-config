@@ -32,6 +32,9 @@
           # Set the registry nixpkgs to the one currently in use
           # This will avoid redownloading nixpkgs on every nix operation
           nix.registry.nixpkgs.flake = nixpkgs; 
+
+          # The netrc file can contain credentials for sources from which to download
+          # nix derivations
           nix.extraOptions = ''
             netrc-file = /etc/nix/netrc
           '';
@@ -40,7 +43,6 @@
         ./nixos/user.nix
         ./nixos/fonts.nix
         ./nixos/xorg.nix
-        ./nixos/cachix.nix
         ./nixos/audio.nix
         ./nixos/java.nix
         ./nixos/nixconf.nix

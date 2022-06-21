@@ -24,6 +24,18 @@
         contents = secrets.gitWorkConfig;
       }
     ];
+
+    delta = {
+      enable = true;
+      options = {
+        line-numbers = true;
+      };
+    };
+
+    aliases = {
+      co = "checkout";
+      ss = "status";
+    };
   };
 
 }
