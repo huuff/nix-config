@@ -35,6 +35,7 @@
     aliases = {
       co = "checkout";
       ss = "status";
+      cm = "commit -m";
     };
   };
 
