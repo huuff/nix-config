@@ -29,6 +29,7 @@
       enable = true;
       options = {
         line-numbers = true;
+        side-by-side = true; # FUTURE: Wait for (https://github.com/dandavison/delta/issues/359)
       };
     };
 
