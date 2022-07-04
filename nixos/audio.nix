@@ -1,8 +1,6 @@
 { config, lib, user, ... }:
 {
-    #sound.enable = true;
-    #hardware.pulseaudio.enable = true;
-    #hardware.pulseaudio.support32Bit = true;
+    hardware.pulseaudio.enable = false;
     services.pipewire = {
       enable = true;
       alsa = {
