@@ -73,6 +73,7 @@
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
     nixosConfigurations.office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [
       ({...}: {
+        # To use speakers/mic for meetings
         hardware.bluetooth.enable = true;
         services.blueman.enable = true;
       })
