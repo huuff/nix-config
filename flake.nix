@@ -10,9 +10,10 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     myDrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
+    nix-soapui.url = "github:huuff/nix-soapui";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets }:
+  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets }:
   let
     system = "x86_64-linux";
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
@@ -23,6 +24,10 @@
         inherit user emacs-overlay nur secrets; 
         myOverlays = myDrvs.overlays;
         myModules = myDrvs.nixosModules;
+        # TODO: Maybe it should be in an overlay?
+        derivations = {
+          soapui57 = nix-soapui.packages.x86_64-linux.default;
+        };
       };
 
       modules = [

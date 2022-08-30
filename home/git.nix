@@ -11,6 +11,11 @@
       "\\#*\\#" # emacs swap files
       "/result/" # nix outputs
       "/result-data/" # something related to nix output
+      ".idea" # Jetbrains IDEA configuration
+      "build" # gradle output
+      ".gradle" # some gradle specifics I dunno
+      "hs_err_pid*.log" # some Java crash logs
+      "replay_pid*.log" # other random Java crash logs I guess
     ];
     extraConfig = {
       credential.helper = "cache --timeout=3600";

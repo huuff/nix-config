@@ -1,4 +1,4 @@
-{ pkgs, user, secrets, myModules, ... }:
+{ pkgs, user, secrets, myModules, derivations, ... }:
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -62,6 +62,7 @@
     tealdeer # tldr command, for quick manpages
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     libxml2 # for xmllint --format
+    derivations.soapui57
 
     postman
     feh

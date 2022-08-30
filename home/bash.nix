@@ -25,7 +25,7 @@
       vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
       z = "zoxide";
-      ag2 = "ag -B2 -A2";
+      ag2 = "ag --context=2";
       duh = "du -h --max-depth=1";
       k = "kubectl";
       hf = "helmfile";
