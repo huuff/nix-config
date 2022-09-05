@@ -20,6 +20,8 @@
       ./desktop-environment
       ./tmux.nix
       ./email.nix
+
+      ./aliases.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -59,9 +61,7 @@
     sshfs
     deluge
     slack
-    tealdeer # tldr command, for quick manpages
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
-    libxml2 # for xmllint --format
     derivations.soapui57
 
     postman
@@ -115,6 +115,8 @@
       PubkeyAcceptedKeyTypes +ssh-rsa
     '';
   };
+
+  programs.fish.enable = true;
 
   programs.chromium = {
     enable = true;

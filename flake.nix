@@ -11,9 +11,10 @@
     myDrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
     nix-soapui.url = "github:huuff/nix-soapui";
+    nix-aliases.url = "github:huuff/nix-aliases";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets }:
+  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-aliases }:
   let
     system = "x86_64-linux";
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
@@ -27,6 +28,9 @@
         # TODO: Maybe it should be in an overlay?
         derivations = {
           soapui57 = nix-soapui.packages.x86_64-linux.default;
+        };
+        modules = {
+          aliases = nix-aliases.nixosModules.aliases;
         };
       };
 
@@ -76,6 +80,7 @@
   {
 
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
+
     nixosConfigurations.office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [
       ({...}: {
         # To use speakers/mic for meetings
@@ -83,11 +88,12 @@
         services.blueman.enable = true;
       })
     ];
+
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
-    [
-      ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
-      nixos-hardware.nixosModules.lenovo-thinkpad-t420
-    ];
+      [
+        ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
+        nixos-hardware.nixosModules.lenovo-thinkpad-t420
+      ];
 
   };
 }

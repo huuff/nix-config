@@ -18,4 +18,5 @@
   comma # run commands without installing e.g. `, cowsay hello`
   httpie # curl replacement for web services
   libressl # openssl alternative, tools for x509 management and inspection
+  libxml2 # for xmllint --format
 ]

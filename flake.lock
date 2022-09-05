@@ -87,9 +87,27 @@
         "type": "github"
       }
     },
-    "nix-soapui": {
+    "nix-aliases": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1662386658,
+        "narHash": "sha256-u7pR9cE3vygFkH4K8LeBZte1lq+3dH7ck69aElCePTs=",
+        "owner": "huuff",
+        "repo": "nix-aliases",
+        "rev": "531d3ab8b840f5e7e82ef6003c2fba6e896ce33d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "nix-aliases",
+        "type": "github"
+      }
+    },
+    "nix-soapui": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1658999950,
@@ -138,6 +156,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1662070595,
+        "narHash": "sha256-fYrdaUXhV4oPhkehHRwj78d1VjATnK4SF0fElEQUyLw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9f867325b5da6c4c9211707abdb481e1d0b3e589",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1658912196,
         "narHash": "sha256-GTP5XCLPU2Hg2bQC5dVqSBF9ef5C/J6pD4qM09Ba4Gk=",
         "owner": "NixOS",
@@ -151,7 +185,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1648541205,
         "narHash": "sha256-+3At/4RniKCVa9/fLjd+tC6QYyYbSWuv7eUDgX87vGM=",
@@ -167,7 +201,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1625176478,
         "narHash": "sha256-s1RTYNKw7ySyqrZjns9Cq+Nnjpp75ePgL06pgcbIpoA=",
@@ -202,9 +236,10 @@
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "myDrvs": "myDrvs",
+        "nix-aliases": "nix-aliases",
         "nix-soapui": "nix-soapui",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nur": "nur",
         "secrets": "secrets"
       }
@@ -212,7 +247,7 @@
     "secrets": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1649239779,
