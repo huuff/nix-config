@@ -11,10 +11,10 @@
     myDrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
     nix-soapui.url = "github:huuff/nix-soapui";
-    nix-aliases.url = "github:huuff/nix-aliases";
+    nix-portable-shell.url = "github:huuff/nix-portable-shell";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-aliases }:
+  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell }:
   let
     system = "x86_64-linux";
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
@@ -30,7 +30,7 @@
           soapui57 = nix-soapui.packages.x86_64-linux.default;
         };
         modules = {
-          aliases = nix-aliases.nixosModules.aliases;
+          shell = nix-portable-shell.nixosModules.shell;
         };
       };
 

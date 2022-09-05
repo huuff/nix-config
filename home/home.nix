@@ -8,7 +8,6 @@
       ./terminal-emulators/alacritty.nix
 
       # TODO: Improve my modules
-      myModules.scripts
       myModules.maven
       myModules.mycli
 
@@ -21,7 +20,7 @@
       ./tmux.nix
       ./email.nix
 
-      ./aliases.nix
+      ./shell.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -30,8 +29,6 @@
   programs.home-manager.enable = true;
 
   programs.fzf.enable = true;
-
-  haf.scripts.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

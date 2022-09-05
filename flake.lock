@@ -87,21 +87,21 @@
         "type": "github"
       }
     },
-    "nix-aliases": {
+    "nix-portable-shell": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1662386658,
-        "narHash": "sha256-u7pR9cE3vygFkH4K8LeBZte1lq+3dH7ck69aElCePTs=",
+        "lastModified": 1662390366,
+        "narHash": "sha256-skBfCnH/lYo1GHftDdTL/+4oAwDgzlwR058Mz1/lJ9Y=",
         "owner": "huuff",
-        "repo": "nix-aliases",
-        "rev": "531d3ab8b840f5e7e82ef6003c2fba6e896ce33d",
+        "repo": "nix-portable-shell",
+        "rev": "9bc5c221e0d48f1776843ec2dcf0183f638d608a",
         "type": "github"
       },
       "original": {
         "owner": "huuff",
-        "repo": "nix-aliases",
+        "repo": "nix-portable-shell",
         "type": "github"
       }
     },
@@ -236,7 +236,7 @@
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "myDrvs": "myDrvs",
-        "nix-aliases": "nix-aliases",
+        "nix-portable-shell": "nix-portable-shell",
         "nix-soapui": "nix-soapui",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
