@@ -26,7 +26,6 @@
       vhalt = "vagrant halt";
       vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
-      z = "zoxide";
       ag2 = "ag --context=2";
       duh = "du -h --max-depth=1";
       k = "kubectl";
