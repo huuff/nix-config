@@ -2,7 +2,7 @@
 
 {
   programs.bash = {
-    enable = false;
+    enable = true;
 
     initExtra = ''
       # Necessary so Nix works on non-NixOS
