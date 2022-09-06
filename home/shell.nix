@@ -11,7 +11,7 @@
       trace-net = ''strace -f -e trace=network''; # is it useful?
       oplogin = "eval $(op signin --account my.1password.com)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
-      ssh = "TERM=xterm-256color ssh"; # for some servers that don't accept my terminals
+      ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
       syss = "systemctl status";
       sysf = "systemctl --failed";
       sysj = "systemctl list-jobs";
