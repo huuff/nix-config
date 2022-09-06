@@ -1,4 +1,4 @@
-{ modules, ... }:
+{ modules, config, ... }:
 {
   imports = [
     modules.shell
@@ -35,6 +35,11 @@
     };
 
     scriptDir = "/$HOME/scripts";
+
+    completionsDir = {
+      bash = "/${config.home.homeDirectory}/shell-completions/bash";
+      fish = "/${config.home.homeDirectory}/shell-completions/fish";
+    };
 
   };
 }

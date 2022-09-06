@@ -92,11 +92,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1662390366,
-        "narHash": "sha256-skBfCnH/lYo1GHftDdTL/+4oAwDgzlwR058Mz1/lJ9Y=",
+        "lastModified": 1662480098,
+        "narHash": "sha256-xS5Az7qptr5b1LhnucCJr1AFEYhEd6bj14DV/gLwbQ4=",
         "owner": "huuff",
         "repo": "nix-portable-shell",
-        "rev": "9bc5c221e0d48f1776843ec2dcf0183f638d608a",
+        "rev": "b37e2367682b8b0d865e7f7a4c476bd971740ac8",
         "type": "github"
       },
       "original": {
