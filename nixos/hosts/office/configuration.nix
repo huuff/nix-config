@@ -33,23 +33,24 @@
   '';
 
 
-  environment.systemPackages = with pkgs; 
-  let
-    php = pkgs.php74.buildEnv {
-      extraConfig = ''
-      zend_extension=${pkgs.php74Extensions.xdebug}/lib/php/extensions/xdebug.so
-      [xdebug]
-      xdebug.mode=debug
-      xdebug.client_host=localhost
-      xdebug.client_port=9003
-      xdebug.start_with_request=yes
-        '';
-    };
-  in 
-  [
-    php
-    php74Extensions.xdebug
-  ];
+  # TODO: Unmantained... do I need it? There's also nix-phps
+  #environment.systemPackages = with pkgs; 
+  #let
+  #  php = pkgs.php74.buildEnv {
+  #    extraConfig = ''
+  #    zend_extension=${pkgs.php74Extensions.xdebug}/lib/php/extensions/xdebug.so
+  #    [xdebug]
+  #    xdebug.mode=debug
+  #    xdebug.client_host=localhost
+  #    xdebug.client_port=9003
+  #    xdebug.start_with_request=yes
+  #      '';
+  #  };
+  #in 
+  #[
+  #  php
+  #  php74Extensions.xdebug
+  #];
 
 
   # This value determines the NixOS release from which the default
