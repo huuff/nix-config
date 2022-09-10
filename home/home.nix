@@ -13,7 +13,6 @@
 
       ./thefuck
       ./git.nix
-      ./bash.nix
       ./starship.nix
       ./development.nix
       ./desktop-environment
@@ -112,8 +111,6 @@
       PubkeyAcceptedKeyTypes +ssh-rsa
     '';
   };
-
-  programs.fish.enable = true;
 
   programs.chromium = {
     enable = true;
