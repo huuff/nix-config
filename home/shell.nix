@@ -81,4 +81,12 @@
         export NODE_PATH=~/.npm-packages/lib/node_modules
       '';
     };
+
+    ### ZSH
+    programs.zsh = {
+      enable = true;
+
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+    };
   }
