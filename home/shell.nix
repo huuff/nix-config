@@ -36,8 +36,9 @@
     scriptDir = "/$HOME/scripts";
 
     completionsDir = {
-      bash = "/${config.home.homeDirectory}/shell-completions/bash";
-      fish = "/${config.home.homeDirectory}/shell-completions/fish";
+      bash = "${config.home.homeDirectory}/shell-completions/bash";
+      fish = "${config.home.homeDirectory}/shell-completions/fish";
+      zsh = "${config.home.homeDirectory}/shell-completions/zsh";
     };
 
   };
