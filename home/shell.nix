@@ -88,5 +88,7 @@
 
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
+
+      defaultKeymap = "emacs";
     };
   }
