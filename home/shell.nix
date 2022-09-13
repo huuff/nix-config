@@ -92,6 +92,7 @@
 
       defaultKeymap = "emacs";
 
+      # Move across words with Ctrl + Left/Right
       initExtra = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
