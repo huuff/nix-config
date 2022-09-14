@@ -30,6 +30,7 @@
       k = "kubectl";
       hf = "helmfile";
       hm = "himalaya";
+      xmlfmt = "xmllint --format -";
       nix-shell = "nix shell"; # Prevent me from ever using nix-shell, since it's older and I'm too used to it
     };
 
