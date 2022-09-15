@@ -34,7 +34,7 @@
       nix-shell = "nix shell"; # Prevent me from ever using nix-shell, since it's older and I'm too used to it
     };
 
-    scriptDir = "/$HOME/scripts";
+    scriptDir = "$HOME/scripts";
 
     completionsDir = {
       bash = "${config.home.homeDirectory}/shell-completions/bash";
