@@ -122,6 +122,10 @@
     ];
   };
 
+  xdg = {
+    enable = true;
+  };
+
   programs.mycli = {
     enable = true;
     favoriteQueries = secrets.cfQueries;
