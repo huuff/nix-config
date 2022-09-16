@@ -71,11 +71,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1663341934,
-        "narHash": "sha256-P0OOdGGmjileCo/oReZDNTKvIK2tdzPVM7TXPpKh0ic=",
+        "lastModified": 1663342574,
+        "narHash": "sha256-H2CrUP/Q0a5yTMzHgX2vpii1ImH/bhrxRbWHv597YLE=",
         "owner": "huuff",
         "repo": "hm-kubernetes",
-        "rev": "c63a93a32f737513b47e8525edffe9f9141a7ea6",
+        "rev": "321ce3b922cc7ed2b0ba100c08706f2bdfb89131",
         "type": "github"
       },
       "original": {
