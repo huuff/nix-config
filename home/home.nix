@@ -89,6 +89,8 @@
     enable = true;
     krew = {
       enable = true;
+
+      plugins = [ "ns" "ctx" ];
     };
   };
 
