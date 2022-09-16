@@ -66,6 +66,24 @@
         "type": "github"
       }
     },
+    "hm-kubernetes": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1663340530,
+        "narHash": "sha256-9NFWknTE9g4SwOcZensBOz40mlvrMJbsBQwmEX01hpk=",
+        "owner": "huuff",
+        "repo": "hm-kubernetes",
+        "rev": "50dd2eddd6fc9616e1e3237e8fe18370b7496254",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "hm-kubernetes",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -90,7 +108,7 @@
     "myDrvs": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "utils": "utils_2"
       },
       "locked": {
@@ -109,7 +127,7 @@
     },
     "nix-portable-shell": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1663254025,
@@ -127,7 +145,7 @@
     },
     "nix-soapui": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1658999950,
@@ -173,6 +191,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1663208935,
+        "narHash": "sha256-/tLjIp/U2RO7RBkCKCUW/CK5lBP1JYatpPRw65QqSJg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "288a708031cbe396847c89ee4213596242a12520",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1625419891,
         "narHash": "sha256-hf1/z/0oe8n/pKIpmogUpB+2T87O8ApV0691aqbcO9A=",
         "owner": "NixOS",
@@ -186,7 +220,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1662070595,
         "narHash": "sha256-fYrdaUXhV4oPhkehHRwj78d1VjATnK4SF0fElEQUyLw=",
@@ -202,7 +236,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1658912196,
         "narHash": "sha256-GTP5XCLPU2Hg2bQC5dVqSBF9ef5C/J6pD4qM09Ba4Gk=",
@@ -217,7 +251,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1662070595,
         "narHash": "sha256-fYrdaUXhV4oPhkehHRwj78d1VjATnK4SF0fElEQUyLw=",
@@ -233,7 +267,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1625176478,
         "narHash": "sha256-s1RTYNKw7ySyqrZjns9Cq+Nnjpp75ePgL06pgcbIpoA=",
@@ -266,12 +300,13 @@
     "root": {
       "inputs": {
         "emacs-overlay": "emacs-overlay",
+        "hm-kubernetes": "hm-kubernetes",
         "home-manager": "home-manager",
         "myDrvs": "myDrvs",
         "nix-portable-shell": "nix-portable-shell",
         "nix-soapui": "nix-soapui",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nur": "nur",
         "secrets": "secrets"
       }
@@ -279,7 +314,7 @@
     "secrets": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1649239779,

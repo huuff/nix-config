@@ -1,4 +1,4 @@
-{ pkgs, user, secrets, myModules, derivations, ... }:
+{ pkgs, user, secrets, myModules, derivations, modules, ... }:
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -7,7 +7,7 @@
 
       ./terminal-emulators/alacritty.nix
 
-      # TODO: Improve my modules
+      # TODO: Improve my modules. UPDATE: Ditch them entirely, redo them better, I'm currently using `modles` for my (better separated) modules
       myModules.maven
       myModules.mycli
 
@@ -20,6 +20,7 @@
       ./email.nix
 
       ./shell.nix
+      modules.kubernetes
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -66,7 +67,6 @@
     nix-prefetch-git
     nixos-shell
 
-    kubectl
     kubernetes-helm
     helmfile
     kustomize
@@ -83,6 +83,13 @@
       "maven.wagon.http.ssl.ignore.validity" = "true";
     };
     settings = secrets.mavenSettings;
+  };
+
+  programs.kubernetes = {
+    enable = true;
+    krew = {
+      enable = true;
+    };
   };
 
   programs.zoxide = {
