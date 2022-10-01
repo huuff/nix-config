@@ -11,6 +11,7 @@
       op-login = "eval $(op signin --account my.1password.com)";
       agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
       ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
+      l = "ls";
       syss = "systemctl status";
       sysf = "systemctl --failed";
       sysj = "systemctl list-jobs";
