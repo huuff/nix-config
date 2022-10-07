@@ -27,6 +27,7 @@
       vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
       ag2 = "ag --context=2";
+      agi = "ag --ignore '*.sql' --ignore '*.svg' --ignore '*.afm' --ignore '*.ser' --ignore '*.ufm'";
       duh = "du -h --max-depth=1";
       k = "kubectl";
       hf = "helmfile";
