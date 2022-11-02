@@ -154,6 +154,12 @@
         key = "ctrl+alt+s";
         command = "workbench.action.files.saveAll";
       }
+
+      {
+        key = "shift+f6";
+        command = "editor.action.rename";
+        when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
+      }
     ];
   };
 
