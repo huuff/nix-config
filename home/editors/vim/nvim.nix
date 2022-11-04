@@ -22,9 +22,7 @@
       coc-eslint
       coc-yaml
       coc-html
-
-      nvim-lspconfig
-      rust-tools-nvim
+      coc-rust-analyzer
 
       # Convenience
       vim-surround
