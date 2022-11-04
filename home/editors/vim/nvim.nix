@@ -22,6 +22,7 @@
       coc-eslint
       coc-yaml
       coc-html
+      coc-rls
 
       # Convenience
       vim-surround
