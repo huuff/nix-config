@@ -22,7 +22,7 @@
       coc-eslint
       coc-yaml
       coc-html
-      coc-rls
+      coc-rust-analyzer
 
       # Convenience
       vim-surround
