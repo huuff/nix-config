@@ -142,6 +142,7 @@
     autoVerticalOutput = true;
   };
 
+  # TODO: Plugins
   programs.vscode = {
     enable = true;
     keybindings = [ # Some keybindings as in Intellij IDEA
