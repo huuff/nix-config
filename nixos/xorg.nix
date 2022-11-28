@@ -8,6 +8,7 @@
     };
     displayManager = {
       lightdm.enable = true;
+      startx.enable = true;
       defaultSession = "xsession";
       session = [{
           manage = "desktop";

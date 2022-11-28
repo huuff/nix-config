@@ -6,16 +6,20 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "office";
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernelParams = [ "i915.force_probe=46a6" ]; 
+    kernelPackages = pkgs.linuxPackages_5_18;
+  };
 
   time.timeZone = "Europe/Madrid";
 
   networking = {
+    hostName = "office";
     useDHCP = false;
-    interfaces.enp3s0.useDHCP = true;
+    interfaces.enp2s0.useDHCP = true;
     firewall.allowedTCPPorts = [
       9003 # For PHP's xdebug
     ];
@@ -26,11 +30,11 @@
     keyMap = "es";
   };
 
-  services.xserver.displayManager.setupCommands = ''
-    RIGHT='VGA-1'
-    LEFT='HDMI-1'
-    ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
-  '';
+  #services.xserver.displayManager.setupCommands = ''
+  #  RIGHT='VGA-1'
+  #  LEFT='HDMI-1'
+  #  ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
+  #'';
 
 
   # TODO: Unmantained... do I need it? There's also nix-phps
@@ -51,6 +55,8 @@
   #  php
   #  php74Extensions.xdebug
   #];
+
+  #security.polkit.enable = true;
 
 
   # This value determines the NixOS release from which the default
