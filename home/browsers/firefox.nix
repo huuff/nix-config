@@ -12,7 +12,7 @@
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
-      leechblock-ng # TODO: It's broken
+      leechblock-ng 
       i-dont-care-about-cookies
       decentraleyes
       vue-js-devtools
