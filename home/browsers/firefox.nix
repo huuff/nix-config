@@ -22,7 +22,8 @@
       https-everywhere
       react-devtools
       wallabagger
-      pkgs.nur.repos.rycee.firefox-addons."1password-x-password-manager"
+      darkreader
+      onepassword-password-manager
     ];
   };
 }
