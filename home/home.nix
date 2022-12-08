@@ -164,10 +164,10 @@
     ];
     extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
-        name = "vscode-jest-runner";
-        publisher = "firsttris";
-        version = "0.4.59";
-        sha256 = "49Yf35FKeQj3esJDineK5Pu3G4yWvetDeN/FzyXpTfg=";
+        name = "vscode-jest";
+        publisher = "Orta";
+        version = "5.0.3";
+        sha256 = "9v2de1ETxe3A18Wq1fnYl+f65UsNPmdpqmBJ8M4p3Wc=";
       } 
     ];
   };
