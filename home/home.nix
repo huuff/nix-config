@@ -142,7 +142,7 @@
     autoVerticalOutput = true;
   };
 
-  # TODO: Plugins
+  # TODO: Put it in a different file
   programs.vscode = {
     enable = true;
     keybindings = [ # Some keybindings as in Intellij IDEA
@@ -162,12 +162,20 @@
         when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
       }
     ];
-    extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    extensions = with pkgs.vscode-extensions; [
+      bradlc.vscode-tailwindcss
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-jest";
         publisher = "Orta";
         version = "5.0.3";
         sha256 = "9v2de1ETxe3A18Wq1fnYl+f65UsNPmdpqmBJ8M4p3Wc=";
+      } 
+      {
+        name = "better-comments";
+        publisher = "aaron-bond";
+        version = "3.0.2";
+        sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
       } 
     ];
   };
