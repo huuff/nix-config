@@ -162,6 +162,14 @@
         when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
       }
     ];
+    extensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "vscode-jest-runner";
+        publisher = "firsttris";
+        version = "0.4.59";
+        sha256 = "49Yf35FKeQj3esJDineK5Pu3G4yWvetDeN/FzyXpTfg=";
+      } 
+    ];
   };
 
   # This value determines the Home Manager release that your
