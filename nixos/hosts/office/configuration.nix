@@ -11,7 +11,8 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     kernelParams = [ "i915.force_probe=46a6" ]; 
-    kernelPackages = pkgs.linuxPackages_5_18;
+    # XXX: I had to use the latest kernel because of some driver incompatibility with the Alder Lake CPU
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   time.timeZone = "Europe/Madrid";

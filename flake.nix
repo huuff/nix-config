@@ -16,7 +16,7 @@
     hm-kubernetes.url = "github:huuff/hm-kubernetes";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes }:
+  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, }:
   let
     system = "x86_64-linux";
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
