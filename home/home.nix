@@ -170,6 +170,7 @@
     extensions = with pkgs.vscode-extensions; [
       bradlc.vscode-tailwindcss
       wix.vscode-import-cost
+      dbaeumer.vscode-eslint
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-jest";
