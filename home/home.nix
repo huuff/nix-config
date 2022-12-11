@@ -161,6 +161,11 @@
         command = "editor.action.rename";
         when = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
       }
+
+      {
+        key = "shift shift";
+        command = "workbench.action.quickOpen";
+      }
     ];
     extensions = with pkgs.vscode-extensions; [
       bradlc.vscode-tailwindcss
