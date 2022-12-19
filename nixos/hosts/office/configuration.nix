@@ -21,9 +21,12 @@
     hostName = "office";
     useDHCP = false;
     interfaces.enp2s0.useDHCP = true;
-    firewall.allowedTCPPorts = [
-      9003 # For PHP's xdebug
-    ];
+    firewall = {
+      enable = false;
+      allowedTCPPorts = [
+        9003 # For PHP's xdebug
+      ];
+    };
   };
 
   console = {
