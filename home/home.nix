@@ -60,6 +60,7 @@
     slack
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     derivations.soapui57
+    inetutils # for telnet
 
     postman
     feh
