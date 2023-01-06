@@ -185,6 +185,12 @@
         version = "3.0.2";
         sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
       } 
+      {
+        name = "material-icon-theme";
+        publisher = "PKief";
+        version = "4.23.1";
+        sha256 = "BfKS6p36CfMAxPKkwC+04wurenq4XBkvj21u/NJh4Js=";
+      }
     ];
   };
 
