@@ -1,5 +1,7 @@
 {pkgs, nur, ...}:
-{
+let 
+  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+in {
   nixpkgs.overlays = [ nur.overlay ];
 
   programs.firefox = {
@@ -10,7 +12,7 @@
       };
     };
 
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = with firefox-addons; [
       ublock-origin
       leechblock-ng 
       i-dont-care-about-cookies
@@ -24,6 +26,21 @@
       wallabagger
       darkreader
       onepassword-password-manager
+    ] ++ [
+      (firefox-addons.buildFirefoxXpiAddon {
+        pname = "apollo-client-devtools";
+        version = "4.1.1";
+        addonId = "{a5260852-8d08-4979-8116-38f1129dfd22}";
+        url = "https://addons.mozilla.org/firefox/downloads/file/3958894/apollo_developer_tools-4.1.1.xpi";
+        sha256 = "rZNnjSvWxgGqp6B04O4an9lryrBW6M49SdSOn+b+s6A=";
+        meta = with pkgs.lib;
+        {
+          homepage = "https://addons.mozilla.org/es/firefox/addon/apollo-developer-tools/";
+          description = "DevTools for the GraphQL Apollo Client";
+          license = licenses.mit;
+          platforms = platforms.all;
+        };
+      })
     ];
   };
 }
