@@ -91,7 +91,11 @@
     krew = {
       enable = true;
 
-      plugins = [ "ns" "ctx" ];
+      plugins = [ 
+        "ns"
+        "ctx"
+        "view-secret"
+      ];
     };
   };
 
