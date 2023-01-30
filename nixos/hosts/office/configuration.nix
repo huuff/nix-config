@@ -34,6 +34,12 @@
     keyMap = "es";
   };
 
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+  };
+
   #services.xserver.displayManager.setupCommands = ''
   #  RIGHT='VGA-1'
   #  LEFT='HDMI-1'
