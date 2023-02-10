@@ -60,7 +60,7 @@
     slack
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     derivations.soapui57
-    inetutils # for telnet
+    inetutils # for telnet (TODO: In cli-essentials.nix?)
 
     postman
     feh
@@ -74,6 +74,8 @@
 
     vagrant
     podman-compose
+
+    spotify 
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
