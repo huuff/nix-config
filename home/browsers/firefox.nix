@@ -41,6 +41,20 @@ in {
           platforms = platforms.all;
         };
       })
+      (firefox-addons.buildFirefoxXpiAddon {
+        pname = "keepa";
+        version = "4.10";
+        addonId = "amptra@keepa.com";
+        url = "https://addons.mozilla.org/firefox/downloads/file/4041807/keepa-4.10.xpi";
+        sha256 = "RzoedFBl0FTlkAmaHLgib8Rm2ePtpZYnEbzvvPOOeyQ=";
+        meta = with pkgs.lib;
+        {
+          homepage = "https://addons.mozilla.org/es/firefox/addon/keepa/";
+          description = "Keepa.com - Amazon Price Tracker";
+          license = licenses.mit;
+          platforms = platforms.all;
+        };
+      })
     ];
   };
 }
