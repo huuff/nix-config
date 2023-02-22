@@ -23,6 +23,7 @@
       coc-yaml
       coc-html
       coc-rust-analyzer
+      ron-vim # Rust Object Notation
 
       # Convenience
       vim-surround
