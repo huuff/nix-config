@@ -4,8 +4,10 @@
   jq # json inspection
   yq # like jq but for yaml, also provides xq for xml
   git
+
   zip
   unzip
+
   fd # find replacement
   silver-searcher # grep replacement
   fzf # TODO: Is it necessary here? I think it's enough to enable it through home-manager
@@ -23,4 +25,7 @@
   apacheHttpd # only for using hpasswd
   jwt-cli # decode jwt in the cli with `jwt decode`
   dig
+
+  just # command line runner
+  libnotify # sending notifications to dunst
 ]

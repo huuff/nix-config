@@ -147,6 +147,8 @@
     enable = true;
   };
 
+  services.dunst.enable = true;
+
   programs.mycli = {
     enable = true;
     favoriteQueries = secrets.cfQueries;
