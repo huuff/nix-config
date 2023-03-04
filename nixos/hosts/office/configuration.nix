@@ -40,35 +40,6 @@
     openFirewall = true;
   };
 
-  #services.xserver.displayManager.setupCommands = ''
-  #  RIGHT='VGA-1'
-  #  LEFT='HDMI-1'
-  #  ${pkgs.xorg.xrandr}/bin/xrandr --output $LEFT --left-of $RIGHT
-  #'';
-
-
-  # TODO: Unmantained... do I need it? There's also nix-phps
-  #environment.systemPackages = with pkgs; 
-  #let
-  #  php = pkgs.php74.buildEnv {
-  #    extraConfig = ''
-  #    zend_extension=${pkgs.php74Extensions.xdebug}/lib/php/extensions/xdebug.so
-  #    [xdebug]
-  #    xdebug.mode=debug
-  #    xdebug.client_host=localhost
-  #    xdebug.client_port=9003
-  #    xdebug.start_with_request=yes
-  #      '';
-  #  };
-  #in 
-  #[
-  #  php
-  #  php74Extensions.xdebug
-  #];
-
-  #security.polkit.enable = true;
-
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

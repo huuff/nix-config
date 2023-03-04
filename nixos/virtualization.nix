@@ -9,7 +9,7 @@ with lib;
     virtualisation = {
       virtualbox.host.enable = true;
       # TODO: Enable UID remapping!
-      # TODO: Actually, remove it when I fix my usages that depend on root (mainly, COPY instructions)
+      # TODO: Actually, remove it when I fix my usages that depend on root (mainly, COPY instructions) and use podman
       docker = {
         enable = true;
         autoPrune.enable = true;

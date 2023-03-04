@@ -1,3 +1,6 @@
+## Important
+* Switch from xorg to wayland and from i3 to sway
+
 ## Home
 * Make something so aliases are shared between different shells
 * I'm not even using surf, maybe I should fix it since I want to use it in emacs
