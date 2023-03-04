@@ -22,4 +22,5 @@
   up # ultimate plumber: interactively edit pipes
   apacheHttpd # only for using hpasswd
   jwt-cli # decode jwt in the cli with `jwt decode`
+  dig
 ]

@@ -184,6 +184,7 @@
       wix.vscode-import-cost
       dbaeumer.vscode-eslint
       pkief.material-icon-theme
+      mkhl.direnv
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-jest";
