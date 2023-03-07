@@ -185,8 +185,6 @@
       bradlc.vscode-tailwindcss
       wix.vscode-import-cost
       dbaeumer.vscode-eslint
-      apollographql.vscode-apollo
-      graphql.vscode-graphql
       pkief.material-icon-theme
       mkhl.direnv
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
