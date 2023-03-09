@@ -61,6 +61,7 @@
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
+    commitizen # command for increasing versions
 
     postman
     feh
