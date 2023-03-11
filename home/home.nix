@@ -187,6 +187,8 @@
       wix.vscode-import-cost
       dbaeumer.vscode-eslint
       pkief.material-icon-theme
+      # TODO: I don't think this is working...
+      # is it automatically picking up direnv?
       mkhl.direnv
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
@@ -200,6 +202,12 @@
         publisher = "aaron-bond";
         version = "3.0.2";
         sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
+      } 
+      {
+        name = "gitblame";
+        publisher = "waderyan";
+        version = "10.1.0";
+        sha256 = "TTYBaJ4gcMVICz4bGZTvbNRPpWD4tXuAJbI8QcHNDv0=";
       } 
     ];
   };
