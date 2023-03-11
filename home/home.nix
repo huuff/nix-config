@@ -203,6 +203,9 @@
         version = "3.0.2";
         sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
       } 
+      # TODO: This is actually in nixpkgs but I can't get it
+      # because I haven't updated in so long. Update and add it
+      # from nixpkgs
       {
         name = "gitblame";
         publisher = "waderyan";
