@@ -212,6 +212,7 @@
         version = "10.1.0";
         sha256 = "TTYBaJ4gcMVICz4bGZTvbNRPpWD4tXuAJbI8QcHNDv0=";
       } 
+      # TODO: Don't think this is working
       {
         name = "graphql-for-vscode";
         publisher = "kumar-harsh";
