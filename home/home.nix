@@ -212,12 +212,11 @@
         version = "10.1.0";
         sha256 = "TTYBaJ4gcMVICz4bGZTvbNRPpWD4tXuAJbI8QcHNDv0=";
       } 
-      # TODO: Don't think this is working
       {
-        name = "graphql-for-vscode";
-        publisher = "kumar-harsh";
-        version = "1.15.3";
-        sha256 = "0Al+69quQXPdFBMsSDWXjITJiux+OQSzQ7i/pgnlm/Q=";
+        name = "vscode-graphql-syntax";
+        publisher = "GraphQL";
+        version = "1.1.0";
+        sha256 = "qazU0UyZ9de6Huj2AYZqqBo4jVW/ZQmFJhV7XXAblxo=";
       }
     ];
   };
