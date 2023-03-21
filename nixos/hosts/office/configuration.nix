@@ -10,7 +10,10 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    kernelParams = [ "i915.force_probe=46a6" ]; 
+    kernelParams = [ 
+      "i915.force_probe=46a6"
+      "ibt=off" # otherwise VirtualBox breaks?
+    ]; 
     # XXX: I had to use the latest kernel because of some driver incompatibility with the Alder Lake CPU
     kernelPackages = pkgs.linuxPackages_latest;
   };
