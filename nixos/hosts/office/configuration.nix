@@ -3,17 +3,17 @@
 {
   imports =
     [ 
-    ./hardware-configuration.nix
-  ];
+      ./hardware-configuration.nix
+    ];
 
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    kernelParams = [ 
-      "i915.force_probe=46a6"
-      "ibt=off" # otherwise VirtualBox breaks?
-    ]; 
+    boot = {
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
+      kernelParams = [ 
+        "i915.force_probe=46a6"
+        "ibt=off" # otherwise VirtualBox breaks?
+      ]; 
     # XXX: I had to use the latest kernel because of some driver incompatibility with the Alder Lake CPU
     kernelPackages = pkgs.linuxPackages_latest;
   };
@@ -37,11 +37,21 @@
     keyMap = "es";
   };
 
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    openFirewall = true;
+
+  services = {
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      openFirewall = true;
+    };
+    xserver.displayManager.setupCommands = ''
+        LEFT='DP-1'
+        RIGHT='HDMI-1'
+        ${pkgs.xorg.xrandr}/bin/xrandr --output "$LEFT" --left-of "$RIGHT"
+    '';
+
   };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
