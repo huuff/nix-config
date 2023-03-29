@@ -6,6 +6,7 @@
 * I'm not even using surf, maybe I should fix it since I want to use it in emacs
 * Remove stuff I don't use from i3status. Also test if I need numbering because it's a chore. UPDATE: Pretty sure it's gonna need numbering since it's an attribute set and attribute set's properties are unordered, try something cute with a list and imap
 * Hide userland threads by default in `htop`
+* Add a keybinding to lock the screen with a command and i3lock 
 
 ## vim
 * I have set move line with C^arrows, maybe set it to C+Shit+Arrows. I think that's what idea uses and would make it consistent
