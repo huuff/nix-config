@@ -1,14 +1,20 @@
 { pkgs, ... }:
+let
+  lockCommand = "${pkgs.i3lock}/bin/i3lock --nofork --color 000000";
+in
 {
   xsession = {
     enable = true;
     windowManager.i3 = {
       enable = true;
-      config = {
+      config = rec {
         modifier = "Mod4";
         window.titlebar = false;
         terminal = "alacritty";
         menu = "rofi -show run";
+        keybindings = {
+          "${modifier}+F4" = "exec ${lockCommand}"; 
+        };
       };
     };
   };
@@ -87,7 +93,7 @@
 
   services.screen-locker = {
     enable = true;
-    lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
-    inactiveInterval = 10;
+    lockCmd = lockCommand;
+    inactiveInterval = 5;
   };
 }
