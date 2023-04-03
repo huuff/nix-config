@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+with lib;
 let
   lockCommand = "${pkgs.i3lock}/bin/i3lock --nofork --color 000000";
 in
@@ -12,7 +13,7 @@ in
         window.titlebar = false;
         terminal = "alacritty";
         menu = "rofi -show run";
-        keybindings = {
+        keybindings = mkOptionDefault {
           "${modifier}+F4" = "exec ${lockCommand}"; 
         };
       };
