@@ -25,9 +25,10 @@
     useDHCP = false;
     interfaces.enp2s0.useDHCP = true;
     firewall = {
-      enable = false;
+      enable = true;
       allowedTCPPorts = [
         9003 # For PHP's xdebug
+        3000 # For live-viewing frontend projects
       ];
     };
   };
