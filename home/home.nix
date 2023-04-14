@@ -190,6 +190,7 @@
       # TODO: I don't think this is working...
       # is it automatically picking up direnv?
       mkhl.direnv
+      waderyan.gitblame
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-jest";
@@ -203,21 +204,6 @@
         version = "3.0.2";
         sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
       } 
-      # TODO: This is actually in nixpkgs but I can't get it
-      # because I haven't updated in so long. Update and add it
-      # from nixpkgs
-      {
-        name = "gitblame";
-        publisher = "waderyan";
-        version = "10.1.0";
-        sha256 = "TTYBaJ4gcMVICz4bGZTvbNRPpWD4tXuAJbI8QcHNDv0=";
-      } 
-      {
-        name = "vscode-graphql-syntax";
-        publisher = "GraphQL";
-        version = "1.1.0";
-        sha256 = "qazU0UyZ9de6Huj2AYZqqBo4jVW/ZQmFJhV7XXAblxo=";
-      }
     ];
   };
 
