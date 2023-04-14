@@ -191,6 +191,9 @@
       # is it automatically picking up direnv?
       mkhl.direnv
       waderyan.gitblame
+      formulahendry.auto-rename-tag
+      formulahendry.auto-close-tag
+      christian-kohler.path-intellisense
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-jest";
