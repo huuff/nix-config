@@ -158,6 +158,9 @@
   };
 
   # TODO: Put it in a different file
+  # TODO: css modules
+  # TODO: Pretty ts errors?
+  # TODO:  Maybe remove blame for gitlens?
   programs.vscode = {
     enable = true;
     keybindings = [ # Some keybindings as in Intellij IDEA
