@@ -7,17 +7,6 @@ with lib;
     users.users.${user}.extraGroups = [ "docker" "libvirtd" "vboxusers" ];
 
     virtualisation = {
-      virtualbox.host = {
-        enable = true;
-        # XXX: I'm having problems with VBox 7, so I just copy-pasted the previous derivation
-        # I should eventually remove this and TODO maybe put it only for office
-        # Also, this compiles the whole package lol
-        package = pkgs.libsForQt5.callPackage ./virtualbox-6 {
-          stdenv = pkgs.stdenv_32bit;
-          inherit (pkgs.gnome2) libIDL;
-          jdk = pkgs.openjdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
-        };
-      };
       # TODO: Enable UID remapping!
       # TODO: Actually, remove it when I fix my usages that depend on root (mainly, COPY instructions) and use podman
       docker = {
