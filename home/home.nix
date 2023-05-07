@@ -45,10 +45,16 @@
   };
 
   home.packages = with pkgs; [
+    # I need both xsel and xclip because...
+    # even though xsel is supposed to be better, I can't
+    # copy with type (-t in xclip) with it, so I can't use my
+    # clipscrot script
+    xsel
+    xclip
+
     anki
     zathura
     scrot
-    xsel
     cloc
     pavucontrol
     python3 # TODO: In nixos config?
