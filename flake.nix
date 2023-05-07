@@ -8,23 +8,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+
     myDrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
-
+    scripts.url = "github:huuff/nix-scripts";
     nix-soapui.url = "github:huuff/nix-soapui";
     nix-portable-shell.url = "github:huuff/nix-portable-shell";
     hm-kubernetes.url = "github:huuff/hm-kubernetes";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, }:
+  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts }:
   let
     system = "x86_64-linux";
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
       inherit system;
 
-
       specialArgs = { 
         inherit user emacs-overlay nur secrets; 
+        scripts = scripts.packages.x86_64-linux;
         myOverlays = myDrvs.overlays;
         myModules = myDrvs.nixosModules;
         # TODO: Maybe it should be in an overlay?

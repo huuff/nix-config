@@ -1,4 +1,4 @@
-{ pkgs, user, secrets, myModules, derivations, modules, ... }:
+{ pkgs, user, secrets, myModules, derivations, modules, scripts, ... }:
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -45,12 +45,8 @@
   };
 
   home.packages = with pkgs; [
-    # I need both xsel and xclip because...
-    # even though xsel is supposed to be better, I can't
-    # copy with type (-t in xclip) with it, so I can't use my
-    # clipscrot script
     xsel
-    xclip
+    scripts.clipscrot
 
     anki
     zathura

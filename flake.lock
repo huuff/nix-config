@@ -273,6 +273,22 @@
     },
     "nixpkgs_7": {
       "locked": {
+        "lastModified": 1683408522,
+        "narHash": "sha256-9kcPh6Uxo17a3kK3XCHhcWiV1Yu1kYj22RHiymUhMkU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "897876e4c484f1e8f92009fd11b7d988a121a4e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
         "lastModified": 1625176478,
         "narHash": "sha256-s1RTYNKw7ySyqrZjns9Cq+Nnjpp75ePgL06pgcbIpoA=",
         "owner": "NixOS",
@@ -312,13 +328,32 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
         "nur": "nur",
+        "scripts": "scripts",
         "secrets": "secrets"
+      }
+    },
+    "scripts": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1683490790,
+        "narHash": "sha256-3a+xfLKKxuaWHLHLapixip+7HynGN+t+ZlFRQ0E4z78=",
+        "owner": "huuff",
+        "repo": "nix-scripts",
+        "rev": "bac88c609d2f54027c60a624970b36396f4afc9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "nix-scripts",
+        "type": "github"
       }
     },
     "secrets": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1674123639,
