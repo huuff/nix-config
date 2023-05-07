@@ -98,6 +98,10 @@
         nixos-hardware.nixosModules.lenovo-thinkpad-t420
       ];
 
+    nixosConfigurations.zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf"
+      [
+        ./nixos/wireless.nix { haf.networking.interface = "wlp1s0"; }
+      ];
   };
 }
 
