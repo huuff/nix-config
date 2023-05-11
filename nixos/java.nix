@@ -1,12 +1,14 @@
 { pkgs, ... }:
+let
+  package = pkgs.jdk17;
+in
 {
+  # TODO: What about just programs.java.enable?
   environment = {
-    systemPackages = with pkgs; [ 
-      jdk17_headless
-    ];
+    systemPackages = [ package ];
 
     etc = with pkgs; {
-      "jdk17".source = jdk17_headless;
+      "jdk17".source = package;
     };
   };
 
