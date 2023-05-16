@@ -13,9 +13,6 @@ in
         window.titlebar = false;
         terminal = "alacritty";
         menu = "rofi -show run";
-        keybindings = mkOptionDefault {
-          "${modifier}+F4" = "exec ${lockCommand}"; 
-        };
       };
     };
   };
@@ -92,9 +89,4 @@ in
     theme = ./rofi-dmenu-theme.rasi;
   };
 
-  services.screen-locker = {
-    enable = true;
-    lockCmd = lockCommand;
-    inactiveInterval = 5;
-  };
 }

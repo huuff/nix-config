@@ -17,6 +17,7 @@
       ./starship.nix
       ./development.nix
       ./desktop-environment
+      ./desktop-environment/screen-lock.nix
       ./tmux.nix
       ./email.nix
 
