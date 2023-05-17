@@ -18,6 +18,7 @@
       ./development.nix
       ./desktop-environment
       ./desktop-environment/screen-lock.nix
+      ./keybindings.nix
       ./tmux.nix
       ./email.nix
 
