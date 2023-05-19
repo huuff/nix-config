@@ -7,7 +7,9 @@ in
     enable = true;
     keybindings = {
       # TODO: Also turn off screen to save battery
-      "super + F4" = commands.lock;
+      "super + F9" = commands.lock;
+      "super + F4" = "${pkgs.brightnessctl}/bin/brightnessctl s 10-";
+      "super + F5" = "${pkgs.brightnessctl}/bin/brightnessctl s 10+";
     };
   };
 }
