@@ -3,7 +3,7 @@
 {
   # TODO: css modules
   # TODO: Pretty ts errors?
-  # TODO:  Maybe remove blame for gitlens?
+  # TODO: Maybe remove blame for gitlens?
   programs.vscode = {
     enable = true;
     keybindings = [ # Some keybindings as in Intellij IDEA
@@ -39,6 +39,7 @@
       waderyan.gitblame
       formulahendry.auto-rename-tag
       christian-kohler.path-intellisense
+      firefox-devtools.vscode-firefox-debug
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "vscode-jest";
