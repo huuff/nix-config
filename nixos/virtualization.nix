@@ -29,6 +29,10 @@ with lib;
 
       };
     };
+
+    environment.etc."vbox/networks.conf".text = ''
+      * 192.168.0.0/16
+    '';
   };
 
 }
