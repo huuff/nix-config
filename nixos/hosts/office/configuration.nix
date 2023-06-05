@@ -58,13 +58,20 @@
       enable = true;
       openFirewall = true;
       #nssmdns = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        domain = true;
+        hinfo = true;
+        userServices = true;
+        workstation = true;
+      };
     };
     xserver.displayManager.setupCommands = ''
         LEFT='DP-1'
         RIGHT='HDMI-1'
         ${pkgs.xorg.xrandr}/bin/xrandr --output "$LEFT" --left-of "$RIGHT"
     '';
-
   };
 
   # XXX: Fix nssmdns issues (https://discourse.nixos.org/t/help-with-local-dns-resolution/20305/6?u=haf)
