@@ -38,7 +38,7 @@
     useDHCP = false;
     interfaces.enp2s0.useDHCP = true;
     firewall = {
-      enable = true;
+      enable = false;
       allowedTCPPorts = [
         9003 # For PHP's xdebug
         3000 # For live-viewing frontend projects
@@ -57,6 +57,7 @@
     avahi = {
       enable = true;
       openFirewall = true;
+      #nssmdns = true;
     };
     xserver.displayManager.setupCommands = ''
         LEFT='DP-1'
@@ -65,6 +66,13 @@
     '';
 
   };
+
+  # XXX: Fix nssmdns issues (https://discourse.nixos.org/t/help-with-local-dns-resolution/20305/6?u=haf)
+  system.nssModules = pkgs.lib.optional true pkgs.nssmdns;
+  system.nssDatabases.hosts = pkgs.lib.optionals true (pkgs.lib.mkMerge [
+    (pkgs.lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ]) # before resolve
+    (pkgs.lib.mkAfter [ "mdns4" ]) # after dns
+  ]);
 
 
   # This value determines the NixOS release from which the default
