@@ -42,7 +42,7 @@
       co = "checkout";
       ss = "status";
       cm = "commit -m";
-      acmp = ''!f() { git add . && git commit -m "$1" && git push; }; f'';
+      #acmp = ''!f() { git add . && git commit -m "$1" && git push; }; f'';
     };
   };
 
