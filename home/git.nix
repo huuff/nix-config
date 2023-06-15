@@ -20,7 +20,24 @@
     extraConfig = {
       credential.helper = "cache --timeout=3600";
       init.defaultBranch = "master";
-      pull.rebase = "false";
+      merge = {
+        # Always creates a merge commit, even if a merge can be fast-forwarded.
+        # If the commits are fast-forwarded, these might be very bulk in the history
+        # of the base branch and make it difficult to use debugging tools like bisect,
+        # or force you to revert them all if you wan't to undo the merge.
+
+        # On the other hand, if you have a merge commit, you can just revert it by
+        # choosing a mainline branch
+        ff = "false";
+      };
+      pull = {
+        # Only enable fast-forward pulls by default, and force choosing between
+        # rebasing and merging if there are conflicts, to ensure you can choose
+        # the best strategy to get the best history possible
+        ff = "only";
+        # TODO: Remove this? ff should cover it
+        rebase = "false";
+      };
     };
 
     includes = [
