@@ -82,6 +82,8 @@
     podman-compose
 
     spotify 
+
+    pgcli
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
