@@ -105,6 +105,7 @@
         "ns"
         "ctx"
         "view-secret"
+        "rabbitmq"
       ];
     };
   };
