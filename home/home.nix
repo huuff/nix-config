@@ -66,13 +66,9 @@
     translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
-    commitizen # command for increasing versions
 
     postman
     feh
-
-    nix-prefetch-git
-    nixos-shell
 
     kubernetes-helm
     helmfile
@@ -84,6 +80,7 @@
     spotify 
 
     pgcli
+    jrnl
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
