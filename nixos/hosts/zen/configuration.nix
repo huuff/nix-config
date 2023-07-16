@@ -20,9 +20,17 @@
 
   time.timeZone = "Europe/Madrid";
 
-  networking.useDHCP = false;
-  #networking.interfaces.enp0s25.useDHCP = true;
-  networking.interfaces.wlp1s0.useDHCP = true;
+  networking = {
+    useDHCP = false;
+    interfaces = {
+      wlp1s0.useDHCP = true;
+    };
+
+    firewall = {
+      allowedTCPPorts = [ 3000 ];
+    };
+  };
+  
 
   console = {
     font = "Lat2-Terminus16";
