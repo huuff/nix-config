@@ -23,13 +23,6 @@
   virtualisation = {
     virtualbox.host = {
       enable = true;
-      # XXX: I'm having problems with VBox 7, so I just copy-pasted the previous derivation
-      # Also, this compiles the whole package lol
-      package = pkgs.libsForQt5.callPackage ./virtualbox-6 {
-        stdenv = pkgs.stdenv_32bit;
-        inherit (pkgs.gnome2) libIDL;
-        jdk = pkgs.openjdk8; # TODO: remove override https://github.com/NixOS/nixpkgs/pull/89731
-      };
     };
   };
 
