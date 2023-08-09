@@ -62,6 +62,12 @@
         ./nixos/ssh.nix
         ./nixos/virtualization.nix
 
+        {
+          # XXX: I have it enabled in home-manager but that seems to not be enough
+          # because of an assertion somewhere
+          programs.zsh.enable = true;
+        }
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useUserPackages = true;
@@ -90,10 +96,6 @@
         # To use speakers/mic for meetings
         hardware.bluetooth.enable = true;
         services.blueman.enable = true;
-
-        # XXX: I have it enabled in home-manager but that seems to not be enough
-        # because of an assertion somewhere
-        programs.zsh.enable = true;
       })
     ];
 
