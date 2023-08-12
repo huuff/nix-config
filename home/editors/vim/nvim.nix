@@ -17,7 +17,6 @@
       vim-twig
       vim-vagrant
       vim-helm
-      vim-go
       kotlin-vim
       #coc-vetur # TODO: Currently using coc-volar, but it's not in nixpkgs so just doing :CocInstall @yaegassy/coc-volar
       coc-tsserver
@@ -25,6 +24,7 @@
       coc-yaml
       coc-html
       coc-rust-analyzer
+      coc-go
       ron-vim # Rust Object Notation
 
       # Convenience
