@@ -55,6 +55,10 @@
     extraPackages = with pkgs; [
       watchman # coc-volar needs it
     ];
+
+    extraLuaConfig = ''
+      vim.keymap.set('n', '<Leader>rn', '<Plug>coc-rename')
+    '';
   };
 
 
