@@ -18,7 +18,6 @@
       vim-vagrant
       vim-helm
       kotlin-vim
-      #coc-vetur # TODO: Currently using coc-volar, but it's not in nixpkgs so just doing :CocInstall @yaegassy/coc-volar
       coc-tsserver
       coc-eslint
       coc-yaml
@@ -34,7 +33,6 @@
       vim-argumentative # shift arguments with `<,` and `>,`, move between argument boundaries with `[,` and `],`
       fzf-vim # TODO: Not sure how to use it
       fugitive # I usually only do :Git blame honestly
-      coc-nvim
       coc-pairs # TODO: not sure I like it
       #coc-snippets # commented because I'm not using it, loads on every file and it's slow
       coc-diagnostic
@@ -52,17 +50,48 @@
       vim-pandoc-syntax
     ];
 
-    extraPackages = with pkgs; [
-      watchman # coc-volar needs it
-    ];
-
     extraLuaConfig = ''
       vim.keymap.set('n', '<Leader>rn', '<Plug>coc-rename')
     '';
+
+    coc = {
+      enable = true;
+      settings = {
+      # TODO: Maybe inline the pkgs of the languageservers here? in the commands? e.g. command = "${pkgs.rnix-lsp}/bin/rnix-lsp"
+      languageserver = {
+        nix = {
+          command = "rnix-lsp";
+          filetypes = [ "nix" ];
+        };
+
+        bash = {
+          command = "bash-language-server";
+          args = [ "start "];
+          filetypes = [ "sh" ];
+          ignoredRootPaths = [ "~" ];
+        };
+      };
+
+      eslint = {
+        probe = [ "javascript" "javascriptreact" "typescript" "typescriptreact" "html" "vue"];
+      };
+
+      diagnostic-languageserver = {
+        filetypes = {
+          sh = "shellcheck";
+        };
+
+        formatFileTypes = {
+          sh = "shfmt";
+        };
+      };
+
+      yaml = {
+        schemas = {
+          "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json" = [ "*api.yaml" ];
+        };
+      };
+    };
   };
-
-
-
-  # TODO: Looks like the home-manager module now has an option for coc huh
-  xdg.configFile."nvim/coc-settings.json".text = builtins.readFile ./coc-settings.json;
+};
 }
