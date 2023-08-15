@@ -9,8 +9,14 @@
 
     withNodeJs = true;
 
+    # TODO: Merge the coc <leader>rn config with config.vim
+    # (or maybe even start using lua?)
+    extraConfig = builtins.readFile ./config.vim + ''
+      " Rename symbol with <leader>rn
+      nmap <leader>rn <Plug>(coc-rename)
+    '';
+
     # TODO: Should add coc-phpls but it's not in nixpkgs
-    extraConfig = builtins.readFile ./config.vim;
     plugins = with pkgs.vimPlugins; [
       # Languages
       vim-nix
@@ -49,10 +55,6 @@
       # Markdown
       vim-pandoc-syntax
     ];
-
-    extraLuaConfig = ''
-      vim.keymap.set('n', '<Leader>rn', '<Plug>coc-rename')
-    '';
 
     coc = {
       enable = true;
