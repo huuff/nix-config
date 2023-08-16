@@ -93,6 +93,12 @@
           "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json" = [ "*api.yaml" ];
         };
       };
+
+      go = {
+        goplsOptions = {
+          templateExtensions = [ "gotmpl" ];
+        };
+      };
     };
   };
 };
