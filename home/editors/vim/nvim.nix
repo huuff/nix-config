@@ -79,7 +79,7 @@
 
         bash = {
           command = "bash-language-server";
-          args = [ "start "];
+          args = [ "start" ];
           filetypes = [ "sh" ];
           ignoredRootPaths = [ "~" ];
         };
