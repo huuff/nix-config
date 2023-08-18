@@ -9,11 +9,22 @@
 
     withNodeJs = true;
 
-    # TODO: Merge the coc <leader>rn config with config.vim
+    # TODO: The appended config is for coc... shall I merge with config.vim?
     # (or maybe even start using lua?)
     extraConfig = builtins.readFile ./config.vim + ''
       " Rename symbol with <leader>rn
       nmap <leader>rn <Plug>(coc-rename)
+
+      " Use K to show documentation in preview window
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+          execute 'h '.expand('<cword>')
+        else
+          call CocAction('doHover')
+        endif
+      endfunction
     '';
 
     # TODO: Should add coc-phpls but it's not in nixpkgs
