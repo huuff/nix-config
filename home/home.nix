@@ -79,6 +79,11 @@
 
     spotify 
 
+    # TODO: Maybe put this somewhere else
+    (google-cloud-sdk.withExtraComponents ([
+      google-cloud-sdk.components.app-engine-go
+    ]))
+
     pgcli
     jrnl
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
