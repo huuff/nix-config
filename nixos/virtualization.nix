@@ -6,6 +6,9 @@ with lib;
     # in my previous files. Check it out.
     users.users.${user}.extraGroups = [ "docker" "libvirtd" "vboxusers" ];
 
+    # Necessary for virt-manager
+    programs.dconf.enable = true;
+
     virtualisation = {
       # TODO: Enable UID remapping!
       # TODO: Actually, remove it when I fix my usages that depend on root (mainly, COPY instructions) and use podman

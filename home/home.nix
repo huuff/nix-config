@@ -23,6 +23,7 @@
       ./email.nix
 
       ./shell.nix
+      ./virtualization.nix
       modules.kubernetes
     ];
 
