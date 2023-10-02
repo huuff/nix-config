@@ -92,11 +92,7 @@
     nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
 
     nixosConfigurations.office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [
-      ({...}: {
-        # To use speakers/mic for meetings
-        hardware.bluetooth.enable = true;
-        services.blueman.enable = true;
-      })
+      ./nixos/bluetooth.nix
     ];
 
     nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
@@ -108,6 +104,7 @@
     nixosConfigurations.zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf"
       [
         ./nixos/wireless.nix { haf.networking.interface = "wlp1s0"; }
+        ./nixos/bluetooth.nix
       ];
   };
 }
