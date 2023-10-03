@@ -8,6 +8,8 @@
   zip
   unzip
 
+  bc # CLI calculator
+
   fd # find replacement
   silver-searcher # grep replacement
   fzf # TODO: Is it necessary here? I think it's enough to enable it through home-manager
