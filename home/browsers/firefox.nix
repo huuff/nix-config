@@ -24,6 +24,7 @@ in {
           wallabagger
           darkreader
           onepassword-password-manager
+          bitwarden
         ] ++ [
           (firefox-addons.buildFirefoxXpiAddon {
             pname = "apollo-client-devtools";
