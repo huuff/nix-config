@@ -6,7 +6,7 @@
 
     # Nix
     nixpkgs-fmt
-    rnix-lsp
+    nil
 
     # Bash
     shellcheck

@@ -73,7 +73,7 @@
       # TODO: Maybe inline the pkgs of the languageservers here? in the commands? e.g. command = "${pkgs.rnix-lsp}/bin/rnix-lsp"
       languageserver = {
         nix = {
-          command = "rnix-lsp";
+          command = "nil";
           filetypes = [ "nix" ];
         };
 
