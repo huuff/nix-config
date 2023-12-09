@@ -11,7 +11,7 @@
       epkgs.dracula-theme # theme
       # TODO: Put the command to install icons
       epkgs.all-the-icons # icon pack
-      epkgs.treemacs
+      epkgs.treemacs # side-drawer file explorer
     ];
 
     extraConfig = ''
