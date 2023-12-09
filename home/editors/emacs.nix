@@ -15,6 +15,9 @@
     ];
 
     extraConfig = ''
+      ;; disable ugly top toolbar
+      (tool-bar-mode -1)
+
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))
