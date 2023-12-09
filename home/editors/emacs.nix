@@ -7,7 +7,7 @@
     extraPackages = epkgs: [
       epkgs.evil # vim keybindings emulation
       epkgs.use-package # easy package config
-      epkgs.bind-key # key binding, apparently needed by use-package?
+      epkgs.bind-key # key binding
       epkgs.dracula-theme # theme
       # TODO: Put the command to install icons
       epkgs.all-the-icons # icon pack
@@ -15,8 +15,10 @@
     ];
 
     extraConfig = ''
-      ;; disable ugly top toolbar
+      ;; disable ugly top toolbars and scroll bars
       (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+      (menu-bar-mode -1)
 
       ;; (use-package)
       (eval-when-compile
