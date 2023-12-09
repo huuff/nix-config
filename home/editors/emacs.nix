@@ -13,7 +13,7 @@
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
 
-      # language-specific modes
+      # Language-specific modes
       epkgs.nix-mode
       epkgs.rust-mode
 
@@ -21,6 +21,15 @@
       epkgs.lsp-mode
       epkgs.lsp-ui # I actually don't know what it does
       epkgs.lsp-treemacs
+
+      # Universally loved packages
+      epkgs.company
+      epkgs.flycheck
+      # FUTURE: emacs29 has a native integration of tree-sitter
+      # so this shouldn't be needed
+      # TODO: rust not working! ABI is supposedly "too new"
+      epkgs.tree-sitter
+      epkgs.tree-sitter-langs
     ];
 
     extraConfig = ''
@@ -36,6 +45,8 @@
       (eval-when-compile
         (require 'use-package))
 
+      ;; enable tree-sitter in all supported modes
+      (global-tree-sitter-mode)
 
       ;; (dracula)
       (load-theme 'dracula t)
