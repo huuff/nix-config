@@ -28,6 +28,7 @@
       (scroll-bar-mode -1)
       (menu-bar-mode -1)
 
+      ;; show line numbers in programming modes
       (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
       ;; (use-package)
