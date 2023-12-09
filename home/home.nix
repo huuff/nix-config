@@ -2,6 +2,7 @@
 {
     imports = [
       ./editors/vim/nvim.nix
+      ./editors/emacs.nix
       ./editors/vscode.nix
 
       ./browsers/firefox.nix
