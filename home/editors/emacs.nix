@@ -20,6 +20,8 @@
       (scroll-bar-mode -1)
       (menu-bar-mode -1)
 
+      (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))

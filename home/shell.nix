@@ -9,22 +9,10 @@
       perms = ''stat -c "%a %n"'';
       trace-net = ''strace -f -e trace=network''; # is it useful?
       op-login = "eval $(op signin --account my.1password.com)";
-      agip = ''ag "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"'';
       ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
       l = "ls";
-      syss = "systemctl status";
-      sysf = "systemctl --failed";
-      sysj = "systemctl list-jobs";
-      sysr = "systemctl restart";
-      sysc = "systemctl cat";
-      jrn = "journalctl -u";
-      jrnf = "journalctl -fu";
       sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       watch = "watch "; # same as sudo
-      vssh = "TERM=xterm-256color vagrant ssh";
-      vup = "vagrant up";
-      vhalt = "vagrant halt";
-      vss = "vagrant global-status";
       cloc = "cloc --vcs=git";
       ag2 = "ag --context=2";
       agi = "ag --ignore '*.sql' --ignore '*.svg' --ignore '*.afm' --ignore '*.ser' --ignore '*.ufm'";
@@ -34,6 +22,8 @@
       hm = "himalaya";
       xmlfmt = "xmllint --format -";
       nix-shell = "nix shell"; # Prevent me from ever using nix-shell, since it's older and I'm too used to it
+      # disable emacs splash screen, cannot do it from config file, so this will do
+      emacs = "emacs --no-splash";
     };
 
     scriptDir = "$HOME/scripts";
