@@ -12,6 +12,14 @@
       # TODO: Put the command to install icons
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
+
+      # language-specific modes
+      epkgs.nix-mode
+
+      # LSP
+      epkgs.lsp-mode
+      epkgs.lsp-ui
+      epkgs.lsp-treemacs
     ];
 
     extraConfig = ''
@@ -26,6 +34,7 @@
       (eval-when-compile
         (require 'use-package))
 
+
       ;; (dracula)
       (load-theme 'dracula t)
 
@@ -35,6 +44,26 @@
         :config
         (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
       )
+
+      ;; (nix-mode)
+      (use-package nix-mode
+        :mode "\\.nix\\'"
+      )
+
+      ;; (lsp-mode)
+      (use-package lsp-mode
+        :init
+        ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+        (setq lsp-keymap-prefix "C-c l")
+        :hook (
+          (nix-mode . lsp)
+        )
+        :commands lsp
+      )
+
+      (use-package lsp-ui :commands lsp-ui-mode)
+      (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
 
       ;; (treemacs)
       (use-package treemacs
