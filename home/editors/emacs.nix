@@ -45,8 +45,14 @@
       (eval-when-compile
         (require 'use-package))
 
-      ;; enable tree-sitter in all supported modes
-      (global-tree-sitter-mode)
+      ;; (tree-sitter) FUTURE: It's supposedly included in emacs29
+      (use-package tree-sitter
+        :config
+        (require 'tree-sitter-langs)
+        (global-tree-sitter-mode)
+        ;; TODO: Use :hook?
+        (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+      )
 
       ;; (dracula)
       (load-theme 'dracula t)
