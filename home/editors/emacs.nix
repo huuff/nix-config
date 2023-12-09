@@ -15,10 +15,11 @@
 
       # language-specific modes
       epkgs.nix-mode
+      epkgs.rust-mode
 
       # LSP
       epkgs.lsp-mode
-      epkgs.lsp-ui
+      epkgs.lsp-ui # I actually don't know what it does
       epkgs.lsp-treemacs
     ];
 
@@ -58,6 +59,7 @@
         (setq lsp-keymap-prefix "C-c l")
         :hook (
           (nix-mode . lsp)
+          (rust-mode . lsp)
         )
         :commands lsp
       )
