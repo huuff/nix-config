@@ -21,10 +21,12 @@
       epkgs.lsp-mode
       epkgs.lsp-ui # I actually don't know what it does
       epkgs.lsp-treemacs
+      epkgs.helm-lsp
 
       # Universally loved packages
       epkgs.company
       epkgs.flycheck
+      epkgs.helm
       # FUTURE: emacs29 has a native integration of tree-sitter
       # so this shouldn't be needed
       # TODO: rust not working! ABI is supposedly "too new"
@@ -44,6 +46,11 @@
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))
+
+      ;; (helm)
+      (use-package helm 
+        :config (require 'helm-autoloads)
+      )
 
       ;; (tree-sitter) FUTURE: It's supposedly included in emacs29
       (use-package tree-sitter
@@ -82,6 +89,7 @@
 
       (use-package lsp-ui :commands lsp-ui-mode)
       (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+      (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
 
       ;; (treemacs)
