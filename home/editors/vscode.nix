@@ -30,24 +30,26 @@
     ];
     extensions = with pkgs.vscode-extensions; [
       bradlc.vscode-tailwindcss
-      wix.vscode-import-cost
-      dbaeumer.vscode-eslint
-      pkief.material-icon-theme
+      wix.vscode-import-cost # show cost of importing js packages
+      dbaeumer.vscode-eslint # eslint integration
+      pkief.material-icon-theme # nice icon theme
       # TODO: I don't think this is working...
       # is it automatically picking up direnv?
-      mkhl.direnv
-      waderyan.gitblame
-      formulahendry.auto-rename-tag
-      christian-kohler.path-intellisense
-      firefox-devtools.vscode-firefox-debug
+      mkhl.direnv # direnv integration
+      waderyan.gitblame # git blame in the bottom bar
+      formulahendry.auto-rename-tag # auto rename matching tags in html
+      christian-kohler.path-intellisense # autocomplete paths
+      firefox-devtools.vscode-firefox-debug # allow debugging with firefox
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
+        # autorun jest tests
         name = "vscode-jest";
         publisher = "Orta";
         version = "5.0.3";
         sha256 = "9v2de1ETxe3A18Wq1fnYl+f65UsNPmdpqmBJ8M4p3Wc=";
       } 
       {
+        # some comment niceties?
         name = "better-comments";
         publisher = "aaron-bond";
         version = "3.0.2";
