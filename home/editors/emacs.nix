@@ -1,5 +1,12 @@
 { pkgs, emacs-overlay, ... }:
 
+# TASKS:
+# TODO: Some vim command emulation
+# TODO: Reorganize it a little
+# TODO: Use emacs-overlay feature to install packages from use-package?
+# TODO: Auto install icons
+# TODO: Tree sitter
+# TODO: Fix rust linter
 {
   nixpkgs.overlays = [ emacs-overlay.overlay ];
 
