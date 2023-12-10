@@ -47,9 +47,18 @@
       (eval-when-compile
         (require 'use-package))
 
+      ;; (bind-key) necessary for use-package
+      (use-package bind-key
+        :ensure t
+        :config
+        (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
+      )
+
       ;; (helm)
-      (use-package helm 
-        :config (require 'helm-autoloads)
+      (use-package helm
+        :bind (
+          ("M-x" . helm-M-x)
+        )
       )
 
       ;; (tree-sitter) FUTURE: It's supposedly included in emacs29
@@ -64,12 +73,6 @@
       ;; (dracula)
       (load-theme 'dracula t)
 
-      ;; (bind-key) necessary for use-package
-      (use-package bind-key
-        :ensure t
-        :config
-        (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
-      )
 
       ;; (nix-mode)
       (use-package nix-mode
@@ -98,7 +101,8 @@
         :defer t
         :bind
         (:map global-map
-              ("C-x t t" . treemacs))
+          ("C-x t t" . treemacs)
+        )
         :hook (emacs-startup . treemacs)
       )
 
