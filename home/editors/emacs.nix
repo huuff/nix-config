@@ -3,13 +3,15 @@
 # TASKS:
 # TODO: Some vim command emulation
 # TODO: Reorganize it a little
+# TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
 # TODO: Tree sitter
-# TODO: Fix rust linter
 # TODO: Tabs! (Centaur?)
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
+# TODO: Use projectile
+# TODO: Make helm open in a small buffer rather than taking the whole fucking buffer
 {
   nixpkgs.overlays = [ emacs-overlay.overlay ];
 
@@ -32,6 +34,7 @@
       # Language-specific modes
       epkgs.nix-mode
       epkgs.rustic
+      epkgs.rust-mode
 
       # LSP
       epkgs.lsp-mode
@@ -94,7 +97,6 @@
         )
         :commands lsp
       )
-
       (use-package lsp-ui :commands lsp-ui-mode)
       (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
       (use-package helm-lsp :commands helm-lsp-workspace-symbol)
@@ -119,6 +121,7 @@
 
       ;; rust
       (use-package rustic)
+      (use-package rust-mode)
     '';
   };
 }
