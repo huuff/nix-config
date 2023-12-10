@@ -69,7 +69,7 @@
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
 
-    postman
+    #postman # TODO: Broken for some reason
     feh
 
     kubernetes-helm
