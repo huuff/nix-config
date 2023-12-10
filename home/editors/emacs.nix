@@ -1,6 +1,7 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
+# TODO: Some autopait stuff
 # TODO: Some vim command emulation
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
@@ -78,6 +79,10 @@
       ;; show line numbers in programming modes
       (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+      ;; set font to 11pt (height is in 1/10pt so 110 = 11pt)
+      (set-face-attribute 'default nil :height 110)
+
+
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))
@@ -94,6 +99,15 @@
         :bind (
           ("M-x" . helm-M-x)
         )
+      )
+
+      ;; (company)
+      (use-package company
+        :ensure t
+        :config
+          (setq
+            company-minimum-prefix-length 2
+          )
       )
 
       ;; (dracula)
