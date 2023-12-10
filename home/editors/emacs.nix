@@ -5,13 +5,16 @@
 
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs-unstable.override {
+      withTreeSitter = true;
+    };
 
     extraPackages = epkgs: [
       epkgs.evil # vim keybindings emulation
       epkgs.use-package # easy package config
       epkgs.bind-key # key binding
       epkgs.dracula-theme # theme
-      # TODO: Put the command to install icons
+      # TODO: Put the command to install icons or just install them automatically
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
 
@@ -29,11 +32,8 @@
       epkgs.company
       epkgs.flycheck
       epkgs.helm
-      # FUTURE: emacs29 has a native integration of tree-sitter
-      # so this shouldn't be needed
-      # TODO: rust not working! ABI is supposedly "too new"
-      epkgs.tree-sitter
-      epkgs.tree-sitter-langs
+
+      epkgs.treesit-auto
     ];
 
     extraConfig = ''
@@ -41,6 +41,16 @@
       (tool-bar-mode -1)
       (scroll-bar-mode -1)
       (menu-bar-mode -1)
+
+      ;; enable tree-sitter
+      (require 'treesit)
+      (use-package treesit-auto
+        :custom
+          (treesit-auto-install 'prompt)
+        :config
+          (treesit-auto-add-to-auto-mode-alist 'all)
+          (global-treesit-auto-mode)
+      )
 
       ;; show line numbers in programming modes
       (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -61,15 +71,6 @@
         :bind (
           ("M-x" . helm-M-x)
         )
-      )
-
-      ;; (tree-sitter) FUTURE: It's supposedly included in emacs29
-      (use-package tree-sitter
-        :config
-        (require 'tree-sitter-langs)
-        (global-tree-sitter-mode)
-        ;; TODO: Use :hook?
-        (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
       )
 
       ;; (dracula)
