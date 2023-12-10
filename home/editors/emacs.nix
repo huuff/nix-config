@@ -7,6 +7,7 @@
 # TODO: Auto install icons
 # TODO: Tree sitter
 # TODO: Fix rust linter
+# TODO: Tabs! (Centaur?)
 {
   nixpkgs.overlays = [ emacs-overlay.overlay ];
 
