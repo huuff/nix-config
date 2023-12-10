@@ -6,7 +6,7 @@
 # TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
-# TODO: Tabs! (Centaur?)
+# TODO: Centaur tabs looks fuckugly, there are no icons, for example. Maybe I need a compatible theme?
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
 # TODO: Use projectile
@@ -45,7 +45,7 @@
       # TODO: Put the command to install icons or just install them automatically
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
-      epkgs.treemacs-evil
+      epkgs.treemacs-evil # without it, left click doesn't work
 
       # Language-specific modes
       epkgs.nix-mode
@@ -65,6 +65,8 @@
 
       epkgs.tree-sitter
       epkgs.tree-sitter-langs
+
+      epkgs.centaur-tabs # tabs
     ];
 
     extraConfig = ''
@@ -134,7 +136,7 @@
       (use-package all-the-icons
         :if (display-graphic-p))
 
-      ;; Setup evil
+      ;; (evil)
       (require 'evil)
       (evil-mode 1)
 
@@ -145,13 +147,24 @@
       ;; FUTURE: emacs29 is supposed to have a native, better integration with tree-sitter
       ;; but it gives me a lot of troubles that I hope will be resolved by emacs30
       ;; but for now, this is the ancient way of doing it
-      ;; tree-sitter
+      ;; (tree-sitter)
       (use-package tree-sitter
         :config
         (require 'tree-sitter-langs)
         (global-tree-sitter-mode)
         ;; TODO: Use :hook?
         (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+      )
+
+      ;; (centaur-tabs)
+      (use-package centaur-tabs
+        :demand
+        :config
+        (centaur-tabs-mode t)
+        (centaur-tabs-headline-match)
+        :bind
+        ("C-<prior>" . centaur-tabs-backward)
+        ("C-<next>" . centaur-tabs-forward)
       )
     '';
   };
