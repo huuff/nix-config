@@ -82,7 +82,6 @@
       ;; set font to 11pt (height is in 1/10pt so 110 = 11pt)
       (set-face-attribute 'default nil :height 110)
 
-
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))
@@ -174,11 +173,8 @@
       (use-package centaur-tabs
         :demand
         :config
-        (centaur-tabs-mode t)
-        (centaur-tabs-headline-match)
-        :bind
-        ("C-<prior>" . centaur-tabs-backward)
-        ("C-<next>" . centaur-tabs-forward)
+          (centaur-tabs-mode t)
+          (centaur-tabs-headline-match)
       )
     '';
   };
