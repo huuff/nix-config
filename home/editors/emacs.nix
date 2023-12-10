@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, emacs-overlay, ... }:
 
 {
+  nixpkgs.overlays = [ emacs-overlay.overlay ];
+
   programs.emacs = {
     enable = true;
 
@@ -15,7 +17,7 @@
 
       # Language-specific modes
       epkgs.nix-mode
-      epkgs.rust-mode
+      epkgs.rustic
 
       # LSP
       epkgs.lsp-mode
@@ -79,11 +81,14 @@
         :mode "\\.nix\\'"
       )
 
+      ;; (flycheck)
+      (use-package flycheck
+      )
+
       ;; (lsp-mode)
       (use-package lsp-mode
         :init
-        ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-        (setq lsp-keymap-prefix "C-c l")
+          (setq lsp-use-plists nil)
         :hook (
           (prog-mode . lsp)
         )
@@ -99,10 +104,6 @@
       (use-package treemacs
         :ensure t
         :defer t
-        :bind
-        (:map global-map
-          ("C-x t t" . treemacs)
-        )
         :hook (emacs-startup . treemacs)
       )
 
@@ -114,6 +115,9 @@
       ;; Setup evil
       (require 'evil)
       (evil-mode 1)
+
+      ;; rust
+      (use-package rustic)
     '';
   };
 }
