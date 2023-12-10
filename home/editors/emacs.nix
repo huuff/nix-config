@@ -8,6 +8,8 @@
 # TODO: Tree sitter
 # TODO: Fix rust linter
 # TODO: Tabs! (Centaur?)
+# TODO: configure Helm for more features (currently it's only for M-x)
+# TODO: Some leader key configuration?
 {
   nixpkgs.overlays = [ emacs-overlay.overlay ];
 
