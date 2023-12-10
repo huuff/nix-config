@@ -6,14 +6,30 @@
 # TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
-# TODO: Tree sitter
 # TODO: Tabs! (Centaur?)
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
 # TODO: Use projectile
 # TODO: Make helm open in a small buffer rather than taking the whole fucking buffer
 {
-  nixpkgs.overlays = [ emacs-overlay.overlay ];
+  nixpkgs.overlays = [ 
+    emacs-overlay.overlay
+    # XXX: I'm using the old tree-sitter plugin because the
+    # native integration in emacs29 doesn't please me
+    # but it's old and not updated, so the nixpkgs tree-sitter-grammars are not compatible
+    # therefore, I just recompile them with an older ABI
+    (final: prev:
+    {
+      tree-sitter-grammars = prev.tree-sitter-grammars // {
+        tree-sitter-rust = prev.tree-sitter-grammars.tree-sitter-rust.overrideAttrs (_: {
+          nativeBuildInputs = [ final.nodejs final.tree-sitter ];
+          configurePhase = ''
+            tree-sitter generate --abi 13 src/grammar.json
+          '';
+        });
+      };
+    })
+  ];
 
   programs.emacs = {
     enable = true;
@@ -46,6 +62,9 @@
       epkgs.company
       epkgs.flycheck
       epkgs.helm
+
+      epkgs.tree-sitter
+      epkgs.tree-sitter-langs
     ];
 
     extraConfig = ''
@@ -122,6 +141,18 @@
       ;; rust
       (use-package rustic)
       (use-package rust-mode)
+
+      ;; FUTURE: emacs29 is supposed to have a native, better integration with tree-sitter
+      ;; but it gives me a lot of troubles that I hope will be resolved by emacs30
+      ;; but for now, this is the ancient way of doing it
+      ;; tree-sitter
+      (use-package tree-sitter
+        :config
+        (require 'tree-sitter-langs)
+        (global-tree-sitter-mode)
+        ;; TODO: Use :hook?
+        (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+      )
     '';
   };
 }
