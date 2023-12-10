@@ -17,6 +17,7 @@
       # TODO: Put the command to install icons or just install them automatically
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
+      epkgs.treemacs-evil
 
       # Language-specific modes
       epkgs.nix-mode
@@ -32,8 +33,6 @@
       epkgs.company
       epkgs.flycheck
       epkgs.helm
-
-      epkgs.treesit-auto
     ];
 
     extraConfig = ''
@@ -41,16 +40,6 @@
       (tool-bar-mode -1)
       (scroll-bar-mode -1)
       (menu-bar-mode -1)
-
-      ;; enable tree-sitter
-      (require 'treesit)
-      (use-package treesit-auto
-        :custom
-          (treesit-auto-install 'prompt)
-        :config
-          (treesit-auto-add-to-auto-mode-alist 'all)
-          (global-treesit-auto-mode)
-      )
 
       ;; show line numbers in programming modes
       (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -107,9 +96,10 @@
         :defer t
         :hook (emacs-startup . treemacs)
       )
+      (use-package treemacs-evil)
 
 
-      ;; (all-the-icons) necessary for neotree
+      ;; (all-the-icons) 
       (use-package all-the-icons
         :if (display-graphic-p))
 
