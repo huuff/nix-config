@@ -82,6 +82,9 @@
       ;; set font to 11pt (height is in 1/10pt so 110 = 11pt)
       (set-face-attribute 'default nil :height 110)
 
+      ;; allow pasting with Ctrl+V, even in minibuffer
+      (global-set-key (kbd "C v") 'yank)
+
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))
