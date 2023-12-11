@@ -2,7 +2,6 @@
 
 # TASKS:
 # TODO: Install yasnippet (LSP is asking for it)
-# TODO: Some autopair stuff (smartparens)
 # TODO: Some vim command emulation
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
@@ -70,6 +69,7 @@
       epkgs.centaur-tabs # tabs
 
       epkgs.popwin
+      epkgs.smartparens
     ];
 
     extraConfig = ''
@@ -193,6 +193,16 @@
           ;; helm 
           (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
           (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
+      )
+
+      ;; (smartparens)
+      (use-package smartparens-mode
+        :ensure smartparens
+        :hook 
+          (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
+        :config
+          ;; load default config
+          (require 'smartparens-config)
       )
     '';
   };
