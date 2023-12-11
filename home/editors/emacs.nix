@@ -1,7 +1,7 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
-# TODO: Some autopait stuff
+# TODO: Some autopair stuff (smartparens)
 # TODO: Some vim command emulation
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
@@ -101,6 +101,7 @@
         :bind (
           ("M-x" . helm-M-x)
         )
+        ;; TODO: Why can't I config this in a :custom block?
         :config
           (setq 
             helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
@@ -117,6 +118,7 @@
       )
 
       ;; (company)
+      ;; TODO: Use LSP recommended config (prefix 0)
       (use-package company
         :ensure t
         :config
