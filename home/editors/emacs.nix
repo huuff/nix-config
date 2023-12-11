@@ -1,6 +1,7 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
+# TODO: Install yasnippet (LSP is asking for it)
 # TODO: Some autopair stuff (smartparens)
 # TODO: Some vim command emulation
 # TODO: Reorganize it a little
@@ -11,7 +12,6 @@
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
 # TODO: Use projectile
-# TODO: Make helm open in a small buffer rather than taking the whole fucking buffer. UPDATE: I'm doing it, but maybe I can do it with popwin?
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -103,20 +103,6 @@
         :bind (
           ("M-x" . helm-M-x)
         )
-        ;; TODO: Why can't I config this in a :custom block?
-        :config
-          (setq 
-            helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-            helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-            helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-            helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-            helm-ff-file-name-history-use-recentf t
-            helm-echo-input-in-header-line t
-          )
-          (setq helm-autoresize-max-height 0)
-          (setq helm-autoresize-min-height 20)
-          (helm-autoresize-mode 1)
-          (helm-mode 1)
       )
 
       ;; (company)
@@ -201,8 +187,12 @@
       (use-package popwin
         :config
           (popwin-mode 1)
-          ;; cargo commands for rustic
+          ;; cargo (rustic)
           (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
+
+          ;; helm 
+          (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
+          (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
       )
     '';
   };
