@@ -10,8 +10,8 @@
 # TODO: Centaur tabs looks fuckugly, there are no icons, for example. Maybe I need a compatible theme?
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
-# TODO: Use projectile
 # TODO: Use magit
+# TODO: Use which key
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -47,6 +47,7 @@
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
       epkgs.treemacs-evil # without it, left click doesn't work
+      epkgs.treemacs-projectile
 
       # Language-specific modes
       epkgs.nix-mode
@@ -71,6 +72,9 @@
 
       epkgs.popwin
       epkgs.smartparens
+
+      epkgs.projectile
+      epkgs.helm-projectile
     ];
 
     extraConfig = ''
@@ -204,6 +208,18 @@
         :config
           ;; load default config
           (require 'smartparens-config)
+      )
+
+      ;; (projectile)
+      (use-package projectile
+        :config
+          (projectile-mode +1)
+          (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+      )
+      (use-package treemacs-projectile)
+      (use-package helm-projectile
+        :config
+          (helm-projectile-on)
       )
     '';
   };
