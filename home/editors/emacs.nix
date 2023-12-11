@@ -11,7 +11,7 @@
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
 # TODO: Use projectile
-# TODO: Make helm open in a small buffer rather than taking the whole fucking buffer
+# TODO: Make helm open in a small buffer rather than taking the whole fucking buffer. UPDATE: I'm doing it, but maybe I can do it with popwin?
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -68,6 +68,8 @@
       epkgs.tree-sitter-langs
 
       epkgs.centaur-tabs # tabs
+
+      epkgs.popwin
     ];
 
     extraConfig = ''
@@ -193,6 +195,14 @@
         :config
           (centaur-tabs-mode t)
           (centaur-tabs-headline-match)
+      )
+
+      ;; (popwin)
+      (use-package popwin
+        :config
+          (popwin-mode 1)
+          ;; cargo commands for rustic
+          (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
       )
     '';
   };
