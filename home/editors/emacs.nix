@@ -11,6 +11,7 @@
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
 # TODO: Use projectile
+# TODO: Use magit
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
