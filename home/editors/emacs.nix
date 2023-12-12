@@ -10,9 +10,11 @@
 # TODO: Centaur tabs looks fuckugly, there are no icons, for example. Maybe I need a compatible theme?
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
+# TODO: Prefixes for all my commands? Like I have C-c p for projectile
 # TODO: Use magit
 # TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 # TODO: Maybe some nice status line?
+# TODO: DAP mode for debugging
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -43,7 +45,6 @@
       epkgs.evil # vim keybindings emulation
       epkgs.use-package # easy package config
       epkgs.bind-key # key binding
-      epkgs.dracula-theme # theme
       # TODO: Put the command to install icons or just install them automatically
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
@@ -77,6 +78,8 @@
       epkgs.projectile
       epkgs.helm-projectile
       epkgs.which-key
+
+      epkgs.doom-themes
     ];
 
     extraConfig = ''
@@ -121,10 +124,6 @@
             company-minimum-prefix-length 2
           )
       )
-
-      ;; (dracula)
-      (load-theme 'dracula t)
-
 
       ;; (nix-mode)
       (use-package nix-mode
@@ -229,6 +228,21 @@
         :config
           (which-key-mode)
       )
+
+      ;; (themes)
+      (use-package doom-themes
+        :ensure t
+        :config
+          (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+                doom-themes-enable-italic t) ; if nil, italics is universally disabled
+          (load-theme 'doom-one t)
+
+        ;; Enable flashing mode-line on errors
+          (doom-themes-visual-bell-config)
+          ;; or for treemacs users
+          (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+          (doom-themes-treemacs-config)
+        )
     '';
   };
 }
