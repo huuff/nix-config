@@ -7,7 +7,6 @@
 # TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
-# TODO: Centaur tabs looks fuckugly, there are no icons, for example. Maybe I need a compatible theme?
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Some leader key configuration?
 # TODO: Prefixes for all my commands? Like I have C-c p for projectile
@@ -187,6 +186,10 @@
         :config
           (centaur-tabs-mode t)
           (centaur-tabs-headline-match)
+          (setq centaur-tabs-set-icons t)
+          (setq centaur-tabs-gray-out-icons 'buffer)
+          (setq centaur-tabs-set-bar 'left)
+          (setq centaur-tabs-set-modified-marker t)
       )
 
       ;; (popwin)
