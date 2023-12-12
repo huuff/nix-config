@@ -91,7 +91,7 @@
       (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
       ;; set font 
-      (set-frame-font "Fira Code 12" nil t)
+      (set-frame-font "Fira Code 10" nil t)
 
       ;; allow pasting with Ctrl+V, even in minibuffer
       (global-set-key (kbd "C-v") 'yank)
