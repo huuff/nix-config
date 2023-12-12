@@ -91,8 +91,8 @@
       ;; show line numbers in programming modes
       (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-      ;; set font to 11pt (height is in 1/10pt so 110 = 11pt)
-      (set-face-attribute 'default nil :height 110)
+      ;; set font 
+      (set-frame-font "Fira Code 12" nil t)
 
       ;; allow pasting with Ctrl+V, even in minibuffer
       (global-set-key (kbd "C-v") 'yank)
