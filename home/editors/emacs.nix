@@ -1,6 +1,8 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
+# TODO: Use evil-collection?
+# TODO: Missing python3! Else some treemacs features wont work
 # TODO: Install yasnippet (LSP is asking for it)
 # TODO: Some vim command emulation
 # TODO: Reorganize it a little
@@ -14,6 +16,7 @@
 # TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 # TODO: Maybe some nice status line?
 # TODO: DAP mode for debugging
+# TODO: vim-like (evil?) config for tab switching for centaur tabs
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -79,6 +82,7 @@
       epkgs.which-key
 
       epkgs.doom-themes
+      epkgs.general
     ];
 
     extraConfig = ''
@@ -161,6 +165,7 @@
         :if (display-graphic-p))
 
       ;; (evil)
+      ;; TODO: Use use-package
       (require 'evil)
       (evil-mode 1)
 
@@ -204,6 +209,8 @@
           (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
       )
 
+      ;; TODO: This is giving some weird error when building (with nix, I'll have to read on how to find these logs)
+      ;; what do I do?
       ;; (smartparens)
       (use-package smartparens-mode
         :ensure smartparens
@@ -217,19 +224,18 @@
       ;; (projectile)
       (use-package projectile
         :config
-          (projectile-mode +1)
-          (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+        (projectile-mode +1)
       )
       (use-package treemacs-projectile)
       (use-package helm-projectile
         :config
-          (helm-projectile-on)
+        (helm-projectile-on)
       )
 
       ;; (which-key)
       (use-package which-key
         :config
-          (which-key-mode)
+        (which-key-mode)
       )
 
       ;; (themes)
@@ -245,6 +251,18 @@
           (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
           (doom-themes-treemacs-config)
         )
+
+      ;; (general)
+      ;; TODO: projectile-command-map should apply only to 'projectile-mode-map
+      ;; TODO: I should use general-create-definer
+      (use-package general
+        :config
+        (general-define-key
+           :keymaps 'override
+           :prefix "SPC"
+           "p" 'projectile-command-map
+        )
+      )
     '';
   };
 }
