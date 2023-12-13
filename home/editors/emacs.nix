@@ -10,8 +10,7 @@
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
 # TODO: configure Helm for more features (currently it's only for M-x)
-# TODO: Some leader key configuration?
-# TODO: Prefixes for all my commands? Like I have C-c p for projectile
+# TODO: Prefixes for all my commands? Like I have SPC p for projectile
 # TODO: Use magit
 # TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 # TODO: Maybe some nice status line?
@@ -253,15 +252,17 @@
         )
 
       ;; (general)
-      ;; TODO: projectile-command-map should apply only to 'projectile-mode-map
-      ;; TODO: I should use general-create-definer
       (use-package general
-        :config
-        (general-define-key
-           :keymaps 'override
-           :prefix "SPC"
-           "p" 'projectile-command-map
-        )
+        :after evil
+      )
+
+      (general-create-definer leader-bindings
+        :keymaps '(normal insert visual emacs)
+        :prefix "SPC"
+        :global-prefix "C-SPC")
+
+      (leader-bindings
+        "p" projectile-command-map
       )
     '';
   };
