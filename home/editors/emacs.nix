@@ -241,8 +241,10 @@
       (use-package doom-themes
         :ensure t
         :config
-          (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-                doom-themes-enable-italic t) ; if nil, italics is universally disabled
+          (setq 
+            doom-themes-enable-bold t
+            doom-themes-enable-italic t
+          )
           (load-theme 'doom-one t)
 
         ;; Enable flashing mode-line on errors
@@ -262,7 +264,10 @@
         :global-prefix "C-SPC")
 
       (leader-bindings
-        "p" projectile-command-map
+        ;; TODO: for some reason, this won't work if I assign
+        ;; it to the projectile-mode-map. Find out why
+        ;; :keymaps 'projectile-mode-map
+        "p" 'projectile-command-map
       )
     '';
   };
