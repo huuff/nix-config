@@ -65,6 +65,16 @@
         RIGHT='HDMI-1'
         ${pkgs.xorg.xrandr}/bin/xrandr --output "$LEFT" --left-of "$RIGHT"
     '';
+
+    # TODO: I need this shit for postman since they broke nixpkgs, maybe I should put this for all?
+    flatpak.enable = true;
+  };
+
+  # this shit is necessary for flatpack
+  xdg.portal = {
+    enable = true;  
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
   };
 
   # XXX: Fix nssmdns issues (https://discourse.nixos.org/t/help-with-local-dns-resolution/20305/6?u=haf)
