@@ -145,6 +145,11 @@
           ;; enables descriptive labels in which-key for lsp
           (lsp-mode . lsp-enable-which-key-integration)
         )
+        :config
+          ;; don't know why but only these two commands
+          ;; will make lsp work with leader key and general.el
+          (setq lsp-keymap-prefix "SPC l")
+          (fset 'lsp-command-map lsp-command-map)
         :commands lsp
       )
       (use-package lsp-ui :commands lsp-ui-mode)
@@ -271,6 +276,7 @@
         ;; it to the projectile-mode-map. Find out why
         ;; :keymaps 'projectile-mode-map
         "p" 'projectile-command-map
+        "l" 'lsp-command-map
       )
     '';
   };
