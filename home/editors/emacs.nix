@@ -140,6 +140,8 @@
       (use-package lsp-mode
         :init
           (setq lsp-use-plists nil)
+          ;; TODO: Use :hook
+          (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
         :hook (
           (prog-mode . lsp)
         )
@@ -261,7 +263,8 @@
       (general-create-definer leader-bindings
         :keymaps '(normal insert visual emacs)
         :prefix "SPC"
-        :global-prefix "C-SPC")
+        :global-prefix "C-SPC"
+      )
 
       (leader-bindings
         ;; TODO: for some reason, this won't work if I assign
