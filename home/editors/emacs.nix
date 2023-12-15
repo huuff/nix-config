@@ -140,10 +140,10 @@
       (use-package lsp-mode
         :init
           (setq lsp-use-plists nil)
-          ;; TODO: Use :hook
-          (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
         :hook (
           (prog-mode . lsp)
+          ;; enables descriptive labels in which-key for lsp
+          (lsp-mode . lsp-enable-which-key-integration)
         )
         :commands lsp
       )
