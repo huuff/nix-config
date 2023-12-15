@@ -16,6 +16,10 @@
 # TODO: Maybe some nice status line?
 # TODO: DAP mode for debugging
 # TODO: vim-like (evil?) config for tab switching for centaur tabs
+let
+  leader-key = "SPC";
+  lsp-key = "l";
+in
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -148,7 +152,7 @@
         :config
           ;; don't know why but only these two commands
           ;; will make lsp work with leader key and general.el
-          (setq lsp-keymap-prefix "SPC l")
+          (setq lsp-keymap-prefix "${leader-key} ${lsp-key}")
           (fset 'lsp-command-map lsp-command-map)
         :commands lsp
       )
@@ -267,7 +271,7 @@
 
       (general-create-definer leader-bindings
         :keymaps '(normal insert visual emacs)
-        :prefix "SPC"
+        :prefix "${leader-key}"
         :global-prefix "C-SPC"
       )
 
@@ -276,7 +280,7 @@
         ;; it to the projectile-mode-map. Find out why
         ;; :keymaps 'projectile-mode-map
         "p" 'projectile-command-map
-        "l" 'lsp-command-map
+        "${lsp-key}" 'lsp-command-map
       )
     '';
   };
