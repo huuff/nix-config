@@ -16,6 +16,7 @@
 # TODO: Maybe some nice status line?
 # TODO: DAP mode for debugging
 # TODO: vim-like (evil?) config for tab switching for centaur tabs
+# TODO: Try to set this up with elisp instead of nix
 let
   leader-key = "SPC";
   lsp-key = "l";
