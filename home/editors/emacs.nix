@@ -18,6 +18,8 @@
 # TODO: vim-like (evil?) config for tab switching for centaur tabs
 # TODO: Try to set this up with elisp instead of nix
 # TODO: Use expand-region
+# TODO: A mouse hover pop-up for flycheck would be nice
+# TODO: flycheck-rust is apparently good
 let
   leader-key = "SPC";
   lsp-key = "l";
@@ -219,6 +221,9 @@ in
           ;; helm 
           (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
           (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
+
+          ;; flycheck
+          (push "*Flycheck errors*" popwin:special-display-config)
       )
 
       ;; TODO: This is giving some weird error when building (with nix, I'll have to read on how to find these logs)
@@ -291,6 +296,9 @@ in
         "p" 'projectile-command-map
         "${lsp-key}" 'lsp-command-map
         "t" 'treemacs
+        "c l" 'flycheck-list-errors
+        "c n" 'flyckeck-next-error
+        "c p" 'flyckeck-previous-error
       )
     '';
   };
