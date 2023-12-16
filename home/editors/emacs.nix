@@ -19,7 +19,6 @@
 # TODO: Try to set this up with elisp instead of nix
 # TODO: Use expand-region
 # TODO: A mouse hover pop-up for flycheck would be nice
-# TODO: flycheck-rust is apparently good
 let
   leader-key = "SPC";
   lsp-key = "l";
