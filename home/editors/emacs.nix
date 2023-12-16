@@ -112,6 +112,7 @@ in
       ;; allow pasting with Ctrl+V, even in minibuffer
       (global-set-key (kbd "C-v") 'yank)
 
+
       ;; (use-package)
       (eval-when-compile
         (require 'use-package))
@@ -157,12 +158,14 @@ in
           (prog-mode . lsp)
           ;; enables descriptive labels in which-key for lsp
           (lsp-mode . lsp-enable-which-key-integration)
+          (lsp-mode . lsp-inlay-hints-mode)
         )
         :config
           ;; don't know why but only these two commands
           ;; will make lsp work with leader key and general.el
           (setq lsp-keymap-prefix "${leader-key} ${lsp-key}")
           (fset 'lsp-command-map lsp-command-map)
+          (setq lsp-inlay-hint-enable t)
         :commands lsp
       )
       (use-package lsp-ui :commands lsp-ui-mode)
@@ -174,9 +177,24 @@ in
       (use-package treemacs
         :ensure t
         :defer t
-        :hook (emacs-startup . treemacs)
+
+        ;; start treemacs on startup (with projectile)
+        ;; however, it's prone to open an empty *scratch* buffer
+        ;; when doing this, which is infuriating.
+        ;; delaying it is the only solution I found
+        ;; https://github.com/Alexander-Miller/treemacs/issues/258#issuecomment-831489403
+        :preface
+        (defun defer/treemacs ()
+          (run-with-idle-timer 1 nil #'treemacs))
+        :hook (projectile-mode . defer/treemacs)
+
+        :config
+        ;; always select the current file in treemacs
+        (treemacs-follow-mode t)
       )
-      (use-package treemacs-evil)
+      (use-package treemacs-evil
+        :after (treemacs evil)
+      )
 
 
       ;; (all-the-icons) 
@@ -229,6 +247,8 @@ in
 
           ;; flycheck
           (push "*Flycheck errors*" popwin:special-display-config)
+
+          (push "*scratch*" popwin:special-display-config)
       )
 
       ;; TODO: This is giving some weird error when building (with nix, I'll have to read on how to find these logs)
@@ -248,7 +268,9 @@ in
         :config
         (projectile-mode +1)
       )
-      (use-package treemacs-projectile)
+      (use-package treemacs-projectile
+        :after (treemacs projectile)
+      )
       (use-package helm-projectile
         :config
         (helm-projectile-on)
