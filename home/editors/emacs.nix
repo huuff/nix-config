@@ -17,6 +17,7 @@
 # TODO: DAP mode for debugging
 # TODO: vim-like (evil?) config for tab switching for centaur tabs
 # TODO: Try to set this up with elisp instead of nix
+# TODO: Use expand-region
 let
   leader-key = "SPC";
   lsp-key = "l";
