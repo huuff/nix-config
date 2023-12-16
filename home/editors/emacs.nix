@@ -276,12 +276,20 @@ in
         :global-prefix "C-SPC"
       )
 
+      ;; TODO: I've decided it's generally better if
+      ;; I do this stuff with hydras. I should use
+      ;; which-key for general help performing a keybinding
+      ;; but hydras for defining a global map menu.
+      ;; I've taken this decision because apparently not
+      ;; all package have a convenient `-command-map` prefix
+      ;; that I can use for showing all choices
       (leader-bindings
         ;; TODO: for some reason, this won't work if I assign
         ;; it to the projectile-mode-map. Find out why
         ;; :keymaps 'projectile-mode-map
         "p" 'projectile-command-map
         "${lsp-key}" 'lsp-command-map
+        "t" 'treemacs
       )
     '';
   };
