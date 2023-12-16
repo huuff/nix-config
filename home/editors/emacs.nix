@@ -1,6 +1,9 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
+# TODO: Some keybindings like intellij iDEA like:
+  # * shift + F6: Rename
+  # * shift + shift: Find file
 # TODO: Seems like lsp-ui lens diagnostics might break a lot of stuff when moving!
 # TODO: LSP code actions don't seem to actually be using helm
 # TODO: Some keybindings to cycle through flycheck list diagnostics
