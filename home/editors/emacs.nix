@@ -16,7 +16,6 @@
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
 # TODO: configure Helm for more features (currently it's only for M-x)
-# TODO: Prefixes for all my commands? Like I have SPC p for projectile (only centaur-tabs missing now!)
 # TODO: Use magit
 # TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 # TODO: Set correct dependencies between packages with use-package (:after)
