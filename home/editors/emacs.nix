@@ -1,6 +1,8 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
+# TODO: Seems like lsp-ui lens diagnostics might break a lot of stuff when moving!
+# TODO: Some keybindings to cycle through flycheck list diagnostics
 # TODO: Use evil-collection?
 # TODO: Missing python3! Else some treemacs features wont work
 # TODO: Install yasnippet (LSP is asking for it)
