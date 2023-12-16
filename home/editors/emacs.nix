@@ -16,15 +16,15 @@
 # TODO: Use emacs-overlay feature to install packages from use-package?
 # TODO: Auto install icons
 # TODO: configure Helm for more features (currently it's only for M-x)
-# TODO: Prefixes for all my commands? Like I have SPC p for projectile
+# TODO: Prefixes for all my commands? Like I have SPC p for projectile (only centaur-tabs missing now!)
 # TODO: Use magit
 # TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
+# TODO: Set correct dependencies between packages with use-package (:after)
 # TODO: Maybe some nice status line?
 # TODO: DAP mode for debugging
-# TODO: vim-like (evil?) config for tab switching for centaur tabs
-# TODO: Try to set this up with elisp instead of nix
 # TODO: Use expand-region
 # TODO: A mouse hover pop-up for flycheck would be nice
+# TODO: Try to set this up with elisp instead of nix
 let
   leader-key = "SPC";
   lsp-key = "l";
@@ -224,14 +224,27 @@ in
 
       ;; (centaur-tabs)
       (use-package centaur-tabs
+        :init
+          (setq centaur-tabs-enable-key-bindings t)
         :demand
         :config
           (centaur-tabs-mode t)
+          ;; make tabs take full width
           (centaur-tabs-headline-match)
+          ;; show icons
           (setq centaur-tabs-set-icons t)
+          ;; gray-out unactive tab
           (setq centaur-tabs-gray-out-icons 'buffer)
+          ;; left active tab indicator
           (setq centaur-tabs-set-bar 'left)
+          ;; show whether tab is modified
           (setq centaur-tabs-set-modified-marker t)
+          (setq centaur-tabs-cycle-scope 'tabs)
+        :bind
+        ;; vim-like change tabg with `g t` and `g T`
+          (:map evil-normal-state-map
+            ("g t" . centaur-tabs-forward)
+            ("g T" . centaur-tabs-backward))
       )
 
       ;; (popwin)
