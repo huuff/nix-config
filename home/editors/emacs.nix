@@ -239,6 +239,9 @@ in
           (setq centaur-tabs-set-bar 'left)
           ;; show whether tab is modified
           (setq centaur-tabs-set-modified-marker t)
+          ;; do not allow crossing tab groups by changing tab 
+          ;; (prevents going to weird hidden buffers when going
+          ;; to next tab on the last one)
           (setq centaur-tabs-cycle-scope 'tabs)
         :bind
         ;; vim-like change tabg with `g t` and `g T`
