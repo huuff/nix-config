@@ -22,6 +22,7 @@
 # TODO: Maybe some nice status line?
 # TODO: DAP mode for debugging
 # TODO: Use expand-region
+# TODO: Multi-cursor stuff
 # TODO: A mouse hover pop-up for flycheck would be nice
 # TODO: Try to set this up with elisp instead of nix
 let
