@@ -12,7 +12,6 @@
 # TODO: Some more evil packages like:
   # * evil-collection
   # * evil-args
-  # * evil-goggles
 # TODO: Comment and explain ALL packages
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
@@ -105,6 +104,7 @@ in
       epkgs.evil-surround
       epkgs.evil-matchit
       epkgs.evil-numbers
+      epkgs.evil-goggles
       epkgs.evil-snipe
     ];
 
@@ -247,7 +247,18 @@ in
         :config
         (evil-snipe-mode +1)
         (evil-snipe-override-mode +1)
+        ;; snipe in whole buffer, not just current line
         (setq evil-snipe-scope 'whole-buffer)
+      )
+
+      ;; TODO: Colors aren't very visible. This issue:
+      ;; https://github.com/edkolev/evil-goggles/issues/33
+      ;; says it's because doom-themes but I've tried changing
+      ;; it with no result
+      (use-package evil-goggles
+        :ensure t
+        :config
+        (evil-goggles-mode)
       )
 
       ;; rust
