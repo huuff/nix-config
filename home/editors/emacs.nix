@@ -7,10 +7,13 @@
 # TODO: Seems like lsp-ui lens diagnostics might break a lot of stuff when moving!
 # TODO: LSP code actions don't seem to actually be using helm
 # TODO: Some keybindings to cycle through flycheck list diagnostics
-# TODO: Use evil-collection?
 # TODO: Missing python3! Else some treemacs features wont work
 # TODO: Install yasnippet (LSP is asking for it)
-# TODO: Some vim command emulation
+# TODO: Some more evil packages like:
+  # * evil-collection
+  # * evil-snipe
+  # * evil-args
+  # * evil-goggles
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
@@ -25,6 +28,7 @@
 # TODO: Multi-cursor stuff
 # TODO: A mouse hover pop-up for flycheck would be nice
 # TODO: Try to set this up with elisp instead of nix
+# TODO: Indent guides for YAML
 let
   leader-key = "SPC";
   lsp-key = "l";
@@ -374,6 +378,9 @@ in
         "e n" 'flyckeck-next-error
         "e p" 'flyckeck-previous-error
         ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
+        ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
+        ;; generally-useful prefix that I can use in insert or normal mode?
+        ;; for example, I've put evil-numbers under C-c, and I could put this under the same prefix
         "c SPC" 'evilnc-comment-or-uncomment-lines
       )
     '';
