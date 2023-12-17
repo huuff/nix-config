@@ -11,9 +11,9 @@
 # TODO: Install yasnippet (LSP is asking for it)
 # TODO: Some more evil packages like:
   # * evil-collection
-  # * evil-snipe
   # * evil-args
   # * evil-goggles
+# TODO: Comment and explain ALL packages
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
@@ -105,6 +105,7 @@ in
       epkgs.evil-surround
       epkgs.evil-matchit
       epkgs.evil-numbers
+      epkgs.evil-snipe
     ];
 
     extraConfig = ''
@@ -239,6 +240,14 @@ in
             "C-c +" 'evil-numbers/inc-at-pt
             "C-c -" 'evil-numbers/dec-at-pt
           )
+      )
+
+      (use-package evil-snipe
+        :after evil
+        :config
+        (evil-snipe-mode +1)
+        (evil-snipe-override-mode +1)
+        (setq evil-snipe-scope 'whole-buffer)
       )
 
       ;; rust
