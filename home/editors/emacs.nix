@@ -109,7 +109,10 @@ in
     ];
 
     extraConfig = ''
-      (require 'general)
+      ;; must load it early or otherwise use-package's :general
+      ;; won't work. I thought use-package was supposed to fix
+      ;; precisely this issue but whatever
+      (use-package general)
 
       ;; disable ugly top toolbars and scroll bars
       (tool-bar-mode -1)
@@ -375,6 +378,7 @@ in
         )
 
       ;; (general)
+  
       (general-create-definer leader-bindings
         :keymaps '(normal insert visual emacs)
         :prefix "${leader-key}"
