@@ -56,7 +56,6 @@ in
     };
 
     extraPackages = epkgs: [
-      epkgs.evil # vim keybindings emulation
       epkgs.use-package # easy package config
       epkgs.bind-key # key binding
       # TODO: Put the command to install icons or just install them automatically
@@ -95,6 +94,10 @@ in
 
       epkgs.doom-themes
       epkgs.general
+
+      # vim emulation
+      epkgs.evil
+      epkgs.evil-nerd-commenter
     ];
 
     extraConfig = ''
@@ -202,9 +205,12 @@ in
         :if (display-graphic-p))
 
       ;; (evil)
-      ;; TODO: Use use-package
-      (require 'evil)
-      (evil-mode 1)
+      (use-package evil
+        :config
+        (evil-mode 1)
+      )
+
+      (use-package evil-nerd-commenter)
 
       ;; rust
       (use-package rustic)
@@ -339,9 +345,10 @@ in
         "p" 'projectile-command-map
         "${lsp-key}" 'lsp-command-map
         "t" 'treemacs
-        "c l" 'flycheck-list-errors
-        "c n" 'flyckeck-next-error
-        "c p" 'flyckeck-previous-error
+        "e l" 'flycheck-list-errors
+        "e n" 'flyckeck-next-error
+        "e p" 'flyckeck-previous-error
+        "c SPC" 'evilnc-comment-or-uncomment-lines
       )
     '';
   };
