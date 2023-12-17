@@ -98,6 +98,7 @@ in
       # vim emulation
       epkgs.evil
       epkgs.evil-nerd-commenter
+      epkgs.evil-surround
     ];
 
     extraConfig = ''
@@ -211,6 +212,11 @@ in
       )
 
       (use-package evil-nerd-commenter)
+      (use-package evil-surround
+        :after evil
+        :config
+        (global-evil-surround-mode 1)
+      )
 
       ;; rust
       (use-package rustic)
@@ -300,6 +306,10 @@ in
 
       ;; (which-key)
       (use-package which-key
+        :init
+        ;; both of these lines enable compatibility with evil
+        (setq which-key-allow-evil-operators t)
+        (setq which-key-show-operator-state-maps t)
         :config
         (which-key-mode)
       )
