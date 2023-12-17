@@ -99,6 +99,7 @@ in
       epkgs.evil
       epkgs.evil-nerd-commenter
       epkgs.evil-surround
+      epkgs.evil-matchit
     ];
 
     extraConfig = ''
@@ -216,6 +217,12 @@ in
         :after evil
         :config
         (global-evil-surround-mode 1)
+      )
+
+      (use-package evil-matchit
+        :after evil
+        :config
+        (global-evil-matchit-mode 1)
       )
 
       ;; rust
