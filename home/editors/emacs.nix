@@ -100,9 +100,12 @@ in
       epkgs.evil-nerd-commenter
       epkgs.evil-surround
       epkgs.evil-matchit
+      epkgs.evil-numbers
     ];
 
     extraConfig = ''
+      (require 'general)
+
       ;; disable ugly top toolbars and scroll bars
       (tool-bar-mode -1)
       (scroll-bar-mode -1)
@@ -212,6 +215,7 @@ in
         (evil-mode 1)
       )
 
+      ;; TODO: Put its keybindings here with :general
       (use-package evil-nerd-commenter)
       (use-package evil-surround
         :after evil
@@ -223,6 +227,14 @@ in
         :after evil
         :config
         (global-evil-matchit-mode 1)
+      )
+
+      (use-package evil-numbers
+        :general
+          (:states '(normal insert)
+            "C-c +" 'evil-numbers/inc-at-pt
+            "C-c -" 'evil-numbers/dec-at-pt
+          )
       )
 
       ;; rust
@@ -338,10 +350,6 @@ in
         )
 
       ;; (general)
-      (use-package general
-        :after evil
-      )
-
       (general-create-definer leader-bindings
         :keymaps '(normal insert visual emacs)
         :prefix "${leader-key}"
