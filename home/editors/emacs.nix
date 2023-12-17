@@ -348,6 +348,7 @@ in
         "e l" 'flycheck-list-errors
         "e n" 'flyckeck-next-error
         "e p" 'flyckeck-previous-error
+        ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
         "c SPC" 'evilnc-comment-or-uncomment-lines
       )
     '';
