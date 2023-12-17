@@ -196,9 +196,10 @@ in
         ;; when doing this, which is infuriating.
         ;; delaying it is the only solution I found
         ;; https://github.com/Alexander-Miller/treemacs/issues/258#issuecomment-831489403
+        ;; the save-selected-window prevents it from being focused when opened
         :preface
         (defun defer/treemacs ()
-          (run-with-idle-timer 1 nil #'treemacs))
+          (run-with-idle-timer 1 nil (lambda () (save-selected-window (treemacs)))))
         :hook (projectile-mode . defer/treemacs)
 
         :config
