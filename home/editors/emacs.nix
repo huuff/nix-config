@@ -148,12 +148,14 @@ in
       )
 
       ;; (company)
-      ;; TODO: Use LSP recommended config (prefix 0)
       (use-package company
         :ensure t
         :config
           (setq
-            company-minimum-prefix-length 2
+            ;; recommended settings by lsp-mode
+            ;; https://emacs-lsp.github.io/lsp-mode/page/main-features/#completion-at-point
+            company-minimum-prefix-length 1
+            company-idle-delay 0.01
           )
       )
 
@@ -412,6 +414,7 @@ in
         "p" 'projectile-command-map
         "${lsp-key}" 'lsp-command-map
         "t" 'treemacs
+        ;; TODO: Use lsp-treemacs-errors-list
         "e l" 'flycheck-list-errors
         "e n" 'flyckeck-next-error
         "e p" 'flyckeck-previous-error
