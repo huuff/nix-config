@@ -106,6 +106,7 @@ in
       epkgs.evil-numbers
       epkgs.evil-goggles
       epkgs.evil-snipe
+      epkgs.evil-collection
     ];
 
     extraConfig = ''
@@ -220,8 +221,21 @@ in
 
       ;; (evil)
       (use-package evil
+        :init
+        ;; these 2 are necessary for evil-collection
+        (setq evil-want-integration t)
+        (setq evil-want-keybinding nil)
         :config
         (evil-mode 1)
+      )
+
+      ;; I mostly use it because it includes vim-unimpaired
+      ;; keybindings
+      (use-package evil-collection
+        :after evil
+        :ensure t
+        :config
+        (evil-collection-init)
       )
 
       ;; TODO: Put its keybindings here with :general
