@@ -292,8 +292,8 @@ in
         :config
         (require 'tree-sitter-langs)
         (global-tree-sitter-mode)
-        ;; TODO: Use :hook?
-        (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+        :hook 
+        ('tree-sitter-after-on . tree-sitter-hl-mode)
       )
 
       ;; (centaur-tabs)
