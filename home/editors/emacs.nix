@@ -10,7 +10,6 @@
 # TODO: Missing python3! Else some treemacs features wont work
 # TODO: Install yasnippet (LSP is asking for it)
 # TODO: Some more evil packages like:
-  # * evil-collection
   # * evil-args
 # TODO: Comment and explain ALL packages
 # TODO: Reorganize it a little
