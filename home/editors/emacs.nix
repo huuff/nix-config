@@ -9,7 +9,6 @@
 # TODO: Some cool way of showing available code actions
 # TODO: Some keybindings to cycle through flycheck list diagnostics
 # TODO: Missing python3! Else some treemacs features wont work
-# TODO: Install yasnippet (LSP is asking for it)
 # TODO: Some more evil packages like:
   # * evil-args
 # TODO: Comment and explain ALL packages
@@ -107,6 +106,10 @@ in
       epkgs.evil-goggles
       epkgs.evil-snipe
       epkgs.evil-collection
+
+      # yasnippet
+      epkgs.yasnippet
+      epkgs.yasnippet-snippets
     ];
 
     extraConfig = ''
@@ -127,8 +130,19 @@ in
       (set-frame-font "Fira Code 10" nil t)
 
       ;; allow pasting with Ctrl+V, even in minibuffer
+      ;; TODO: Maybe use general for this
       (global-set-key (kbd "C-v") 'yank)
 
+      ;; yasnippet
+      (use-package yasnippet
+        :defer 2
+        :config
+        (yas-global-mode 1)
+      )
+
+      (use-package yasnippet-snippets
+        :defer
+      )
 
       ;; (use-package)
       (eval-when-compile
