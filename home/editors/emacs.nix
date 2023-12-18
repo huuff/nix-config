@@ -6,6 +6,7 @@
   # * shift + shift: Find file
 # TODO: Seems like lsp-ui lens diagnostics might break a lot of stuff when moving!
 # TODO: LSP code actions don't seem to actually be using helm
+# TODO: Some cool way of showing available code actions
 # TODO: Some keybindings to cycle through flycheck list diagnostics
 # TODO: Missing python3! Else some treemacs features wont work
 # TODO: Install yasnippet (LSP is asking for it)
