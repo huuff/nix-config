@@ -7,7 +7,7 @@
 # TODO: Seems like lsp-ui lens diagnostics might break a lot of stuff when moving!
 # TODO: LSP code actions don't seem to actually be using helm
 # TODO: Some cool way of showing available code actions
-# TODO: Some keybindings to cycle through flycheck list diagnostics
+# TODO: Some keybindings to cycle through flycheck list diagnostics. UPDATE: Or maybe use lsp-treemacs-errors-list
 # TODO: Some more evil packages like:
   # * evil-args
 # TODO: Comment and explain ALL packages
