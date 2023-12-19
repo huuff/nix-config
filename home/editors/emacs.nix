@@ -20,6 +20,7 @@
 # TODO: Multi-cursor stuff
 # TODO: A mouse hover pop-up for flycheck would be nice
 # TODO: Indent guides for YAML
+# TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode?
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
