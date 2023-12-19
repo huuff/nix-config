@@ -9,12 +9,13 @@
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
 # TODO: Use emacs-overlay feature to install packages from use-package?
-# TODO: Auto install icons
+# TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
+  # - nerd-icons-install-fonts
+  # - all-the-icons-install-fonts
 # TODO: configure Helm for more features (currently it's only for M-x)
 # TODO: Use magit
 # TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 # TODO: Set correct dependencies between packages with use-package (:after)
-# TODO: Maybe some nice status line?
 # TODO: DAP mode for debugging
 # TODO: Use expand-region
 # TODO: Multi-cursor stuff
@@ -85,6 +86,7 @@
       epkgs.which-key
 
       epkgs.doom-themes
+      epkgs.doom-modeline
       epkgs.general
 
       # vim emulation
@@ -418,8 +420,15 @@
           (doom-themes-visual-bell-config)
           (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
           (doom-themes-treemacs-config)
-        )
+      )
 
+      ;; modeline
+      (use-package doom-modeline
+        :ensure t
+        :init (doom-modeline-mode 1)
+        :config
+      )
+    
       ;; (general)
   
       (general-create-definer leader-bindings
