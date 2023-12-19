@@ -24,8 +24,8 @@
 # TODO: Use expand-region
 # TODO: Multi-cursor stuff
 # TODO: A mouse hover pop-up for flycheck would be nice
-# TODO: Try to set this up with elisp instead of nix
 # TODO: Indent guides for YAML
+# TODO: Try to set this up with elisp instead of nix
 let
   leader-key = "SPC";
   lsp-key = "l";
@@ -358,13 +358,10 @@ in
           (push "*scratch*" popwin:special-display-config)
       )
 
-      ;; TODO: This is giving some weird error when building (with nix, I'll have to read on how to find these logs)
-      ;; what do I do?
       ;; (smartparens)
-      (use-package smartparens-mode
-        :ensure smartparens
-        :hook 
-          (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
+      (use-package smartparens
+        :defer t
+        :hook (prog-mode . smartparens-mode)
         :config
           ;; load default config
           (require 'smartparens-config)
