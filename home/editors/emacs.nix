@@ -8,7 +8,6 @@
 # TODO: LSP code actions don't seem to actually be using helm
 # TODO: Some cool way of showing available code actions
 # TODO: Some keybindings to cycle through flycheck list diagnostics
-# TODO: Missing python3! Else some treemacs features wont work
 # TODO: Some more evil packages like:
   # * evil-args
 # TODO: Comment and explain ALL packages
@@ -110,6 +109,9 @@ in
       # yasnippet
       epkgs.yasnippet
       epkgs.yasnippet-snippets
+
+      # needed for advanced features of treemacs for git
+      pkgs.python3
     ];
 
     extraConfig = ''
