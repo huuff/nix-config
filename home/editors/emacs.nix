@@ -5,8 +5,6 @@
 # TODO: LSP code actions don't seem to actually be using helm
 # TODO: Some cool way of showing available code actions
 # TODO: Some keybindings to cycle through flycheck list diagnostics. UPDATE: Or maybe use lsp-treemacs-errors-list
-# TODO: Some more evil packages like:
-  # * evil-args
 # TODO: Comment and explain ALL packages
 # TODO: Reorganize it a little
 # TODO: Try to have all packages in use-package
@@ -97,6 +95,7 @@
       epkgs.evil-goggles
       epkgs.evil-snipe
       epkgs.evil-collection
+      epkgs.evil-args
 
       # yasnippet
       epkgs.yasnippet
@@ -281,6 +280,24 @@
         (evil-snipe-override-mode +1)
         ;; snipe in whole buffer, not just current line
         (setq evil-snipe-scope 'whole-buffer)
+      )
+
+      ;; TODO: Try to set up some way to exchange args order
+      ;; for example see: https://github.com/wcsmith/evil-args/issues/4
+      (use-package evil-args
+        :after evil
+        :general
+        (evil-inner-text-objects-map "a" 'evil-inner-arg)
+        (evil-outer-text-objects-map "a" 'evil-outer-arg)
+        (:states 'normal
+          "L" 'evil-forward-arg
+          "H" 'evil-backward-arg
+          "K" 'evil-jump-out-args
+        )
+        (:states 'motion
+          "L" 'evil-forward-arg
+          "H" 'evil-backward-arg
+        )
       )
 
       ;; TODO: Colors aren't very visible. This issue:
