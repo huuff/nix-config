@@ -51,7 +51,6 @@
     extraPackages = epkgs: [
       epkgs.use-package # easy package config
       epkgs.bind-key # key binding
-      # TODO: Put the command to install icons or just install them automatically
       epkgs.all-the-icons # icon pack
       epkgs.treemacs # side-drawer file explorer
       epkgs.treemacs-evil # without it, left click doesn't work
