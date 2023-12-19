@@ -25,11 +25,6 @@
 # TODO: Multi-cursor stuff
 # TODO: A mouse hover pop-up for flycheck would be nice
 # TODO: Indent guides for YAML
-# TODO: Try to set this up with elisp instead of nix
-let
-  leader-key = "SPC";
-  lsp-key = "l";
-in
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -115,6 +110,10 @@ in
     ];
 
     extraConfig = ''
+      ;; variable set up
+      (defconst my-leader "SPC")
+      (defconst lsp-key "l")
+
       ;; must load it early or otherwise use-package's :general
       ;; won't work. I thought use-package was supposed to fix
       ;; precisely this issue but whatever
@@ -198,7 +197,7 @@ in
         :config
           ;; don't know why but only these two commands
           ;; will make lsp work with leader key and general.el
-          (setq lsp-keymap-prefix "${leader-key} ${lsp-key}")
+          (setq lsp-keymap-prefix (concat my-leader " " lsp-key))
           (fset 'lsp-command-map lsp-command-map)
           (setq lsp-inlay-hint-enable t)
         :commands lsp
@@ -410,7 +409,7 @@ in
   
       (general-create-definer leader-bindings
         :keymaps '(normal insert visual emacs)
-        :prefix "${leader-key}"
+        :prefix my-leader
         :global-prefix "C-SPC"
       )
 
@@ -426,7 +425,7 @@ in
         ;; it to the projectile-mode-map. Find out why
         ;; :keymaps 'projectile-mode-map
         "p" 'projectile-command-map
-        "${lsp-key}" 'lsp-command-map
+        lsp-key 'lsp-command-map
         "t" 'treemacs
         ;; TODO: Use lsp-treemacs-errors-list
         "e l" 'flycheck-list-errors
