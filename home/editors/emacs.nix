@@ -23,6 +23,7 @@
 # TODO: Indent guides for YAML
 # TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode? UPDATE: I've currently disabled lsp-ui-sideline and I'm using flycheck-inline, but I'm not sure whether it's generally the best solution... maybe I could just do it for rust, or use lsp-ui-sideline for code actions?
 # TODO: Keybinding to close all other tabs with centaur
+# TODO: Enable global-auto-revert-mode
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
