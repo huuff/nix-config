@@ -21,7 +21,7 @@
 # TODO: Multi-cursor stuff
 # TODO: A mouse hover pop-up for flycheck would be nice
 # TODO: Indent guides for YAML
-# TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode?
+# TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode? UPDATE: I've currently disabled lsp-ui-sideline and I'm using flycheck-inline, but I'm not sure whether it's generally the best solution... maybe I could just do it for rust, or use lsp-ui-sideline for code actions?
 # TODO: Keybinding to close all other tabs with centaur
 {
   nixpkgs.overlays = [ 
@@ -104,6 +104,8 @@
       epkgs.yasnippet
       epkgs.yasnippet-snippets
 
+      epkgs.flycheck-inline
+
       # needed for advanced features of treemacs for git
       pkgs.python3
     ];
@@ -183,6 +185,10 @@
       (use-package flycheck
       )
 
+      (use-package flycheck-inline
+        :hook (flycheck-mode . flycheck-inline-mode)
+      )
+
       ;; (lsp-mode)
       (use-package lsp-mode
         :init
@@ -201,7 +207,11 @@
           (setq lsp-inlay-hint-enable t)
         :commands lsp
       )
-      (use-package lsp-ui :commands lsp-ui-mode)
+      (use-package lsp-ui 
+        :commands lsp-ui-mode
+        :config
+        (setq lsp-ui-sideline-show-diagnostics nil)
+      )
       (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
       (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
