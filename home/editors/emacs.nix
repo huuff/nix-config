@@ -116,6 +116,9 @@
       (defconst my-leader "SPC")
       (defconst lsp-key "l")
 
+      ;; refresh open buffers when filesystem changes
+      (global-auto-revert-mode)
+
       ;; must load it early or otherwise use-package's :general
       ;; won't work. I thought use-package was supposed to fix
       ;; precisely this issue but whatever
