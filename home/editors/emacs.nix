@@ -23,6 +23,8 @@
 # TODO: Indent guides for YAML
 # TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode? UPDATE: I've currently disabled lsp-ui-sideline and I'm using flycheck-inline, but I'm not sure whether it's generally the best solution... maybe I could just do it for rust, or use lsp-ui-sideline for code actions?
 # TODO: Keybinding to close all other tabs with centaur
+# TODO: Maybe I should use eglot since it's inbuilt into emacs... besides, I have many issues with inlay hints (see below)
+# TODO: lsp-mode inlay hints are pretty unwieldy... they are constantly appearing and disappearing while I write in insert mode, moving my text. I've disabled it, but it's such a nice feature, I'd like to find a way to have it enabled
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
@@ -201,19 +203,20 @@
           (prog-mode . lsp)
           ;; enables descriptive labels in which-key for lsp
           (lsp-mode . lsp-enable-which-key-integration)
-          (lsp-mode . lsp-inlay-hints-mode)
+          ;;(lsp-mode . lsp-inlay-hints-mode)
         )
         :config
           ;; don't know why but only these two commands
           ;; will make lsp work with leader key and general.el
           (setq lsp-keymap-prefix (concat my-leader " " lsp-key))
           (fset 'lsp-command-map lsp-command-map)
-          (setq lsp-inlay-hint-enable t)
+          ;;(setq lsp-inlay-hint-enable t)
         :commands lsp
       )
       (use-package lsp-ui 
         :commands lsp-ui-mode
         :config
+        ;; disabled because I'm using flycheck-inline
         (setq lsp-ui-sideline-show-diagnostics nil)
       )
       (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
