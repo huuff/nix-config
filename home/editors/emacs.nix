@@ -25,6 +25,7 @@
 # TODO: Keybinding to close all other tabs with centaur
 # TODO: Maybe I should use eglot since it's inbuilt into emacs... besides, I have many issues with inlay hints (see below)
 # TODO: lsp-mode inlay hints are pretty unwieldy... they are constantly appearing and disappearing while I write in insert mode, moving my text. I've disabled it, but it's such a nice feature, I'd like to find a way to have it enabled
+# TODO: Maybe I should use popper.el instead of popwin.el
 {
   nixpkgs.overlays = [ 
     emacs-overlay.overlay
