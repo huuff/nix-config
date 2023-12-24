@@ -1,6 +1,7 @@
 { pkgs, emacs-overlay, ... }:
 
 # TASKS:
+# TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 # TODO: Seems like lsp-ui lens diagnostics might break a lot of stuff when moving!
 # TODO: LSP code actions don't seem to actually be using helm
 # TODO: Some cool way of showing available code actions
