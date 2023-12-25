@@ -31,7 +31,7 @@
     emacs-overlay.overlay
   ];
 
-  home.packages = with pkgs; [
+  home.packages = [
     (
       (pkgs.emacsWithPackagesFromUsePackage {
         config = ./emacs.el;
