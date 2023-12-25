@@ -44,6 +44,7 @@
         };
         alwaysEnsure = true;
         extraEmacsPackages = epkgs: [
+          # needed for some advanced features of treemacs
           pkgs.python3
         ];
 

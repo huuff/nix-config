@@ -1,3 +1,11 @@
+;; TODO: I'm switching to project.el from projectile (for eglot) apply all changes I need for it
+;; TODO: Configure eglot's autocompletion
+;; TODO: Use emacs-sidebar for eglot (flymake)
+;; TODO: Remove flycheck and use flymake from now on
+;; TODO: Remove company, and maybe use corfu
+;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
+;; TODO: Fine-tune my project.el config (https://grtcdr.tn/posts/2023-03-01.html)
+
 ;; variable set up
 (defconst my-leader "SPC")
 (defconst lsp-key "l")
@@ -80,31 +88,31 @@
 )
 
 ;; (lsp-mode)
-(use-package lsp-mode
-  :init
-    (setq lsp-use-plists nil)
-  :hook (
-    (prog-mode . lsp)
-    ;; enables descriptive labels in which-key for lsp
-    (lsp-mode . lsp-enable-which-key-integration)
-    ;;(lsp-mode . lsp-inlay-hints-mode)
-  )
-  :config
-    ;; don't know why but only these two commands
-    ;; will make lsp work with leader key and general.el
-    (setq lsp-keymap-prefix (concat my-leader " " lsp-key))
-    (fset 'lsp-command-map lsp-command-map)
-    ;;(setq lsp-inlay-hint-enable t)
-  :commands lsp
-)
-(use-package lsp-ui 
-  :commands lsp-ui-mode
-  :config
-  ;; disabled because I'm using flycheck-inline
-  (setq lsp-ui-sideline-show-diagnostics nil)
-)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;(use-package lsp-mode
+  ;:init
+    ;(setq lsp-use-plists nil)
+  ;:hook (
+    ;(prog-mode . lsp)
+    ;;; enables descriptive labels in which-key for lsp
+    ;(lsp-mode . lsp-enable-which-key-integration)
+    ;;;(lsp-mode . lsp-inlay-hints-mode)
+  ;)
+  ;:config
+    ;;; don't know why but only these two commands
+    ;;; will make lsp work with leader key and general.el
+    ;(setq lsp-keymap-prefix (concat my-leader " " lsp-key))
+    ;(fset 'lsp-command-map lsp-command-map)
+    ;;;(setq lsp-inlay-hint-enable t)
+  ;:commands lsp
+;)
+;(use-package lsp-ui 
+  ;:commands lsp-ui-mode
+  ;:config
+  ;;; disabled because I'm using flycheck-inline
+  ;(setq lsp-ui-sideline-show-diagnostics nil)
+;)
+;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
 
 ;; (treemacs)
@@ -112,6 +120,7 @@
   :ensure t
   :defer t
 
+  ;; TODO Make this work with project.el
   ;; start treemacs on startup (with projectile)
   ;; however, it's prone to open an empty *scratch* buffer
   ;; when doing this, which is infuriating.
@@ -215,7 +224,10 @@
 )
 
 ;; rust
-(use-package rustic)
+(use-package rustic
+  :init
+  (setq rustic-lsp-client 'eglot)
+)
 (use-package rust-mode)
 
 ;; FUTURE: emacs29 is supposed to have a native, better integration with tree-sitter
@@ -284,18 +296,25 @@
     (require 'smartparens-config)
 )
 
+;; (project)
+
+(use-package project
+  :init
+  (setq project-vc-extra-root-markers '("pom.xml" "Cargo.toml"))
+)
+
 ;; (projectile)
-(use-package projectile
-  :config
-  (projectile-mode +1)
-)
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-)
-(use-package helm-projectile
-  :config
-  (helm-projectile-on)
-)
+;;(use-package projectile
+;;  :config
+;;  (projectile-mode +1)
+;;)
+;;(use-package treemacs-projectile
+;;  :after (treemacs projectile)
+;;)
+;;(use-package helm-projectile
+;;  :config
+;;  (helm-projectile-on)
+;;)
 
 ;; (which-key)
 (use-package which-key
