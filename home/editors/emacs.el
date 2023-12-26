@@ -1,5 +1,5 @@
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
-;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu 
+;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu (Vertico+Corfu done!)
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: LSP code actions don't seem to actually be using helm
@@ -10,7 +10,6 @@
 ;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
   ;; - nerd-icons-install-fonts
   ;; - all-the-icons-install-fonts
-;; TODO: configure Helm for more features (currently it's only for M-x)
 ;; TODO: Use magit
 ;; TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 ;; TODO: Set correct dependencies between packages with use-package (:after)
@@ -21,6 +20,8 @@
 ;; TODO: Keybinding to close all other tabs with centaur
 ;; TODO: Maybe I should use popper.el instead of popwin.el
 ;; TODO: I don't think tree-sitter-mode is even working... emacs starts out with no highlighting and only appears when I disable and re-enable tree-sitter-hl-mode
+;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
+;; TODO: Can't I bind C-SPC to autocomplete?
 
 ;; variable set up
 (defconst my-leader "SPC")
@@ -68,13 +69,6 @@
   :ensure t
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
-)
-
-;; (helm)
-(use-package helm
-  :bind (
-    ("M-x" . helm-M-x)
-  )
 )
 
 ;; corfu
@@ -221,6 +215,30 @@
   )
 )
 
+;; Enable vertico
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+
+  ;; Show more candidates
+  ;; (setq vertico-count 20)
+
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;; (setq vertico-cycle t)
+)
+
+;; save history over emacs restarts, useful for vertico which sorts by it
+(use-package savehist
+  :init
+  (savehist-mode)
+)
+
 ;; flymake
 (use-package flymake
   :init
@@ -296,10 +314,6 @@
     (popwin-mode 1)
     ;; cargo (rustic)
     (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
-
-    ;; helm 
-    (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
-    (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
 
     (push "*scratch*" popwin:special-display-config)
 )
