@@ -322,13 +322,7 @@
 (general-create-definer leader-bindings
   :keymaps '(normal insert visual emacs)
   :prefix my-leader
-  ; TODO: What was this for? I need C-SPC for autocompletion
-  ;:global-prefix "C-SPC"
-)
-
-(general-define-key
-  :states 'insert
-  "C-SPC" 'completion-at-point
+  :global-prefix "C-SPC"
 )
 
 ;; TODO: I've decided it's generally better if
