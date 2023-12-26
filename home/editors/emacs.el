@@ -107,8 +107,7 @@
   :ensure t
   :defer t
 
-  ;; TODO Make this work with project.el
-  ;; start treemacs on startup (with projectile)
+  ;; start treemacs on startup
   ;; however, it's prone to open an empty *scratch* buffer
   ;; when doing this, which is infuriating.
   ;; delaying it is the only solution I found
@@ -117,7 +116,7 @@
   :preface
   (defun defer/treemacs ()
     (run-with-idle-timer 1 nil (lambda () (save-selected-window (treemacs)))))
-  :hook (projectile-mode . defer/treemacs)
+  :hook (emacs-startup . defer/treemacs)
 
   :config
   ;; always select the current file in treemacs
