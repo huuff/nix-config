@@ -1,10 +1,8 @@
 ;; TODO: I'm switching to project.el from projectile (for eglot) apply all changes I need for it
-;; TODO: Configure eglot's autocompletion
 ;; TODO: Use emacs-sidebar for eglot (flymake)
-;; TODO: Remove flycheck and use flymake from now on
-;; TODO: Remove company, and maybe use corfu
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Fine-tune my project.el config (https://grtcdr.tn/posts/2023-03-01.html)
+;; TODO: Finetune performance with joao tavora comment: https://github.com/joaotavora/eglot/discussions/993
 
 ;; variable set up
 (defconst my-leader "SPC")
@@ -62,58 +60,19 @@
   )
 )
 
-;; (company)
-(use-package company
-  :ensure t
-  :config
-    (setq
-      ;; recommended settings by lsp-mode
-      ;; https://emacs-lsp.github.io/lsp-mode/page/main-features/#completion-at-point
-      company-minimum-prefix-length 1
-      company-idle-delay 0.01
-    )
+;; corfu
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  :custom
+    ;; enable autocompletion
+    (corfu-auto t)
 )
 
 ;; (nix-mode)
 (use-package nix-mode
   :mode "\\.nix\\'"
 )
-
-;; (flycheck)
-(use-package flycheck
-)
-
-(use-package flycheck-inline
-  :hook (flycheck-mode . flycheck-inline-mode)
-)
-
-;; (lsp-mode)
-;(use-package lsp-mode
-  ;:init
-    ;(setq lsp-use-plists nil)
-  ;:hook (
-    ;(prog-mode . lsp)
-    ;;; enables descriptive labels in which-key for lsp
-    ;(lsp-mode . lsp-enable-which-key-integration)
-    ;;;(lsp-mode . lsp-inlay-hints-mode)
-  ;)
-  ;:config
-    ;;; don't know why but only these two commands
-    ;;; will make lsp work with leader key and general.el
-    ;(setq lsp-keymap-prefix (concat my-leader " " lsp-key))
-    ;(fset 'lsp-command-map lsp-command-map)
-    ;;;(setq lsp-inlay-hint-enable t)
-  ;:commands lsp
-;)
-;(use-package lsp-ui 
-  ;:commands lsp-ui-mode
-  ;:config
-  ;;; disabled because I'm using flycheck-inline
-  ;(setq lsp-ui-sideline-show-diagnostics nil)
-;)
-;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
-
 
 ;; (treemacs)
 (use-package treemacs
@@ -223,6 +182,16 @@
   (evil-goggles-mode)
 )
 
+;; eglot
+(use-package eglot
+  :custom
+  (eglot-ignored-capabilities
+    '(
+      :semanticTokensProvider
+    )
+  )
+)
+
 ;; rust
 (use-package rustic
   :init
@@ -282,9 +251,6 @@
     (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
     (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
 
-    ;; flycheck
-    (push "*Flycheck errors*" popwin:special-display-config)
-
     (push "*scratch*" popwin:special-display-config)
 )
 ;; (smartparens)
@@ -338,7 +304,7 @@
 
   ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
-    (setq doom-themes-treemacs-theme "doom-colors") ; use "doom-colors" for less minimal icon theme
+    (setq doom-themes-treemacs-theme "doom-colors") 
     (doom-themes-treemacs-config)
 )
 
@@ -349,12 +315,18 @@
   :config
 )
 
-;; (general)
+;; keybindings
 
 (general-create-definer leader-bindings
   :keymaps '(normal insert visual emacs)
   :prefix my-leader
-  :global-prefix "C-SPC"
+  ; TODO: What was this for? I need C-SPC for autocompletion
+  ;:global-prefix "C-SPC"
+)
+
+(general-define-key
+  :states 'insert
+  "C-SPC" 'completion-at-point
 )
 
 ;; TODO: I've decided it's generally better if
@@ -371,10 +343,6 @@
   "p" 'projectile-command-map
   lsp-key 'lsp-command-map
   "t" 'treemacs
-  ;; TODO: Use lsp-treemacs-errors-list
-  "e l" 'flycheck-list-errors
-  "e n" 'flyckeck-next-error
-  "e p" 'flyckeck-previous-error
   ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
   ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
   ;; generally-useful prefix that I can use in insert or normal mode?
