@@ -1,5 +1,4 @@
 ;; TODO: I'm switching to project.el from projectile (for eglot) apply all changes I need for it
-;; TODO: Use emacs-sidebar for eglot (flymake)
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Fine-tune my project.el config (https://grtcdr.tn/posts/2023-03-01.html)
 ;; TODO: Finetune performance with joao tavora comment: https://github.com/joaotavora/eglot/discussions/993
@@ -206,6 +205,7 @@
 )
 
 ;; eglot
+;; TODO: Enable it for nix
 (use-package eglot
   :custom
   (eglot-ignored-capabilities
@@ -215,6 +215,19 @@
     )
   )
 )
+
+;; sideline
+(use-package sideline
+  :init 
+  (setq
+    sideline-display-backend-name t
+    sideline-backends-right '(sideline-flymake)
+  )
+  :hook (
+    (flymake-mode  . sideline-mode)
+  )
+)
+(use-package sideline-flymake)
 
 ;; rust
 (use-package rustic
