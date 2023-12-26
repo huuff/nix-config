@@ -1,7 +1,6 @@
 ;; TODO: I'm switching to project.el from projectile (for eglot) apply all changes I need for it
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Fine-tune my project.el config (https://grtcdr.tn/posts/2023-03-01.html)
-;; TODO: Finetune performance with joao tavora comment: https://github.com/joaotavora/eglot/discussions/993
 ;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu 
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
@@ -86,9 +85,20 @@
 (use-package corfu
   :init
   (global-corfu-mode)
+  (setq
+    corfu-auto-delay 0.75
+  )
   :custom
     ;; enable autocompletion
     (corfu-auto t)
+)
+
+;; eldoc
+(use-package eldoc
+  :init
+  (setq 
+    eldoc-idle-delay 0.75
+  )
 )
 
 ;; (nix-mode)
@@ -213,6 +223,14 @@
       ;; disable semantic highlighting, leave it for tree-sitter
       :semanticTokensProvider
     )
+  )
+)
+
+;; flymake
+(use-package flymake
+  :init
+  (setq
+    flymake-no-changes-timeout 0.5
   )
 )
 
