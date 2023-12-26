@@ -97,6 +97,14 @@
   (marginalia-mode)
 )
 
+;; embark
+(use-package embark
+  :ensure t
+  ;; TODO: Can't I bind C-.? It conflicts with evil-repeat
+  :general
+  ("C-," 'embark-act)
+)
+
 ;; (nix-mode)
 (use-package nix-mode
   :mode "\\.nix\\'"
@@ -240,6 +248,7 @@
 )
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
+;; TODO: Not working? nix screams when building
 (use-package savehist
   :init
   (savehist-mode)
@@ -320,6 +329,9 @@
     (popwin-mode 1)
     ;; cargo (rustic)
     (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
+
+    ;; embark
+    (push "*Embark Actions*" popwin:special-display-config)
 
     (push "*scratch*" popwin:special-display-config)
 )
