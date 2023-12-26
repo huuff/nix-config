@@ -1,6 +1,5 @@
 ;; TODO: I'm switching to project.el from projectile (for eglot) apply all changes I need for it
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
-;; TODO: Fine-tune my project.el config (https://grtcdr.tn/posts/2023-03-01.html)
 ;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu 
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
@@ -324,6 +323,8 @@
   (setq 
     ;; use directories with these files as project roots (useful so it detects nested projects)
     project-vc-extra-root-markers '("Cargo.toml")
+    ;; ignore these directories (normally it gets them from .gitignore, but this is useful for nested projects)
+    project-vc-ignores '("target/" "bin/" "obj/")
   )
 )
 
@@ -380,7 +381,6 @@
   ;; it to the projectile-mode-map. Find out why
   ;; :keymaps 'projectile-mode-map
   "p" 'projectile-command-map
-  lsp-key 'lsp-command-map
   "t" 'treemacs
   ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
   ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
