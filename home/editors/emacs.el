@@ -91,6 +91,12 @@
   )
 )
 
+;; marginalia
+(use-package marginalia
+  :init
+  (marginalia-mode)
+)
+
 ;; (nix-mode)
 (use-package nix-mode
   :mode "\\.nix\\'"
