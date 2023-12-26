@@ -1,4 +1,3 @@
-;; TODO: I'm switching to project.el from projectile (for eglot) apply all changes I need for it
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu 
 ;; TODO: Set auto-save for rust so the LSP works
@@ -19,14 +18,12 @@
 ;; TODO: Use expand-region
 ;; TODO: Multi-cursor stuff
 ;; TODO: Indent guides for YAML
-;; TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode? UPDATE: I've currently disabled lsp-ui-sideline and I'm using flycheck-inline, but I'm not sure whether it's generally the best solution... maybe I could just do it for rust, or use lsp-ui-sideline for code actions?
 ;; TODO: Keybinding to close all other tabs with centaur
 ;; TODO: Maybe I should use popper.el instead of popwin.el
 ;; TODO: I don't think tree-sitter-mode is even working... emacs starts out with no highlighting and only appears when I disable and re-enable tree-sitter-hl-mode
 
 ;; variable set up
 (defconst my-leader "SPC")
-(defconst lsp-key "l")
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
