@@ -330,9 +330,6 @@
     ;; cargo (rustic)
     (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
 
-    ;; embark
-    (push "*Embark Actions*" popwin:special-display-config)
-
     (push "*scratch*" popwin:special-display-config)
 )
 ;; (smartparens)
