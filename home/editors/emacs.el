@@ -1,5 +1,5 @@
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
-;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu (Vertico+Corfu+Marginalia done!)
+;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu (Vertico+Corfu+Marginalia+Embark done!)
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: LSP code actions don't seem to actually be using helm
