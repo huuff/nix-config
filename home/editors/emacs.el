@@ -374,10 +374,6 @@
 ;; all package have a convenient `-command-map` prefix
 ;; that I can use for showing all choices
 (leader-bindings
-  ;; TODO: for some reason, this won't work if I assign
-  ;; it to the projectile-mode-map. Find out why
-  ;; :keymaps 'projectile-mode-map
-  "p" 'projectile-command-map
   "t" 'treemacs
   ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
   ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
