@@ -5,6 +5,27 @@
 ;; TODO: Finetune performance with joao tavora comment: https://github.com/joaotavora/eglot/discussions/993
 ;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu 
 ;; TODO: Set auto-save for rust so the LSP works
+;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
+;; TODO: LSP code actions don't seem to actually be using helm
+;; TODO: Some cool way of showing available code actions
+;; TODO: Some keybindings to cycle through flycheck list diagnostics. UPDATE: Or maybe use lsp-treemacs-errors-list
+;; TODO: Comment and explain ALL packages
+;; TODO: Reorganize it a little
+;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
+  ;; - nerd-icons-install-fonts
+  ;; - all-the-icons-install-fonts
+;; TODO: configure Helm for more features (currently it's only for M-x)
+;; TODO: Use magit
+;; TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
+;; TODO: Set correct dependencies between packages with use-package (:after)
+;; TODO: DAP mode for debugging
+;; TODO: Use expand-region
+;; TODO: Multi-cursor stuff
+;; TODO: Indent guides for YAML
+;; TODO: Maybe I could setup flycheck-inline instead of lsp-ui for rust-mode? UPDATE: I've currently disabled lsp-ui-sideline and I'm using flycheck-inline, but I'm not sure whether it's generally the best solution... maybe I could just do it for rust, or use lsp-ui-sideline for code actions?
+;; TODO: Keybinding to close all other tabs with centaur
+;; TODO: Maybe I should use popper.el instead of popwin.el
+;; TODO: I don't think tree-sitter-mode is even working... emacs starts out with no highlighting and only appears when I disable and re-enable tree-sitter-hl-mode
 
 ;; variable set up
 (defconst my-leader "SPC")
@@ -189,6 +210,7 @@
   :custom
   (eglot-ignored-capabilities
     '(
+      ;; disable semantic highlighting, leave it for tree-sitter
       :semanticTokensProvider
     )
   )
@@ -268,21 +290,11 @@
 
 (use-package project
   :init
-  (setq project-vc-extra-root-markers '("pom.xml" "Cargo.toml"))
+  (setq 
+    ;; use directories with these files as project roots (useful so it detects nested projects)
+    project-vc-extra-root-markers '("Cargo.toml")
+  )
 )
-
-;; (projectile)
-;;(use-package projectile
-;;  :config
-;;  (projectile-mode +1)
-;;)
-;;(use-package treemacs-projectile
-;;  :after (treemacs projectile)
-;;)
-;;(use-package helm-projectile
-;;  :config
-;;  (helm-projectile-on)
-;;)
 
 ;; (which-key)
 (use-package which-key
