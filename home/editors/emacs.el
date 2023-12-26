@@ -3,6 +3,8 @@
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Fine-tune my project.el config (https://grtcdr.tn/posts/2023-03-01.html)
 ;; TODO: Finetune performance with joao tavora comment: https://github.com/joaotavora/eglot/discussions/993
+;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu 
+;; TODO: Set auto-save for rust so the LSP works
 
 ;; variable set up
 (defconst my-leader "SPC")
