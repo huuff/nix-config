@@ -98,7 +98,6 @@
 )
 
 ;; consult
-;; TODO: Install and use ripgrep (rg)
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'

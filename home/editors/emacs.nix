@@ -20,6 +20,10 @@
         extraEmacsPackages = epkgs: [
           # needed for some advanced features of treemacs
           pkgs.python3
+          # for consult-fd
+          pkgs.fd
+          # for consult-ripgrep
+          pkgs.ripgrep
         ];
 
         # XXX: I'm using the old tree-sitter plugin because the
