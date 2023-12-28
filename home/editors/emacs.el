@@ -1,3 +1,4 @@
+;; TODO: PLEASE SET UP SOME EGLOT KEYBINDINGS
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu (Vertico+Corfu+Marginalia+Embark+Consult done!)
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
