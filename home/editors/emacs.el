@@ -24,6 +24,7 @@
 ;; TODO: I don't think tree-sitter-mode is even working... emacs starts out with no highlighting and only appears when I disable and re-enable tree-sitter-hl-mode
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Can't I bind C-SPC to autocomplete?
+;; TODO: Use fast-scroll?
 
 ;; variable set up
 (defconst my-leader "SPC")
@@ -522,6 +523,7 @@
   "c SPC" 'evilnc-comment-or-uncomment-lines
 
   ;; TODO: Can I nest a prefix?
+  ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
   ;; code (mostly LSP, but also xref)
   ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions?
   "l a" '(eglot-code-actions :which-key "Code actions")
