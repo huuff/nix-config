@@ -128,6 +128,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703387252,
+        "narHash": "sha256-XKJqGj0BaEn/zyctEnkgVIh6Ba1rgTRc+UBi9EU8Y54=",
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "rev": "f4340c1a42c38d79293ba69bfd839fbd6268a538",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nix-portable-shell": {
       "inputs": {
         "nixpkgs": "nixpkgs_4"
@@ -342,6 +362,7 @@
         "hm-kubernetes": "hm-kubernetes",
         "home-manager": "home-manager",
         "myDrvs": "myDrvs",
+        "nix-index-database": "nix-index-database",
         "nix-portable-shell": "nix-portable-shell",
         "nix-soapui": "nix-soapui",
         "nixos-hardware": "nixos-hardware",

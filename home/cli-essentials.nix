@@ -19,7 +19,6 @@
   entr # run command on file changes
   ncdu # see disk usage
   expect # make the non-interactive, interactive
-  comma # run commands without installing e.g. `, cowsay hello`
   httpie # curl replacement for web services
   libressl # openssl alternative, tools for x509 management and inspection
   libxml2 # for xmllint --format

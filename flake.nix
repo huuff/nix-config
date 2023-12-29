@@ -15,9 +15,12 @@
     nix-soapui.url = "github:huuff/nix-soapui";
     nix-portable-shell.url = "github:huuff/nix-portable-shell";
     hm-kubernetes.url = "github:huuff/hm-kubernetes";
+
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts }:
+  outputs = { self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts, nix-index-database}:
   let
     system = "x86_64-linux";
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
@@ -40,6 +43,13 @@
 
       modules = [
         host
+
+        # For using comma (,) TODO: Maybe put it somewhere else?
+        nix-index-database.nixosModules.nix-index
+        {
+          programs.nix-index-database.comma.enable = true; 
+          programs.command-not-found.enable = false;
+        }
 
         {
           # Set the registry nixpkgs to the one currently in use
