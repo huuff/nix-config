@@ -58,6 +58,13 @@
         publisher = "stringham";
         version = "1.12.0";
         sha256 = "qjqdyER2T40YwpiBOQw5/jzaFa3Ek01wLx6hb1TM3ac=";
+      }
+      {
+        # prettily-formatted typescript errors
+        name = "pretty-ts-errors";
+        publisher = "yoavbls";
+        version = "0.5.2";
+        sha256 = "g6JIiXfjQKQEtdXZgsQsluKuJZO0MsD1ijy+QLYE1uY=";
       } 
     ];
   };
