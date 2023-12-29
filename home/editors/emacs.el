@@ -1,4 +1,4 @@
-;; TODO: PLEASE SET UP SOME EGLOT KEYBINDINGS
+;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu (Vertico+Corfu+Marginalia+Embark+Consult done!)
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
@@ -520,4 +520,15 @@
   ;; generally-useful prefix that I can use in insert or normal mode?
   ;; for example, I've put evil-numbers under C-c, and I could put this under the same prefix
   "c SPC" 'evilnc-comment-or-uncomment-lines
+
+  ;; TODO: Can I nest a prefix?
+  ;; code (mostly LSP, but also xref)
+  ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions?
+  "l a" '(eglot-code-actions :which-key "Code actions")
+  "l r" '(eglot-rename :which-key "Rename")
+  "l f" '(eglot-format-buffer :which-key "Format buffer")
+  "l d" '(eglot-find-declaration :which-key "Go to definition")
+  "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
+  "l i" '(eglot-find-implementation :which-key "Go to implementation")
+  "l u" '(xref-find-references :which-key "Find usages")
 )
