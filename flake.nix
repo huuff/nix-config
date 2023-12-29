@@ -45,9 +45,11 @@
         host
 
         # For using comma (,) TODO: Maybe put it somewhere else?
+        # TODO: The official example (https://github.com/nix-community/nix-index-database) puts nix-index in home-manager
         nix-index-database.nixosModules.nix-index
         {
           programs.nix-index-database.comma.enable = true; 
+          # XXX: Can't build it without it
           programs.command-not-found.enable = false;
         }
 
