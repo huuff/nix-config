@@ -6,6 +6,7 @@
   # TODO: Maybe remove blame for gitlens?
   programs.vscode = {
     enable = true;
+    mutableExtensionsDir = false;
     keybindings = [ # Some keybindings as in Intellij IDEA
       {
         key = "ctrl+alt+l";
@@ -40,14 +41,9 @@
       formulahendry.auto-rename-tag # auto rename matching tags in html
       christian-kohler.path-intellisense # autocomplete paths
       firefox-devtools.vscode-firefox-debug # allow debugging with firefox
+      usernamehw.errorlens # nicer error inlays
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        # autorun jest tests
-        name = "vscode-jest";
-        publisher = "Orta";
-        version = "5.0.3";
-        sha256 = "9v2de1ETxe3A18Wq1fnYl+f65UsNPmdpqmBJ8M4p3Wc=";
-      } 
+       
       {
         # some comment niceties?
         name = "better-comments";
