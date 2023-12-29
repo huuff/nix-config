@@ -50,6 +50,14 @@
         publisher = "aaron-bond";
         version = "3.0.2";
         sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
+      }
+      {
+        # right-click option to automatically move typescript files and refactor
+        # all imports
+        name = "move-ts";
+        publisher = "stringham";
+        version = "1.12.0";
+        sha256 = "qjqdyER2T40YwpiBOQw5/jzaFa3Ek01wLx6hb1TM3ac=";
       } 
     ];
   };
