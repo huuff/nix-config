@@ -1,3 +1,4 @@
+;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: Maybe use cape, at least for files
 ;; TODO: Could I trigger save on every run code action for rust-mode? this will refresh diagnostics in flymake since rust-analyzer only does its thing on save
