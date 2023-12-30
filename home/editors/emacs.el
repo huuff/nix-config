@@ -1,3 +1,4 @@
+;; TODO: Some corfu extension to show documentation on autocompletions?
 ;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: Maybe use cape, at least for files
