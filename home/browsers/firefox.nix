@@ -13,6 +13,8 @@ in {
         extensions = with firefox-addons; [
           ublock-origin
           leechblock-ng 
+          # TODO: Replace it with I still don't care about cookies
+          # which is likely to have less botnets
           i-dont-care-about-cookies
           decentraleyes
           vue-js-devtools
