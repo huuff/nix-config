@@ -44,6 +44,9 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+;; maximum highlighting with tree-sitter
+(setq treesit-font-lock-level 4)
+
 ;; show line numbers in programming modes
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
@@ -397,18 +400,21 @@
 )
 (use-package rust-mode)
 
-;; FUTURE: emacs29 is supposed to have a native, better integration with tree-sitter
-;; but it gives me a lot of troubles that I hope will be resolved by emacs30
-;; but for now, this is the ancient way of doing it
-;; (tree-sitter)
-(use-package tree-sitter
-  :config
-  (require 'tree-sitter-langs)
-  (global-tree-sitter-mode)
-  :hook 
-  ('tree-sitter-after-on . tree-sitter-hl-mode)
-)
-
+;; TODO: Just uncommenting this would make native tree-sitter
+;; work... but I have problems with rustic-mode for rust.
+;; Since it's not rust-mode but rustic-mode, there's no tree-sitter (rustic-ts-mode) available, and a lot of stuff breaks (like eglot).
+;; I shall follow rustic-mode development to see if they release a newer version that fixes it
+;; automatically install tree sitter grammars and switch to
+;; tree-sitter enhanced modes
+;; FUTURE: This may not be needed in emacs 30 or further,
+;; but currently, it's much easier this way
+;;(use-package treesit-auto
+;;  :custom
+;;    (treesit-auto-install 'prompt)
+;;  :config
+;;    (treesit-auto-add-to-auto-mode-alist 'all)
+;;    (global-treesit-auto-mode)
+;;)
 
 ;; (centaur-tabs)
 (use-package centaur-tabs
