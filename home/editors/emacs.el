@@ -28,7 +28,6 @@
 ;; TODO: Maybe I should use popper.el instead of popwin.el
 ;; TODO: I don't think tree-sitter-mode is even working... emacs starts out with no highlighting and only appears when I disable and re-enable tree-sitter-hl-mode
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
-;; TODO: Can't I bind C-SPC to autocomplete?
 ;; TODO: Use fast-scroll?
 ;; TODO: Should I use the built-in tabs mode instead of centaur?
 ;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs?
@@ -90,6 +89,11 @@
   (global-corfu-mode)
   (setq
     corfu-auto-delay 0.75
+  )
+  :general
+  (:states '(normal insert)
+    :keymaps 'override
+    "C-SPC" 'completion-at-point
   )
   :custom
     ;; enable autocompletion
