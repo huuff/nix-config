@@ -526,13 +526,8 @@
   :global-prefix "C-SPC"
 )
 
-;; TODO: I've decided it's generally better if
-;; I do this stuff with hydras. I should use
-;; which-key for general help performing a keybinding
-;; but hydras for defining a global map menu.
-;; I've taken this decision because apparently not
-;; all package have a convenient `-command-map` prefix
-;; that I can use for showing all choices
+;; TODO: Flymake hydra
+
 (leader-bindings
   "t" 'treemacs
   ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
@@ -552,4 +547,6 @@
   "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
   "l i" '(eglot-find-implementation :which-key "Go to implementation")
   "l u" '(xref-find-references :which-key "Find usages")
+
+  ;; TODO: compile, test, find file and grep bindings (maybe under SPC p?)
 )
