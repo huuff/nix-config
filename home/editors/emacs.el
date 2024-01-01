@@ -1,4 +1,3 @@
-;; TODO: PLEASE MAKE RUSTIC BUFFERS OPEN WITH POPWIN OR SOMETHING
 ;; TODO: Some corfu extension to show documentation on autocompletions?
 ;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
@@ -9,7 +8,6 @@
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
-;; TODO: LSP code actions don't seem to actually be using helm
 ;; TODO: Some cool way of showing available code actions
 ;; TODO: Some keybindings to cycle through flycheck list diagnostics. UPDATE: Or maybe use lsp-treemacs-errors-list
 ;; TODO: Comment and explain ALL packages
@@ -26,7 +24,6 @@
 ;; TODO: Indent guides for YAML
 ;; TODO: Keybinding to close all other tabs with centaur
 ;; TODO: Maybe I should use popper.el instead of popwin.el
-;; TODO: I don't think tree-sitter-mode is even working... emacs starts out with no highlighting and only appears when I disable and re-enable tree-sitter-hl-mode
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use fast-scroll?
 ;; TODO: Should I use the built-in tabs mode instead of centaur?
@@ -460,8 +457,9 @@
 (use-package popwin
   :config
     (popwin-mode 1)
-    ;; cargo (rustic)
+    ;; (rustic)
     (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
+    (push '("^\*rustic-.+\*$" :regexp t) popwin:special-display-config)
 
     (push "*scratch*" popwin:special-display-config)
 )
