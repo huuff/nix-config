@@ -1,3 +1,6 @@
+;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
+;; I might get a "mismatched types" but need to run rustc to know which type was the actual
+;; and which was the expected!
 ;; TODO: Some corfu extension to show documentation on autocompletions?
 ;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
