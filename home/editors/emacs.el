@@ -28,6 +28,7 @@
 ;; TODO: Use fast-scroll?
 ;; TODO: Should I use the built-in tabs mode instead of centaur?
 ;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs?
+;; TODO: Use flymake-clippy?
 
 ;; variable set up
 (defconst my-leader "SPC")
