@@ -534,7 +534,8 @@
   :global-prefix "C-SPC"
 )
 
-;; TODO: Flymake hydra
+;; TODO: Flymake hydra? For going to next and previous error, maybe even quickfixing? But maybe
+;; consult-flymake is enough
 
 (leader-bindings
   "t" 'treemacs
