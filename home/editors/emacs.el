@@ -22,7 +22,7 @@
 ;; TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: DAP mode for debugging
-;; TODO: Use expand-region
+;; TODO: Use expand-region? Or can embark do that? Does comboulate do this, but with tree-sitter? So many questions
 ;; TODO: Multi-cursor stuff
 ;; TODO: Indent guides for YAML
 ;; TODO: Keybinding to close all other tabs with centaur
@@ -32,6 +32,9 @@
 ;; TODO: Should I use the built-in tabs mode instead of centaur?
 ;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs?
 ;; TODO: Use flymake-clippy?
+;; TODO: Maybe use hl-todo-mode and consult-todo
+;; TODO: Maybe enable go-to-address-mode?
+;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 
 ;; variable set up
 (defconst my-leader "SPC")
@@ -60,6 +63,7 @@
 
 ;; allow pasting with Ctrl+V, even in minibuffer
 ;; TODO: Maybe use general for this
+;; TODO: And maybe set it up so it's C-S-V which is what I use for vim
 (global-set-key (kbd "C-v") 'yank)
 
 ;; yasnippet
@@ -543,6 +547,7 @@
   ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
   ;; code (mostly LSP, but also xref)
   ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions?
+  ;; TODO: consult-imenu binding
   "l a" '(eglot-code-actions :which-key "Code actions")
   "l r" '(eglot-rename :which-key "Rename")
   "l f" '(eglot-format-buffer :which-key "Format buffer")
