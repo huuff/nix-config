@@ -35,6 +35,7 @@
 ;; TODO: Maybe use hl-todo-mode and consult-todo
 ;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
+;; TODO: Use rainbow-mode?
 
 ;; variable set up
 (defconst my-leader "SPC")
