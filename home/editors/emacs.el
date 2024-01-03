@@ -553,10 +553,13 @@
   "l a" '(eglot-code-actions :which-key "Code actions")
   "l r" '(eglot-rename :which-key "Rename")
   "l f" '(eglot-format-buffer :which-key "Format buffer")
+  ;; TODO: Maybe use xref-find-definitions?
   "l d" '(eglot-find-declaration :which-key "Go to definition")
   "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
   "l i" '(eglot-find-implementation :which-key "Go to implementation")
   "l u" '(xref-find-references :which-key "Find usages")
 
-  ;; TODO: compile, test, find file and grep bindings (maybe under SPC p?)
+  ;; TODO: compile, test  (maybe under SPC p?)
+  "p f" '(consult-fd :which-key "Find file")
+  "p F" '(consult-ripgrep :which-key "Find text")
 )
