@@ -531,6 +531,9 @@
 (general-create-definer leader-bindings
   :keymaps '(normal insert visual emacs)
   :prefix my-leader
+  ;; TODO: WTF? I have this at C-SPC? But this is for completion-at-point? Why does it work when I do just
+  ;; SPC in normal mode? Try to fix and understand this. It's likely I need a non-normal-prefix (M-SPC?) to
+  ;; run leader commands in insert mode, for example
   :global-prefix "C-SPC"
 )
 
@@ -548,8 +551,8 @@
   ;; TODO: Can I nest a prefix?
   ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
   ;; code (mostly LSP, but also xref)
-  ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions?
-  ;; TODO: consult-imenu binding
+  ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
+  ;; so they match these? such as embark-act + d for go to definition
   "l a" '(eglot-code-actions :which-key "Code actions")
   "l r" '(eglot-rename :which-key "Rename")
   "l f" '(eglot-format-buffer :which-key "Format buffer")
@@ -558,8 +561,18 @@
   "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
   "l i" '(eglot-find-implementation :which-key "Go to implementation")
   "l u" '(xref-find-references :which-key "Find usages")
+  "l m" '(consult-imenu :which-key "imenu")
 
-  ;; TODO: compile, test  (maybe under SPC p?)
+  ;; TODO: compile for non-rustic mode
   "p f" '(consult-fd :which-key "Find file")
   "p F" '(consult-ripgrep :which-key "Find text")
+)
+
+(leader-bindings 
+  ;; TODO: Why won't this work? they appear as bindings (which doesn't happen if I put
+  ;; other keymaps) but always say they're not defined
+  :keymaps 'rustic-mode-map
+  ;; TODO: Maybe cargo-test DWIM? seems cooler
+  "p t" '(rustic-cargo-test :which-key "Run tests")
+  "p c" '(rustic-cargo-compile :which-key "Compile")
 )
