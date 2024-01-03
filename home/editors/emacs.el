@@ -529,7 +529,7 @@
 ;; keybindings
 
 (general-create-definer leader-bindings
-  :keymaps '(normal insert visual emacs)
+  :states '(normal insert visual emacs)
   :prefix my-leader
   ;; TODO: WTF? I have this at C-SPC? But this is for completion-at-point? Why does it work when I do just
   ;; SPC in normal mode? Try to fix and understand this. It's likely I need a non-normal-prefix (M-SPC?) to
@@ -542,7 +542,7 @@
 
 (leader-bindings
   "t" 'treemacs
-  ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjx)
+  ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjs)
   ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
   ;; generally-useful prefix that I can use in insert or normal mode?
   ;; for example, I've put evil-numbers under C-c, and I could put this under the same prefix
@@ -569,10 +569,8 @@
 )
 
 (leader-bindings 
-  ;; TODO: Why won't this work? they appear as bindings (which doesn't happen if I put
-  ;; other keymaps) but always say they're not defined
   :keymaps 'rustic-mode-map
-  ;; TODO: Maybe cargo-test DWIM? seems cooler
+  ;; TODO: Maybe cargo-test DWIM? Seems cool. Or do that with embark?
   "p t" '(rustic-cargo-test :which-key "Run tests")
   "p c" '(rustic-cargo-compile :which-key "Compile")
 )
