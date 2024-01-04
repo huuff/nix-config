@@ -2,12 +2,12 @@
 ;; I might get a "mismatched types" but need to run rustc to know which type was the actual
 ;; and which was the expected!
 ;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's eldoc-box
+;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: Maybe use cape, at least for files
 ;; TODO: Could I trigger save on every run code action for rust-mode? this will refresh diagnostics in flymake since rust-analyzer only does its thing on save
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
-;; TODO: Use the holy grail of emacs: Vertico+Consult+Orderless+Embark+Marginalia+Corfu (Vertico+Corfu+Marginalia+Embark+Consult done!)
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
@@ -104,6 +104,14 @@
   :custom
     ;; enable autocompletion
     (corfu-auto t)
+)
+
+;; orderless
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion))))
 )
 
 ;; eldoc
@@ -366,18 +374,6 @@
 (use-package vertico
   :init
   (vertico-mode)
-
-  ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
-
-  ;; Show more candidates
-  ;; (setq vertico-count 20)
-
-  ;; Grow and shrink the Vertico minibuffer
-  ;; (setq vertico-resize t)
-
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  ;; (setq vertico-cycle t)
 )
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
