@@ -37,6 +37,7 @@
 ;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Use rainbow-mode?
+;; TODO: Change the theme depending on the language
 
 ;; variable set up
 (defconst my-leader "SPC")
@@ -211,11 +212,6 @@
   ;; after lazily loading the package.
   :config
 
-  ;; Optionally configure preview. The default value
-  ;; is 'any, such that any key triggers the preview.
-  ;; (setq consult-preview-key 'any)
-  ;; (setq consult-preview-key "M-.")
-  ;; (setq consult-preview-key '("S-<down>" "S-<up>"))
   ;; For some commands and buffer sources it is useful to configure the
   ;; :preview-key on a per-command basis using the `consult-customize' macro.
   (consult-customize
@@ -523,6 +519,28 @@
   :config
 )
 
+;; hydra
+(use-package hydra
+  :config
+  ;; TODO: Close diagnostics on exit
+  ;; TODO: Close diagnostics on consult-flymake
+  ;; TODO: Allow switching to project diagnostics
+  ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
+  ;; TODO: Show that q exits?
+  (defhydra hydra-flymake
+    (:pre (flymake-show-buffer-diagnostics)
+     ;; TODO: need a regex for flymake but I don't know how to do it
+     ;:post (quit-windows-on "*Flycheck errors*")
+     :hint nil)
+    "Errors"
+    ("n" flymake-goto-next-error "Next")
+    ("N" flymake-goto-prev-error "Previous")
+    ("f" eglot-code-action-quickfix "Quickfix")
+    ("c" consult-flymake "Consult")
+    ("q" nil)
+  )
+)
+
 ;; keybindings
 
 (general-create-definer leader-bindings
@@ -534,11 +552,11 @@
   :global-prefix "C-SPC"
 )
 
-;; TODO: Flymake hydra? For going to next and previous error, maybe even quickfixing? But maybe
-;; consult-flymake is enough
 
+;; TODO: Some treemacs keybindings, maybe for setting up workspaces and stuff
 (leader-bindings
   "t" 'treemacs
+  "e" '(hydra-flymake/body :which-key "Errors")
   ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjs)
   ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
   ;; generally-useful prefix that I can use in insert or normal mode?
