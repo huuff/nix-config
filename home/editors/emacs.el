@@ -587,5 +587,5 @@
   :keymaps 'rustic-mode-map
   ;; TODO: Maybe cargo-test DWIM? Seems cool. Or do that with embark?
   "p t" '(rustic-cargo-test :which-key "Run tests")
-  "p c" '(rustic-cargo-compile :which-key "Compile")
+  "p c" '(rustic-cargo-build :which-key "Compile")
 )
