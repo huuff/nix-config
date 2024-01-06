@@ -549,9 +549,7 @@
 (general-create-definer leader-bindings
   :states '(normal insert visual emacs)
   :prefix my-leader
-  ;; TODO: WTF? I have this at C-SPC? But this is for completion-at-point? Why does it work when I do just
-  ;; SPC in normal mode? Try to fix and understand this. It's likely I need a non-normal-prefix (M-SPC?) to
-  ;; run leader commands in insert mode, for example
+  ;; TODO: This conflicts with the completion keybinding, so change it
   :global-prefix "C-SPC"
 )
 
