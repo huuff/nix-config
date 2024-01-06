@@ -60,6 +60,7 @@
         sha256 = "qjqdyER2T40YwpiBOQw5/jzaFa3Ek01wLx6hb1TM3ac=";
       }
       {
+        # TODO: this doesn't seem to be working
         # prettily-formatted typescript errors
         name = "pretty-ts-errors";
         publisher = "yoavbls";
