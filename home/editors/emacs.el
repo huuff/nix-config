@@ -519,13 +519,14 @@
   :config
 )
 
+
+;; hydra
 (defun close-flymake-diagnostics ()
   "Close the window on flymake diagnostics"
   (interactive)
   (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list))))
 )
 
-;; hydra
 (use-package hydra
   :config
   ;; TODO: Allow switching to project diagnostics
