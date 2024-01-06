@@ -37,8 +37,8 @@
 ;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Use rainbow-mode?
-;; TODO: Change the theme depending on the language
 
+;; TODO: Just put it in the leader definition? I don't even use it anywhere else
 ;; variable set up
 (defconst my-leader "SPC")
 
@@ -497,6 +497,14 @@
 )
 
 ;; (themes)
+(defun switch-theme-by-mode (it)
+  "Switches theme depending on current major-mode"
+  (interactive)
+  (cond
+    ((eq major-mode 'rustic-mode) (load-theme 'doom-gruvbox))
+    ((eq major-mode 'emacs-lisp-mode) (load-theme 'doom-one))
+  )
+)
 (use-package doom-themes
   :ensure t
   :config
@@ -510,6 +518,7 @@
     (doom-themes-visual-bell-config)
     (setq doom-themes-treemacs-theme "doom-colors") 
     (doom-themes-treemacs-config)
+    (add-hook 'window-selection-change-functions 'switch-theme-by-mode)
 )
 
 ;; modeline
