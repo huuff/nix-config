@@ -519,24 +519,27 @@
   :config
 )
 
+(defun close-flymake-diagnostics ()
+  "Close the window on flymake diagnostics"
+  (interactive)
+  (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list))))
+)
+
 ;; hydra
 (use-package hydra
   :config
-  ;; TODO: Close diagnostics on consult-flymake
   ;; TODO: Allow switching to project diagnostics
   ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
   ;; TODO: Show that q exits?
   (defhydra hydra-flymake
     (:pre (flymake-show-buffer-diagnostics)
-     :post (
-        quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))
-      )
+     :post (close-flymake-diagnostics)
      :hint nil)
     "Errors"
     ("n" flymake-goto-next-error "Next")
     ("N" flymake-goto-prev-error "Previous")
     ("f" eglot-code-action-quickfix "Quickfix")
-    ("c" consult-flymake "Consult")
+    ("c" (progn (close-flymake-diagnostics) (consult-flymake)) "Consult" :color blue)
     ("q" nil)
   )
 )
