@@ -522,15 +522,15 @@
 ;; hydra
 (use-package hydra
   :config
-  ;; TODO: Close diagnostics on exit
   ;; TODO: Close diagnostics on consult-flymake
   ;; TODO: Allow switching to project diagnostics
   ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
   ;; TODO: Show that q exits?
   (defhydra hydra-flymake
     (:pre (flymake-show-buffer-diagnostics)
-     ;; TODO: need a regex for flymake but I don't know how to do it
-     ;:post (quit-windows-on "*Flycheck errors*")
+     :post (
+        quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))
+      )
      :hint nil)
     "Errors"
     ("n" flymake-goto-next-error "Next")
