@@ -37,6 +37,7 @@
 ;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Use rainbow-mode?
+;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 
 ;; TODO: Just put it in the leader definition? I don't even use it anywhere else
 ;; variable set up
@@ -590,6 +591,7 @@
   "l m" '(consult-imenu :which-key "imenu")
 
   ;; TODO: compile for non-rustic mode
+  ;; TODO: keybinding for switching project
   "p f" '(consult-fd :which-key "Find file")
   "p F" '(consult-ripgrep :which-key "Find text")
 )
