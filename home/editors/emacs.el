@@ -542,6 +542,7 @@
   ;; TODO: Allow switching to project diagnostics
   ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
   ;; TODO: Show that q exits?
+  ;; TODO: Maybe also going to first error on :pre would be cool
   (defhydra hydra-flymake
     (:pre (flymake-show-buffer-diagnostics)
      :post (close-flymake-diagnostics)
