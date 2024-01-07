@@ -1,3 +1,4 @@
+;; TODO: I need yasnippet-capf!
 ;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
