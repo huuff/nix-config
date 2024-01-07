@@ -1,3 +1,4 @@
+;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
 ;; I might get a "mismatched types" but need to run rustc to know which type was the actual
@@ -38,10 +39,6 @@
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Use rainbow-mode?
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
-
-;; TODO: Just put it in the leader definition? I don't even use it anywhere else
-;; variable set up
-(defconst my-leader "SPC")
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -560,7 +557,7 @@
 
 (general-create-definer leader-bindings
   :states '(normal insert visual emacs)
-  :prefix my-leader
+  :prefix "SPC"
   ;; TODO: This conflicts with the completion keybinding, so change it
   :global-prefix "C-SPC"
 )
