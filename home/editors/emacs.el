@@ -1,14 +1,17 @@
-;; TODO: I need yasnippet-capf!
+;; TODO: I should fine-tune my completion backends. Most likely I want the lsp one (eglot), yasnippet, and cape-file. I think cape-emoji it's cute too. Some thoughts:
+  ;; * merging them with cape looks weird with intermingling backends
+  ;; * lsp subsumes most (almost anything will fuzzily match some lsp suggestion), so adding them to the list of backends barely solves anything
+  ;; * it's likely I'll have to just set up keybindings  for each, like I do for cape
+;; TODO: Maybe I should add # in front of my functions (that I defined with defun)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
 ;; I might get a "mismatched types" but need to run rustc to know which type was the actual
 ;; and which was the expected!
-;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's eldoc-box
+;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's eldoc-box, or corfu-popupinfo?
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
-;; TODO: Maybe use cape, at least for files
 ;; TODO: Could I trigger save on every run code action for rust-mode? this will refresh diagnostics in flymake since rust-analyzer only does its thing on save
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
@@ -22,7 +25,6 @@
   ;; - nerd-icons-install-fonts
   ;; - all-the-icons-install-fonts
 ;; TODO: Use magit
-;; TODO: Search MELPA for any packages that contain the names of any packages I use, see if there are any more integrations I'm missing!
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: DAP mode for debugging
 ;; TODO: Use expand-region? Or can embark do that? Does comboulate do this, but with tree-sitter? So many questions
@@ -77,6 +79,13 @@
 
 (use-package yasnippet-snippets
   :defer
+)
+
+;; TODO: A keybinding, in a way that's consistent with my final cape keybindings
+(use-package yasnippet-capf
+  :after (yasnippet cape)
+  :config
+    (add-to-list 'completion-at-point-functions #'yasnippet-capf)
 )
 
 ;; (use-package)
@@ -366,6 +375,32 @@
   )
 )
 
+;; cape
+(use-package cape
+  ;; TODO: Maybe put these somewhere under the leader?
+  :bind (
+         ("C-c p p" . completion-at-point) 
+         ("C-c p t" . complete-tag)        
+         ("C-c p d" . cape-dabbrev)        
+         ("C-c p h" . cape-history)
+         ("C-c p f" . cape-file)
+         ("C-c p k" . cape-keyword)
+         ("C-c p s" . cape-elisp-symbol)
+         ("C-c p e" . cape-elisp-block)
+         ("C-c p a" . cape-abbrev)
+         ("C-c p l" . cape-line)
+         ("C-c p w" . cape-dict)
+         ("C-c p :" . cape-emoji)
+         ("C-c p \\" . cape-tex)
+         ("C-c p _" . cape-tex)
+         ("C-c p ^" . cape-tex)
+         ("C-c p &" . cape-sgml)
+         ("C-c p r" . cape-rfc1345)
+      )
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-file)
+)
+
 ;; Enable vertico
 (use-package vertico
   :init
@@ -513,10 +548,14 @@
     )
     (load-theme 'doom-one t)
 
-  ;; Enable flashing mode-line on errors
+    ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
+
+    ;; Setup treemacs
     (setq doom-themes-treemacs-theme "doom-colors") 
     (doom-themes-treemacs-config)
+
+    ;; Switch theme depending on language, note that it only works here, and not in use-package's :hook
     (add-hook 'window-selection-change-functions 'switch-theme-by-mode)
 )
 
