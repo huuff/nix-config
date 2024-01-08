@@ -1,6 +1,6 @@
 ;; TODO: I should fine-tune my completion backends. Most likely I want the lsp one (eglot), yasnippet, and cape-file. I think cape-emoji it's cute too. Some thoughts:
   ;; * merging them with cape looks weird with intermingling backends
-  ;; * lsp subsumes most (almost anything will fuzzily match some lsp suggestion), so adding them to the list of backends barely solves anything
+  ;; * lsp subsumes most (almost anything will fuzzily match some lsp suggestion), so adding them to the list of backends barely solves anything. UPDATE: Maybe I can annotate them like https://github.com/minad/cape/issues/10#issuecomment-978132484
   ;; * it's likely I'll have to just set up keybindings  for each, like I do for cape
 ;; TODO: Maybe I should add # in front of my functions (that I defined with defun)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
