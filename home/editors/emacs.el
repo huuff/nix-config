@@ -1,7 +1,3 @@
-;; TODO: I should fine-tune my completion backends. Most likely I want the lsp one (eglot), yasnippet, and cape-file. I think cape-emoji it's cute too. Some thoughts:
-  ;; * merging them with cape looks weird with intermingling backends
-  ;; * lsp subsumes most (almost anything will fuzzily match some lsp suggestion), so adding them to the list of backends barely solves anything. UPDATE: Maybe I can annotate them like https://github.com/minad/cape/issues/10#issuecomment-978132484
-  ;; * it's likely I'll have to just set up keybindings  for each, like I do for cape
 ;; TODO: Maybe I should add # in front of my functions (that I defined with defun)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
@@ -81,7 +77,6 @@
   :defer
 )
 
-;; TODO: A keybinding, in a way that's consistent with my final cape keybindings
 (use-package yasnippet-capf
   :after (yasnippet cape)
   :config
@@ -142,12 +137,7 @@
 ;; consult
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
-  :bind (;; C-c bindings in `mode-specific-map'
-         ("C-c M-x" . consult-mode-command)
-         ("C-c h" . consult-history)
-         ("C-c k" . consult-kmacro)
-         ("C-c m" . consult-man)
-         ("C-c i" . consult-info)
+  :bind (
          ([remap Info-search] . consult-info)
          ;; C-x bindings in `ctl-x-map'
          ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
@@ -320,6 +310,7 @@
 
 (use-package evil-numbers
   :general
+  ;; TODO: Put them under my insert-leader-bindings
     (:states '(normal insert)
       "C-c +" 'evil-numbers/inc-at-pt
       "C-c -" 'evil-numbers/dec-at-pt
@@ -377,26 +368,6 @@
 
 ;; cape
 (use-package cape
-  ;; TODO: Maybe put these somewhere under the leader?
-  :bind (
-         ("C-c p p" . completion-at-point) 
-         ("C-c p t" . complete-tag)        
-         ("C-c p d" . cape-dabbrev)        
-         ("C-c p h" . cape-history)
-         ("C-c p f" . cape-file)
-         ("C-c p k" . cape-keyword)
-         ("C-c p s" . cape-elisp-symbol)
-         ("C-c p e" . cape-elisp-block)
-         ("C-c p a" . cape-abbrev)
-         ("C-c p l" . cape-line)
-         ("C-c p w" . cape-dict)
-         ("C-c p :" . cape-emoji)
-         ("C-c p \\" . cape-tex)
-         ("C-c p _" . cape-tex)
-         ("C-c p ^" . cape-tex)
-         ("C-c p &" . cape-sgml)
-         ("C-c p r" . cape-rfc1345)
-      )
   :init
   (add-to-list 'completion-at-point-functions #'cape-file)
 )
@@ -531,6 +502,7 @@
 )
 
 ;; (themes)
+;; TODO: Call it on init too since applying it only when focusing windows sometimes misses the initialization (i.e. it starts with the wrong theme)
 (defun switch-theme-by-mode (it)
   "Switches theme depending on current major-mode"
   (interactive)
@@ -594,23 +566,24 @@
 )
 
 ;; keybindings
+;; automatically unbind any definition that conflicts with mine
+(general-auto-unbind-keys t)
 
-(general-create-definer leader-bindings
-  :states '(normal insert visual emacs)
+;; keybindings that are supposed to work in normal state, but that
+;; I don't expect (or need) to work in insert state
+(general-create-definer normal-leader-bindings
+  :states '(normal visual emacs)
   :prefix "SPC"
   ;; TODO: This conflicts with the completion keybinding, so change it
   :global-prefix "C-SPC"
 )
 
-
 ;; TODO: Some treemacs keybindings, maybe for setting up workspaces and stuff
-(leader-bindings
+(normal-leader-bindings
   "t" 'treemacs
   "e" '(hydra-flymake/body :which-key "Errors")
   ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjs)
-  ;; TODO: Maybe instead of doing this for some leader prefix config, why not do this under some other 
-  ;; generally-useful prefix that I can use in insert or normal mode?
-  ;; for example, I've put evil-numbers under C-c, and I could put this under the same prefix
+  ;; TODO: Put them under my insert-leader-bindings
   "c SPC" 'evilnc-comment-or-uncomment-lines
 
   ;; TODO: Can I nest a prefix?
@@ -634,9 +607,28 @@
   "p F" '(consult-ripgrep :which-key "Find text")
 )
 
-(leader-bindings 
+(normal-leader-bindings 
   :keymaps 'rustic-mode-map
   ;; TODO: Maybe cargo-test DWIM? Seems cool. Or do that with embark?
   "p t" '(rustic-cargo-test :which-key "Run tests")
   "p c" '(rustic-cargo-build :which-key "Compile")
+)
+
+;; keybindings that are supposed to work in all states (included insert)
+(general-create-definer insert-leader-bindings
+  :states '(normal insert visual emacs)
+  :keymaps 'override
+  :prefix "C-q"
+)
+
+(insert-leader-bindings
+  "TAB f" '(cape-file :which-key "File")
+  "TAB TAB" '(completion-at-point :which-key "Normal")
+  "TAB w" '(cape-dict :which-key "Dictionary")
+  "TAB :" '(cape-emoji :which-key "Emoji")
+  "TAB \\" '(cape-tex :which-key "Tex")
+  "TAB _" '(cape-tex :which-key "Tex")
+  "TAB ^" '(cape-tex :which-key "Tex")
+  "TAB &" '(cape-tex :which-key "SGML")
+  "TAB s" '(yasnippet-capf :which-key "Snippet")
 )
