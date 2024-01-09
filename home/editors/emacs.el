@@ -283,6 +283,8 @@
   (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
+  ;; enable redo
+  (evil-set-undo-system 'undo-redo)
 )
 
 ;; I mostly use it because it includes vim-unimpaired
