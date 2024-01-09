@@ -381,7 +381,6 @@
 )
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
-;; TODO: Not working? nix screams when building
 (use-package savehist
   :init
   (savehist-mode)
