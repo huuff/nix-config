@@ -555,7 +555,6 @@
   :config
   ;; TODO: Allow switching to project diagnostics
   ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
-  ;; TODO: Show that q exits?
   (defhydra hydra-flymake
     (:pre (progn (flymake-show-buffer-diagnostics) (flymake-goto-next-error))
      :post (close-flymake-diagnostics)
@@ -565,7 +564,7 @@
     ("N" flymake-goto-prev-error "Previous")
     ("f" eglot-code-action-quickfix "Quickfix")
     ("c" (progn (close-flymake-diagnostics) (consult-flymake)) "Consult" :color blue)
-    ("q" nil)
+    ("q" nil "Quit" :color blue)
   )
 )
 
