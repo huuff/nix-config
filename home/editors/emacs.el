@@ -624,7 +624,7 @@ _q_: Quit         ^ ^
 (general-create-definer insert-leader-bindings
   :states '(normal insert visual emacs)
   :keymaps 'override
-  :prefix "C-q"
+  :prefix "C-z"
 )
 
 (insert-leader-bindings
