@@ -2,12 +2,14 @@
 
 {
   # TODO: css modules
-  # TODO: Pretty ts errors?
   # TODO: Maybe remove blame for gitlens?
   programs.vscode = {
     enable = true;
+    # prevents manually installing extensions, but also prevents nix-installed versions
+    # from randomly breaking
     mutableExtensionsDir = false;
     keybindings = [ # Some keybindings as in Intellij IDEA
+    # TODO: Maybe use the idea keybindings plugin instead of doing my own
       {
         key = "ctrl+alt+l";
         command = "editor.action.formatDocument";

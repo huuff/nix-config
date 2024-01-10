@@ -1,3 +1,4 @@
+;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Maybe I should add # in front of my functions (that I defined with defun)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
