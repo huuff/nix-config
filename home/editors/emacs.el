@@ -45,7 +45,11 @@
 ;; must load it early or otherwise use-package's :general
 ;; won't work. I thought use-package was supposed to fix
 ;; precisely this issue but whatever
-(use-package general)
+(use-package general
+  :init
+  ;; automatically unbind any definition that conflicts with mine
+  (general-auto-unbind-keys t)
+)
 
 ;; disable ugly top toolbars and scroll bars
 (tool-bar-mode -1)
@@ -567,16 +571,12 @@
 )
 
 ;; keybindings
-;; automatically unbind any definition that conflicts with mine
-(general-auto-unbind-keys t)
 
 ;; keybindings that are supposed to work in normal state, but that
 ;; I don't expect (or need) to work in insert state
 (general-create-definer normal-leader-bindings
   :states '(normal visual emacs)
   :prefix "SPC"
-  ;; TODO: This conflicts with the completion keybinding, so change it
-  :global-prefix "C-SPC"
 )
 
 ;; TODO: Some treemacs keybindings, maybe for setting up workspaces and stuff
