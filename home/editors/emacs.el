@@ -14,8 +14,6 @@
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
-;; TODO: Some cool way of showing available code actions
-;; TODO: Some keybindings to cycle through flycheck list diagnostics. UPDATE: Or maybe use lsp-treemacs-errors-list
 ;; TODO: Comment and explain ALL packages
 ;; TODO: Reorganize it a little
 ;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
@@ -476,6 +474,7 @@
 
     (push "*scratch*" popwin:special-display-config)
 )
+
 ;; (smartparens)
 (use-package smartparens
   :defer t
