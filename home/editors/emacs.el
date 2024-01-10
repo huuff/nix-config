@@ -298,8 +298,10 @@
   (evil-collection-init)
 )
 
-;; TODO: Put its keybindings here with :general
-(use-package evil-nerd-commenter)
+(use-package evil-nerd-commenter
+  :init
+  (evilnc-default-hotkeys)
+)
 (use-package evil-surround
   :after evil
   :config
@@ -592,10 +594,6 @@ _q_: Quit         ^ ^
 (normal-leader-bindings
   "t" 'treemacs
   "e" '(hydra-flymake/body :which-key "Errors")
-  ;; TODO: Maybe I'm missing some keybinding for evilnc-comment-operator (for textobjs)
-  ;; TODO: Put them under my insert-leader-bindings
-  "c SPC" 'evilnc-comment-or-uncomment-lines
-
   ;; TODO: Can I nest a prefix?
   ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
   ;; code (mostly LSP, but also xref)
