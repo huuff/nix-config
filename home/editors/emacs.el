@@ -559,12 +559,18 @@
     (:pre (progn (flymake-show-buffer-diagnostics) (flymake-goto-next-error))
      :post (close-flymake-diagnostics)
      :hint nil)
-    "Errors"
-    ("n" flymake-goto-next-error "Next")
-    ("N" flymake-goto-prev-error "Previous")
-    ("f" eglot-code-action-quickfix "Quickfix")
-    ("c" (progn (close-flymake-diagnostics) (consult-flymake)) "Consult" :color blue)
-    ("q" nil "Quit" :color blue)
+    "
+^Navigation^      ^Actions^
+--------------------------------
+_n_: Next         _f_: Quickfix
+_N_: Previous     _c_: Consult
+_q_: Quit         ^ ^
+    "
+    ("n" flymake-goto-next-error)
+    ("N" flymake-goto-prev-error)
+    ("f" eglot-code-action-quickfix)
+    ("c" (progn (close-flymake-diagnostics) (consult-flymake)) :color blue)
+    ("q" nil :color blue)
   )
 )
 
