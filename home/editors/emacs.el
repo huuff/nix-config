@@ -231,7 +231,6 @@
 ;; embark
 (use-package embark
   :ensure t
-  ;; TODO: Can't I bind C-.? It conflicts with evil-repeat
   :general
   ("C-," 'embark-act)
 )
