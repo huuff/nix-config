@@ -9,7 +9,6 @@
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
-;; TODO: Could I trigger save on every run code action for rust-mode? this will refresh diagnostics in flymake since rust-analyzer only does its thing on save
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
 ;; TODO: Set auto-save for rust so the LSP works
@@ -369,6 +368,12 @@
       :semanticTokensProvider
     )
   )
+  :config 
+  ;; auto-save current buffer when any code action is executed.
+  ;; it helps mainly with rust, since rust-analyzer only lints on save. 
+  ;; this makes the warnings in the buffer obsolete, and it's especially
+  ;; bothersome when I'm cycling through errors.
+  (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 )
 
 ;; cape
