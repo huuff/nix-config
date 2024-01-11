@@ -8,7 +8,7 @@
   home.packages = [
     (
       (pkgs.emacsWithPackagesFromUsePackage {
-        config = ./emacs.el;
+        config = ./init.el;
 
         defaultInitFile = true;
 
