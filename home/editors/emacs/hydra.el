@@ -23,6 +23,7 @@ _q_: Quit         ^ ^
   )
 )
 
+;; TODO: Once there is more than one flymake diagnostics buffer, this won't be able to complete a name (try-completion only finds a prefix) and thus won't close the window
 (defun close-flymake-diagnostics ()
   "Close the window on flymake diagnostics"
   (interactive)
