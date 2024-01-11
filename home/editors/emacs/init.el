@@ -315,7 +315,7 @@
 
 (use-package evil-numbers
   :general
-  ;; TODO: Put them under my insert-leader-bindings
+  ;; TODO: Use embark for this!
     (:states '(normal insert)
       "C-c +" 'evil-numbers/inc-at-pt
       "C-c -" 'evil-numbers/dec-at-pt
