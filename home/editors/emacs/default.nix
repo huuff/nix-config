@@ -8,7 +8,10 @@
   home.packages = [
     (
       (pkgs.emacsWithPackagesFromUsePackage {
-        config = ./init.el;
+        config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
+            ./init.el 
+            ./hydra.el
+        ]);
 
         defaultInitFile = true;
 
