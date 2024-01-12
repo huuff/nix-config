@@ -23,7 +23,6 @@
 ;; TODO: Use magit
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: DAP mode for debugging
-;; TODO: Multi-cursor stuff
 ;; TODO: Indent guides for YAML
 ;; TODO: Keybinding to close all other tabs with centaur
 ;; TODO: Maybe I should use popper.el and shackle instead of popwin.el
@@ -297,6 +296,9 @@
 ;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
 (use-package expand-region)
+
+;; multiple-cursors
+(use-package multiple-cursors)
 
 ;; I mostly use it because it includes vim-unimpaired
 ;; keybindings
@@ -628,6 +630,7 @@
   "TAB ^" '(cape-tex :which-key "Tex")
   "TAB &" '(cape-tex :which-key "SGML")
   "TAB s" '(yasnippet-capf :which-key "Snippet")
-  ;; TODO: This with a hydra to keep expanding, maybe even merge it with multiple cursors
-  "C-x" '(er/expand-region :which-key "Expand region")
+  ;; TODO: I definitely need a hydra for these two 
+  "C-w" '(er/expand-region :which-key "Expand region")
+  "C-d" '(mc/mark-next-like-this :which-key "Multi cursor")
 )
