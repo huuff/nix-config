@@ -510,6 +510,11 @@
   )
 )
 
+(defun project-remember-current-project ()
+  "Remembers the current project"
+  (project-remember-project (project-current))
+)
+
 ;; (which-key)
 (use-package which-key
   :init
@@ -589,9 +594,10 @@
   "l m" '(consult-imenu :which-key "imenu")
 
   ;; TODO: compile for non-rustic mode
-  ;; TODO: keybinding for switching project
   "p f" '(consult-fd :which-key "Find file")
   "p F" '(consult-ripgrep :which-key "Find text")
+  "p r" '(project-remember-current-project :which-key "Remember project")
+  "p p" '(project-switch-project :which-key "Switch project")
 )
 
 (normal-leader-bindings 
