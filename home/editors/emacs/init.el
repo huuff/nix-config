@@ -2,7 +2,7 @@
 ;; TODO: Maybe use a dashboard, but I'd also need that direnv integration
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
-;; TODO: Maybe I should add # in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
+;; TODO: Maybe I should add #' in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
@@ -10,7 +10,6 @@
 ;; and which was the expected!
 ;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's eldoc-box, or corfu-popupinfo?
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
-;; TODO: Maybe use combobulate after I set-up treesitter
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Use consult-eglot. I don't know what it does but it must be cool
@@ -24,7 +23,6 @@
 ;; TODO: Use magit
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: DAP mode for debugging
-;; TODO: Use expand-region? Or can embark do that? Does comboulate do this, but with tree-sitter? So many questions
 ;; TODO: Multi-cursor stuff
 ;; TODO: Indent guides for YAML
 ;; TODO: Keybinding to close all other tabs with centaur
@@ -295,6 +293,10 @@
   ;; enable redo
   (evil-set-undo-system 'undo-redo)
 )
+
+;; expand-region
+;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
+(use-package expand-region)
 
 ;; I mostly use it because it includes vim-unimpaired
 ;; keybindings
@@ -626,4 +628,6 @@
   "TAB ^" '(cape-tex :which-key "Tex")
   "TAB &" '(cape-tex :which-key "SGML")
   "TAB s" '(yasnippet-capf :which-key "Snippet")
+  ;; TODO: This with a hydra to keep expanding, maybe even merge it with multiple cursors
+  "C-x" '(er/expand-region :which-key "Expand region")
 )
