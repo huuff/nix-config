@@ -1,5 +1,5 @@
 ;; TODO: Use move-text with the advice to indent the region
-;; TODO: Maybe I should add # in front of my functions (that I defined with defun)? It's supposed to compile them so it should be faster?
+;; TODO: Maybe I should add # in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
 ;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
@@ -29,7 +29,7 @@
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use fast-scroll?
 ;; TODO: Should I use the built-in tabs mode instead of centaur?
-;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs?
+;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs? UPDATE: Maybe even add dirvish to it
 ;; TODO: Use flymake-clippy?
 ;; TODO: Maybe use hl-todo-mode and consult-todo
 ;; TODO: Maybe enable go-to-address-mode?
@@ -53,6 +53,11 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
+
+;; delay function
+(defun delay-fun (f &optional delay)
+  "Run some function after a delay, for initializing stuff only after everything else has initialized"
+  (run-with-idle-timer (or delay 1) nil f))
 
 ;; maximum highlighting with tree-sitter
 (setq treesit-font-lock-level 4)
@@ -260,7 +265,7 @@
   ;; the save-selected-window prevents it from being focused when opened
   :preface
   (defun defer/treemacs ()
-    (run-with-idle-timer 1 nil (lambda () (save-selected-window (treemacs)))))
+    (delay-fun (lambda () (save-selected-window (treemacs)))))
   :hook (emacs-startup . defer/treemacs)
 
   :config
@@ -513,8 +518,7 @@
 )
 
 ;; (themes)
-;; TODO: Call it on init too since applying it only when focusing windows sometimes misses the initialization (i.e. it starts with the wrong theme)
-(defun switch-theme-by-mode (it)
+(defun switch-theme-by-mode (&optional it)
   "Switches theme depending on current major-mode"
   (interactive)
   (cond
@@ -531,15 +535,19 @@
     )
     (load-theme 'doom-one t)
 
-    ;; Enable flashing mode-line on errors
+    ;; enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
 
-    ;; Setup treemacs
+    ;; setup treemacs
     (setq doom-themes-treemacs-theme "doom-colors") 
     (doom-themes-treemacs-config)
 
-    ;; Switch theme depending on language, note that it only works here, and not in use-package's :hook
-    (add-hook 'window-selection-change-functions 'switch-theme-by-mode)
+    ;; set theme by mode after a small delay so the mode
+    ;; is initialized
+    (delay-fun #'switch-theme-by-mode 2)
+
+    ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
+    (add-hook 'window-selection-change-functions #'switch-theme-by-mode)
 )
 
 ;; modeline
