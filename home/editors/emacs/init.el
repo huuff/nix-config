@@ -1,3 +1,4 @@
+;; TODO: Maybe use a dashboard, but I'd also need some direnv integration to load projects from there
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Maybe I should add # in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
