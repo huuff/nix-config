@@ -20,9 +20,9 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
+  ;; TODO: Can I get this to do an er/expand-region as a :pre?
   (defhydra hydra-region
-    (:pre (er/expand-region 1)
-     :hint nil)
+    (:hint nil)
     "
 ^Region^        ^Cursors^
 -------------------------------
@@ -30,7 +30,6 @@ _+_: Expand     _n_: Mark next
 _q_: Quit       _C-d_: Mark next
     "
     ("+" er/expand-region)
-    ;; TODO: This won't work for some reason!
     ("n" mc/mark-next-like-this)
     ("q" nil :color blue)
   )
