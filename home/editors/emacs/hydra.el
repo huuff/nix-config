@@ -20,7 +20,8 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
-  ;; TODO: maybe make q exit multiple cursors
+  ;; TODO: maybe make q exit multiple cursors, and maybe also remove the region
+  ;; TODO: A doesn't append to the end of the cursor... maybe I could just map A in the hydra to some mc equivalent?
   (defhydra hydra-region
     (:hint nil)
     "
