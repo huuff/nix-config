@@ -20,7 +20,6 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
-  ;; TODO: contract and unmark
   ;; TODO: maybe make q exit multiple cursors
   (defhydra hydra-region
     (:hint nil)
@@ -28,10 +27,13 @@ _q_: Quit         ^ ^
 ^Region^        ^Cursors^
 -------------------------------
 _+_: Expand     _n_: Mark next
+_-_: Contract   _N_: Unmark previous
 _q_: Quit       ^ ^
     "
     ("+" er/expand-region)
+    ("-" er/contract-region)
     ("n" mc/mark-next-like-this)
+    ("N" mc/unmark-next-like-this)
     ("q" nil :color blue)
   )
 )
