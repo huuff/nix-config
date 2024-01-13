@@ -20,14 +20,15 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
-  ;; TODO: Can I get this to do an er/expand-region as a :pre?
+  ;; TODO: contract and unmark
+  ;; TODO: maybe make q exit multiple cursors
   (defhydra hydra-region
     (:hint nil)
     "
 ^Region^        ^Cursors^
 -------------------------------
 _+_: Expand     _n_: Mark next
-_q_: Quit       _C-d_: Mark next
+_q_: Quit       ^ ^
     "
     ("+" er/expand-region)
     ("n" mc/mark-next-like-this)
@@ -40,3 +41,9 @@ _q_: Quit       _C-d_: Mark next
   "Close the window on flymake diagnostics"
   (interactive)
   (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
+
+(defun expand-region-and-hydra ()
+  (interactive)
+  (er/expand-region 1)
+  (hydra-region/body)
+)

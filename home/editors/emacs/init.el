@@ -635,5 +635,5 @@
   "TAB ^" '(cape-tex :which-key "Tex")
   "TAB &" '(cape-tex :which-key "SGML")
   "TAB s" '(yasnippet-capf :which-key "Snippet")
-  "C-w" '(hydra-region/body :which-key "Expand region")
+  "C-w" '(expand-region-and-hydra :which-key "Expand region")
 )
