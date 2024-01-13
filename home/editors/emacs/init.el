@@ -295,7 +295,11 @@
 
 ;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
-(use-package expand-region)
+(use-package expand-region
+  :config
+  ;; disable fast keys since my hydra does that and they conflict otherwise
+  (setq expand-region-fast-keys-enabled nil)
+)
 
 ;; multiple-cursors
 (use-package multiple-cursors)
@@ -350,6 +354,7 @@
   :general
   (evil-inner-text-objects-map "a" 'evil-inner-arg)
   (evil-outer-text-objects-map "a" 'evil-outer-arg)
+  ;; TODO: I don't even use any of these... bind them to something else?
   (:states 'normal
     "L" 'evil-forward-arg
     "H" 'evil-backward-arg
@@ -366,7 +371,7 @@
 ;; says it's because doom-themes but I've tried changing
 ;; it with no result
 (use-package evil-goggles
-  :ensure t
+  :after evil
   :config
   (evil-goggles-mode)
 )
@@ -630,7 +635,5 @@
   "TAB ^" '(cape-tex :which-key "Tex")
   "TAB &" '(cape-tex :which-key "SGML")
   "TAB s" '(yasnippet-capf :which-key "Snippet")
-  ;; TODO: I definitely need a hydra for these two 
-  "C-w" '(er/expand-region :which-key "Expand region")
-  "C-d" '(mc/mark-next-like-this :which-key "Multi cursor")
+  "C-w" '(hydra-region/body :which-key "Expand region")
 )

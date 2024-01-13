@@ -1,5 +1,3 @@
-
-
 (use-package hydra
   :config
   ;; TODO: Allow switching to project diagnostics
@@ -19,6 +17,21 @@ _q_: Quit         ^ ^
     ("N" flymake-goto-prev-error)
     ("f" eglot-code-action-quickfix)
     ("c" (progn (close-flymake-diagnostics) (consult-flymake)) :color blue)
+    ("q" nil :color blue)
+  )
+
+  (defhydra hydra-region
+    (:pre (er/expand-region 1)
+     :hint nil)
+    "
+^Region^        ^Cursors^
+-------------------------------
+_+_: Expand     _n_: Mark next
+_q_: Quit       _C-d_: Mark next
+    "
+    ("+" er/expand-region)
+    ;; TODO: This won't work for some reason!
+    ("n" mc/mark-next-like-this)
     ("q" nil :color blue)
   )
 )
