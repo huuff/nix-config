@@ -1,3 +1,4 @@
+;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
 ;; TODO: Some direnv integration so I can safely switch projects
 ;; TODO: Maybe use a dashboard, but I'd also need that direnv integration
 ;; TODO: I'd love to use project-x, but it's not on MELPA
