@@ -1,3 +1,6 @@
+(defvar multicursor-package 'multiple-cursors
+  "The package to be used for multiple cursors, either 'evil-mc or 'multiple-cursors")
+
 (use-package hydra
   :config
   ;; TODO: Allow switching to project diagnostics
@@ -20,10 +23,14 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
-  ;; TODO: maybe make q exit multiple cursors, and maybe also remove the region
   ;; TODO: A doesn't append to the end of the cursor... maybe I could just map A in the hydra to some mc equivalent?
+  ;; TODO: Add C-w for expand and C-d for mark next
   (defhydra hydra-region
-    (:hint nil)
+    (
+      ;; TODO: maybe make q exit multiple cursors for all packages
+     :post evil-mc-undo-all-cursors
+     :hint nil
+     )
     "
 ^Region^        ^Cursors^
 -------------------------------
@@ -33,8 +40,19 @@ _q_: Quit       ^ ^
     "
     ("+" er/expand-region)
     ("-" er/contract-region)
-    ("n" mc/mark-next-like-this)
-    ("N" mc/unmark-next-like-this)
+    ;; TODO: Maybe extract these lambdas and the multicursor-package-dependent stuff to their own files
+    ("n" (lambda () 
+                      (interactive)
+                      (cond
+                        ((eq multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
+                        ((eq multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
+                      )))
+    ("N" (lambda () 
+                      (interactive)
+                      (cond
+                        ((eq multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
+                        ((eq multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
+                      )))
     ("q" nil :color blue)
   )
 )
