@@ -1,3 +1,4 @@
+;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
 ;; TODO: Some direnv integration so I can safely switch projects
 ;; TODO: Maybe use a dashboard, but I'd also need that direnv integration
@@ -294,11 +295,6 @@
   (evil-set-undo-system 'undo-redo)
 )
 
-(use-package evil-mc
-  :after evil
-  :config (global-evil-mc-mode 1)
-)
-
 ;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
 (use-package expand-region
@@ -306,12 +302,6 @@
   ;; disable fast keys since my hydra does that and they conflict otherwise
   (setq expand-region-fast-keys-enabled nil)
 )
-
-;; multiple-cursors
-;; TODO: There is some file that manages which commands are repeated for every cursor...
-;; I should inline it here, or edit it here so I can reuse
-;; that config for other computers
-(use-package multiple-cursors)
 
 ;; I mostly use it because it includes vim-unimpaired
 ;; keybindings

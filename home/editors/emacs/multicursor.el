@@ -1,3 +1,20 @@
+;; I couldn't decide on a multi-cursor package 
+;; (because both multiple-cursors and evil-mc are suboptimal)
+;; so I just made a configuration that works for both and made
+;; it easy to switch
+
+
+;; TODO: There is some file that manages which commands are repeated for every cursor...
+;; I should inline it here, or edit it here so I can reuse
+;; that config for other computers
+;; TODO: A doesn't append a cursor and edits to the end of the selection...
+(use-package multiple-cursors)
+
+(use-package evil-mc
+  :after evil
+  :config (global-evil-mc-mode 1)
+)
+
 (defvar haf/multicursor-package 'multiple-cursors
   "The package to be used for multiple cursors, either 'evil-mc or 'multiple-cursors")
 

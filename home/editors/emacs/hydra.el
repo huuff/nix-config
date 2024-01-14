@@ -23,11 +23,10 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
-  ;; TODO: A doesn't append to the end of the cursor... maybe I could just map A in the hydra to some mc equivalent?
   ;; TODO: Add C-w for expand and C-d for mark next
+    ;; TODO: maybe make q exit multiple cursors for all packages
   (defhydra hydra-region
     (
-      ;; TODO: maybe make q exit multiple cursors for all packages
      :post evil-mc-undo-all-cursors
      :hint nil
      )
