@@ -24,12 +24,9 @@ _q_: Quit         ^ ^
   )
 
   ;; TODO: Add C-w for expand and C-d for mark next
-    ;; TODO: maybe make q exit multiple cursors for all packages
+  ;; TODO: maybe make q exit multiple cursors and remove region for all packages
   (defhydra hydra-region
-    (
-     :post evil-mc-undo-all-cursors
-     :hint nil
-     )
+    (:hint nil)
     "
 ^Region^        ^Cursors (%s(symbol-name haf/multicursor-package))^
 -------------------------------
