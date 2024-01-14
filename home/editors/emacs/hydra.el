@@ -40,19 +40,8 @@ _q_: Quit       ^ ^
     "
     ("+" er/expand-region)
     ("-" er/contract-region)
-    ;; TODO: Maybe extract these lambdas and the multicursor-package-dependent stuff to their own files
-    ("n" (lambda () 
-                      (interactive)
-                      (cond
-                        ((eq multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
-                        ((eq multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
-                      )))
-    ("N" (lambda () 
-                      (interactive)
-                      (cond
-                        ((eq multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
-                        ((eq multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
-                      )))
+    ("n" haf/add-next-multi-cursor)
+    ("N" haf/remove-previous-multi-cursor)
     ("q" nil :color blue)
   )
 )
@@ -63,6 +52,7 @@ _q_: Quit       ^ ^
   (interactive)
   (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
 
+;; TODO: Try to make it a :pre with (call-interactively)
 (defun expand-region-and-hydra ()
   (interactive)
   (er/expand-region 1)

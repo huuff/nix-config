@@ -11,6 +11,7 @@
         config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
             ./init.el 
             ./hydra.el
+            ./multicursor.el
         ]);
 
         defaultInitFile = true;
