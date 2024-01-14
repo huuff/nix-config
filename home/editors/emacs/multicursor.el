@@ -10,11 +10,12 @@
 ;; TODO: A doesn't append a cursor and edits to the end of the selection...
 (use-package multiple-cursors)
 
-;; TODO: A doesn't append a cursor and edits to the end of the selection...
-;; TODO: Please make it easier to exit the multicursor mode
 (use-package evil-mc
   :after evil
-  :config (global-evil-mc-mode 1)
+  :config 
+  ;; remove cursors when pressing C-g
+  (setq evil-mc-undo-cursors-on-keyboard-quit t)
+  (global-evil-mc-mode 1)
 )
 
 (defvar haf/multicursor-package 'multiple-cursors
