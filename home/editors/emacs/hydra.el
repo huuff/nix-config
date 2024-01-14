@@ -32,16 +32,17 @@ _q_: Quit         ^ ^
      :hint nil
      )
     "
-^Region^        ^Cursors^
+^Region^        ^Cursors (%s(symbol-name haf/multicursor-package))^
 -------------------------------
 _+_: Expand     _n_: Mark next
 _-_: Contract   _N_: Unmark previous
-_q_: Quit       ^ ^
+_q_: Quit       _t_: Toggle package 
     "
     ("+" er/expand-region)
     ("-" er/contract-region)
-    ("n" haf/add-next-multi-cursor)
-    ("N" haf/remove-previous-multi-cursor)
+    ("n" haf/add-next-multicursor)
+    ("N" haf/remove-previous-multicursor)
+    ("t" haf/toggle-multicursor-package)
     ("q" nil :color blue)
   )
 )
