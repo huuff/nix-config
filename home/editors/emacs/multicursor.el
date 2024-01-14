@@ -10,6 +10,8 @@
 ;; TODO: A doesn't append a cursor and edits to the end of the selection...
 (use-package multiple-cursors)
 
+;; TODO: A doesn't append a cursor and edits to the end of the selection...
+;; TODO: Please make it easier to exit the multicursor mode
 (use-package evil-mc
   :after evil
   :config (global-evil-mc-mode 1)
