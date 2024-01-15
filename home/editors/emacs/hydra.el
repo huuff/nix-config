@@ -23,20 +23,21 @@ _q_: Quit         ^ ^
     ("q" nil :color blue)
   )
 
-  ;; TODO: Add C-w for expand and C-d for mark next
   ;; TODO: maybe make q exit multiple cursors and remove region for all packages
   (defhydra hydra-region
     (:hint nil)
     "
-^Region^        ^Cursors (%s(symbol-name haf/multicursor-package))^
--------------------------------
-_+_: Expand     _n_: Mark next
-_-_: Contract   _N_: Unmark previous
-_q_: Quit       _t_: Toggle package 
+^Region^           ^Cursors (%s(symbol-name haf/multicursor-package))^
+--------------------------------------------------
+^_+_/_C-w_^: ^Expand^  ^_n_/_C-d_^: ^Mark next^
+^_-_:^ ^Contract^        ^_N_^: ^Unmark previous^
+^_q_:^ ^Quit^            ^_t_^: ^Toggle package^
     "
     ("+" er/expand-region)
+    ("C-w" er/expand-region)
     ("-" er/contract-region)
     ("n" haf/add-next-multicursor)
+    ("C-d" haf/add-next-multicursor)
     ("N" haf/remove-previous-multicursor)
     ("t" haf/toggle-multicursor-package)
     ("q" nil :color blue)
