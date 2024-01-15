@@ -518,11 +518,11 @@
   )
 )
 
-;; TODO: Output a message about which project was remembered
 (defun project-remember-current-project ()
   "Remembers the current project"
   (interactive)
   (project-remember-project (project-current))
+  (message (concat "Remembering project '" (caddr (project-current)) "'"))
 )
 
 ;; (which-key)
