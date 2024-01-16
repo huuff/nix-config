@@ -18,6 +18,12 @@
   (global-evil-mc-mode 1)
 )
 
+;; TODO: Add it to my list of multicursor packages
+(use-package evil-multiedit
+  :config
+  (setq evil-multiedit-follow-matches t)
+)
+
 (defvar haf/multicursor-package 'multiple-cursors
   "The package to be used for multiple cursors, either 'evil-mc or 'multiple-cursors")
 
