@@ -1,3 +1,4 @@
+;; TODO: Maybe use hungry-delete or something similar because deleting whitespace is a bit tiring
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
 ;; TODO: Some direnv integration so I can safely switch projects
