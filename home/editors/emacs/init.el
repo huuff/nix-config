@@ -103,6 +103,15 @@
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
 )
 
+;; try allows trying packages without installing with `try «package»`
+(use-package try :commands try)
+
+;; add MELPA so we have access to more packages with `try` or `install-package`
+;; note that you'll need to call package-refresh-contents to have access to these packages
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
 ;; corfu
 (use-package corfu
   :init
