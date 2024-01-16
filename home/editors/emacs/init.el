@@ -305,14 +305,6 @@
   (evil-set-undo-system 'undo-redo)
 )
 
-;; expand-region
-;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
-(use-package expand-region
-  :config
-  ;; disable fast keys since my hydra does that and they conflict otherwise
-  (setq expand-region-fast-keys-enabled nil)
-)
-
 ;; I mostly use it because it includes vim-unimpaired
 ;; keybindings
 (use-package evil-collection
@@ -347,6 +339,7 @@
     )
 )
 
+;; TODO: Can I configure it so n and N also cycle results as for search?
 (use-package evil-snipe
   :after evil
   :config
@@ -384,6 +377,15 @@
   :config
   (evil-goggles-mode)
 )
+
+;; expand-region
+;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
+(use-package expand-region
+  :config
+  ;; disable fast keys since my hydra does that and they conflict otherwise
+  (setq expand-region-fast-keys-enabled nil)
+)
+
 
 ;; eglot
 ;; TODO: Enable it for nix
