@@ -1,4 +1,3 @@
-;; TODO: Maybe use hungry-delete or something similar because deleting whitespace is a bit tiring
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
 ;; TODO: Some direnv integration so I can safely switch projects
@@ -305,8 +304,10 @@
   (evil-set-undo-system 'undo-redo)
 )
 
-;; I mostly use it because it includes vim-unimpaired
-;; keybindings
+;; evil-collection
+;; some features:
+;; * vim-unimpaired keybindings
+;; * hungry-delete integration with evil
 (use-package evil-collection
   :after evil
   :ensure t
@@ -376,6 +377,24 @@
   :after evil
   :config
   (evil-goggles-mode)
+)
+
+;; hungry-delete
+;; deletes large sequences of whitespace with a single press
+(use-package hungry-delete
+  :config
+  (setq 
+    ;; do not delete aggresively join words
+    ;; without it, deleting the space between "word1      word2"
+    ;; ends up with "word1word2", with it, it's "word1 word2"
+    hungry-delete-join-reluctantly t
+
+    ;; I'm not even entirely sure what these characters are
+    ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
+    ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
+    hungry-delete-chars-to-skip " \t\r\f\v"
+  )
+  (global-hungry-delete-mode)
 )
 
 ;; expand-region
