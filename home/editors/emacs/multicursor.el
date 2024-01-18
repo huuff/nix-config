@@ -18,32 +18,40 @@
   (global-evil-mc-mode 1)
 )
 
-;; TODO: Add it to my list of multicursor packages
+;; TODO: Apply some config from a github issue to stop ignoring case
+;; TODO: Maybe try to run match and next twice the first time? Since when starting from visual, it just marks
+;; the same word as currently marked
 (use-package evil-multiedit
   :config
   (setq evil-multiedit-follow-matches t)
 )
 
-(defvar haf/multicursor-package 'multiple-cursors
-  "The package to be used for multiple cursors, either 'evil-mc or 'multiple-cursors")
+(defvar haf/multicursor-package 'evil-multiedit
+  "The package to be used for multiple cursors, either 'evil-mc, 'evil-multiedit or 'multiple-cursors")
 
+;; TODO: Use an array and iterate through it with a modulo length
 (defun haf/toggle-multicursor-package ()
   "Toggles the current multi-cursor package"
   (interactive)
   (cond
-    ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-mc))
-    ((eq haf/multicursor-package 'evil-mc) (setq haf/multicursor-package 'multiple-cursors))))
+    ((eq haf/multicursor-package 'evil-multiedit) (setq haf/multicursor-package 'evil-mc))
+    ((eq haf/multicursor-package 'evil-mc) (setq haf/multicursor-package 'multiple-cursors))
+    ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-multiedit))
+  ))
 
 (defun haf/add-next-multicursor ()
   "Creates a multi-cursor for the selected region using the package in 'haf/multicursor-package'"
   (interactive)
   (cond
     ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
-    ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))))
+    ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
+    ((eq haf/multicursor-package 'evil-multiedit (call-interactively #'evil-multiedit-match-and-next)))))
 
 (defun haf/remove-previous-multicursor ()
   "Removes the last created multi-cursor using the package in 'haf/multicursor-package'"
   (interactive)
   (cond
     ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
-    ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))))
+    ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
+    ;; TODO: Maybe try to remove this option in the hydra?
+    ((eq haf/multicursor-package 'evil-multiedit (message "Not available in evil-multiedit")))))
