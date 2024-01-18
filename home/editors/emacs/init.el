@@ -1,3 +1,5 @@
+;; TODO: Some way to prevent adding a mix of tabs and spaces in all files
+;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
 ;; TODO: Some direnv integration so I can safely switch projects
