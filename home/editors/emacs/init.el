@@ -1,3 +1,4 @@
+;; TODO: An embark action to toggle mut in rust-mode
 ;; TODO: Some way to prevent adding a mix of tabs and spaces in all files
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
