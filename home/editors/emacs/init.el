@@ -29,7 +29,6 @@
 ;; TODO: DAP mode for debugging
 ;; TODO: Indent guides for YAML
 ;; TODO: Keybinding to close all other tabs with centaur
-;; TODO: Maybe I should use popper.el and shackle instead of popwin.el
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use fast-scroll?
 ;; TODO: Should I use the built-in tabs mode instead of centaur?
