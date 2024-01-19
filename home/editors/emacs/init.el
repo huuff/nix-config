@@ -1,5 +1,4 @@
-;; TODO: An embark action to toggle mut in rust-mode
-;; TODO: Some way to prevent adding a mix of tabs and spaces in all files
+;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
@@ -59,13 +58,11 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
-;; delay function
-(defun delay-fun (f &optional delay)
-  "Run some function after a delay, for initializing stuff only after everything else has initialized"
-  (run-with-idle-timer (or delay 1) nil f))
-
 ;; maximum highlighting with tree-sitter
 (setq treesit-font-lock-level 4)
+
+;; do not use tabs for indenting (only spaces)
+(setq-default indent-tabs-mode nil)
 
 ;; show line numbers in programming modes
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -77,6 +74,11 @@
 ;; TODO: Maybe use general for this
 ;; TODO: And maybe set it up so it's C-S-V which is what I use for vim
 (global-set-key (kbd "C-v") 'yank)
+
+;; delay function
+(defun delay-fun (f &optional delay)
+  "Run some function after a delay, for initializing stuff only after everything else has initialized"
+  (run-with-idle-timer (or delay 1) nil f))
 
 ;; yasnippet
 (use-package yasnippet
