@@ -40,6 +40,7 @@
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Use rainbow-mode?
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
+;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
