@@ -526,9 +526,9 @@
 (use-package popwin
   :config
     (popwin-mode 1)
-    ;; (rustic)
+    ;; rust
     (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
-    (push '("^\*rustic-.+\*$" :regexp t) popwin:special-display-config)
+    (push '(rustic-compilation-mode :regexp t :position right :width 0.45) popwin:special-display-config)
 
     (push "*scratch*" popwin:special-display-config)
 )
