@@ -1,3 +1,6 @@
+;; TODO: When doing dependency management with rustic (such as C-c C-c a):
+  ;; * do not auto-select the popup buffer, there's nothing to do there
+  ;; * make it go to the bottom (contrary to other rustic-compilation buffers), since there's not much useful information there
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
