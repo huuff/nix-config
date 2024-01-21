@@ -1,7 +1,9 @@
-;; TODO: (popwin) Keep rustic-compilation open
-;; TODO: (popwin) When doing dependency management with rustic (such as C-c C-c a):
+;; TODO: Use popper.el with shackle so I can comfortably close the popup windows
+;; TODO: (shackle) Keep rustic-compilation open
+;; TODO: (shackle) When doing dependency management with rustic (such as C-c C-c a):
   ;; * do not auto-select the popup buffer, there's nothing to do there
   ;; * make it go to the bottom (contrary to other rustic-compilation buffers), since there's not much useful information there
+  ;; (UPDATE) I'm working on this! But it's proving pretty hard, check nonworking-rustic-window-management.el
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
@@ -477,6 +479,9 @@
 (use-package rustic
   :init
   (setq rustic-lsp-client 'eglot)
+  ;; TODO: See nonworking-rustic-window-management
+  ;:config
+  ;(advice-add 'rustic-cargo-add :before #'haf/advice-set-ran-rustic-dependency-management)
 )
 (use-package rust-mode)
 
@@ -527,15 +532,20 @@
       ("g T" . centaur-tabs-backward))
 )
 
-;; (popwin)
-(use-package popwin
+;; shackle
+;; some configurations to decide where each buffer will show
+(use-package shackle
+  :init
+  (shackle-mode)
   :config
-    (popwin-mode 1)
-    ;; rust
-    (push '("^\*cargo-.+\*$" :regexp t) popwin:special-display-config)
-    (push '(rustic-compilation-mode :regexp t :position right :width 0.45) popwin:special-display-config)
-
-    (push "*scratch*" popwin:special-display-config)
+  (setq
+    shackle-rules '(
+      (rustic-compilation-mode :size 0.4 :align right)
+      ;; TODO: See nonworking-rustic-window-management
+      ;('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
+      (help-mode :size 0.3 :align below)
+    )
+  )
 )
 
 ;; (smartparens)
@@ -563,6 +573,7 @@
   "Remembers the current project"
   (interactive)
   (project-remember-project (project-current))
+  ;; TODO: I could just do this with a simple substitution like (message "remembering project '%S'") or smth
   (message (concat "Remembering project '" (caddr (project-current)) "'"))
 )
 
