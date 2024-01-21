@@ -1,8 +1,5 @@
 ;; TODO: Use popper.el with shackle so I can comfortably close the popup windows
-;; TODO: (shackle) Keep rustic-compilation open
-;; TODO: (shackle) When doing dependency management with rustic (such as C-c C-c a):
-  ;; * do not auto-select the popup buffer, there's nothing to do there
-  ;; (UPDATE) I'm working on this! But it's proving pretty hard, check nonworking-rustic-window-management.el
+;; TODO: (shackle) Keep rustic-compilation open (UPDATE: I think it's for popper, not shackle!)
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
@@ -535,8 +532,8 @@
   (setq
     shackle-rules '(
       ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
-      (rustic-compilation-mode :size 0.4 :align right)
-      (help-mode :size 0.3 :align below)
+      (rustic-compilation-mode :size 0.4 :align right :select t)
+      (help-mode :size 0.3 :align below :select t)
     )
   )
 )
