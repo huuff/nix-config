@@ -82,12 +82,6 @@
 ;; TODO: And maybe set it up so it's C-S-V which is what I use for vim
 (global-set-key (kbd "C-v") 'yank)
 
-;; delay function
-;; TODO: Move to an util.el or something?
-(defun delay-fun (f &optional delay)
-  "Run some function after a delay, for initializing stuff only after everything else has initialized"
-  (run-with-idle-timer (or delay 1) nil f))
-
 ;; yasnippet
 (use-package yasnippet
   :defer 2

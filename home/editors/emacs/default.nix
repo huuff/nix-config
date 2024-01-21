@@ -9,6 +9,7 @@
     (
       (pkgs.emacsWithPackagesFromUsePackage {
         config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
+            ./util.el
             ./init.el 
             ./hydra.el
             ./multicursor.el
