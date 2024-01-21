@@ -10,6 +10,7 @@
       (pkgs.emacsWithPackagesFromUsePackage {
         config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
             ./util.el
+            ./rustic-window-management.el
             ./init.el 
             ./hydra.el
             ./multicursor.el
