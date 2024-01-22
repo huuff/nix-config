@@ -1,5 +1,3 @@
-;; TODO: Use popper.el with shackle so I can comfortably close the popup windows
-;; TODO: (shackle) Keep rustic-compilation open (UPDATE: I think it's for popper, not shackle!)
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
@@ -524,7 +522,7 @@
 )
 
 ;; shackle
-;; some configurations to decide where each buffer will show
+;; allows configuring in what way each buffer will show
 (use-package shackle
   :init
   (shackle-mode)
@@ -536,6 +534,30 @@
       (help-mode :size 0.3 :align below :select t)
     )
   )
+)
+
+;; popper
+;; mark buffers as "pop-up", making them easy to dismiss, toggle and cycle through
+(use-package popper
+  :ensure t
+  ;; TODO: Change these keybindings, I can't even hit them
+  :bind (("C-`"   . popper-toggle)
+         ("M-`"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          help-mode
+          compilation-mode
+          rustic-compilation-mode
+      )
+  )
+  (popper-mode +1)
+  ;; enables echo area hints
+  (popper-echo-mode +1)
+  ;; do not do any display control, let shackle do it
+  (setq popper-display-control nil)
 )
 
 ;; (smartparens)
