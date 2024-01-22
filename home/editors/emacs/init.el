@@ -1,3 +1,5 @@
+;; TODO: Can I prevent tabs (centaur tabs?) from appearing in my pop-up (popper) buffers?
+;; TODO: Use centaur-tabs snippet to avoid getting into weird buffers when tabbing around
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
@@ -510,6 +512,7 @@
     ;; TODO: I don't know how but I'm separating centaur tabs by project
     ;; which drives me a little crazy when switching between files in different projects
     ;; try to disable this, and only hide unwanted tabs (such as temporary buffers)
+
     ;; do not allow crossing tab groups by changing tab 
     ;; (prevents going to weird hidden buffers when going
     ;; to next tab on the last one)
@@ -540,12 +543,9 @@
 ;; mark buffers as "pop-up", making them easy to dismiss, toggle and cycle through
 (use-package popper
   :ensure t
-  ;; TODO: Change these keybindings, I can't even hit them
-  :bind (("C-`"   . popper-toggle)
-         ("M-`"   . popper-cycle)
-         ("C-M-`" . popper-toggle-type))
   :init
-  (setq popper-reference-buffers '("\\*Messages\\*"
+  (setq popper-reference-buffers '(
+          "\\*Messages\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
           help-mode
@@ -672,6 +672,10 @@
   "p F" '(consult-ripgrep :which-key "Find text")
   "p r" '(project-remember-current-project :which-key "Remember project")
   "p p" '(project-switch-project :which-key "Switch project")
+
+  "w w" '(popper-toggle :which-key "Toggle popup")
+  "w t" '(popper-cycle :which-key "Cycle popup")
+  "w o" '(popper-toggle-type :which-key "Change popup type")
 )
 
 (normal-leader-bindings 
