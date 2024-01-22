@@ -1,3 +1,5 @@
+;; TODO: eldoc as a popup buffer
+;; TODO: Can I have word wrap in eldoc?
 ;; TODO: Can I prevent tabs (centaur tabs?) from appearing in my pop-up (popper) buffers?
 ;; TODO: Use centaur-tabs snippet to avoid getting into weird buffers when tabbing around
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
