@@ -1,3 +1,4 @@
+;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: Can I have word wrap in eldoc?
 ;; TODO: Can I prevent tabs (centaur tabs?) from appearing in my pop-up (popper) buffers?
