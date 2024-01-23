@@ -76,9 +76,7 @@
 (set-frame-font "Fira Code 10" nil t)
 
 ;; allow pasting with Ctrl+V, even in minibuffer
-;; TODO: Maybe use general for this
-;; TODO: And maybe set it up so it's C-S-V which is what I use for vim
-(global-set-key (kbd "C-v") 'yank)
+(general-define-key "C-S-v" 'yank)
 
 ;; yasnippet
 (use-package yasnippet
