@@ -50,15 +50,6 @@
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
 
-;; must load it early or otherwise use-package's :general
-;; won't work. I thought use-package was supposed to fix
-;; precisely this issue but whatever
-(use-package general
-  :init
-  ;; automatically unbind any definition that conflicts with mine
-  (general-auto-unbind-keys t)
-)
-
 ;; disable ugly top toolbars and scroll bars
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -75,6 +66,20 @@
 
 ;; set font 
 (set-frame-font "Fira Code 10" nil t)
+
+;; (use-package)
+(eval-when-compile
+  (require 'use-package))
+
+;; must load it early or otherwise use-package's :general
+;; won't work. I thought use-package was supposed to fix
+;; precisely this issue but whatever
+(use-package general
+  :init
+  ;; automatically unbind any definition that conflicts with mine
+  (general-auto-unbind-keys t)
+)
+
 
 ;; allow pasting with Ctrl+V, even in minibuffer
 (general-define-key "C-S-v" 'yank)
@@ -96,9 +101,6 @@
     (add-to-list 'completion-at-point-functions #'yasnippet-capf)
 )
 
-;; (use-package)
-(eval-when-compile
-  (require 'use-package))
 
 ;; (bind-key) necessary for use-package
 (use-package bind-key
@@ -153,6 +155,7 @@
   :general
   (:states 'normal
    :keymaps 'override
+   ;; same key as for vim
    "K" 'eldoc-box-help-at-point
   )
   :config
