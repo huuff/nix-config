@@ -17,7 +17,8 @@
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
 ;; I might get a "mismatched types" but need to run rustc to know which type was the actual
 ;; and which was the expected!
-;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's eldoc-box, or corfu-popupinfo?
+;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's corfu-popupinfo?
+;; TODO: Maybe use eldoc-box?
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
