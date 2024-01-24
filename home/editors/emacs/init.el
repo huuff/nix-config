@@ -1,3 +1,4 @@
+;; TODO: I broke my hydra for multicursors
 ;; TODO: *cargo-clippy* popper.el and shackle.el configurations
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
