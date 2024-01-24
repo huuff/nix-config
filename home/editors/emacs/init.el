@@ -19,7 +19,6 @@
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
 ;; I might get a "mismatched types" but need to run rustc to know which type was the actual
 ;; and which was the expected!
-;; TODO: Some corfu extension to show documentation on autocompletions? UPDATE: It's corfu-popupinfo?
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
@@ -120,6 +119,8 @@
 (package-initialize)
 
 ;; corfu
+;; ==========
+;; autocompletion framework that enhances emacs' native completion system
 (use-package corfu
   :init
   (global-corfu-mode)
@@ -134,6 +135,14 @@
   :custom
     ;; enable autocompletion
     (corfu-auto t)
+)
+
+;; show a pop-up with documentation on each autocompletion candidate after a small delay
+(use-package corfu-popupinfo
+  :ensure nil ;; already included in corfu
+  :after corfu
+  :config
+  (corfu-popupinfo-mode)
 )
 
 ;; orderless
@@ -456,6 +465,7 @@
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
 (use-package savehist
+  :ensure nil ;; already included in emacs
   :init
   (savehist-mode)
 )
