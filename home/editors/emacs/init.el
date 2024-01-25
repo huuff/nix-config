@@ -1,5 +1,5 @@
-;; TODO: I broke my hydra for multicursors
 ;; TODO: *cargo-clippy* popper.el and shackle.el configurations
+;; TODO: vterm maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
@@ -729,5 +729,5 @@
   "TAB ^" '(cape-tex :which-key "Tex")
   "TAB &" '(cape-tex :which-key "SGML")
   "TAB s" '(yasnippet-capf :which-key "Snippet")
-  "C-w" '(hydra-region/body :which-key "Expand region")
+  "C-w" '(haf/start-region-hydra :which-key "Expand region")
 )

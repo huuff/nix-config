@@ -26,7 +26,6 @@ _q_: Quit         ^ ^
   ;; TODO: maybe make q exit multiple cursors and remove region for all packages
   (defhydra hydra-region
     (:hint nil
-     :pre (call-interactively #'er/expand-region)
     )
     "
 ^Region^           ^Cursors (%s(symbol-name haf/multicursor-package))^
@@ -52,3 +51,11 @@ _q_: Quit         ^ ^
   (interactive)
   (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
 
+
+;; XXX: I use this rather than a :pre because the :pre doesn't work for some reason
+(defun haf/start-region-hydra ()
+  "Expands region and runs the hydra hydra-region."
+  (interactive)
+  (er/expand-region 1)
+  (hydra-region/body)
+)
