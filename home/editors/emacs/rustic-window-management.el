@@ -10,8 +10,7 @@
   (delay-fun (lambda () (setq haf/ran-rustic-dependency-management nil)))
 )
 
-;; TODO: Maybe a better name that expresses that it unsets
-;; TODO: Maybe also check the buffer name
+;; TODO: Just remove this and use a lambda?
 (defun haf/is-rustic-dependency-management (&optional buffer)
   "Check whether this is a rustic command for dependency management (add or remove dependency), and then unsets it"
   haf/ran-rustic-dependency-management
