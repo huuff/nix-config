@@ -715,6 +715,7 @@
   ;; TODO: Maybe cargo-test DWIM? Seems cool. Or do that with embark?
   "p t" '(rustic-cargo-test :which-key "Run tests")
   "p c" '(rustic-cargo-build :which-key "Compile")
+  "p k" '(rustic-cargo-clippy :which-key "Clippy")
 )
 
 ;; keybindings that are supposed to work in all states (included insert)
