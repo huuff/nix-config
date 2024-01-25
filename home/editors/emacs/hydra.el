@@ -52,10 +52,16 @@ _q_: Quit         ^ ^
   (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
 
 
-;; XXX: I use this rather than a :pre because the :pre doesn't work for some reason
-(defun haf/start-region-hydra ()
-  "Expands region and runs the hydra hydra-region."
+(defun haf/expand-and-start-region-hydra ()
+  "Expands region and runs the hydra 'hydra-region'."
   (interactive)
   (er/expand-region 1)
   (hydra-region/body)
 )
+
+(defun haf/next-cursor-and-start-region-hydra ()
+  "Adds a multicursor and runs the hydra 'hydra-region'"
+  (interactive)
+  (haf/add-next-multicursor)
+  (hydra-region/body)
+ )

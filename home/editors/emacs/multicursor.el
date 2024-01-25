@@ -45,7 +45,7 @@
   (cond
     ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
     ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
-    ((eq haf/multicursor-package 'evil-multiedit (call-interactively #'evil-multiedit-match-and-next)))))
+    ((eq haf/multicursor-package 'evil-multiedit) (call-interactively 'evil-multiedit-match-and-next))))
 
 (defun haf/remove-previous-multicursor ()
   "Removes the last created multi-cursor using the package in 'haf/multicursor-package'"

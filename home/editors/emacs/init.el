@@ -729,5 +729,6 @@
   "TAB ^" '(cape-tex :which-key "Tex")
   "TAB &" '(cape-tex :which-key "SGML")
   "TAB s" '(yasnippet-capf :which-key "Snippet")
-  "C-w" '(haf/start-region-hydra :which-key "Expand region")
+  "C-w" '(haf/expand-and-start-region-hydra :which-key "Expand region")
+  "C-d" '(haf/next-cursor-and-start-region-hydra :which-key "Add cursor")
 )
