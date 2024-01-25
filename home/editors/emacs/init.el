@@ -1,4 +1,3 @@
-;; TODO: *cargo-clippy* popper.el and shackle.el configurations
 ;; TODO: vterm maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
@@ -559,9 +558,11 @@
   :config
   (setq
     shackle-rules '(
+      (help-mode :size 0.3 :align below :select t)
+
       ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
       (rustic-compilation-mode :size 0.4 :align right :select t)
-      (help-mode :size 0.3 :align below :select t)
+      (rustic-cargo-clippy-mode :size 0.4 :align right :select t)
     )
   )
 )
@@ -577,7 +578,10 @@
           "\\*Async Shell Command\\*"
           help-mode
           compilation-mode
+
+          ;; rust
           rustic-compilation-mode
+          rustic-cargo-clippy-mode
       )
   )
   (popper-mode +1)
@@ -681,9 +685,10 @@
   "e" '(hydra-flymake/body :which-key "Errors")
   ;; TODO: Can I nest a prefix?
   ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
-  ;; code (mostly LSP, but also xref)
   ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
   ;; so they match these? such as embark-act + d for go to definition
+
+  ;; code (mostly LSP, but also xref)
   "l a" '(eglot-code-actions :which-key "Code actions")
   "l r" '(eglot-rename :which-key "Rename")
   "l f" '(eglot-format-buffer :which-key "Format buffer")
