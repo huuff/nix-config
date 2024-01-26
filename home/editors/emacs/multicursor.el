@@ -54,4 +54,4 @@
     ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
     ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
     ;; TODO: Maybe try to remove this option in the hydra?
-    ((eq haf/multicursor-package 'evil-multiedit (message "Not available in evil-multiedit")))))
+    ((eq haf/multicursor-package 'evil-multiedit) (message "Not available in evil-multiedit"))))

@@ -1,3 +1,4 @@
+;; TODO: My rustic window management stuff doesn't work sometimes
 ;; TODO: vterm maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
