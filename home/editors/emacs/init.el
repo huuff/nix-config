@@ -1,4 +1,5 @@
 ;; TODO: My rustic window management stuff doesn't work sometimes
+;; TODO: A hydra for changing the font size
 ;; TODO: vterm maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
@@ -10,7 +11,6 @@
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
-;; TODO: Maybe add haf/ to the beginning of the name of all of my defvars and defuns
 ;; TODO: Some direnv integration so I can safely switch projects
 ;; TODO: Maybe use a dashboard, but I'd also need that direnv integration
 ;; TODO: I'd love to use project-x, but it's not on MELPA
@@ -304,9 +304,9 @@
   ;; https://github.com/Alexander-Miller/treemacs/issues/258#issuecomment-831489403
   ;; the save-selected-window prevents it from being focused when opened
   :preface
-  (defun defer/treemacs ()
-    (delay-fun (lambda () (save-selected-window (treemacs)))))
-  :hook (emacs-startup . defer/treemacs)
+  (defun haf/defer/treemacs ()
+    (haf/delay-fun (lambda () (save-selected-window (treemacs)))))
+  :hook (emacs-startup . haf/defer/treemacs)
 
   :config
   ;; always select the current file in treemacs
@@ -613,7 +613,7 @@
   )
 )
 
-(defun project-remember-current-project ()
+(defun haf/project-remember-current-project ()
   "Remembers the current project"
   (interactive)
   (project-remember-project (project-current))
@@ -632,7 +632,7 @@
 )
 
 ;; (themes)
-(defun switch-theme-by-mode (&optional it)
+(defun haf/switch-theme-by-mode (&optional it)
   "Switches theme depending on current major-mode"
   (interactive)
   (cond
@@ -658,7 +658,7 @@
 
     ;; set theme by mode after a small delay so the mode
     ;; is initialized
-    (delay-fun #'switch-theme-by-mode 2)
+    (haf/delay-fun #'haf/switch-theme-by-mode 2)
 
     ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
     (add-hook 'window-selection-change-functions #'switch-theme-by-mode)
@@ -703,7 +703,7 @@
   ;; TODO: compile for non-rustic mode
   "p f" '(consult-fd :which-key "Find file")
   "p F" '(consult-ripgrep :which-key "Find text")
-  "p r" '(project-remember-current-project :which-key "Remember project")
+  "p r" '(haf/project-remember-current-project :which-key "Remember project")
   "p p" '(project-switch-project :which-key "Switch project")
 
   "w w" '(popper-toggle :which-key "Toggle popup")

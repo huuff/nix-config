@@ -7,7 +7,7 @@
 (defun haf/advice-set-ran-rustic-dependency-management (smth)
   "Sets 'haf/ran-rustic-dependency-management', used for advising functions that run rustic dependency management"
   (setq haf/ran-rustic-dependency-management t)
-  (delay-fun (lambda () (setq haf/ran-rustic-dependency-management nil)))
+  (haf/delay-fun (lambda () (setq haf/ran-rustic-dependency-management nil)))
 )
 
 ;; TODO: Just remove this and use a lambda?

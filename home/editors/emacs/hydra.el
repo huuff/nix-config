@@ -7,7 +7,7 @@
   ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
   (defhydra hydra-flymake
     (:pre (progn (flymake-show-buffer-diagnostics) (flymake-goto-next-error))
-     :post (close-flymake-diagnostics)
+     :post (haf/close-flymake-diagnostics)
      :hint nil)
     "
 ^Navigation^      ^Actions^
@@ -46,7 +46,7 @@ _q_: Quit         ^ ^
 )
 
 ;; TODO: Once there is more than one flymake diagnostics buffer, this won't be able to complete a name (try-completion only finds a prefix) and thus won't close the window
-(defun close-flymake-diagnostics ()
+(defun haf/close-flymake-diagnostics ()
   "Close the window on flymake diagnostics"
   (interactive)
   (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
