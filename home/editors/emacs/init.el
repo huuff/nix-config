@@ -1,4 +1,5 @@
 ;; TODO: My rustic window management stuff doesn't work sometimes
+;; TODO: Maybe set-up some code folding
 ;; TODO: A hydra for changing the font size
 ;; TODO: vterm maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
@@ -48,6 +49,7 @@
 ;; TODO: Use rainbow-mode?
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
+;; TODO: Maybe set up dictionaries and spell checking?
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
