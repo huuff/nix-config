@@ -693,7 +693,7 @@
     (haf/delay-fun #'haf/switch-theme-by-mode 2)
 
     ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
-    (add-hook 'window-selection-change-functions #'switch-theme-by-mode)
+    (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
 )
 
 ;; modeline
