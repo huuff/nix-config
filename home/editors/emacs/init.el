@@ -1,3 +1,4 @@
+;; TODO: Some evil-mc configs for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: My rustic window management stuff doesn't work sometimes
 ;; TODO: Maybe set-up some code folding
@@ -36,7 +37,6 @@
   ;; - all-the-icons-install-fonts
 ;; TODO: Use magit
 ;; TODO: Set correct dependencies between packages with use-package (:after)
-;; TODO: DAP mode for debugging
 ;; TODO: Indent guides for YAML
 ;; TODO: Keybinding to close all other tabs with centaur
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
@@ -449,11 +449,12 @@
   ;; (setq dape-buffer-window-arrangement 'gud)
 
   :config
-  ;; TODO: This does not work for some reason!
+  ;; TODO: Replace the command with the nix path
+  ;; TODO: Try to clean this a little
   (add-to-list 'dape-configs
     `(codelldb-rust 
                 modes (rust-mode rust-ts-mode)
-                command "/nix/store/2d9r0b7yp6ywm6g5f61izccvk0yhi51p-vscode-extension-vadimcn-vscode-lldb-1.10.0/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb/LOOOOL" :type "lldb" :request "launch" command-args
+                command "/nix/store/2d9r0b7yp6ywm6g5f61izccvk0yhi51p-vscode-extension-vadimcn-vscode-lldb-1.10.0/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb" :type "lldb" :request "launch" command-args
                 ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
                 ensure dape-ensure-command port :autoport fn dape-config-autoport :cwd dape-cwd-fn :program dape-find-file :args [])
     )
