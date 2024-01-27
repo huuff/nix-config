@@ -450,6 +450,8 @@
 
   :config
   (add-to-list 'dape-configs
+    ;; XXX: custom (mostly copy-pasted) config for rust so I can
+    ;; inject (substitute) codelldb from nix
     `(codelldb-rust 
                 modes (rust-mode rust-ts-mode)
                 command "@codelldb@" 
