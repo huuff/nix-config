@@ -1,3 +1,4 @@
+;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: My rustic window management stuff doesn't work sometimes
 ;; TODO: Maybe set-up some code folding
 ;; TODO: A hydra for changing the font size
@@ -435,7 +436,53 @@
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
   ;; this makes the warnings in the buffer obsolete, and it's especially
   ;; bothersome when I'm cycling through errors.
+  ;; TODO: Maybe only set it for rustic-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
+)
+
+;; dape
+;; debugging in emacs
+;; TODO fine-tune this config
+(use-package dape
+  ;; To use window configuration like gud (gdb-mi)
+  ;; :init
+  ;; (setq dape-buffer-window-arrangement 'gud)
+
+  :config
+  ;; TODO: This does not work for some reason!
+  (add-to-list 'dape-configs
+    `(codelldb-rust 
+                modes (rust-mode rust-ts-mode)
+                command "/nix/store/2d9r0b7yp6ywm6g5f61izccvk0yhi51p-vscode-extension-vadimcn-vscode-lldb-1.10.0/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb/LOOOOL" :type "lldb" :request "launch" command-args
+                ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+                ensure dape-ensure-command port :autoport fn dape-config-autoport :cwd dape-cwd-fn :program dape-find-file :args [])
+    )
+
+
+
+  ;; Info buffers to the right
+  ;; (setq dape-buffer-window-arrangement 'right)
+
+  ;; To not display info and/or buffers on startup
+  ;; (remove-hook 'dape-on-start-hooks 'dape-info)
+  ;; (remove-hook 'dape-on-start-hooks 'dape-repl)
+
+  ;; To display info and/or repl buffers on stopped
+  ;; (add-hook 'dape-on-stopped-hooks 'dape-info)
+  ;; (add-hook 'dape-on-stopped-hooks 'dape-repl)
+
+  ;; By default dape uses gdb keybinding prefix
+  ;; If you do not want to use any prefix, set it to nil.
+  ;; (setq dape-key-prefix "\C-x\C-a")
+
+  ;; Kill compile buffer on build success
+  ;; (add-hook 'dape-compile-compile-hooks 'kill-buffer)
+
+  ;; Save buffers on startup, useful for interpreted languages
+  ;; (add-hook 'dape-on-start-hooks
+  ;;           (defun dape--save-on-start ()
+  ;;             (save-some-buffers t t)))
+
 )
 
 ;; cape
