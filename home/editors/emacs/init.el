@@ -450,13 +450,17 @@
 
   :config
   ;; TODO: Replace the command with the nix path
-  ;; TODO: Try to clean this a little
   (add-to-list 'dape-configs
     `(codelldb-rust 
                 modes (rust-mode rust-ts-mode)
-                command "/nix/store/2d9r0b7yp6ywm6g5f61izccvk0yhi51p-vscode-extension-vadimcn-vscode-lldb-1.10.0/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb" :type "lldb" :request "launch" command-args
-                ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
-                ensure dape-ensure-command port :autoport fn dape-config-autoport :cwd dape-cwd-fn :program dape-find-file :args [])
+                command "/nix/store/2d9r0b7yp6ywm6g5f61izccvk0yhi51p-vscode-extension-vadimcn-vscode-lldb-1.10.0/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb" 
+                :type "lldb" 
+                :request "launch" 
+                command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+                ensure dape-ensure-command port :autoport fn dape-config-autoport 
+                :cwd dape-cwd-fn 
+                :program dape-find-file 
+                :args [])
     )
 
 
