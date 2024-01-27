@@ -1,4 +1,5 @@
-;; TODO: Some evil-mc configs for creating a cursor on each line beginning/end
+;; TODO: Some package to highlight the current window or I'll go crazy
+;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: My rustic window management stuff doesn't work sometimes
 ;; TODO: Maybe set-up some code folding
