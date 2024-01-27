@@ -449,11 +449,10 @@
   ;; (setq dape-buffer-window-arrangement 'gud)
 
   :config
-  ;; TODO: Replace the command with the nix path
   (add-to-list 'dape-configs
     `(codelldb-rust 
                 modes (rust-mode rust-ts-mode)
-                command "/nix/store/2d9r0b7yp6ywm6g5f61izccvk0yhi51p-vscode-extension-vadimcn-vscode-lldb-1.10.0/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb" 
+                command "@codelldb@" 
                 :type "lldb" 
                 :request "launch" 
                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")

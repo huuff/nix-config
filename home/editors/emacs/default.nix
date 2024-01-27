@@ -11,7 +11,14 @@
         config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
             ./util.el
             ./rustic-window-management.el
-            ./init.el 
+
+            # XXX: dape (for debugging) needs the vscode LLDB adapter
+            # so I just substitute it into the elisp from here
+            (pkgs.substituteAll { 
+              src = ./init.el;
+              codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+            })
+
             ./hydra.el
             ./multicursor.el
         ]);
