@@ -3,7 +3,7 @@
 ;; using the built-in tab-line mode.
 ;; In the future, I hope to set up some config to chose between the two
 
-(defvar haf/tabs-package 'centaur
+(defvar haf/tabs-package 'tab-line
   "The package to be used for tabs, either 'centaur or 'tab-line")
 
 ;; TODO: Split workspaces by some useful criterion rather than just by project.
@@ -51,4 +51,11 @@
   :if (eq haf/tabs-package 'tab-line)
   :config
   (global-tab-line-mode)
+  ;; do not show the tab-line for these modes
+  (setq tab-line-exclude-modes '(
+                                  help-mode 
+                                  compilation-mode
+                                  rustic-compilation-mode
+                                )
+  )
 )
