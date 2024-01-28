@@ -9,8 +9,6 @@
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: Can I have word wrap in eldoc?
-;; TODO: Can I prevent tabs (centaur tabs?) from appearing in my pop-up (popper) buffers?
-;; TODO: Use centaur-tabs snippet to avoid getting into weird buffers when tabbing around
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
@@ -38,10 +36,8 @@
 ;; TODO: Use magit
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML
-;; TODO: Keybinding to close all other tabs with centaur
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use fast-scroll?
-;; TODO: Should I use the built-in tabs mode instead of centaur?
 ;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs? UPDATE: Maybe even add dirvish to it
 ;; TODO: Use flymake-clippy?
 ;; TODO: Maybe use hl-todo-mode and consult-todo
@@ -528,6 +524,8 @@
 ;;    (global-treesit-auto-mode)
 ;;)
 
+;; TODO: Keybinding to close all other tabs with centaur
+;; TODO: Keybinding for reopening last closed tab
 ;; (centaur-tabs)
 (use-package centaur-tabs
   :init
@@ -553,11 +551,26 @@
     ;; (prevents going to weird hidden buffers when going
     ;; to next tab on the last one)
     (setq centaur-tabs-cycle-scope 'tabs)
+
+    ;; hide in some buffers
+    (defun centaur-tabs-hide-tab (x)
+      "Do no to show buffer X in tabs."
+      (let ((name (format "%s" x)))
+        (or
+         ;; current window is not dedicated window.
+         (window-dedicated-p (selected-window))
+
+         ;; buffer does not start with an asterisk (temporary buffer)
+         (string-prefix-p "*" name)
+     )))
+
   :bind
   ;; vim-like change tabg with `g t` and `g T`
-    (:map evil-normal-state-map
-      ("g t" . centaur-tabs-forward)
-      ("g T" . centaur-tabs-backward))
+  ;; TODO: But can I make 2 gt for going to the second tab for example?
+  (:map evil-normal-state-map
+    ("g t" . centaur-tabs-forward)
+    ("g T" . centaur-tabs-backward))
+
 )
 
 ;; shackle
