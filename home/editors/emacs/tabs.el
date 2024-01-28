@@ -3,6 +3,8 @@
 ;; using the built-in tab-line mode.
 ;; In the future, I hope to set up some config to chose between the two
 
+;; TODO: Try to use :general instead of :bind
+
 (defvar haf/tabs-package 'tab-line
   "The package to be used for tabs, either 'centaur or 'tab-line")
 
@@ -46,6 +48,7 @@
     ("g T" . centaur-tabs-backward))
 )
 
+;; TODO: Try to configure keybindings for next and previous tabs, which, for some reason, break everything else
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
@@ -58,4 +61,14 @@
                                   rustic-compilation-mode
                                 )
   )
+
+  ;; do not go into other groups after last tab, go back
+  ;; to the first one
+  (setq tab-line-switch-cycling t)
+
+  ;; show tabs according to groups
+  ;; note that the group isn't actually configured and it's using
+  ;; the default (group by major mode) unless I (TODO) set up
+  ;; the tab-line-tabs-buffer-groups-function
+  (setq tab-line-tabs-function 'tab-line-tabs-buffer-groups)
 )
