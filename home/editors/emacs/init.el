@@ -28,7 +28,6 @@
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
-;; TODO: Use consult-eglot. I don't know what it does but it must be cool
 ;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: Comment and explain ALL packages
