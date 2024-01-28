@@ -28,19 +28,9 @@
     ;; to next tab on the last one)
     (setq centaur-tabs-cycle-scope 'tabs)
 
-    ;; TODO: actually, I think I should set centaur-tabs-excluded-prefixes!
-    ;; TODO: Also, it's now showing on which-key too
-    ;; hide in some buffers
-    (defun centaur-tabs-hide-tab (x)
-      "Do no to show buffer X in tabs."
-      (let ((name (format "%s" x)))
-        (or
-         ;; current window is not dedicated window.
-         (window-dedicated-p (selected-window))
-
-         ;; buffer does not start with an asterisk (temporary buffer)
-         (string-prefix-p "*" name)
-     )))
+    ;; exclude all temporary (*) buffers
+    ;; note that some start with a space, like ' *which-key*'
+    (setq centaur-tabs-excluded-prefixes '("*" " *"))
 
   :bind
   ;; vim-like change tabg with `g t` and `g T`
