@@ -3,6 +3,11 @@
 ;; using the built-in tab-line mode.
 ;; In the future, I hope to set up some config to chose between the two
 
+;; TODO: Split workspaces by some useful criterion rather than just by project.
+;; for example, excluding by treemacs workspaces would be great (but that would depend on treemacs)
+
+;; TODO: Maybe make a hydra/transient for tabbing around
+
 (use-package centaur-tabs
   :init
     (setq centaur-tabs-enable-key-bindings t)
@@ -19,9 +24,6 @@
     (setq centaur-tabs-set-bar 'left)
     ;; show whether tab is modified
     (setq centaur-tabs-set-modified-marker t)
-    ;; TODO: I don't know how but I'm separating centaur tabs by project
-    ;; which drives me a little crazy when switching between files in different projects
-    ;; try to disable this, and only hide unwanted tabs (such as temporary buffers)
 
     ;; do not allow crossing tab groups by changing tab 
     ;; (prevents going to weird hidden buffers when going
