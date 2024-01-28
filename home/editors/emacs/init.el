@@ -553,6 +553,7 @@
     (setq centaur-tabs-cycle-scope 'tabs)
 
     ;; TODO: actually, I think I should set centaur-tabs-excluded-prefixes!
+    ;; TODO: Also, it's now showing on which-key too
     ;; hide in some buffers
     (defun centaur-tabs-hide-tab (x)
       "Do no to show buffer X in tabs."
