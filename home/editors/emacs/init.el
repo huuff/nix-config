@@ -552,6 +552,7 @@
     ;; to next tab on the last one)
     (setq centaur-tabs-cycle-scope 'tabs)
 
+    ;; TODO: actually, I think I should set centaur-tabs-excluded-prefixes!
     ;; hide in some buffers
     (defun centaur-tabs-hide-tab (x)
       "Do no to show buffer X in tabs."
