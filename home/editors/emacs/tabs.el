@@ -3,12 +3,16 @@
 ;; using the built-in tab-line mode.
 ;; In the future, I hope to set up some config to chose between the two
 
+(defvar haf/tabs-package 'centaur
+  "The package to be used for tabs, either 'centaur or 'tab-line")
+
 ;; TODO: Split workspaces by some useful criterion rather than just by project.
 ;; for example, excluding by treemacs workspaces would be great (but that would depend on treemacs)
 
 ;; TODO: Maybe make a hydra/transient for tabbing around
 
 (use-package centaur-tabs
+  :if (eq haf/tabs-package 'centaur)
   :init
     (setq centaur-tabs-enable-key-bindings t)
   :demand
@@ -42,3 +46,9 @@
     ("g T" . centaur-tabs-backward))
 )
 
+(use-package tab-line
+  :ensure nil ;; already included in emacs
+  :if (eq haf/tabs-package 'tab-line)
+  :config
+  (global-tab-line-mode)
+)
