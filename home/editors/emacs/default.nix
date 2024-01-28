@@ -18,6 +18,7 @@
               src = ./init.el;
               codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
             })
+            ./tabs.el
 
             ./hydra.el
             ./multicursor.el
