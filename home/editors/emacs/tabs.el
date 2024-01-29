@@ -48,12 +48,12 @@
     ("g T" . centaur-tabs-backward))
 )
 
-;; TODO: Try to configure keybindings for next and previous tabs, which, for some reason, break everything else
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
-  :config
+  :init
   (global-tab-line-mode)
+  :config
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(
                                   help-mode 
@@ -71,4 +71,9 @@
   ;; the default (group by major mode) unless I (TODO) set up
   ;; the tab-line-tabs-buffer-groups-function
   (setq tab-line-tabs-function 'tab-line-tabs-buffer-groups)
+  :general
+  (:states 'normal
+   "g t" 'tab-line-switch-to-next-tab 
+   "g T" 'tab-line-switch-to-prev-tab 
+  )
 )
