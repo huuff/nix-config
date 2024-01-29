@@ -48,6 +48,7 @@
     ("g T" . centaur-tabs-backward))
 )
 
+;; TODO: the current tab always appears as the first one, which makes it impossible to cycle through tabs
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
@@ -71,6 +72,9 @@
   ;; the default (group by major mode) unless I (TODO) set up
   ;; the tab-line-tabs-buffer-groups-function
   (setq tab-line-tabs-function 'tab-line-tabs-buffer-groups)
+
+  ;; switching tabs like in vim
+  ;; TODO: Try to also configure switching to a specific tab, like: 5 gt goes to the fifth tab
   :general
   (:states 'normal
    "g t" 'tab-line-switch-to-next-tab 
