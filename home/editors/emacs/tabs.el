@@ -49,20 +49,20 @@
     ("g T" . centaur-tabs-backward))
 )
 
-;; TODO: the current tab always appears as the first one, which makes it impossible to cycle through tabs
+;; TODO: the current tab always appears as the first one, which makes it impossible to cycle through tabs. UPDATE: I should set some sort function
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
   :init
   (global-tab-line-mode)
   :config
+  ;; TODO: When it's a temporary buffer, put it on some other group, otherwise all temporaries end up in the same group
   (defun haf/tab-line-group-by-project (buffer)
   "Use the project.el name for the buffer group"
   (with-current-buffer buffer
     (let ((prj (project-current)))
       (when prj
-        (replace-regexp-in-string "/$" ""
-                                  (car (project-roots prj)))))))
+        (project-name prj)))))
 
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(
@@ -81,7 +81,7 @@
   (setq tab-line-tabs-function 'tab-line-tabs-buffer-groups)
 
   ;; group by project.el project name
-  (setq tab-line-tabs-buffer-group-function #'haf/tab-line-buffer-group)
+  (setq tab-line-tabs-buffer-group-function #'haf/tab-line-group-by-project)
 
   ;; switching tabs like in vim
   ;; TODO: Try to also configure switching to a specific tab, like: 5 gt goes to the fifth tab
