@@ -1,7 +1,8 @@
 ;; TABS CONFIG
-;; I use centaur tabs but (TODO) I'd love to be able to achieve a similar config
-;; using the built-in tab-line mode.
-;; In the future, I hope to set up some config to chose between the two
+;; ==================
+;; My config for the topmost tabs for selecting between open buffers. I switch between
+;; centaur-tabs and the builtin tab-line with 'haf/tabs-package'
+
 
 ;; TODO: Try to use :general instead of :bind
 
@@ -55,6 +56,14 @@
   :init
   (global-tab-line-mode)
   :config
+  (defun haf/tab-line-group-by-project (buffer)
+  "Use the project.el name for the buffer group"
+  (with-current-buffer buffer
+    (let ((prj (project-current)))
+      (when prj
+        (replace-regexp-in-string "/$" ""
+                                  (car (project-roots prj)))))))
+
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(
                                   help-mode 
@@ -68,10 +77,11 @@
   (setq tab-line-switch-cycling t)
 
   ;; show tabs according to groups
-  ;; note that the group isn't actually configured and it's using
-  ;; the default (group by major mode) unless I (TODO) set up
-  ;; the tab-line-tabs-buffer-groups-function
+  ;; the groups are decided by tab-line-tabs-buffer-group-function
   (setq tab-line-tabs-function 'tab-line-tabs-buffer-groups)
+
+  ;; group by project.el project name
+  (setq tab-line-tabs-buffer-group-function #'haf/tab-line-buffer-group)
 
   ;; switching tabs like in vim
   ;; TODO: Try to also configure switching to a specific tab, like: 5 gt goes to the fifth tab
