@@ -56,13 +56,18 @@
   :init
   (global-tab-line-mode)
   :config
-  ;; TODO: When it's a temporary buffer, put it on some other group, otherwise all temporaries end up in the same group
+
+  ;; group buffers that start with * as temporary, and anything in a project
+  ;; under the project name
   (defun haf/tab-line-group-by-project (buffer)
-  "Use the project.el name for the buffer group"
-  (with-current-buffer buffer
-    (let ((prj (project-current)))
-      (when prj
-        (project-name prj)))))
+    "Use the project.el name for the buffer group"
+    (if (or (s-prefix-p "*" (buffer-name buffer))
+            (s-prefix-p " *" (buffer-name buffer)))
+      "temporary"
+      (with-current-buffer buffer
+        (let ((prj (project-current)))
+          (when prj
+            (project-name prj))))))
 
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(
