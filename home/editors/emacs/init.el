@@ -1,3 +1,4 @@
+;; TODO: Unify some of my configs (pop-up buffers, without tabs) into a haf/popup-buffers variable, and also add to it cargo-test
 ;; TODO: Some form of changing font size for all buffers, please
 ;; TODO: I think any errors during nix-rebuild that say "assignment to free variable" mean that I'm assigning to variables that don't even exist
 ;; TODO: Use meow? It seems pretty rad
