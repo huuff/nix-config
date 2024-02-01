@@ -49,6 +49,9 @@
     ("g T" . centaur-tabs-backward))
 )
 
+;; TODO: Try to make tabs a bit taller
+;; TODO: Put some mark in the current active tab?
+;; TODO: A mark on modified tabs?
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
