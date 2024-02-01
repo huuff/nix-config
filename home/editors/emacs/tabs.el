@@ -52,6 +52,7 @@
 ;; TODO: Try to make tabs a bit taller
 ;; TODO: Put some mark in the current active tab?
 ;; TODO: A mark on modified tabs?
+;; TODO: A keybinding to close all other open tabs (all but current)
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
