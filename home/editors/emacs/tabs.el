@@ -60,6 +60,7 @@
   (global-tab-line-mode)
   :config
 
+  ;; TODO: This makes CPU usage go through the roof! I'm sure I broke something
   ;; group buffers that start with * as temporary, and anything in a project
   ;; under the project name
   (defun haf/tab-line-group-by-project (buffer)
