@@ -7,7 +7,7 @@
 ;; TODO: Try to use :general instead of :bind
 
 (defvar haf/tabs-package 'tab-line
-  "The package to be used for tabs, either 'centaur or 'tab-line")
+  "The package to be used for tabs, either 'centaur' or 'tab-line")
 
 ;; TODO: Split workspaces by some useful criterion rather than just by project.
 ;; for example, excluding by treemacs workspaces would be great (but that would depend on treemacs)
@@ -49,7 +49,6 @@
     ("g T" . centaur-tabs-backward))
 )
 
-;; TODO: the current tab always appears as the first one, which makes it impossible to cycle through tabs. UPDATE: I should set some sort function
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
@@ -69,13 +68,19 @@
           (when prj
             (project-name prj))))))
 
+  ;; sort buffers in a group
+  ;; it's pretty important because otherwise the current one is always the first
+  ;; which breaks pre  (defun my-buffer-name-sort (a b)
+  (setq tab-line-tabs-buffer-group-sort-function #'(lambda (buf1 buf2)
+                                                    (string< (buffer-name buf1)
+                                                            (buffer-name buf2))))
+
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(
                                   help-mode 
                                   compilation-mode
                                   rustic-compilation-mode
-                                )
-  )
+                                ))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
