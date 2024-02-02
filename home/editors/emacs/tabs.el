@@ -51,7 +51,6 @@
 
 ;; TODO: Try to make tabs a bit taller
 ;; TODO: Put some mark in the current active tab?
-;; TODO: A mark on modified tabs?
 ;; TODO: A keybinding to close all other open tabs (all but current)
 (use-package tab-line
   :ensure nil ;; already included in emacs
@@ -70,10 +69,18 @@
           ;; if I don't do this, project-current will run for these and CPU usage
           ;; goes through the roof
           ((s-suffix-p ".el.gz" (buffer-name buffer)) "emacs")
-          ;; otherwise, group by current project
+          ;; otherwise, group by current project.el project
           (t (with-current-buffer buffer
               (let ((prj (project-current)))
                (if prj (project-name prj) "other"))))))
+
+  ;; fine-tune the name of the tabs
+  (defun haf/tab-line-tab-name (buffer)
+    "Stylize the tab name"
+    ;; append * to modified buffers
+    (cond ((buffer-modified-p buffer) (format "%s*" (buffer-name buffer)))
+          ;; otherwise, just put the buffer name
+          (t (buffer-name buffer))))
 
   ;; sort buffers in a group
   ;; it's pretty important because otherwise the current one is always the first
@@ -99,6 +106,9 @@
 
   ;; group by project.el project name
   (setq tab-line-tabs-buffer-group-function #'haf/tab-line-group-by-project)
+
+  ;; custom tab name
+  (setq tab-line-tab-name-function #'haf/tab-line-tab-name)
 
   ;; switching tabs like in vim
   ;; TODO: Try to also configure switching to a specific tab, like: 5 gt goes to the fifth tab
