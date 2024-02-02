@@ -60,18 +60,20 @@
   (global-tab-line-mode)
   :config
 
-  ;; TODO: This makes CPU usage go through the roof! I'm sure I broke something
-  ;; group buffers that start with * as temporary, and anything in a project
-  ;; under the project name
+  ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
     "Use the project.el name for the buffer group"
-    (if (or (s-prefix-p "*" (buffer-name buffer))
-            (s-prefix-p " *" (buffer-name buffer)))
-      "temporary"
-      (with-current-buffer buffer
-        (let ((prj (project-current)))
-          (when prj
-            (project-name prj))))))
+    ;; group buffers that start with an asterisk under "temporary"
+    (cond ((or (s-prefix-p "*" (buffer-name buffer))
+              (s-prefix-p " *" (buffer-name buffer))) "temporary")
+          ;; group elisp sources under "emacs"
+          ;; if I don't do this, project-current will run for these and CPU usage
+          ;; goes through the roof
+          ((s-suffix-p ".el.gz" (buffer-name buffer)) "emacs")
+          ;; otherwise, group by current project
+          (t (with-current-buffer buffer
+              (let ((prj (project-current)))
+               (if prj (project-name prj) "other"))))))
 
   ;; sort buffers in a group
   ;; it's pretty important because otherwise the current one is always the first
