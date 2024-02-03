@@ -438,6 +438,11 @@
   ;; bothersome when I'm cycling through errors.
   ;; TODO: Maybe only set it for rustic-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
+
+  ;; TODO: but applying this to web-mode means it's applied to all other web-modes! (tsx for example)
+  ;; so I should find a way to apply it only to svelte
+  (add-to-list 'eglot-server-programs
+          '(web-mode . ("svelteserver" "--stdio")))
 )
 
 ;; dape
