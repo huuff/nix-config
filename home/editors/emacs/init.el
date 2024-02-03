@@ -648,6 +648,11 @@
   :config
 )
 
+;; web-mode
+(use-package web-mode
+  :mode "\\.svelte\\'"
+  )
+
 ;; keybindings
 
 ;; keybindings that are supposed to work in normal state, but that
