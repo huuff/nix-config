@@ -57,7 +57,7 @@
   :init
   (global-tab-line-mode)
   :custom-face
-  (tab-line-tab-current ((t (:weight bold))))
+  (tab-line-tab-current ((t (:inherit tab-line-tab :weight bold))))
   :config
   ;; only use special face functions for modified tabs. I removed styles for special tabs because I didn't like nor need them
   (setq tab-line-tab-face-functions '(
