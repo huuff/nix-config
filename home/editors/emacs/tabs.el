@@ -50,14 +50,19 @@
 )
 
 ;; TODO: Try to make tabs a bit taller
-;; TODO: Put some mark in the current active tab?
 ;; TODO: A keybinding to close all other open tabs (all but current)
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
   :init
   (global-tab-line-mode)
+  :custom-face
+  (tab-line-tab-current ((t (:weight bold))))
   :config
+  ;; only use special face functions for modified tabs. I removed styles for special tabs because I didn't like nor need them
+  (setq tab-line-tab-face-functions '(
+                                        tab-line-tab-face-modified
+                                      ))
 
   ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
@@ -78,9 +83,13 @@
   (defun haf/tab-line-tab-name (buffer)
     "Stylize the tab name"
     ;; append * to modified buffers
-    (cond ((buffer-modified-p buffer) (format "%s*" (buffer-name buffer)))
-          ;; otherwise, just put the buffer name
-          (t (buffer-name buffer))))
+    (format "%s%s%s"
+      ;; prepend a vertical bar to current-buffer
+      (if (eq (current-buffer) buffer) "|" "")
+      ;; buffer name in the middle
+      (buffer-name buffer)
+      ;; asterisk at the end for modified buffers
+      (if (buffer-modified-p buffer) "*" "")))
 
   ;; sort buffers in a group
   ;; it's pretty important because otherwise the current one is always the first
