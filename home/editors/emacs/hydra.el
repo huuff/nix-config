@@ -1,10 +1,8 @@
-(defvar multicursor-package 'multiple-cursors
-  "The package to be used for multiple cursors, either 'evil-mc or 'multiple-cursors")
-
 (use-package hydra
   :config
   ;; TODO: Allow switching to project diagnostics
   ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
+  ;; TODO: This barely works, go into a rust file, delete a long import section and try to fix them one by one, you'll find that it's broken all around
   (defhydra hydra-flymake
     (:pre (progn (flymake-show-buffer-diagnostics) (flymake-goto-next-error))
      :post (haf/close-flymake-diagnostics)
