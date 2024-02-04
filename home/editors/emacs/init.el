@@ -520,6 +520,7 @@
 
 ;;FUTURE: This may not be needed in emacs 30 or further,
 ;;but currently, it's much easier this way
+;; TODO: Typescript version is broken! I need to pin it to some revision I can be sure it works
 (use-package treesit-auto
   :custom
     (treesit-auto-install 'prompt)
