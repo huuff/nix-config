@@ -508,6 +508,7 @@
 (use-package sideline-flymake)
 
 ;; rust
+;; TODO (MAYBE) rustic-mode won't work with tree-sitter, so maybe I'll just have to drop it
 (use-package rustic
   :init
   (setq rustic-lsp-client 'eglot)
@@ -517,21 +518,19 @@
 )
 (use-package rust-mode)
 
-;; TODO: Just uncommenting this would make native tree-sitter
-;; work... but I have problems with rustic-mode for rust.
-;; Since it's not rust-mode but rustic-mode, there's no tree-sitter (rustic-ts-mode) available, and a lot of stuff breaks (like eglot).
-;; I shall follow rustic-mode development to see if they release a newer version that fixes it
-;; automatically install tree sitter grammars and switch to
-;; tree-sitter enhanced modes
-;; FUTURE: This may not be needed in emacs 30 or further,
-;; but currently, it's much easier this way
-;;(use-package treesit-auto
-;;  :custom
-;;    (treesit-auto-install 'prompt)
-;;  :config
-;;    (treesit-auto-add-to-auto-mode-alist 'all)
-;;    (global-treesit-auto-mode)
-;;)
+;;FUTURE: This may not be needed in emacs 30 or further,
+;;but currently, it's much easier this way
+(use-package treesit-auto
+  :custom
+    (treesit-auto-install 'prompt)
+  :config
+    ;; remove rust because rustic-mode is not compatible with treesitter
+    (delete 'rust treesit-auto-langs)
+
+    ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
+    (treesit-auto-add-to-auto-mode-alist 'all)
+    (global-treesit-auto-mode)
+)
 
 ;; shackle
 ;; allows configuring in what way each buffer will show
