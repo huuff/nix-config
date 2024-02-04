@@ -520,13 +520,25 @@
 
 ;;FUTURE: This may not be needed in emacs 30 or further,
 ;;but currently, it's much easier this way
-;; TODO: Typescript version is broken! I need to pin it to some revision I can be sure it works
 (use-package treesit-auto
   :custom
     (treesit-auto-install 'prompt)
   :config
     ;; remove rust because rustic-mode is not compatible with treesitter
     (delete 'rust treesit-auto-langs)
+
+    ;; set v0.20.2 version for typescript since the default is master and that's
+    ;; incompatible with emacs' version
+    (let ((typescript-recipe (make-treesit-auto-recipe
+      :lang 'typescript
+      :ts-mode 'typescript-ts-mode
+      :remap 'typescript-mode
+      :requires 'tsx
+      :url "https://github.com/tree-sitter/tree-sitter-typescript"
+      :revision "v0.20.2"
+      :source-dir "typescript/src"
+      :ext "\\.ts\\'")))
+      (add-to-list 'treesit-auto-recipe-list typescript-recipe))
 
     ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
     (treesit-auto-add-to-auto-mode-alist 'all)
