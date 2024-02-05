@@ -442,15 +442,13 @@
   ;; TODO: Maybe only set it for rustic-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
-  ;; TODO: but applying this to web-mode means it's applied to all other web-modes! (tsx for example)
-  ;; so I should find a way to apply it only to svelte
   (add-to-list 'eglot-server-programs
-          '(web-mode . ("svelteserver" "--stdio")))
+          '(svelte-mode . ("svelteserver" "--stdio")))
 
   :hook
   ((tsx-ts-mode . eglot-ensure)
    (typescript-ts-mode . eglot-ensure)
-   (web-mode . eglot-ensure))
+   (svelte-mode . eglot-ensure))
 )
 
 ;; dape
@@ -675,8 +673,11 @@
 
 ;; web-mode
 (use-package web-mode
-  :mode "\\.svelte\\'"
-  )
+  :config 
+  ;; define a new mode for svelte so I can hook to it specifically instead of
+  ;; every web-mode
+  (define-derived-mode svelte-mode web-mode "Svelte")
+  (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode)))
 
 ;; keybindings
 
