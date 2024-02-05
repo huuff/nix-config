@@ -1,3 +1,4 @@
+;; TODO: Use helpful, it seems pretty helpful
 ;; TODO: Set up my themes for svelte-mode and typescript-ts-mode
 ;; TODO: Use apheleia?
 ;; TODO: Use eglot-x?
