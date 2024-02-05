@@ -1,3 +1,5 @@
+;; TODO: Use apheleia?
+;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
 ;; TODO: Unify some of my configs (pop-up buffers, without tabs) into a haf/popup-buffers variable, and also add to it cargo-test
 ;; TODO: Some form of changing font size for all buffers, please
@@ -423,6 +425,7 @@
 
 ;; eglot
 ;; TODO: Enable it for nix
+;; TODO: Maybe enable it for rust? rustic mode does it but I don't know for how long I'll use it
 (use-package eglot
   :custom
   (eglot-ignored-capabilities
@@ -443,6 +446,11 @@
   ;; so I should find a way to apply it only to svelte
   (add-to-list 'eglot-server-programs
           '(web-mode . ("svelteserver" "--stdio")))
+
+  :hook
+  ((tsx-ts-mode . eglot-ensure)
+   (typescript-ts-mode . eglot-ensure)
+   (web-mode . eglot-ensure))
 )
 
 ;; dape
