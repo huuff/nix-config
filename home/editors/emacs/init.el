@@ -424,8 +424,20 @@
 )
 
 ;; lorem-ipsum
+;; TODO: Maybe also configure separators, etc. for text-mode and markdown-mode
+;; TODO: Can I configure an abbrev for this? (so writing lorem would expand to a paragraph) That's be cool
 (use-package lorem-ipsum
-  :commands (Lorem-ipsum-insert-sentences Lorem-ipsum-insert-list Lorem-ipsum-insert-paragraphs)
+  :commands (lorem-ipsum-insert-sentences lorem-ipsum-insert-list lorem-ipsum-insert-paragraphs)
+  :preface 
+  (defun haf/configure-html-lorem-ipsum ()
+    (setq lorem-ipsum-paragraph-separator "<br><br>\n"
+          lorem-ipsum-sentence-separator "&nbsp;&nbsp;"
+          lorem-ipsum-list-beginning "<ul>\n"
+          lorem-ipsum-list-bullet "<li>"
+          lorem-ipsum-list-item-end "</li>\n"
+          lorem-ipsum-list-end "</ul>\n"))
+
+  :hook ((web-mode . haf/configure-html-lorem-ipsum))
 )
 
 ;; eglot
