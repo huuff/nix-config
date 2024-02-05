@@ -73,6 +73,8 @@
           ;; group elisp sources under "emacs"
           ;; if I don't do this, project-current will run for these and CPU usage
           ;; goes through the roof
+          ;; TODO: This still breaks heavily with any packages that are external but not
+          ;; core-emacs!
           ((s-suffix-p ".el.gz" (buffer-name buffer)) "emacs")
           ;; otherwise, group by current project.el project
           (t (with-current-buffer buffer

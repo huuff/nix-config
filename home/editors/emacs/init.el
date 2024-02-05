@@ -1,3 +1,4 @@
+;; TODO: Set up my themes for svelte-mode and typescript-ts-mode
 ;; TODO: Use apheleia?
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
@@ -422,8 +423,14 @@
   (setq expand-region-fast-keys-enabled nil)
 )
 
+;; lorem-ipsum
+(use-package lorem-ipsum
+  :commands (Lorem-ipsum-insert-sentences Lorem-ipsum-insert-list Lorem-ipsum-insert-paragraphs)
+)
 
 ;; eglot
+;; ================
+;; Built-in integration with the LSP protocol
 ;; TODO: Enable it for nix
 ;; TODO: Maybe enable it for rust? rustic mode does it but I don't know for how long I'll use it
 (use-package eglot
@@ -632,6 +639,8 @@
 )
 
 ;; (themes)
+;; TODO: Use cl-cond or smth
+;; TODO: Rename arg to args instead of `it`
 (defun haf/switch-theme-by-mode (&optional it)
   "Switches theme depending on current major-mode"
   (interactive)
