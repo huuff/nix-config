@@ -654,7 +654,6 @@
 ;; (themes)
 ;; TODO: Use cl-cond or smth
 ;; TODO: Rename arg to args instead of `it`
-;; TODO: This goes crazy switching themes now
 (defun haf/switch-theme-by-mode (&optional it)
   "Switches theme depending on current major-mode"
   (interactive)
@@ -662,7 +661,7 @@
     ((eq major-mode 'rustic-mode) (load-theme 'doom-gruvbox))
     ((eq major-mode 'emacs-lisp-mode) (load-theme 'doom-one))
     ((eq major-mode 'typescript-ts-mode) (load-theme 'doom-material))
-    ((eq major-mode 'svelte-mode (load-theme 'doom-moonlight)))
+    ((eq major-mode 'svelte-mode) (load-theme 'doom-moonlight))
   )
 )
 (use-package doom-themes
