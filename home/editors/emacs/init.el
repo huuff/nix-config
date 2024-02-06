@@ -6,7 +6,7 @@
 ;; TODO: Some form of changing font size for all buffers, please
 ;; TODO: I think any errors during nix-rebuild that say "assignment to free variable" mean that I'm assigning to variables that don't even exist
 ;; TODO: Use meow? It seems pretty rad
-;; TODO: Some package to highlight the current window or I'll go crazy
+;; TODO: Some package to highlight the current window or I'll go crazy (UPDATE: Solaire mode may also work?)
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: My rustic window management stuff doesn't work sometimes
