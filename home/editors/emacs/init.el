@@ -1,5 +1,4 @@
 ;; TODO: Use helpful, it seems pretty helpful
-;; TODO: Set up my themes for svelte-mode and typescript-ts-mode
 ;; TODO: Use apheleia?
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
@@ -660,6 +659,8 @@
   (cond
     ((eq major-mode 'rustic-mode) (load-theme 'doom-gruvbox))
     ((eq major-mode 'emacs-lisp-mode) (load-theme 'doom-one))
+    ((eq major-mode 'typescript-ts-mode) (load-theme 'doom-material))
+    ((eq major-mode 'svelte-mode (load-theme 'doom-moonlight)))
   )
 )
 (use-package doom-themes
@@ -683,6 +684,7 @@
     (haf/delay-fun #'haf/switch-theme-by-mode 2)
 
     ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
+    ;; TODO: This doesn't work when changing tabs with tab-line!
     (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
 )
 
