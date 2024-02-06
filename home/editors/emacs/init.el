@@ -654,6 +654,7 @@
 ;; (themes)
 ;; TODO: Use cl-cond or smth
 ;; TODO: Rename arg to args instead of `it`
+;; TODO: This goes crazy switching themes now
 (defun haf/switch-theme-by-mode (&optional it)
   "Switches theme depending on current major-mode"
   (interactive)
