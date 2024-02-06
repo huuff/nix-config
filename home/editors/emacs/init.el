@@ -1,3 +1,4 @@
+;; TODO: Make eshell a popup buffer
 ;; TODO: Use helpful, it seems pretty helpful
 ;; TODO: Use apheleia?
 ;; TODO: Use eglot-x?
