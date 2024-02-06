@@ -170,6 +170,15 @@
     autoVerticalOutput = true;
   };
 
+  # dark mode
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Juno";
+      package = pkgs.juno-theme;
+    };
+  };
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
