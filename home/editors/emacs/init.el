@@ -1,6 +1,5 @@
 ;; TODO: Make eshell a popup buffer
 ;; TODO: Use helpful, it seems pretty helpful
-;; TODO: Use apheleia?
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
 ;; TODO: Unify some of my configs (pop-up buffers, without tabs) into a haf/popup-buffers variable, and also add to it cargo-test
@@ -470,6 +469,12 @@
    (typescript-ts-mode . eglot-ensure)
    (svelte-mode . eglot-ensure))
 )
+
+;; apheleia
+;; =====================
+;; auto-format buffers on save
+(use-package apheleia
+  :config (apheleia-global-mode +1))
 
 ;; dape
 ;; =====================
