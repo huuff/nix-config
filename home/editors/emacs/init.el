@@ -657,16 +657,18 @@
 )
 
 ;; (themes)
-;; TODO: Use cl-cond or smth
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
-  (cl-case major-mode
-    ('rustic-mode (load-theme 'doom-gruvbox t))
-    ('emacs-lisp-mode (load-theme 'doom-one t))
-    ('typescript-ts-mode (load-theme 'doom-material t))
-    ('svelte-mode (load-theme 'doom-moonlight t))
-  )
+  (let ((next-theme (cl-case major-mode
+    ('rustic-mode 'doom-gruvbox)
+    ('emacs-lisp-mode 'doom-one)
+    ('typescript-ts-mode 'doom-material)
+    ('svelte-mode 'doom-moonlight)
+    (t nil)
+  )))
+      (when next-theme (load-theme next-theme t))
+    )
 )
 (use-package doom-themes
   :ensure t
