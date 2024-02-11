@@ -661,11 +661,11 @@
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
-  (cond
-    ((eq major-mode 'rustic-mode) (load-theme 'doom-gruvbox t))
-    ((eq major-mode 'emacs-lisp-mode) (load-theme 'doom-one t))
-    ((eq major-mode 'typescript-ts-mode) (load-theme 'doom-material t))
-    ((eq major-mode 'svelte-mode) (load-theme 'doom-moonlight t))
+  (cl-case major-mode
+    ('rustic-mode (load-theme 'doom-gruvbox t))
+    ('emacs-lisp-mode (load-theme 'doom-one t))
+    ('typescript-ts-mode (load-theme 'doom-material t))
+    ('svelte-mode (load-theme 'doom-moonlight t))
   )
 )
 (use-package doom-themes
