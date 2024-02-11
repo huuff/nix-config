@@ -667,9 +667,11 @@
     ('svelte-mode 'doom-moonlight)
     (t nil)
   )))
-      (when next-theme (load-theme next-theme t))
-    )
-)
+      (when next-theme (progn 
+                          (dolist (theme custom-enabled-themes) (disable-theme theme))
+                          (load-theme next-theme t)))))
+
+
 (use-package doom-themes
   :ensure t
   :config
