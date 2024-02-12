@@ -20,7 +20,6 @@
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
-;; TODO: Some direnv integration so I can safely switch projects
 ;; TODO: Maybe use a dashboard, but I'd also need that direnv integration
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
@@ -703,6 +702,11 @@
   :init (doom-modeline-mode 1)
   :config
 )
+
+;; direnv
+(use-package direnv
+ :config
+ (direnv-mode))
 
 ;; web-mode
 (use-package web-mode
