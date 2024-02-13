@@ -49,6 +49,8 @@
     ("g T" . centaur-tabs-backward))
 )
 
+;; TODO: Remove the | from the selected tab (bold is enough)
+;; TODO: Try to use italics for modified tabs names (but my font (Fira Code) has no italics)
 ;; TODO: Try to make tabs a bit taller
 (use-package tab-line
   :ensure nil ;; already included in emacs
