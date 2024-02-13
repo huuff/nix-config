@@ -50,7 +50,6 @@
 )
 
 ;; TODO: Try to make tabs a bit taller
-;; TODO: A keybinding to close all other open tabs (all but current)
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
@@ -61,8 +60,7 @@
   :config
   ;; only use special face functions for modified tabs. I removed styles for special tabs because I didn't like nor need them
   (setq tab-line-tab-face-functions '(
-                                        tab-line-tab-face-modified
-                                      ))
+                                        tab-line-tab-face-modified))
 
   ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
@@ -118,6 +116,16 @@
 
   ;; custom tab name
   (setq tab-line-tab-name-function #'haf/tab-line-tab-name)
+
+  ;; fun to close all non-active tabs
+  (defun haf/tab-line-close-other-tabs ()
+    "Close all tabs in current group that aren't active"
+    (interactive)
+    (let ((other-tabs (cl-remove-if (lambda (tab) (or
+                                                    (cdr (assoc 'selected tab))
+                                                    (cdr (assoc 'group-tab tab)))) (tab-line-tabs-buffer-groups))))
+      (dolist (tab other-tabs) (funcall (cdr (assoc 'close tab))))))
+
 
   ;; switching tabs like in vim
   ;; TODO: Try to also configure switching to a specific tab, like: 5 gt goes to the fifth tab
