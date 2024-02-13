@@ -70,12 +70,10 @@
     ;; group buffers that start with an asterisk under "temporary"
     (cond ((or (s-prefix-p "*" (buffer-name buffer))
               (s-prefix-p " *" (buffer-name buffer))) "temporary")
-          ;; group elisp sources under "emacs"
+          ;; group paths under /nix/store under the "external" grou
           ;; if I don't do this, project-current will run for these and CPU usage
           ;; goes through the roof
-          ;; TODO: This still breaks heavily with any packages that are external but not
-          ;; core-emacs!
-          ((s-suffix-p ".el.gz" (buffer-name buffer)) "emacs")
+          ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
           ;; otherwise, group by current project.el project
           (t (with-current-buffer buffer
               (let ((prj (project-current)))
