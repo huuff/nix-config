@@ -1,3 +1,4 @@
+;; TODO: Please remove the tab on "Treemacs Update Single File process"
 ;; TABS CONFIG
 ;; ==================
 ;; My config for the topmost tabs for selecting between open buffers. I switch between
