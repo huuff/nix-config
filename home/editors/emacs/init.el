@@ -206,10 +206,8 @@
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ;; M-g bindings in `goto-map'
          ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
          ("M-g g" . consult-goto-line)             ;; orig. goto-line
          ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
          ;; Isearch integration
          ("M-s e" . consult-isearch-history)
          :map isearch-mode-map
