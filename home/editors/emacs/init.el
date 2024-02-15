@@ -1,6 +1,6 @@
+;; TODO: Maybe I should also shackle helpful same as help
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Make eshell a popup buffer
-;; TODO: Use helpful, it seems pretty helpful
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
 ;; TODO: Unify some of my configs (pop-up buffers, without tabs) into a haf/popup-buffers variable, and also add to it cargo-test
@@ -186,6 +186,25 @@
   :init
   (marginalia-mode)
 )
+
+;; helpful
+;; =====================
+;; much better help mode that:
+;; * includes source code for elisp functions
+;; * prettifies docs
+;; * includes more links to other definitions
+;; * includes symbol properties
+;; * has easy links to disassemble compiled values or debug functions
+(use-package helpful
+  :bind (([remap describe-function] . helpful-callable)
+         ([remap describe-command]  . helpful-command)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-key]      . helpful-key)
+         ([remap describe-symbol]   . helpful-symbol)
+         :map emacs-lisp-mode-map
+         ("C-c C-d"                 . helpful-at-point)
+         :map lisp-interaction-mode-map
+         ("C-c C-d"                 . helpful-at-point)))
 
 ;; consult
 (use-package consult
