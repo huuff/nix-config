@@ -26,14 +26,12 @@
 ;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Maybe I should add #' in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
-;; TODO: Please disable the horrible mode that just leaves a shitload of # files around, and just in case, add it to my personal gitignore
 ;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
 ;; I might get a "mismatched types" but need to run rustc to know which type was the actual
 ;; and which was the expected!
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
-;; TODO: Set auto-save for rust so the LSP works
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: Comment and explain ALL packages
 ;; TODO: Reorganize it a little
@@ -110,6 +108,18 @@
     (add-to-list 'completion-at-point-functions #'yasnippet-capf)
 )
 
+;; super-save
+;; =====================
+;; auto-saves the buffer to its file on certain events (such as switching buffer)
+(use-package super-save
+  :ensure t
+  :custom
+  ;; auto-save also when idle
+  (super-save-auto-save-when-idle t)
+  :config
+  (super-save-mode +1)
+  ;; disable default horrible autosave mode that leaves thousands of backup files
+  (setq auto-save-default nil))
 
 ;; (bind-key) necessary for use-package
 (use-package bind-key
