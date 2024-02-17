@@ -1,3 +1,4 @@
+;; TODO: Try out lsp-booster, it may be impressive
 ;; TODO: Maybe I should also shackle helpful same as help
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Make eshell a popup buffer
