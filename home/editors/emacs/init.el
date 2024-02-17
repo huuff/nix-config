@@ -53,6 +53,7 @@
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
 ;; TODO: Maybe set up dictionaries and spell checking?
 ;; TODO: Use prism, at least for elisp buffers?
+;; TODO: Maybe use bufler? It's pretty cool, but I'd love to have a preview (consult) for switching buffers. Also, workspaces seem pretty sensible and I could use them for my tab-line
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -111,6 +112,7 @@
 ;; super-save
 ;; =====================
 ;; auto-saves the buffer to its file on certain events (such as switching buffer)
+;; TODO: This package has a list of hooks on which to save... maybe I could put here saving after an eglot code action rather than use my own hook there.
 (use-package super-save
   :ensure t
   :custom

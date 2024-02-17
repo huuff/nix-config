@@ -1,4 +1,3 @@
-;; TODO: Please remove the tab on "Treemacs Update Single File process"
 ;; TABS CONFIG
 ;; ==================
 ;; My config for the topmost tabs for selecting between open buffers. I switch between
@@ -70,7 +69,9 @@
     "Use the project.el name for the buffer group"
     ;; group buffers that start with an asterisk under "temporary"
     (cond ((or (s-prefix-p "*" (buffer-name buffer))
-              (s-prefix-p " *" (buffer-name buffer))) "temporary")
+               (s-prefix-p " *" (buffer-name buffer))
+               ;; also put this weird buffer there since it's regularly popping up
+               (s-prefix-p "Treemacs Update Single File" (buffer-name buffer))) "temporary")
           ;; group paths under /nix/store under the "external" grou
           ;; if I don't do this, project-current will run for these and CPU usage
           ;; goes through the roof
