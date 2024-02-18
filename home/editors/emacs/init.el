@@ -1,3 +1,4 @@
+;; TODO: Maybe use literate-calc-mode
 ;; TODO: Try out lsp-booster, it may be impressive
 ;; TODO: Maybe I should also shackle helpful same as help
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
@@ -8,7 +9,7 @@
 ;; TODO: Some form of changing font size for all buffers, please
 ;; TODO: I think any errors during nix-rebuild that say "assignment to free variable" mean that I'm assigning to variables that don't even exist
 ;; TODO: Use meow? It seems pretty rad
-;; TODO: Some package to highlight the current window or I'll go crazy (UPDATE: Solaire+dimmer mode may also work?)
+;; TODO: Use dimmer.el
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: My rustic window management stuff doesn't work sometimes
@@ -448,6 +449,7 @@
   )
 )
 
+;; TODO: There's an alternative package for this that does the same but it's not specifically for evil, right? what was its name? maybe ask chatgpt. UPDATE: It's volatile-highlights
 ;; TODO: Colors aren't very visible. This issue:
 ;; https://github.com/edkolev/evil-goggles/issues/33
 ;; says it's because doom-themes but I've tried changing
@@ -455,8 +457,7 @@
 (use-package evil-goggles
   :after evil
   :config
-  (evil-goggles-mode)
-)
+  (evil-goggles-mode))
 
 ;; hungry-delete
 ;; deletes large sequences of whitespace with a single press
@@ -757,6 +758,15 @@
     ;; TODO: This doesn't work when changing tabs with tab-line!
     (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
 )
+
+;; solaire-mode
+;; =====================
+;; gives a brighter color to file-visiting buffers (where editing happens)
+;; and a darker one to the rest, so the "main" buffer is highlighted
+;; TODO: Pretty cool... but it's not picking up treemacs?
+(use-package solaire-mode
+  :config
+  (solaire-global-mode +1))
 
 ;; modeline
 (use-package doom-modeline
