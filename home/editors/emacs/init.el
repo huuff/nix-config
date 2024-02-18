@@ -776,6 +776,8 @@
   :config
 )
 
+;; TODO: This is not working for window switching or moves and I'd love to know why
+;; TODO: Also configure it for tab changes
 ;; pulsar
 ;; =====================
 ;; highlights the current line under some conditions (such as window changes)
@@ -792,8 +794,6 @@
   ;; integration with consult
   (add-hook 'consult-after-jump-hook #'pulsar-recenter-center)
   (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
-  ;; highlight when changing windows, but it doesn't seem to work
-  (add-hook 'window-selection-change-functions #'pulsar-pulse-line)
   ;; pulse on next-error
   (add-hook 'next-error-hook #'pulsar-pulse-line)
   ;; enable it globaly
