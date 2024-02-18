@@ -1,4 +1,5 @@
 ;; TODO: Maybe use literate-calc-mode
+;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: Try out lsp-booster, it may be impressive
 ;; TODO: Maybe I should also shackle helpful same as help
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
@@ -783,13 +784,19 @@
   :custom
   ;; enable pulsing (but it should be enabled by default anyway)
 	(pulsar-pulse t)
-  ;; self-describing
-  ;; TODO: This doesn't seem to be working
-  (pulsar-pulse-on-window-change t)
+  ;; prettier color
+  (pulsar-face 'pulsar-magenta)
+  ;; I set this to yellow because it's ugly and I don't even know when this should appear, so maybe if it's ugly I'll notice when it's firing
+  (pulsar-highlight-face 'pulsar-yellow)
   :config
   ;; integration with consult
   (add-hook 'consult-after-jump-hook #'pulsar-recenter-center)
   (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
+  ;; highlight when changing windows, but it doesn't seem to work
+  (add-hook 'window-selection-change-functions #'pulsar-pulse-line)
+  ;; pulse on next-error
+  (add-hook 'next-error-hook #'pulsar-pulse-line)
+  ;; enable it globaly
   (pulsar-global-mode 1))
 
 
