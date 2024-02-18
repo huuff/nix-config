@@ -137,7 +137,6 @@
 ;; nice dash board for the first screen
 (use-package dashboard
   :ensure t
-  :after (page-break-lines)
   :custom
   ;; choose project.el vs projectile for the project list
   (dashboard-projects-backend 'project-el)
