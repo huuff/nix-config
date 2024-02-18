@@ -1,3 +1,4 @@
+;; TODO: Make all === lines the same length in all files (very important)
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: Try out lsp-booster, it may be impressive
@@ -776,7 +777,6 @@
   :config
 )
 
-;; TODO: This is not working for window switching or moves and I'd love to know why
 ;; TODO: Also configure it for tab changes
 ;; pulsar
 ;; =====================
@@ -790,12 +790,18 @@
   (pulsar-face 'pulsar-magenta)
   ;; I set this to yellow because it's ugly and I don't even know when this should appear, so maybe if it's ugly I'll notice when it's firing
   (pulsar-highlight-face 'pulsar-yellow)
+  :preface
+  (defun haf/pulsar-pulse-line (_) 
+    "Pulses line but also takes an argument, so I can use it as a window-selection-change-functions"
+    (pulsar-pulse-line))
   :config
   ;; integration with consult
   (add-hook 'consult-after-jump-hook #'pulsar-recenter-center)
   (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
   ;; pulse on next-error
   (add-hook 'next-error-hook #'pulsar-pulse-line)
+  ;; pulse on window changes
+  (add-hook 'window-selection-change-functions #'haf/pulsar-pulse-line)
   ;; enable it globaly
   (pulsar-global-mode 1))
 
