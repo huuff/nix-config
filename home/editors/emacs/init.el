@@ -38,8 +38,8 @@
 ;; TODO: Comment and explain ALL packages
 ;; TODO: Reorganize it a little
 ;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
-  ;; - nerd-icons-install-fonts
-  ;; - all-the-icons-install-fonts
+;; - nerd-icons-install-fonts
+;; - all-the-icons-install-fonts
 ;; TODO: Use magit
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML
@@ -88,7 +88,7 @@
   :init
   ;; automatically unbind any definition that conflicts with mine
   (general-auto-unbind-keys t)
-)
+  )
 
 
 ;; allow pasting with Ctrl+V, even in minibuffer
@@ -99,17 +99,17 @@
   :defer 2
   :config
   (yas-global-mode 1)
-)
+  )
 
 (use-package yasnippet-snippets
   :defer
-)
+  )
 
 (use-package yasnippet-capf
   :after (yasnippet cape)
   :config
-    (add-to-list 'completion-at-point-functions #'yasnippet-capf)
-)
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf)
+  )
 
 ;; super-save
 ;; =====================
@@ -130,7 +130,7 @@
   :ensure t
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
-)
+  )
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: It'd be huge to display an elfeed with planetemacs
@@ -180,17 +180,17 @@
   :init
   (global-corfu-mode)
   (setq
-    corfu-auto-delay 0.75
-  )
+   corfu-auto-delay 0.75
+   )
   :general
   (:states '(normal insert)
-    :keymaps 'override
-    "C-SPC" 'completion-at-point
-  )
+           :keymaps 'override
+           "C-SPC" 'completion-at-point
+           )
   :custom
-    ;; enable autocompletion
-    (corfu-auto t)
-)
+  ;; enable autocompletion
+  (corfu-auto t)
+  )
 
 ;; show a pop-up with documentation on each autocompletion candidate after a small delay
 (use-package corfu-popupinfo
@@ -198,7 +198,7 @@
   :after corfu
   :config
   (corfu-popupinfo-mode)
-)
+  )
 
 ;; orderless
 (use-package orderless
@@ -206,32 +206,32 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion))))
-)
+  )
 
 ;; eldoc
 (use-package eldoc
   :init
   (setq 
-    eldoc-idle-delay 0.75
+   eldoc-idle-delay 0.75
+   )
   )
-)
 
 (use-package eldoc-box
   :general
   (:states 'normal
-   :keymaps 'override
-   ;; same key as for vim
-   "K" 'eldoc-box-help-at-point
-  )
+           :keymaps 'override
+           ;; same key as for vim
+           "K" 'eldoc-box-help-at-point
+           )
   :config
   (setq eldoc-box-clear-with-C-g t)
-)
+  )
 
 ;; marginalia
 (use-package marginalia
   :init
   (marginalia-mode)
-)
+  )
 
 ;; helpful
 ;; =====================
@@ -324,26 +324,26 @@
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
   (setq consult-narrow-key "<") ;; "C-+"
-)
+  )
 
 ;; embark
 (use-package embark
   :ensure t
   :general
   ("C-," 'embark-act)
-)
+  )
 
 ;; consult integration
 (use-package embark-consult
   :ensure t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode)
-)
+  )
 
 ;; (nix-mode)
 (use-package nix-mode
   :mode "\\.nix\\'"
-)
+  )
 
 ;; (treemacs)
 (use-package treemacs
@@ -364,10 +364,10 @@
   :config
   ;; always select the current file in treemacs
   (treemacs-follow-mode t)
-)
+  )
 (use-package treemacs-evil
   :after (treemacs evil)
-)
+  )
 
 
 ;; (all-the-icons) 
@@ -384,7 +384,7 @@
   (evil-mode 1)
   ;; enable redo
   (evil-set-undo-system 'undo-redo)
-)
+  )
 
 ;; evil-collection
 ;; some features:
@@ -395,32 +395,32 @@
   :ensure t
   :config
   (evil-collection-init)
-)
+  )
 
 (use-package evil-nerd-commenter
   :init
   (evilnc-default-hotkeys)
-)
+  )
 (use-package evil-surround
   :after evil
   :config
   (global-evil-surround-mode 1)
-)
+  )
 
 (use-package evil-matchit
   :after evil
   :config
   (global-evil-matchit-mode 1)
-)
+  )
 
 (use-package evil-numbers
   :general
   ;; TODO: Use embark for this!
-    (:states '(normal insert)
-      "C-c +" 'evil-numbers/inc-at-pt
-      "C-c -" 'evil-numbers/dec-at-pt
-    )
-)
+  (:states '(normal insert)
+           "C-c +" 'evil-numbers/inc-at-pt
+           "C-c -" 'evil-numbers/dec-at-pt
+           )
+  )
 
 ;; TODO: Can I configure it so n and N also cycle results as for search?
 (use-package evil-snipe
@@ -430,7 +430,7 @@
   (evil-snipe-override-mode +1)
   ;; snipe in whole buffer, not just current line
   (setq evil-snipe-scope 'whole-buffer)
-)
+  )
 
 ;; TODO: Try to set up some way to exchange args order
 ;; for example see: https://github.com/wcsmith/evil-args/issues/4
@@ -441,15 +441,15 @@
   (evil-outer-text-objects-map "a" 'evil-outer-arg)
   ;; TODO: I don't even use any of these... bind them to something else?
   (:states 'normal
-    "L" 'evil-forward-arg
-    "H" 'evil-backward-arg
-    "K" 'evil-jump-out-args
-  )
+           "L" 'evil-forward-arg
+           "H" 'evil-backward-arg
+           "K" 'evil-jump-out-args
+           )
   (:states 'motion
-    "L" 'evil-forward-arg
-    "H" 'evil-backward-arg
+           "L" 'evil-forward-arg
+           "H" 'evil-backward-arg
+           )
   )
-)
 
 ;; TODO: There's an alternative package for this that does the same but it's not specifically for evil, right? what was its name? maybe ask chatgpt. UPDATE: It's volatile-highlights
 ;; TODO: Colors aren't very visible. This issue:
@@ -466,18 +466,18 @@
 (use-package hungry-delete
   :config
   (setq 
-    ;; do not delete aggresively join words
-    ;; without it, deleting the space between "word1      word2"
-    ;; ends up with "word1word2", with it, it's "word1 word2"
-    hungry-delete-join-reluctantly t
+   ;; do not delete aggresively join words
+   ;; without it, deleting the space between "word1      word2"
+   ;; ends up with "word1word2", with it, it's "word1 word2"
+   hungry-delete-join-reluctantly t
 
-    ;; I'm not even entirely sure what these characters are
-    ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
-    ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
-    hungry-delete-chars-to-skip " \t\r\f\v"
-  )
+   ;; I'm not even entirely sure what these characters are
+   ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
+   ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
+   hungry-delete-chars-to-skip " \t\r\f\v"
+   )
   (global-hungry-delete-mode)
-)
+  )
 
 ;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
@@ -485,7 +485,7 @@
   :config
   ;; disable fast keys since my hydra does that and they conflict otherwise
   (setq expand-region-fast-keys-enabled nil)
-)
+  )
 
 ;; lorem-ipsum
 ;; TODO: Maybe also configure separators, etc. for text-mode and markdown-mode
@@ -502,7 +502,7 @@
           lorem-ipsum-list-end "</ul>\n"))
 
   :hook ((web-mode . haf/configure-html-lorem-ipsum))
-)
+  )
 
 ;; eglot
 ;; ================
@@ -512,11 +512,11 @@
 (use-package eglot
   :custom
   (eglot-ignored-capabilities
-    '(
-      ;; disable semantic highlighting, leave it for tree-sitter
-      :semanticTokensProvider
-    )
-  )
+   '(
+     ;; disable semantic highlighting, leave it for tree-sitter
+     :semanticTokensProvider
+     )
+   )
   :config 
   ;; auto-save current buffer when any code action is executed.
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
@@ -526,13 +526,13 @@
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
   (add-to-list 'eglot-server-programs
-          '(svelte-mode . ("svelteserver" "--stdio")))
+               '(svelte-mode . ("svelteserver" "--stdio")))
 
   :hook
   ((tsx-ts-mode . eglot-ensure)
    (typescript-ts-mode . eglot-ensure)
    (svelte-mode . eglot-ensure))
-)
+  )
 
 ;; apheleia
 ;; =====================
@@ -547,59 +547,59 @@
 (use-package dape
   :config
   (add-to-list 'dape-configs
-    ;; XXX: custom (mostly copy-pasted) config for rust so I can
-    ;; inject (substitute) codelldb from nix
-    `(codelldb-rust 
-                modes (rust-mode rust-ts-mode)
-                command "@codelldb@" 
-                :type "lldb" 
-                :request "launch" 
-                command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
-                ensure dape-ensure-command port :autoport fn dape-config-autoport 
-                :cwd dape-cwd-fn 
-                :program dape-find-file 
-                :args [])
-    )
-)
+               ;; XXX: custom (mostly copy-pasted) config for rust so I can
+               ;; inject (substitute) codelldb from nix
+               `(codelldb-rust 
+                 modes (rust-mode rust-ts-mode)
+                 command "@codelldb@" 
+                 :type "lldb" 
+                 :request "launch" 
+                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+                 ensure dape-ensure-command port :autoport fn dape-config-autoport 
+                 :cwd dape-cwd-fn 
+                 :program dape-find-file 
+                 :args [])
+               )
+  )
 
 ;; cape
 (use-package cape
   :init
   (add-to-list 'completion-at-point-functions #'cape-file)
-)
+  )
 
 ;; Enable vertico
 (use-package vertico
   :init
   (vertico-mode)
-)
+  )
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
 (use-package savehist
   :ensure nil ;; already included in emacs
   :init
   (savehist-mode)
-)
+  )
 
 ;; flymake
 (use-package flymake
   :init
   (setq
-    flymake-no-changes-timeout 0.5
+   flymake-no-changes-timeout 0.5
+   )
   )
-)
 
 ;; sideline
 (use-package sideline
   :init 
   (setq
-    sideline-display-backend-name t
-    sideline-backends-right '(sideline-flymake)
-  )
+   sideline-display-backend-name t
+   sideline-backends-right '(sideline-flymake)
+   )
   :hook (
-    (flymake-mode  . sideline-mode)
+         (flymake-mode  . sideline-mode)
+         )
   )
-)
 (use-package sideline-flymake)
 
 ;; rust
@@ -607,38 +607,38 @@
 (use-package rustic
   :init
   (setq rustic-lsp-client 'eglot)
-  ;:config
+                                        ;:config
   (advice-add 'rustic-cargo-add :before #'haf/advice-set-ran-rustic-dependency-management)
   (advice-add 'rustic-cargo-rm :before #'haf/advice-set-ran-rustic-dependency-management)
-)
+  )
 (use-package rust-mode)
 
 ;;FUTURE: This may not be needed in emacs 30 or further,
 ;;but currently, it's much easier this way
 (use-package treesit-auto
   :custom
-    (treesit-auto-install 'prompt)
+  (treesit-auto-install 'prompt)
   :config
-    ;; remove rust because rustic-mode is not compatible with treesitter
-    (delete 'rust treesit-auto-langs)
+  ;; remove rust because rustic-mode is not compatible with treesitter
+  (delete 'rust treesit-auto-langs)
 
-    ;; set v0.20.2 version for typescript since the default is master and that's
-    ;; incompatible with emacs' version
-    (let ((typescript-recipe (make-treesit-auto-recipe
-      :lang 'typescript
-      :ts-mode 'typescript-ts-mode
-      :remap 'typescript-mode
-      :requires 'tsx
-      :url "https://github.com/tree-sitter/tree-sitter-typescript"
-      :revision "v0.20.2"
-      :source-dir "typescript/src"
-      :ext "\\.ts\\'")))
-      (add-to-list 'treesit-auto-recipe-list typescript-recipe))
+  ;; set v0.20.2 version for typescript since the default is master and that's
+  ;; incompatible with emacs' version
+  (let ((typescript-recipe (make-treesit-auto-recipe
+                            :lang 'typescript
+                            :ts-mode 'typescript-ts-mode
+                            :remap 'typescript-mode
+                            :requires 'tsx
+                            :url "https://github.com/tree-sitter/tree-sitter-typescript"
+                            :revision "v0.20.2"
+                            :source-dir "typescript/src"
+                            :ext "\\.ts\\'")))
+    (add-to-list 'treesit-auto-recipe-list typescript-recipe))
 
-    ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
-    (treesit-auto-add-to-auto-mode-alist 'all)
-    (global-treesit-auto-mode)
-)
+  ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode)
+  )
 
 ;; shackle
 ;; allows configuring in what way each buffer will show
@@ -647,15 +647,15 @@
   (shackle-mode)
   :config
   (setq
-    shackle-rules '(
-      (help-mode :size 0.3 :align below :select t)
+   shackle-rules '(
+                   (help-mode :size 0.3 :align below :select t)
 
-      ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
-      (rustic-compilation-mode :size 0.4 :align right :select t)
-      (rustic-cargo-clippy-mode :size 0.4 :align right :select t)
-    )
+                   ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
+                   (rustic-compilation-mode :size 0.4 :align right :select t)
+                   (rustic-cargo-clippy-mode :size 0.4 :align right :select t)
+                   )
+   )
   )
-)
 
 ;; popper
 ;; mark buffers as "pop-up", making them easy to dismiss, toggle and cycle through
@@ -663,44 +663,44 @@
   :ensure t
   :init
   (setq popper-reference-buffers '(
-          "\\*Messages\\*"
-          "Output\\*$"
-          "\\*Async Shell Command\\*"
-          help-mode
-          compilation-mode
+                                   "\\*Messages\\*"
+                                   "Output\\*$"
+                                   "\\*Async Shell Command\\*"
+                                   help-mode
+                                   compilation-mode
 
-          ;; rust
-          rustic-compilation-mode
-          rustic-cargo-clippy-mode
-      )
-  )
+                                   ;; rust
+                                   rustic-compilation-mode
+                                   rustic-cargo-clippy-mode
+                                   )
+        )
   (popper-mode +1)
   ;; enables echo area hints
   (popper-echo-mode +1)
   ;; do not do any display control, let shackle do it
   (setq popper-display-control nil)
-)
+  )
 
 ;; (smartparens)
 (use-package smartparens
   :defer t
   :hook (prog-mode . smartparens-mode)
   :config
-    ;; load default config
-    (require 'smartparens-config)
-)
+  ;; load default config
+  (require 'smartparens-config)
+  )
 
 ;; (project)
 
 (use-package project
   :init
   (setq 
-    ;; use directories with these files as project roots (useful so it detects nested projects)
-    project-vc-extra-root-markers '("Cargo.toml")
-    ;; ignore these directories (normally it gets them from .gitignore, but this is useful for nested projects)
-    project-vc-ignores '("target/" "bin/" "obj/")
+   ;; use directories with these files as project roots (useful so it detects nested projects)
+   project-vc-extra-root-markers '("Cargo.toml")
+   ;; ignore these directories (normally it gets them from .gitignore, but this is useful for nested projects)
+   project-vc-ignores '("target/" "bin/" "obj/")
+   )
   )
-)
 
 (defun haf/project-remember-current-project ()
   "Remembers the current project"
@@ -708,7 +708,7 @@
   (project-remember-project (project-current))
   ;; TODO: I could just do this with a simple substitution like (message "remembering project '%S'") or smth
   (message (concat "Remembering project '" (caddr (project-current)) "'"))
-)
+  )
 
 ;; (which-key)
 (use-package which-key
@@ -718,48 +718,48 @@
   (setq which-key-show-operator-state-maps t)
   :config
   (which-key-mode)
-)
+  )
 
 ;; (themes)
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
   (let ((next-theme (cl-case major-mode
-    ('rustic-mode 'doom-gruvbox)
-    ('emacs-lisp-mode 'doom-one)
-    ('typescript-ts-mode 'doom-material)
-    ('svelte-mode 'doom-moonlight)
-    (t nil)
-  )))
-      (when next-theme (progn 
-                          (dolist (theme custom-enabled-themes) (disable-theme theme))
-                          (load-theme next-theme t)))))
+                      ('rustic-mode 'doom-gruvbox)
+                      ('emacs-lisp-mode 'doom-one)
+                      ('typescript-ts-mode 'doom-material)
+                      ('svelte-mode 'doom-moonlight)
+                      (t nil)
+                      )))
+    (when next-theme (progn 
+                       (dolist (theme custom-enabled-themes) (disable-theme theme))
+                       (load-theme next-theme t)))))
 
 
 (use-package doom-themes
   :ensure t
   :config
-    (setq 
-      doom-themes-enable-bold t
-      doom-themes-enable-italic t
-    )
-    (load-theme 'doom-one t)
+  (setq 
+   doom-themes-enable-bold t
+   doom-themes-enable-italic t
+   )
+  (load-theme 'doom-one t)
 
-    ;; enable flashing mode-line on errors
-    (doom-themes-visual-bell-config)
+  ;; enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
 
-    ;; setup treemacs
-    (setq doom-themes-treemacs-theme "doom-colors") 
-    (doom-themes-treemacs-config)
+  ;; setup treemacs
+  (setq doom-themes-treemacs-theme "doom-colors") 
+  (doom-themes-treemacs-config)
 
-    ;; set theme by mode after a small delay so the mode
-    ;; is initialized
-    (haf/delay-fun #'haf/switch-theme-by-mode 2)
+  ;; set theme by mode after a small delay so the mode
+  ;; is initialized
+  (haf/delay-fun #'haf/switch-theme-by-mode 2)
 
-    ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
-    ;; TODO: This doesn't work when changing tabs with tab-line!
-    (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
-)
+  ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
+  ;; TODO: This doesn't work when changing tabs with tab-line!
+  (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
+  )
 
 ;; solaire-mode
 ;; =====================
@@ -775,9 +775,10 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-)
+  )
 
-;; TODO: Also configure it for tab changes
+;; TODO: The pulse functions config doesn't even work for me and I use hooks...
+;; maybe I should just use pulse and manually configure it myself
 ;; pulsar
 ;; =====================
 ;; highlights the current line under some conditions (such as window changes)
@@ -785,7 +786,7 @@
 (use-package pulsar
   :custom
   ;; enable pulsing (but it should be enabled by default anyway)
-	(pulsar-pulse t)
+  (pulsar-pulse t)
   ;; prettier color
   (pulsar-face 'pulsar-magenta)
   ;; I set this to yellow because it's ugly and I don't even know when this should appear, so maybe if it's ugly I'll notice when it's firing
@@ -802,14 +803,15 @@
   (add-hook 'next-error-hook #'pulsar-pulse-line)
   ;; pulse on window changes
   (add-hook 'window-selection-change-functions #'haf/pulsar-pulse-line)
+  (add-hook 'window-buffer-change-functions #'haf/pulsar-pulse-line)
   ;; enable it globaly
   (pulsar-global-mode 1))
 
 
 ;; direnv
 (use-package direnv
- :config
- (direnv-mode))
+  :config
+  (direnv-mode))
 
 ;; web-mode
 (use-package web-mode
@@ -826,7 +828,7 @@
 (general-create-definer normal-leader-bindings
   :states '(normal visual emacs)
   :prefix "SPC"
-)
+  )
 
 ;; TODO: Some treemacs keybindings, maybe for setting up workspaces and stuff
 (normal-leader-bindings
@@ -857,7 +859,7 @@
   "w w" '(popper-toggle :which-key "Toggle popup")
   "w t" '(popper-cycle :which-key "Cycle popup")
   "w o" '(popper-toggle-type :which-key "Change popup type")
-)
+  )
 
 (normal-leader-bindings 
   :keymaps 'rustic-mode-map
@@ -865,14 +867,14 @@
   "p t" '(rustic-cargo-test :which-key "Run tests")
   "p c" '(rustic-cargo-build :which-key "Compile")
   "p k" '(rustic-cargo-clippy :which-key "Clippy")
-)
+  )
 
 ;; keybindings that are supposed to work in all states (included insert)
 (general-create-definer insert-leader-bindings
   :states '(normal insert visual emacs)
   :keymaps 'override
   :prefix "C-z"
-)
+  )
 
 (insert-leader-bindings
   "TAB f" '(cape-file :which-key "File")
@@ -889,4 +891,4 @@
   "C-d" '(haf/next-cursor-and-start-region-hydra :which-key "Add cursor")
 
   "t k" '(haf/tab-line-close-other-tabs :which-key "Kill other tabs")
-)
+  )
