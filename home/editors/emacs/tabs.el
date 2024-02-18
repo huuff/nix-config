@@ -49,8 +49,6 @@
     ("g T" . centaur-tabs-backward))
 )
 
-;; TODO: Remove the | from the selected tab (bold is enough)
-;; TODO: Try to use italics for modified tabs names (but my font (Fira Code) has no italics)
 ;; TODO: Try to make tabs a bit taller
 (use-package tab-line
   :ensure nil ;; already included in emacs
@@ -58,11 +56,14 @@
   :init
   (global-tab-line-mode)
   :custom-face
+  ;; I need a different font family to make it italic when modified
+  ;; because my main font (Fira Code) has no italic version
+  (tab-line-tab ((t (:family "Hack"))))
   (tab-line-tab-current ((t (:inherit tab-line-tab :weight bold))))
+  (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :config
   ;; only use special face functions for modified tabs. I removed styles for special tabs because I didn't like nor need them
-  (setq tab-line-tab-face-functions '(
-                                        tab-line-tab-face-modified))
+  (setq tab-line-tab-face-functions '(tab-line-tab-face-modified))
 
   ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
@@ -80,18 +81,6 @@
           (t (with-current-buffer buffer
               (let ((prj (project-current)))
                (if prj (project-name prj) "other"))))))
-
-  ;; fine-tune the name of the tabs
-  (defun haf/tab-line-tab-name (buffer)
-    "Stylize the tab name"
-    ;; append * to modified buffers
-    (format "%s%s%s"
-      ;; prepend a vertical bar to current-buffer
-      (if (eq (current-buffer) buffer) "|" "")
-      ;; buffer name in the middle
-      (buffer-name buffer)
-      ;; asterisk at the end for modified buffers
-      (if (buffer-modified-p buffer) "*" "")))
 
   ;; sort buffers in a group
   ;; it's pretty important because otherwise the current one is always the first
@@ -118,9 +107,6 @@
 
   ;; group by project.el project name
   (setq tab-line-tabs-buffer-group-function #'haf/tab-line-group-by-project)
-
-  ;; custom tab name
-  (setq tab-line-tab-name-function #'haf/tab-line-tab-name)
 
   ;; fun to close all non-active tabs
   (defun haf/tab-line-close-other-tabs ()

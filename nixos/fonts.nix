@@ -4,7 +4,8 @@
     packages = with pkgs; [
       fira-code
       fira-code-symbols
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      hack-font
+      (nerdfonts.override { fonts = [ "FiraCode" "Hack"]; })
     ];
     fontconfig.antialias = true;
   };
