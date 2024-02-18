@@ -22,7 +22,6 @@
 ;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
-;; TODO: Maybe use a dashboard, but I'd also need that direnv integration
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Maybe I should add #' in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
@@ -131,7 +130,39 @@
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
 )
 
-;; try allows trying packages without installing with `try «package»`
+;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
+;; TODO: It'd be huge to display an elfeed with planetemacs
+;; dashboard
+;; =====================
+;; nice dash board for the first screen
+(use-package dashboard
+  :ensure t
+  :after (page-break-lines)
+  :custom
+  ;; choose project.el vs projectile for the project list
+  (dashboard-projects-backend 'project-el)
+  ;; choose widgets, order and size in lines for the dashboard
+  ;; for example (projects . 5) shows 5 projects
+  (dashboard-items '((projects . 7)
+                     (recents  . 5)))
+  ;; choose icons between all-the-icons and nerd-icons
+  (dashboard-icon-type 'all-the-icons)
+  ;; display icons (in general)
+  (dashboard-display-icons-p t)
+  ;; display icons in widget headings
+  (dashboard-set-heading-icons t)
+  ;; display file icons
+  (dashboard-set-file-icons t)
+  ;; show navigator with some options below the banner
+  (dashboard-set-navigator t)
+  ;; self-descriptive
+  (dashboard-center-content t)
+  :config
+  (dashboard-setup-startup-hook))
+
+;; try
+;; =====================
+;; allows trying out packages with `try «package»`
 (use-package try :commands try)
 
 ;; add MELPA so we have access to more packages with `try` or `install-package`
@@ -141,7 +172,7 @@
 (package-initialize)
 
 ;; corfu
-;; ==========
+;; =====================
 ;; autocompletion framework that enhances emacs' native completion system
 (use-package corfu
   :init

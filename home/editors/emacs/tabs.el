@@ -105,6 +105,7 @@
                                   help-mode 
                                   compilation-mode
                                   rustic-compilation-mode
+                                  dashboard-mode
                                 ))
 
   ;; do not go into other groups after last tab, go back
