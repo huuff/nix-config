@@ -9,7 +9,6 @@
 ;; TODO: Some form of changing font size for all buffers, please
 ;; TODO: I think any errors during nix-rebuild that say "assignment to free variable" mean that I'm assigning to variables that don't even exist
 ;; TODO: Use meow? It seems pretty rad
-;; TODO: Use dimmer.el
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: My rustic window management stuff doesn't work sometimes
@@ -133,6 +132,7 @@
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: It'd be huge to display an elfeed with planetemacs
+;; TODO: Change the image to the one that appears in the awesome-emacs repo
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -775,6 +775,24 @@
   :config
 )
 
+;; pulsar
+;; =====================
+;; highlights the current line under some conditions (such as window changes)
+;; so you don't lose your cursor
+(use-package pulsar
+  :custom
+  ;; enable pulsing (but it should be enabled by default anyway)
+	(pulsar-pulse t)
+  ;; self-describing
+  ;; TODO: This doesn't seem to be working
+  (pulsar-pulse-on-window-change t)
+  :config
+  ;; integration with consult
+  (add-hook 'consult-after-jump-hook #'pulsar-recenter-center)
+  (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
+  (pulsar-global-mode 1))
+
+
 ;; direnv
 (use-package direnv
  :config
@@ -789,7 +807,7 @@
   (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode)))
 
 ;; keybindings
-
+;; =====================
 ;; keybindings that are supposed to work in normal state, but that
 ;; I don't expect (or need) to work in insert state
 (general-create-definer normal-leader-bindings
