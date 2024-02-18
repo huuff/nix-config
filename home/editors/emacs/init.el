@@ -757,8 +757,8 @@
   (haf/delay-fun #'haf/switch-theme-by-mode 2)
 
   ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
-  ;; TODO: This doesn't work when changing tabs with tab-line!
   (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
+  (add-hook 'window-buffer-change-functions #'haf/switch-theme-by-mode)
   )
 
 ;; solaire-mode
