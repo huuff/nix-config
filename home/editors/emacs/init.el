@@ -578,28 +578,18 @@
 (use-package savehist
   :ensure nil ;; already included in emacs
   :init
-  (savehist-mode)
-  )
+  (savehist-mode))
 
 ;; flymake
 (use-package flymake
-  :init
-  (setq
-   flymake-no-changes-timeout 0.5
-   )
-  )
+  :init (setq flymake-no-changes-timeout 0.5))
 
 ;; sideline
 (use-package sideline
   :init 
-  (setq
-   sideline-display-backend-name t
-   sideline-backends-right '(sideline-flymake)
-   )
-  :hook (
-         (flymake-mode  . sideline-mode)
-         )
-  )
+  (setq sideline-display-backend-name t
+        sideline-backends-right '(sideline-flymake))
+  :hook ((flymake-mode  . sideline-mode)))
 (use-package sideline-flymake)
 
 ;; rust
@@ -777,36 +767,25 @@
   :config
   )
 
-;; TODO: The pulse functions config doesn't even work for me and I use hooks...
-;; maybe I should just use pulse and manually configure it myself
-;; pulsar
+;; pulse
 ;; =====================
-;; highlights the current line under some conditions (such as window changes)
-;; so you don't lose your cursor
-(use-package pulsar
+;; my own pulse configurations that I spent 2 hours tinkering without any satisfaction
+(use-package pulse
+  :ensure nil ;; already included in emacs
   :custom
-  ;; enable pulsing (but it should be enabled by default anyway)
-  (pulsar-pulse t)
-  ;; prettier color
-  (pulsar-face 'pulsar-magenta)
-  ;; I set this to yellow because it's ugly and I don't even know when this should appear, so maybe if it's ugly I'll notice when it's firing
-  (pulsar-highlight-face 'pulsar-yellow)
+  (pulse-delay 0.05)
+  (pulse-iterations 5)
   :preface
-  (defun haf/pulsar-pulse-line (_) 
-    "Pulses line but also takes an argument, so I can use it as a window-selection-change-functions"
-    (pulsar-pulse-line))
+  (defface haf/pulse-face
+    '((t (:inherit region)))
+    "Face for my pulse configurations")
+  (defun haf/pulse-line (_)
+    (pulse-momentary-highlight-one-line (point) 'haf/pulse-face))
   :config
-  ;; integration with consult
-  (add-hook 'consult-after-jump-hook #'pulsar-recenter-center)
-  (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)
-  ;; pulse on next-error
-  (add-hook 'next-error-hook #'pulsar-pulse-line)
-  ;; pulse on window changes
-  (add-hook 'window-selection-change-functions #'haf/pulsar-pulse-line)
-  (add-hook 'window-buffer-change-functions #'haf/pulsar-pulse-line)
-  ;; enable it globaly
-  (pulsar-global-mode 1))
-
+  ;; pulse when changing windows
+  (add-hook 'window-selection-change-functions #'haf/pulse-line)
+  ;; pulse when changing buffers
+  (add-hook 'window-buffer-change-functions #'haf/pulse-line))
 
 ;; direnv
 (use-package direnv
