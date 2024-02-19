@@ -117,18 +117,26 @@
                                                     (cdr (assoc 'group-tab tab)))) (tab-line-tabs-buffer-groups))))
       (dolist (tab other-tabs) (funcall (cdr (assoc 'close tab))))))
 
-  ;; fun to switch to a specific tab by its number
-  (defun haf/switch-to-tab-num (num)
+  ;; TODO: Maybe an error if there's none?
+  ;; TODO: My own functions for is-selected-tab and is-group-tab
+  (defun haf/switch-to-tab-num (count)
+    "Switch to a tab by its number in current group"
+    (interactive "p")
     (let ((tabs (cl-remove-if (lambda (tab) (cdr (assoc 'group-tab tab))) (tab-line-tabs-buffer-groups))))
-      (when-let ((target-tab (nth num tabs)))
+      (when-let ((target-tab (nth count tabs)))
         (switch-to-buffer (cdr (assoc 'buffer target-tab))))))
 
+  (evil-define-command haf/tab-line-goto-tab (count)
+    :repeat nil
+    (interactive "<c>")
+    (if (not count)
+        (tab-line-switch-to-next-tab)
+        (haf/switch-to-tab-num count)))
 
   ;; switching tabs like in vim
-  ;; TODO: Try to also configure switching to a specific tab, like: 5 gt goes to the fifth tab
   :general
   (:states 'normal
-   "g t" 'tab-line-switch-to-next-tab 
+   "g t" 'haf/switch-to-tab-num
    "g T" 'tab-line-switch-to-prev-tab 
   )
 )
