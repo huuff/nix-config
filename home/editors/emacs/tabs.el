@@ -49,6 +49,7 @@
     ("g T" . centaur-tabs-backward))
 )
 
+;; TODO: Can I print the index of each tab before its name?
 ;; TODO: Try to make tabs a bit taller
 (use-package tab-line
   :ensure nil ;; already included in emacs
@@ -136,7 +137,7 @@
   ;; switching tabs like in vim
   :general
   (:states 'normal
-   "g t" 'haf/switch-to-tab-num
+   "g t" 'haf/tab-line-goto-tab
    "g T" 'tab-line-switch-to-prev-tab 
   )
 )
