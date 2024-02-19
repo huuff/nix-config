@@ -120,6 +120,7 @@
 
   ;; TODO: Maybe an error if there's none?
   ;; TODO: My own functions for is-selected-tab and is-group-tab
+  ;; TODO: Maybe the index should start at 1 since it's much more natural on the keyboard
   (defun haf/switch-to-tab-num (count)
     "Switch to a tab by its number in current group"
     (interactive "p")
