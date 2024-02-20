@@ -91,12 +91,10 @@
                                                               (buffer-name buf2))))
 
   ;; do not show the tab-line for these modes
-  (setq tab-line-exclude-modes '(
-                                 help-mode 
+  (setq tab-line-exclude-modes '(help-mode 
                                  compilation-mode
                                  rustic-compilation-mode
-                                 dashboard-mode
-                                 ))
+                                 dashboard-mode))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
@@ -126,14 +124,14 @@
                                                      (haf/tab-line-tab-is-group tab))) (tab-line-tabs-buffer-groups))))
       (dolist (tab other-tabs) (funcall (cdr (assoc 'close tab))))))
 
-  ;; TODO: Maybe an error if there's none?
   ;; TODO: Maybe the index should start at 1 since it's much more natural on the keyboard
   (defun haf/switch-to-tab-num (count)
     "Switch to a tab by its number in current group"
     (interactive "p")
     (let ((tabs (cl-remove-if #'haf/tab-line-tab-is-group (tab-line-tabs-buffer-groups))))
-      (when-let ((target-tab (nth count tabs)))
-        (switch-to-buffer (cdr (assoc 'buffer target-tab))))))
+      (if-let ((target-tab (nth count tabs)))
+          (switch-to-buffer (cdr (assoc 'buffer target-tab)))
+        (error (format "There is no tab at index %d" count)))))
 
   (evil-define-command haf/tab-line-goto-tab (count)
     :repeat nil
