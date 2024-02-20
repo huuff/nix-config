@@ -1,3 +1,5 @@
+;; TODO: Maybe use no-littering?
+;; TODO: Use anzu? Not excessively important but might improve the experience
 ;; TODO: Make all === lines the same length in all files (very important)
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
