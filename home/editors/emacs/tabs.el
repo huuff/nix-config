@@ -17,37 +17,37 @@
 (use-package centaur-tabs
   :if (eq haf/tabs-package 'centaur)
   :init
-    (setq centaur-tabs-enable-key-bindings t)
+  (setq centaur-tabs-enable-key-bindings t)
   :demand
   :config
-    (centaur-tabs-mode t)
-    ;; make tabs take full width
-    (centaur-tabs-headline-match)
-    ;; show icons
-    (setq centaur-tabs-set-icons t)
-    ;; gray-out unactive tab
-    (setq centaur-tabs-gray-out-icons 'buffer)
-    ;; left active tab indicator
-    (setq centaur-tabs-set-bar 'left)
-    ;; show whether tab is modified
-    (setq centaur-tabs-set-modified-marker t)
+  (centaur-tabs-mode t)
+  ;; make tabs take full width
+  (centaur-tabs-headline-match)
+  ;; show icons
+  (setq centaur-tabs-set-icons t)
+  ;; gray-out unactive tab
+  (setq centaur-tabs-gray-out-icons 'buffer)
+  ;; left active tab indicator
+  (setq centaur-tabs-set-bar 'left)
+  ;; show whether tab is modified
+  (setq centaur-tabs-set-modified-marker t)
 
-    ;; do not allow crossing tab groups by changing tab 
-    ;; (prevents going to weird hidden buffers when going
-    ;; to next tab on the last one)
-    (setq centaur-tabs-cycle-scope 'tabs)
+  ;; do not allow crossing tab groups by changing tab 
+  ;; (prevents going to weird hidden buffers when going
+  ;; to next tab on the last one)
+  (setq centaur-tabs-cycle-scope 'tabs)
 
-    ;; exclude all temporary (*) buffers
-    ;; note that some start with a space, like ' *which-key*'
-    (setq centaur-tabs-excluded-prefixes '("*" " *"))
+  ;; exclude all temporary (*) buffers
+  ;; note that some start with a space, like ' *which-key*'
+  (setq centaur-tabs-excluded-prefixes '("*" " *"))
 
   :bind
   ;; vim-like change tabg with `g t` and `g T`
   ;; TODO: But can I make 2 gt for going to the second tab for example?
   (:map evil-normal-state-map
-    ("g t" . centaur-tabs-forward)
-    ("g T" . centaur-tabs-backward))
-)
+        ("g t" . centaur-tabs-forward)
+        ("g T" . centaur-tabs-backward))
+  )
 
 ;; TODO: Can I print the index of each tab before its name?
 ;; TODO: Try to make tabs a bit taller
@@ -80,23 +80,23 @@
           ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
           ;; otherwise, group by current project.el project
           (t (with-current-buffer buffer
-              (let ((prj (project-current)))
-               (if prj (project-name prj) "other"))))))
+               (let ((prj (project-current)))
+                 (if prj (project-name prj) "other"))))))
 
   ;; sort buffers in a group
   ;; it's pretty important because otherwise the current one is always the first
   ;; which breaks pre  (defun my-buffer-name-sort (a b)
   (setq tab-line-tabs-buffer-group-sort-function #'(lambda (buf1 buf2)
-                                                    (string< (buffer-name buf1)
-                                                            (buffer-name buf2))))
+                                                     (string< (buffer-name buf1)
+                                                              (buffer-name buf2))))
 
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(
-                                  help-mode 
-                                  compilation-mode
-                                  rustic-compilation-mode
-                                  dashboard-mode
-                                ))
+                                 help-mode 
+                                 compilation-mode
+                                 rustic-compilation-mode
+                                 dashboard-mode
+                                 ))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
@@ -109,22 +109,29 @@
   ;; group by project.el project name
   (setq tab-line-tabs-buffer-group-function #'haf/tab-line-group-by-project)
 
+  ;; some utility functions
+  (defun haf/tab-line-tab-is-selected (tab)
+    "Returns whether a given tab is currently selected"
+    (cdr (assoc 'selected tab)))
+  (defun haf/tab-line-tab-is-group (tab)
+    "Returns whether a given tab is a group tab"
+    (cdr (assoc 'group-tab tab)))
+  
   ;; fun to close all non-active tabs
   (defun haf/tab-line-close-other-tabs ()
     "Close all tabs in current group that aren't active"
     (interactive)
-    (let ((other-tabs (cl-remove-if (lambda (tab) (or
-                                                    (cdr (assoc 'selected tab))
-                                                    (cdr (assoc 'group-tab tab)))) (tab-line-tabs-buffer-groups))))
+    (let ((other-tabs (cl-remove-if #'(lambda (tab) (or
+                                                     (haf/tab-line-tab-is-selected tab)
+                                                     (haf/tab-line-tab-is-group tab))) (tab-line-tabs-buffer-groups))))
       (dolist (tab other-tabs) (funcall (cdr (assoc 'close tab))))))
 
   ;; TODO: Maybe an error if there's none?
-  ;; TODO: My own functions for is-selected-tab and is-group-tab
   ;; TODO: Maybe the index should start at 1 since it's much more natural on the keyboard
   (defun haf/switch-to-tab-num (count)
     "Switch to a tab by its number in current group"
     (interactive "p")
-    (let ((tabs (cl-remove-if (lambda (tab) (cdr (assoc 'group-tab tab))) (tab-line-tabs-buffer-groups))))
+    (let ((tabs (cl-remove-if #'haf/tab-line-tab-is-group (tab-line-tabs-buffer-groups))))
       (when-let ((target-tab (nth count tabs)))
         (switch-to-buffer (cdr (assoc 'buffer target-tab))))))
 
@@ -133,12 +140,10 @@
     (interactive "<c>")
     (if (not count)
         (tab-line-switch-to-next-tab)
-        (haf/switch-to-tab-num count)))
+      (haf/switch-to-tab-num count)))
 
   ;; switching tabs like in vim
   :general
   (:states 'normal
-   "g t" 'haf/tab-line-goto-tab
-   "g T" 'tab-line-switch-to-prev-tab 
-  )
-)
+           "g t" 'haf/tab-line-goto-tab
+           "g T" 'tab-line-switch-to-prev-tab))
