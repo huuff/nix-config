@@ -117,17 +117,16 @@
 
   (defun haf/tab-line-tab-name (buffer &optional _buffers)
     "Appends the index of the tab to its name"
-    (let ((tab-pos (seq-position (haf/tab-line-tabs-buffer-groups) buffer)))
+    (let ((tab-pos (1+ (seq-position (haf/tab-line-tabs-buffer-groups) buffer))))
       (if tab-pos
           (format "%d %s" tab-pos (buffer-name buffer))
         (buffer-name buffer))))
 
-  ;; TODO: Maybe the index should start at 1 since it's much more natural on the keyboard
-  (defun haf/switch-to-tab-num (count)
+  (defun haf/switch-to-tab-index (count)
     "Switch to a tab by its number in current group"
     (interactive "p")
     (let ((tabs (cl-remove-if #'haf/tab-line-tab-is-group (tab-line-tabs-buffer-groups))))
-      (if-let ((target-tab (nth count tabs)))
+      (if-let ((target-tab (nth (1- count) tabs)))
           (switch-to-buffer (cdr (assoc 'buffer target-tab)))
         (error (format "There is no tab at index %d" count)))))
 
@@ -136,7 +135,7 @@
     (interactive "<c>")
     (if (not count)
         (tab-line-switch-to-next-tab)
-      (haf/switch-to-tab-num count)))
+      (haf/switch-to-tab-index count)))
 
   :config
   ;; only use special face functions for modified tabs. I removed styles for special tabs because I didn't like nor need them
@@ -145,7 +144,7 @@
 
   ;; sort buffers in a group
   ;; it's pretty important because otherwise the current one is always the first
-  ;; which breaks pre  (defun my-buffer-name-sort (a b)
+  ;; which breaks switching to next/prev
   (setq tab-line-tabs-buffer-group-sort-function #'(lambda (buf1 buf2)
                                                      (string< (buffer-name buf1)
                                                               (buffer-name buf2))))
