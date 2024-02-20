@@ -49,7 +49,6 @@
         ("g T" . centaur-tabs-backward))
   )
 
-;; TODO: Try to make tabs a bit taller
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
@@ -58,7 +57,7 @@
   :custom-face
   ;; I need a different font family to make it italic when modified
   ;; because my main font (Fira Code) has no italic version
-  (tab-line-tab ((t (:family "Hack"))))
+  (tab-line-tab ((t (:family "Hack" :height 1.05))))
   (tab-line-tab-current ((t (:inherit tab-line-tab :weight bold))))
   (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :preface
