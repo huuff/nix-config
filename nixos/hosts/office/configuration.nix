@@ -35,6 +35,7 @@
       allowedTCPPorts = [
         9003 # For PHP's xdebug
         3000 # For live-viewing frontend projects
+        5173 # For live-viewing vite projects
       ];
     };
   };
