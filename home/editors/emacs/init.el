@@ -1,3 +1,7 @@
+;; TODO: Try another set of icons for dired because this one breaks
+;; TODO: Try to sort dired entries so folders are on top?
+;; TODO: A keybinding for creating a file (at a specific directory) in dired
+;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
 ;; TODO: Maybe use no-littering?
 ;; TODO: Use anzu? Not excessively important but might improve the experience
