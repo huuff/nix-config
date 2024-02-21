@@ -96,7 +96,6 @@
       (dolist (tab other-tabs) (funcall (cdr (assoc 'close tab))))))
 
   ;; I skillfully copy-pasted most of this function off tab-line-tabs-buffer-groups
-  ;; TODO: Try to remove as much code from this as I can, specially window-parameter stuff I don't even know what it is
   (defun haf/tab-line-tabs-buffer-groups ()
     "Returns a list of buffers in the current tab group"
     (let* ((window-parameter (window-parameter nil 'tab-line-group))
