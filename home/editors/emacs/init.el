@@ -47,7 +47,6 @@
 ;; TODO: Indent guides for YAML
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use fast-scroll?
-;; TODO: Should I use the built-in dired and configure it in a cool way so I don't need treemacs? UPDATE: Maybe even add dirvish to it
 ;; TODO: Use flymake-clippy?
 ;; TODO: Maybe use hl-todo-mode and consult-todo
 ;; TODO: Maybe enable go-to-address-mode?
@@ -332,46 +331,35 @@
 (use-package embark
   :ensure t
   :general
-  ("C-," 'embark-act)
-  )
+  ("C-," 'embark-act))
 
 ;; consult integration
 (use-package embark-consult
   :ensure t
   :hook
-  (embark-collect-mode . consult-preview-at-point-mode)
-  )
+  (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; (nix-mode)
 (use-package nix-mode
-  :mode "\\.nix\\'"
-  )
+  :mode "\\.nix\\'")
 
-;; (treemacs)
-(use-package treemacs
+
+;; TODO: Auto open sidebar when changing a project with project.el
+;; dired-sidebar
+;; =====================
+;; use dired as a tree directory explorer in a sidebar just like a real IDE
+(use-package dired-sidebar
   :ensure t
-  :defer t
+  :commands (dired-sidebar-toggle-sidebar))
 
-  ;; start treemacs on startup
-  ;; however, it's prone to open an empty *scratch* buffer
-  ;; when doing this, which is infuriating.
-  ;; delaying it is the only solution I found
-  ;; https://github.com/Alexander-Miller/treemacs/issues/258#issuecomment-831489403
-  ;; the save-selected-window prevents it from being focused when opened
-  :preface
-  (defun haf/defer/treemacs ()
-    (haf/delay-fun (lambda () (save-selected-window (treemacs)))))
-  :hook (emacs-startup . haf/defer/treemacs)
+;; nerd-icons-dired
+;; =====================
+;; icons for dired
+(use-package nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
-  :config
-  ;; always select the current file in treemacs
-  (treemacs-follow-mode t)
-  )
-(use-package treemacs-evil
-  :after (treemacs evil)
-  )
-
-
+;; TODO: I haven't used nerdicons... should I?
 ;; (all-the-icons) 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -740,10 +728,6 @@
   ;; enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
 
-  ;; setup treemacs
-  (setq doom-themes-treemacs-theme "doom-colors") 
-  (doom-themes-treemacs-config)
-
   ;; set theme by mode after a small delay so the mode
   ;; is initialized
   (haf/delay-fun #'haf/switch-theme-by-mode 2)
@@ -757,7 +741,6 @@
 ;; =====================
 ;; gives a brighter color to file-visiting buffers (where editing happens)
 ;; and a darker one to the rest, so the "main" buffer is highlighted
-;; TODO: Pretty cool... but it's not picking up treemacs?
 (use-package solaire-mode
   :config
   (solaire-global-mode +1))
@@ -811,9 +794,8 @@
   :prefix "SPC"
   )
 
-;; TODO: Some treemacs keybindings, maybe for setting up workspaces and stuff
 (normal-leader-bindings
-  "t" 'treemacs
+  "t" '(dired-sidebar-toggle-sidebar :which-key "Toggle sidebar")
   "e" '(hydra-flymake/body :which-key "Errors")
   ;; TODO: Can I nest a prefix?
   ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"

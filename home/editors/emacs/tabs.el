@@ -61,6 +61,7 @@
   (tab-line-tab-current ((t (:inherit tab-line-tab :weight bold))))
   (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :preface
+  ;; TODO: Maybe use a few lets here so I don't repeat calls to buffer-name
   ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
     "Use the project.el name for the buffer group"
@@ -150,7 +151,9 @@
   (setq tab-line-exclude-modes '(help-mode 
                                  compilation-mode
                                  rustic-compilation-mode
-                                 dashboard-mode))
+                                 dashboard-mode
+                                 dired-mode
+                                 dired-sidebar-mode))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
