@@ -1,3 +1,4 @@
+;; TODO: Maybe use evil-snipe only for the current line and avy for all else
 ;; TODO: Maybe use no-littering?
 ;; TODO: Use anzu? Not excessively important but might improve the experience
 ;; TODO: Make all === lines the same length in all files (very important)
@@ -55,7 +56,7 @@
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
 ;; TODO: Maybe set up dictionaries and spell checking?
-;; TODO: Use prism, at least for elisp buffers?
+;; TODO: Use prism, at least for elisp buffers? UPDATE: I think rainbow-delimiters might be better for my usecase
 ;; TODO: Maybe use bufler? It's pretty cool, but I'd love to have a preview (consult) for switching buffers. Also, workspaces seem pretty sensible and I could use them for my tab-line
 
 ;; refresh open buffers when filesystem changes
