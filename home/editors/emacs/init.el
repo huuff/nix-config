@@ -56,7 +56,6 @@
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
 ;; TODO: Maybe set up dictionaries and spell checking?
-;; TODO: Use prism, at least for elisp buffers? UPDATE: I think rainbow-delimiters might be better for my usecase
 ;; TODO: Maybe use bufler? It's pretty cool, but I'd love to have a preview (consult) for switching buffers. Also, workspaces seem pretty sensible and I could use them for my tab-line
 
 ;; refresh open buffers when filesystem changes
@@ -253,6 +252,13 @@
          ("C-c C-d"                 . helpful-at-point)
          :map lisp-interaction-mode-map
          ("C-c C-d"                 . helpful-at-point)))
+
+;; rainbow-delimiters
+;; =====================
+;; highlights parentheses according to nesting level
+;; it's pretty useful for lisp-based languages
+(use-package rainbow-delimiters
+  :hook (emacs-lisp-mode . rainbow-delimiters-mode))
 
 ;; consult
 (use-package consult
