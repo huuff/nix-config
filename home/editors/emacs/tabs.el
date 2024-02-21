@@ -77,7 +77,8 @@
               ;; if I don't do this, project-current will run for these and CPU usage
               ;; goes through the roof
               ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
-              ((eq major-mode 'dired-mode) "dired" )
+              ((eq major-mode 'dired-mode) "dired")
+              ((eq major-mode 'dired-sidebar-mode) "dired")
               ;; otherwise, group by current project.el project
               (t (if prj (project-name prj) "other"))))))
 
@@ -93,9 +94,8 @@
   (defun haf/tab-line-close-other-tabs ()
     "Close all tabs in current group that aren't active"
     (interactive)
-    (let ((other-tabs (cl-remove-if #'(lambda (tab) (or
-                                                     (haf/tab-line-tab-is-selected tab)
-                                                     (haf/tab-line-tab-is-group tab))) (tab-line-tabs-buffer-groups))))
+    (let ((other-tabs (cl-remove-if #'(lambda (tab) (or (haf/tab-line-tab-is-selected tab)
+                                                        (haf/tab-line-tab-is-group tab))) (tab-line-tabs-buffer-groups))))
       (dolist (tab other-tabs) (funcall (cdr (assoc 'close tab))))))
 
   ;; I skillfully copy-pasted most of this function off tab-line-tabs-buffer-groups
