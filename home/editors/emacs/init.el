@@ -677,25 +677,27 @@
   (require 'smartparens-config)
   )
 
-;; (project)
+;; avy
+;: =====================
+;; powerful jumping anywhere in the frame (any window) with visual feedback
+(use-package avy)
 
+;; TODO: Just set up a .project file instead of Cargo.toml 
+;; (project)
 (use-package project
   :init
   (setq 
    ;; use directories with these files as project roots (useful so it detects nested projects)
    project-vc-extra-root-markers '("Cargo.toml")
    ;; ignore these directories (normally it gets them from .gitignore, but this is useful for nested projects)
-   project-vc-ignores '("target/" "bin/" "obj/")
-   )
-  )
+   project-vc-ignores '("target/" "bin/" "obj/")))
 
 (defun haf/project-remember-current-project ()
   "Remembers the current project"
   (interactive)
   (project-remember-project (project-current))
   ;; TODO: I could just do this with a simple substitution like (message "remembering project '%S'") or smth
-  (message (concat "Remembering project '" (caddr (project-current)) "'"))
-  )
+  (message (concat "Remembering project '" (caddr (project-current)) "'")))
 
 ;; (which-key)
 (use-package which-key
@@ -704,8 +706,7 @@
   (setq which-key-allow-evil-operators t)
   (setq which-key-show-operator-state-maps t)
   :config
-  (which-key-mode)
-  )
+  (which-key-mode))
 
 ;; (themes)
 (defun haf/switch-theme-by-mode (&optional args)
@@ -716,8 +717,7 @@
                       ('emacs-lisp-mode 'doom-one)
                       ('typescript-ts-mode 'doom-material)
                       ('svelte-mode 'doom-moonlight)
-                      (t nil)
-                      )))
+                      (t nil))))
     (when next-theme (progn 
                        (dolist (theme custom-enabled-themes) (disable-theme theme))
                        (load-theme next-theme t)))))
@@ -728,8 +728,7 @@
   :config
   (setq 
    doom-themes-enable-bold t
-   doom-themes-enable-italic t
-   )
+   doom-themes-enable-italic t)
   (load-theme 'doom-one t)
 
   ;; enable flashing mode-line on errors
@@ -741,8 +740,7 @@
 
   ;; switch theme depending on language when the window changes, note that it only works here, and not in use-package's :hook
   (add-hook 'window-selection-change-functions #'haf/switch-theme-by-mode)
-  (add-hook 'window-buffer-change-functions #'haf/switch-theme-by-mode)
-  )
+  (add-hook 'window-buffer-change-functions #'haf/switch-theme-by-mode))
 
 ;; solaire-mode
 ;; =====================
@@ -755,9 +753,7 @@
 ;; modeline
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
-  :config
-  )
+  :init (doom-modeline-mode 1))
 
 ;; pulse
 ;; =====================
@@ -828,23 +824,20 @@
 
   "w w" '(popper-toggle :which-key "Toggle popup")
   "w t" '(popper-cycle :which-key "Cycle popup")
-  "w o" '(popper-toggle-type :which-key "Change popup type")
-  )
+  "w o" '(popper-toggle-type :which-key "Change popup type"))
 
 (normal-leader-bindings 
   :keymaps 'rustic-mode-map
   ;; TODO: Maybe cargo-test DWIM? Seems cool. Or do that with embark?
   "p t" '(rustic-cargo-test :which-key "Run tests")
   "p c" '(rustic-cargo-build :which-key "Compile")
-  "p k" '(rustic-cargo-clippy :which-key "Clippy")
-  )
+  "p k" '(rustic-cargo-clippy :which-key "Clippy"))
 
 ;; keybindings that are supposed to work in all states (included insert)
 (general-create-definer insert-leader-bindings
   :states '(normal insert visual emacs)
   :keymaps 'override
-  :prefix "C-z"
-  )
+  :prefix "C-z")
 
 (insert-leader-bindings
   "TAB f" '(cape-file :which-key "File")
@@ -861,4 +854,5 @@
   "C-d" '(haf/next-cursor-and-start-region-hydra :which-key "Add cursor")
 
   "t k" '(haf/tab-line-close-other-tabs :which-key "Kill other tabs")
-  )
+
+  "C-s" '(avy-goto-char-timer :which-key "Jump"))
