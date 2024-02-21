@@ -115,10 +115,9 @@
 
   (defun haf/tab-line-tab-name (buffer &optional _buffers)
     "Appends the index of the tab to its name"
-    (let ((tab-pos (1+ (seq-position (haf/tab-line-tabs-buffer-groups) buffer))))
-      (if tab-pos
-          (format "%d %s" tab-pos (buffer-name buffer))
-        (buffer-name buffer))))
+    (let ((tab-pos (1+ (seq-position (haf/tab-line-tabs-buffer-groups) buffer)))
+          (buffer-icon (nerd-icons-icon-for-mode (with-current-buffer buffer major-mode))))
+      (format "%d %s %s" tab-pos buffer-icon (buffer-name buffer))))
 
   (defun haf/switch-to-tab-index (count)
     "Switch to a tab by its number in current group"
