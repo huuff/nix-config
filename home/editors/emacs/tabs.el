@@ -62,6 +62,7 @@
   (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :preface
   ;; TODO: Maybe use a few lets here so I don't repeat calls to buffer-name
+  ;; TODO: Maybe a different group for dired buffers
   ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
     "Use the project.el name for the buffer group"
