@@ -66,8 +66,7 @@
   (defun haf/tab-line-group-by-project (buffer)
     "Split buffers into appropriate groups"
     (with-current-buffer buffer
-      (let ((bufname (buffer-name buffer))
-            (prj (project-current)))
+      (let ((bufname (buffer-name buffer)))
         ;; group buffers that start with an asterisk under "temporary"
         (cond ((or (s-prefix-p "*" (buffer-name buffer))
                    (s-prefix-p " *" (buffer-name buffer))
@@ -80,7 +79,7 @@
               ((eq major-mode 'dired-mode) "dired")
               ((eq major-mode 'dired-sidebar-mode) "dired")
               ;; otherwise, group by current project.el project
-              (t (if prj (project-name prj) "other"))))))
+              (t (if-let ((prj (project-current))) (project-name prj) "other"))))))
 
   ;; some utility functions
   (defun haf/tab-line-tab-is-selected (tab)
@@ -89,7 +88,7 @@
   (defun haf/tab-line-tab-is-group (tab)
     "Returns whether a given tab is a group tab"
     (cdr (assoc 'group-tab tab)))
-  
+
   ;; fun to close all non-active tabs
   (defun haf/tab-line-close-other-tabs ()
     "Close all tabs in current group that aren't active"
