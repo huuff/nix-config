@@ -62,23 +62,24 @@
   (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :preface
   ;; TODO: Maybe use a few lets here so I don't repeat calls to buffer-name
-  ;; TODO: Maybe a different group for dired buffers
   ;; group buffers criteria
   (defun haf/tab-line-group-by-project (buffer)
-    "Use the project.el name for the buffer group"
-    ;; group buffers that start with an asterisk under "temporary"
-    (cond ((or (s-prefix-p "*" (buffer-name buffer))
-               (s-prefix-p " *" (buffer-name buffer))
-               ;; also put this weird buffer there since it's regularly popping up
-               (s-prefix-p "Treemacs Update Single File" (buffer-name buffer))) "temporary")
-          ;; group paths under /nix/store under the "external" grou
-          ;; if I don't do this, project-current will run for these and CPU usage
-          ;; goes through the roof
-          ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
-          ;; otherwise, group by current project.el project
-          (t (with-current-buffer buffer
-               (let ((prj (project-current)))
-                 (if prj (project-name prj) "other"))))))
+    "Split buffers into appropriate groups"
+    (with-current-buffer buffer
+      (let ((bufname (buffer-name buffer))
+            (prj (project-current)))
+        ;; group buffers that start with an asterisk under "temporary"
+        (cond ((or (s-prefix-p "*" (buffer-name buffer))
+                   (s-prefix-p " *" (buffer-name buffer))
+                   ;; also put this weird buffer there since it's regularly popping up
+                   (s-prefix-p "Treemacs Update Single File" (buffer-name buffer))) "temporary")
+              ;; group paths under /nix/store under the "external" grou
+              ;; if I don't do this, project-current will run for these and CPU usage
+              ;; goes through the roof
+              ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
+              ((eq major-mode 'dired-mode) "dired" )
+              ;; otherwise, group by current project.el project
+              (t (if prj (project-name prj) "other"))))))
 
   ;; some utility functions
   (defun haf/tab-line-tab-is-selected (tab)
