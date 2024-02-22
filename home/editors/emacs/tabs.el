@@ -214,7 +214,7 @@
   (setq tab-line-tab-name-function #'haf/tab-line-tab-name)
 
   (advice-add 'tab-line-tab-name-format-default :around
-              'haf/tab-line-tab-name-format)
+              #'haf/tab-line-tab-name-format)
 
   ;; switching tabs like in vim
   :general
