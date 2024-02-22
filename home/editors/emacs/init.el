@@ -1,3 +1,4 @@
+;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: Try to sort dired entries so folders are on top?
 ;; TODO: A keybinding for creating a file (at a specific directory) in dired
 ;; TODO: A keybinding for kill-current-buffer
