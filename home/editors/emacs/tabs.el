@@ -116,10 +116,53 @@
       sorted-buffers))
 
   (defun haf/tab-line-tab-name (buffer &optional _buffers)
-    "Appends the index of the tab to its name"
-    (let ((tab-pos (1+ (seq-position (haf/tab-line-tabs-buffer-groups) buffer)))
-          (buffer-icon (nerd-icons-icon-for-mode (with-current-buffer buffer major-mode))))
-      (format "%d %s %s" tab-pos buffer-icon (buffer-name buffer))))
+    "Make space in tab line names for all the junk I'm gonna put into them"
+    (format " %s " (buffer-name buffer)))
+
+  ;; I also skillfully copied most of this off
+  ;; https://github.com/zhenhua-wang/emacs.d/blob/ca6056dbb3c03997cc72431b90490606652756b1/module/zw-tab-line.el#L96
+  (defun haf/tab-line-tab-name-format (orig-fun &rest args)
+    "Appends the tab index and an icon to the name of each tab"
+    (let* ((tab-string (apply orig-fun args))
+           (buffer-name (string-trim (string-replace tab-line-close-button "" tab-string))))
+      (if-let ((buffer (get-buffer buffer-name)))
+          (let* ((tab-pos (1+ (seq-position (haf/tab-line-tabs-buffer-groups) buffer)))
+                 (selected-p (eq buffer (window-buffer)))
+                 (icon (if (buffer-file-name buffer)
+                           (nerd-icons-icon-for-file (buffer-file-name buffer))
+                         (with-current-buffer buffer
+                           (nerd-icons-icon-for-mode major-mode))))
+                 (icon-face-raw (get-text-property 0 'face icon))
+                 (icon-face (if selected-p
+                                (if (mode-line-window-selected-p)
+                                    (list :inherit icon-face-raw
+                                          :height (face-attribute 'tab-line-tab-current :height)
+                                          :background (face-background 'tab-line-tab-current)
+                                          :overline (face-attribute 'tab-line-tab-current :overline))
+                                  (list :inherit icon-face-raw
+                                        :height (face-attribute 'tab-line-tab :height)
+                                        :background (face-background 'tab-line-tab)
+                                        :overline (face-attribute 'tab-line-tab :overline)))
+                              'tab-line-tab-inactive))
+                 (space-face (if selected-p
+                                 (if (mode-line-window-selected-p)
+                                     'tab-line-tab-current
+                                   'tab-line-tab)
+                               'tab-line-tab-inactive))
+                 (space (propertize " " 'face space-face
+                                    'keymap tab-line-tab-map
+                                    'mouse-face 'tab-line-highlight))
+                 (tab-index-str (propertize (number-to-string tab-pos) 'face (get-text-property 0 'face tab-string))))
+            (concat space
+                    tab-index-str
+                    space
+                    (propertize icon 'face icon-face
+                                'keymap tab-line-tab-map
+                                'mouse-face 'tab-line-highlight)
+                    tab-string
+                    space))
+        tab-string)))
+  
 
   (defun haf/switch-to-tab-index (count)
     "Switch to a tab by its number in current group"
@@ -170,6 +213,8 @@
 
   (setq tab-line-tab-name-function #'haf/tab-line-tab-name)
 
+  (advice-add 'tab-line-tab-name-format-default :around
+              'haf/tab-line-tab-name-format)
 
   ;; switching tabs like in vim
   :general
