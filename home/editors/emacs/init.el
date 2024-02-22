@@ -183,26 +183,27 @@
 (use-package corfu
   :init
   (global-corfu-mode)
-  (setq
-   corfu-auto-delay 0.75
-   )
+  (setq corfu-auto-delay 0.75)
   :general
   (:states '(normal insert)
            :keymaps 'override
-           "C-SPC" 'completion-at-point
-           )
+           "C-SPC" 'completion-at-point)
   :custom
   ;; enable autocompletion
-  (corfu-auto t)
-  )
+  (corfu-auto t))
 
 ;; show a pop-up with documentation on each autocompletion candidate after a small delay
 (use-package corfu-popupinfo
   :ensure nil ;; already included in corfu
   :after corfu
   :config
-  (corfu-popupinfo-mode)
-  )
+  (corfu-popupinfo-mode))
+
+;; add icons to corfu candidates
+(use-package nerd-icons-corfu
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 ;; orderless
 (use-package orderless
