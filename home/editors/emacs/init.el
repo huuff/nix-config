@@ -1,3 +1,5 @@
+;; TODO: Keybindings for dired-ranger commands
+;; TODO: Make dired-sidebar reload after any dired-ranger commands
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: Try to sort dired entries so folders are on top?
