@@ -226,17 +226,24 @@
   (:states 'normal
            :keymaps 'override
            ;; same key as for vim
-           "K" 'eldoc-box-help-at-point
-           )
+           "K" 'eldoc-box-help-at-point)
   :config
-  (setq eldoc-box-clear-with-C-g t)
-  )
+  (setq eldoc-box-clear-with-C-g t))
 
 ;; marginalia
 (use-package marginalia
   :init
-  (marginalia-mode)
-  )
+  (marginalia-mode))
+
+;; nerd-icons-completion
+;; =====================
+;; adds icons to completion candidates, must do something
+;; related to marginalia because it requires special config
+(use-package nerd-icons-completion
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 ;; helpful
 ;; =====================
