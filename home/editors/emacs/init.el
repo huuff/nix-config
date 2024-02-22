@@ -362,6 +362,13 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
+;; dired-ranger
+;; =====================
+;; a handful of commands for dired that add functionalities like those of ranger. 
+;; for example `dired-ranger-copy` `dired-ranger-mode` and `dired-ranger-paste` allow selecting
+;; several files, moving to a directory and then moving/pasting them there
+(use-package dired-ranger
+  :after dired)
 
 ;; TODO: Auto open sidebar when changing a project with project.el
 ;; dired-sidebar
@@ -617,8 +624,7 @@
   (setq rustic-lsp-client 'eglot)
                                         ;:config
   (advice-add 'rustic-cargo-add :before #'haf/advice-set-ran-rustic-dependency-management)
-  (advice-add 'rustic-cargo-rm :before #'haf/advice-set-ran-rustic-dependency-management)
-  )
+  (advice-add 'rustic-cargo-rm :before #'haf/advice-set-ran-rustic-dependency-management))
 (use-package rust-mode)
 
 ;;FUTURE: This may not be needed in emacs 30 or further,
@@ -645,8 +651,7 @@
 
   ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
   (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode)
-  )
+  (global-treesit-auto-mode))
 
 ;; shackle
 ;; allows configuring in what way each buffer will show
@@ -661,9 +666,7 @@
                    ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
                    (rustic-compilation-mode :size 0.4 :align right :select t)
                    (rustic-cargo-clippy-mode :size 0.4 :align right :select t)
-                   )
-   )
-  )
+                   )))
 
 ;; popper
 ;; mark buffers as "pop-up", making them easy to dismiss, toggle and cycle through
@@ -679,15 +682,12 @@
 
                                    ;; rust
                                    rustic-compilation-mode
-                                   rustic-cargo-clippy-mode
-                                   )
-        )
+                                   rustic-cargo-clippy-mode))
   (popper-mode +1)
   ;; enables echo area hints
   (popper-echo-mode +1)
   ;; do not do any display control, let shackle do it
-  (setq popper-display-control nil)
-  )
+  (setq popper-display-control nil))
 
 ;; (smartparens)
 (use-package smartparens
@@ -815,8 +815,7 @@
 ;; I don't expect (or need) to work in insert state
 (general-create-definer normal-leader-bindings
   :states '(normal visual emacs)
-  :prefix "SPC"
-  )
+  :prefix "SPC")
 
 (normal-leader-bindings
   "t" '(dired-sidebar-toggle-sidebar :which-key "Toggle sidebar")
