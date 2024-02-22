@@ -1,4 +1,3 @@
-;; TODO: Try another set of icons for dired because this one breaks
 ;; TODO: Try to sort dired entries so folders are on top?
 ;; TODO: A keybinding for creating a file (at a specific directory) in dired
 ;; TODO: A keybinding for kill-current-buffer
@@ -367,8 +366,17 @@
 ;; =====================
 ;; icons for dired
 (use-package nerd-icons-dired
-  :hook
-  (dired-mode . nerd-icons-dired-mode))
+  :preface
+  (defun haf/dired-subtree-add-nerd-icons ()
+    (interactive)
+    (revert-buffer))
+  (defun haf/dired-subtree-toggle-nerd-icons ()
+    (when (require 'dired-subtree nil t)
+      (if nerd-icons-dired-mode
+          (advice-add #'dired-subtree-toggle :after #'haf/dired-subtree-add-nerd-icons)
+        (advice-remove #'dired-subtree-toggle #'haf/dired-subtree-add-nerd-icons))))
+  :hook ((dired-mode . nerd-icons-dired-mode)
+         (nerd-icons-dired-mode . haf/dired-subtree-toggle-nerd-icons)))
 
 ;; TODO: I haven't used nerdicons... should I?
 ;; (all-the-icons) 
@@ -682,7 +690,7 @@
   )
 
 ;; avy
-;: =====================
+                                        ;: =====================
 ;; powerful jumping anywhere in the frame (any window) with visual feedback
 (use-package avy)
 
