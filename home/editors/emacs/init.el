@@ -2,7 +2,6 @@
 ;; TODO: Make dired-sidebar reload after any dired-ranger commands
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
-;; TODO: Try to sort dired entries so folders are on top?
 ;; TODO: A keybinding for creating a file (at a specific directory) in dired
 ;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
@@ -364,6 +363,15 @@
 ;; (nix-mode)
 (use-package nix-mode
   :mode "\\.nix\\'")
+
+;; dired
+;; =====================
+;; the built-in file-manager
+(use-package dired
+  :ensure nil ;; already included in emacs
+  :custom
+  ;; sort so directories are on top
+  (dired-listing-switches "-aBhl  --group-directories-first"))
 
 ;; dired-ranger
 ;; =====================
