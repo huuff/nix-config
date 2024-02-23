@@ -364,6 +364,9 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
+;; TODO: Is there any way I can manage dired to sort sveltekit files on top? They start with
+;; + which I assume is so they appear on top for listings, but for some reason, dired uses `ls`
+;; and it just won't show them on top
 ;; dired
 ;; =====================
 ;; the built-in file-manager
