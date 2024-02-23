@@ -797,6 +797,7 @@
   :ensure t
   :init (doom-modeline-mode 1))
 
+;; TODO: Maybe also pulse for scroll and moves within windows
 ;; pulse
 ;; =====================
 ;; my own pulse configurations that I spent 2 hours tinkering without any satisfaction
