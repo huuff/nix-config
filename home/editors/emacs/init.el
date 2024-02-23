@@ -389,23 +389,30 @@
   :ensure t
   :commands (dired-sidebar-toggle-sidebar))
 
+;; TODO: Maybe a keybinding for contracting all trees would be nice
 ;; nerd-icons-dired
 ;; =====================
 ;; icons for dired
 (use-package nerd-icons-dired
   :preface
+  ;; nerd-icons won't show initially with dired-subtree, this will refresh
+  ;; the buffer every time some subtree is toggled
   (defun haf/dired-subtree-add-nerd-icons ()
     (interactive)
     (revert-buffer))
   (defun haf/dired-subtree-toggle-nerd-icons ()
     (when (require 'dired-subtree nil t)
       (if nerd-icons-dired-mode
-          (advice-add #'dired-subtree-toggle :after #'haf/dired-subtree-add-nerd-icons)
-        (advice-remove #'dired-subtree-toggle #'haf/dired-subtree-add-nerd-icons))))
+          (progn
+            (advice-add #'dired-subtree-toggle :after #'haf/dired-subtree-add-nerd-icons)
+            (advice-add #'dired-subtree-cycle :after #'haf/dired-subtree-add-nerd-icons))
+        (progn 
+          (advice-remove #'dired-subtree-toggle #'haf/dired-subtree-add-nerd-icons)
+          (advice-remove #'dired-subtree-cycle #'haf/dired-subtree-add-nerd-icons)))))
   :hook ((dired-mode . nerd-icons-dired-mode)
          (nerd-icons-dired-mode . haf/dired-subtree-toggle-nerd-icons)))
 
-;; TODO: I haven't used nerdicons... should I?
+;; TODO: I haven't added a use-package definition for nerdicons... should I?
 ;; (all-the-icons) 
 (use-package all-the-icons
   :if (display-graphic-p))
