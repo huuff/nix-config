@@ -389,7 +389,7 @@
   :ensure t
   :commands (dired-sidebar-toggle-sidebar))
 
-;; TODO: Maybe a keybinding for contracting all trees would be nice
+;; TODO: Maybe a command for contracting all trees would be nice
 ;; nerd-icons-dired
 ;; =====================
 ;; icons for dired
@@ -403,6 +403,9 @@
   (defun haf/dired-subtree-toggle-nerd-icons ()
     (when (require 'dired-subtree nil t)
       (if nerd-icons-dired-mode
+        ;; TODO: Maybe I should use dired-subtree-insert and dired-subtree-remove instead of cycle
+        ;; and toggle, since those are the commands that actually change subtree visibility and are called
+        ;; by the former two
           (progn
             (advice-add #'dired-subtree-toggle :after #'haf/dired-subtree-add-nerd-icons)
             (advice-add #'dired-subtree-cycle :after #'haf/dired-subtree-add-nerd-icons))
