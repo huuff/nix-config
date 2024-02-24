@@ -383,15 +383,14 @@
     :states '(normal)
     ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
     ;; rather than having two separate keys
-    ;; TODO: Add revert-buffer (g r)
       "m" 'dired-mark
       "u" 'dired-unmark
-      ;; TODO: Should be d
-      "x" 'dired-do-delete
+      "d" 'dired-do-delete
       "r" 'dired-do-rename
       "!" 'dired-do-shell-command
       "+" 'dired-create-empty-file
-      "*" 'dired-create-directory))
+      "*" 'dired-create-directory
+      "g r" 'revert-buffer))
 
 ;; dired-ranger
 ;; =====================
@@ -419,6 +418,7 @@
   :config
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-move)
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-paste)
+  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file)
   )
 
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
