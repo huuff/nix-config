@@ -8,7 +8,6 @@
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: Try out lsp-booster, it may be impressive
-;; TODO: Maybe I should also shackle helpful same as help
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Make eshell a popup buffer
 ;; TODO: Use eglot-x?
@@ -91,8 +90,7 @@
 (use-package general
   :init
   ;; automatically unbind any definition that conflicts with mine
-  (general-auto-unbind-keys t)
-  )
+  (general-auto-unbind-keys t))
 
 
 ;; allow pasting with Ctrl+V, even in minibuffer
@@ -701,22 +699,22 @@
   (setq
    shackle-rules '(
                    (help-mode :size 0.3 :align below :select t)
+                   (helpful-mode :size 0.3 :align below :select t)
 
                    ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
                    (rustic-compilation-mode :size 0.4 :align right :select t)
-                   (rustic-cargo-clippy-mode :size 0.4 :align right :select t)
-                   )))
+                   (rustic-cargo-clippy-mode :size 0.4 :align right :select t))))
 
 ;; popper
 ;; mark buffers as "pop-up", making them easy to dismiss, toggle and cycle through
 (use-package popper
   :ensure t
   :init
-  (setq popper-reference-buffers '(
-                                   "\\*Messages\\*"
+  (setq popper-reference-buffers '("\\*Messages\\*"
                                    "Output\\*$"
                                    "\\*Async Shell Command\\*"
                                    help-mode
+                                   helpful-mode
                                    compilation-mode
 
                                    ;; rust
