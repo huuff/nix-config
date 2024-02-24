@@ -1,7 +1,6 @@
 ;; TODO: Use justl mode
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
-;; TODO: A keybinding for creating a file (at a specific directory) in dired
 ;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
 ;; TODO: Maybe use no-littering?
