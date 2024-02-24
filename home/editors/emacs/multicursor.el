@@ -8,23 +8,31 @@
 ;; I should inline it here, or edit it here so I can reuse
 ;; that config for other computers
 ;; TODO: A doesn't append a cursor and edits to the end of the selection...
+;; multiple-cursors
+;; ==================
+;; the package that looks the most like an emacs native, but it's buggy with evil
 (use-package multiple-cursors)
 
+;; evil-mc
+;; ==================
+;; very powerful for many operations, but it doesn't feel region-oriented since
+;; switching to it when a region is selected removes it and creates a single cursor
 (use-package evil-mc
   :after evil
   :config 
   ;; remove cursors when pressing C-g
   (setq evil-mc-undo-cursors-on-keyboard-quit t)
-  (global-evil-mc-mode 1)
-)
+  (global-evil-mc-mode 1))
 
 ;; TODO: Apply some config from a github issue to stop ignoring case
 ;; TODO: Maybe try to run match and next twice the first time? Since when starting from visual, it just marks
 ;; the same word as currently marked
+;; evil-multiedit
+;; ==================
+;; contrary to evil-mc it keeps your region, but it lacks evil-mc's power
 (use-package evil-multiedit
   :config
-  (setq evil-multiedit-follow-matches t)
-)
+  (setq evil-multiedit-follow-matches t))
 
 (defvar haf/multicursor-package 'evil-multiedit
   "The package to be used for multiple cursors, either 'evil-mc, 'evil-multiedit or 'multiple-cursors")
@@ -37,8 +45,7 @@
   (cond
     ((eq haf/multicursor-package 'evil-multiedit) (setq haf/multicursor-package 'evil-mc))
     ((eq haf/multicursor-package 'evil-mc) (setq haf/multicursor-package 'multiple-cursors))
-    ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-multiedit))
-  ))
+    ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-multiedit))))
 
 (defun haf/add-next-multicursor ()
   "Creates a multi-cursor for the selected region using the package in 'haf/multicursor-package'"

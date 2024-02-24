@@ -1,3 +1,8 @@
+;; hydra
+;; =================
+;; allows writing special pop-ups to dispatch commands and do operations
+;; these produce namespaces where operations can be repeated with single key presses
+;; also they look very nice and can explain what they do
 (use-package hydra
   :config
   ;; TODO: Allow switching to project diagnostics
@@ -18,13 +23,11 @@ _q_: Quit         ^ ^
     ("N" flymake-goto-prev-error)
     ("f" eglot-code-action-quickfix)
     ("c" (progn (close-flymake-diagnostics) (consult-flymake)) :color blue)
-    ("q" nil :color blue)
-  )
+    ("q" nil :color blue))
 
   ;; TODO: maybe make q exit multiple cursors and remove region for all packages
   (defhydra hydra-region
-    (:hint nil
-    )
+    (:hint nil)
     "
 ^Region^           ^Cursors (%s(symbol-name haf/multicursor-package))^
 --------------------------------------------------
@@ -39,9 +42,7 @@ _q_: Quit         ^ ^
     ("C-d" haf/add-next-multicursor)
     ("N" haf/remove-previous-multicursor)
     ("t" haf/toggle-multicursor-package)
-    ("q" nil :color blue)
-  )
-)
+    ("q" nil :color blue)))
 
 ;; TODO: Once there is more than one flymake diagnostics buffer, this won't be able to complete a name (try-completion only finds a prefix) and thus won't close the window
 (defun haf/close-flymake-diagnostics ()
@@ -54,12 +55,10 @@ _q_: Quit         ^ ^
   "Expands region and runs the hydra 'hydra-region'."
   (interactive)
   (er/expand-region 1)
-  (hydra-region/body)
-)
+  (hydra-region/body))
 
 (defun haf/next-cursor-and-start-region-hydra ()
   "Adds a multicursor and runs the hydra 'hydra-region'"
   (interactive)
   (haf/add-next-multicursor)
-  (hydra-region/body)
- )
+  (hydra-region/body))

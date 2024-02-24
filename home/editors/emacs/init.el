@@ -4,7 +4,6 @@
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
 ;; TODO: Maybe use no-littering?
 ;; TODO: Use anzu? Not excessively important but might improve the experience
-;; TODO: Make all === lines the same length in all files (very important)
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: Try out lsp-booster, it may be impressive
@@ -40,8 +39,7 @@
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
-;; TODO: Comment and explain ALL packages
-;; TODO: Reorganize it a little
+;; TODO: Try to split some sections to different files
 ;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
@@ -49,7 +47,6 @@
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
-;; TODO: Use fast-scroll?
 ;; TODO: Use flymake-clippy?
 ;; TODO: Maybe use hl-todo-mode and consult-todo
 ;; TODO: Maybe enable go-to-address-mode?
@@ -80,11 +77,17 @@
 ;; set font 
 (set-frame-font "Fira Code 10" nil t)
 
-;; (use-package)
+;; use-package
+;; =====================
+;; modular package configuration
 (eval-when-compile
   (require 'use-package))
 
-;; must load it early or otherwise use-package's :general
+;; general
+;; =====================
+;; keybinding configurations that are evil-aware and simple.
+;; I mostly use it with use-package's :general
+;; XXX: must load it early or otherwise use-package's :general
 ;; won't work. I thought use-package was supposed to fix
 ;; precisely this issue but whatever
 (use-package general
@@ -97,21 +100,22 @@
 (general-define-key "C-S-v" 'yank)
 
 ;; yasnippet
+;; =====================
+;; allows inserting snippets/templates into your buffers
 (use-package yasnippet
   :defer 2
   :config
-  (yas-global-mode 1)
-  )
+  (yas-global-mode 1))
 
+;; a collection of pre-made snippets
 (use-package yasnippet-snippets
-  :defer
-  )
+  :defer)
 
+;; adds a completion function and integrates it with corfu
 (use-package yasnippet-capf
   :after (yasnippet cape)
   :config
-  (add-to-list 'completion-at-point-functions #'yasnippet-capf)
-  )
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 ;; super-save
 ;; =====================
@@ -204,6 +208,10 @@
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 ;; orderless
+;; =====================
+;; more completion matching styles for the minibuffer
+;; by default, the orderless style allows searching different
+;; terms by separating them with spaces
 (use-package orderless
   :ensure t
   :custom
@@ -212,13 +220,15 @@
   )
 
 ;; eldoc
+;; =====================
+;; buil-in documentation browsing mode
 (use-package eldoc
+  :ensure nil ;; already included in emacs
   :init
   (setq 
-   eldoc-idle-delay 0.75
-   )
-  )
+   eldoc-idle-delay 0.75))
 
+;; displays eldoc in a floating childframe
 (use-package eldoc-box
   :general
   (:states 'normal
@@ -229,6 +239,8 @@
   (setq eldoc-box-clear-with-C-g t))
 
 ;; marginalia
+;; =====================
+;; adds pretty nice info to the margin of each option in minibuffer completions
 (use-package marginalia
   :init
   (marginalia-mode))
@@ -270,6 +282,9 @@
   :hook (emacs-lisp-mode . rainbow-delimiters-mode))
 
 ;; consult
+;; =====================
+;; an assortment of commands that enhance native ones with nicer displays, previews
+;; and more intelligent matching
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (
@@ -340,10 +355,15 @@
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<") ;; "C-+"
-  )
+  (setq consult-narrow-key "<"))
 
 ;; embark
+;; =====================
+;; gives actions for the thing at which the cursor is
+;; it's especially useful for running actions on minibuffer candidates
+;; for example, you might use "C-x", find a command and use embar to show its help
+;; rather than using "C-h x"
+;; so it prevents you from having to learn more keybindings and improves discoverability
 (use-package embark
   :ensure t
   :general
@@ -355,7 +375,9 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; (nix-mode)
+;; nix-mode
+;; =====================
+;; TODO: I actually don't know what it does besides highlighting and treesitter might be better at it, so remove it
 (use-package nix-mode
   :mode "\\.nix\\'")
 
@@ -444,11 +466,15 @@
          (nerd-icons-dired-mode . haf/dired-subtree-toggle-nerd-icons)))
 
 ;; TODO: I haven't added a use-package definition for nerdicons... should I?
-;; (all-the-icons) 
+;; all-the-icons 
+;; =====================
+;; icon package
 (use-package all-the-icons
   :if (display-graphic-p))
 
-;; (evil)
+;; evil
+;; =====================
+;; VIM emulation layer
 (use-package evil
   :init
   ;; these 2 are necessary for evil-collection
@@ -461,6 +487,9 @@
   )
 
 ;; evil-collection
+;; =====================
+;; a collection of improvements to provide VIM-like keybindings for many different
+;; emacs features/modes
 ;; some features:
 ;; * vim-unimpaired keybindings
 ;; * hungry-delete integration with evil
@@ -475,20 +504,24 @@
   (delete 'dired evil-collection-mode-list)
   (evil-collection-init))
 
+;; nerd-commenter emulation
 (use-package evil-nerd-commenter
   :init
   (evilnc-default-hotkeys))
 
+;; vim-surround emulation
 (use-package evil-surround
   :after evil
   :config
   (global-evil-surround-mode 1))
 
+;; vim match-it emulation
 (use-package evil-matchit
   :after evil
   :config
   (global-evil-matchit-mode 1))
 
+;; provides commands like `C-a` and `C-x` in vim to increase/decrease numbers
 (use-package evil-numbers
   :general
   ;; TODO: Use embark for this!
@@ -496,6 +529,8 @@
            "C-c +" 'evil-numbers/inc-at-pt
            "C-c -" 'evil-numbers/dec-at-pt))
 
+;; vim-snipe emulation, like `t` or `f` but uses two characters instead of one, so it's
+;; more precise
 ;; TODO: Can I configure it so n and N also cycle results as for search?
 (use-package evil-snipe
   :after evil
@@ -505,6 +540,7 @@
   ;; snipe in whole buffer, not just current line
   (setq evil-snipe-scope 'whole-buffer))
 
+;; gives an argument text-object so you can do `daa` for example to delete a whole argument
 ;; TODO: Try to set up some way to exchange args order
 ;; for example see: https://github.com/wcsmith/evil-args/issues/4
 (use-package evil-args
@@ -516,24 +552,24 @@
   (:states 'normal
            "L" 'evil-forward-arg
            "H" 'evil-backward-arg
-           "K" 'evil-jump-out-args
-           )
+           "K" 'evil-jump-out-args)
   (:states 'motion
            "L" 'evil-forward-arg
-           "H" 'evil-backward-arg
-           ))
+           "H" 'evil-backward-arg))
 
 ;; TODO: There's an alternative package for this that does the same but it's not specifically for evil, right? what was its name? maybe ask chatgpt. UPDATE: It's volatile-highlights
 ;; TODO: Colors aren't very visible. This issue:
 ;; https://github.com/edkolev/evil-goggles/issues/33
 ;; says it's because doom-themes but I've tried changing
 ;; it with no result
+;; pulses when providing feedback for many evil commands
 (use-package evil-goggles
   :after evil
   :config
   (evil-goggles-mode))
 
 ;; hungry-delete
+;; =====================
 ;; deletes large sequences of whitespace with a single press
 (use-package hungry-delete
   :config
@@ -552,12 +588,17 @@
 ;; TODO: There's an expand-region version that uses tree-sitter
 ;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
+;; expand-region
+;; =====================
+;; increases selection progressively by syntactical units
 (use-package expand-region
   :config
   ;; disable fast keys since my hydra does that and they conflict otherwise
   (setq expand-region-fast-keys-enabled nil))
 
 ;; lorem-ipsum
+;; =====================
+;; inserts filler text (lorem ipsum)
 ;; TODO: Maybe also configure separators, etc. for text-mode and markdown-mode
 ;; TODO: Can I configure an abbrev for this? (so writing lorem would expand to a paragraph) That's be cool
 (use-package lorem-ipsum
@@ -574,7 +615,7 @@
   :hook ((web-mode . haf/configure-html-lorem-ipsum)))
 
 ;; eglot
-;; ================
+;; =====================
 ;; Built-in integration with the LSP protocol
 ;; TODO: Enable it for nix
 ;; TODO: Maybe enable it for rust? rustic mode does it but I don't know for how long I'll use it
@@ -627,11 +668,18 @@
                  :args [])))
 
 ;; cape
+;; =====================
+;; provides some completion-at-point functions so it integrates very well
+;; with corfu.
+;; also has features to merge several capfs into a single one and to convert
+;; company completions to native capfs
 (use-package cape
   :init
   (add-to-list 'completion-at-point-functions #'cape-file))
 
-;; Enable vertico
+;; vertico
+;; =====================
+;; much better minibuffer completion
 (use-package vertico
   :init
   (vertico-mode))
@@ -643,10 +691,17 @@
   (savehist-mode))
 
 ;; flymake
+;; =====================
+;; native frontend for static checkes that allows showing errors, collecting and navigating them
 (use-package flymake
+  :ensure nil ;; already included in emacs
   :init (setq flymake-no-changes-timeout 0.5))
 
 ;; sideline
+;; =====================
+;; visual frontend that can show many things in a sideline inlined in your current buffer
+;; for example, it works with flymake errors
+;; TODO: Use sideline-blame?
 (use-package sideline
   :init 
   (setq sideline-display-backend-name t
@@ -655,6 +710,9 @@
 (use-package sideline-flymake)
 
 ;; rust
+;; =====================
+;; rustic-mode auto-configures the lsp client, provides syntax highlighting and many commands
+;; for calling cargo/rust commands
 ;; TODO (MAYBE) rustic-mode won't work with tree-sitter, so maybe I'll just have to drop it
 (use-package rustic
   :init
@@ -664,8 +722,11 @@
   (advice-add 'rustic-cargo-rm :before #'haf/advice-set-ran-rustic-dependency-management))
 (use-package rust-mode)
 
-;;FUTURE: This may not be needed in emacs 30 or further,
+;; FUTURE: This may not be needed in emacs 30 or further,
 ;;but currently, it's much easier this way
+;; treesit-auto
+;; =====================
+;; autoinstalls tree-sitter grammars and maps non-tree-sitter modes to tree-sitter ones
 (use-package treesit-auto
   :custom
   (treesit-auto-install 'prompt)
@@ -691,7 +752,8 @@
   (global-treesit-auto-mode))
 
 ;; shackle
-;; allows configuring in what way each buffer will show
+;; =====================
+;; allows configuring in what how each buffer will show
 (use-package shackle
   :init
   (shackle-mode)
@@ -706,6 +768,7 @@
                    (rustic-cargo-clippy-mode :size 0.4 :align right :select t))))
 
 ;; popper
+;; =====================
 ;; mark buffers as "pop-up", making them easy to dismiss, toggle and cycle through
 (use-package popper
   :ensure t
@@ -726,7 +789,9 @@
   ;; do not do any display control, let shackle do it
   (setq popper-display-control nil))
 
-;; (smartparens)
+;; smartparens
+;; =====================
+;; TODO: I don't know what it does and might even remove it
 (use-package smartparens
   :defer t
   :hook (prog-mode . smartparens-mode)
@@ -746,8 +811,12 @@
   :commands ace-window)
 
 ;; TODO: Just set up a .project file instead of Cargo.toml 
-;; (project)
+;; project
+;; =====================
+;; emacs' native project management that allows deciding which files belong to a single project
+;; to allow project-wide searching, running commands, etc
 (use-package project
+  :ensure nil
   :init
   (setq 
    ;; use directories with these files as project roots (useful so it detects nested projects)
@@ -762,7 +831,10 @@
   ;; TODO: I could just do this with a simple substitution like (message "remembering project '%S'") or smth
   (message (concat "Remembering project '" (caddr (project-current)) "'")))
 
-;; (which-key)
+;; which-key
+;; =====================
+;; shows a pop-up window when you press a key that shows every possible
+;; key you could follow it with and what command it runs
 (use-package which-key
   :init
   ;; both of these lines enable compatibility with evil
@@ -771,7 +843,10 @@
   :config
   (which-key-mode))
 
-;; (themes)
+;; =====================
+;; THEMES
+;; =====================
+
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
@@ -785,7 +860,9 @@
                        (dolist (theme custom-enabled-themes) (disable-theme theme))
                        (load-theme next-theme t)))))
 
-
+;; doom-themes
+;; =====================
+;; a curated collection of nice themes
 (use-package doom-themes
   :ensure t
   :config
@@ -825,6 +902,8 @@
   (dimmer-mode t))
 
 ;; modeline
+;; =====================
+;; much prettier and featurefull modeline
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
@@ -851,11 +930,15 @@
   (add-hook 'window-buffer-change-functions #'haf/pulse-line))
 
 ;; direnv
+;; =====================
+;; automatically loads direnv config
 (use-package direnv
   :config
   (direnv-mode))
 
 ;; web-mode
+;; =====================
+;; mode for editing web templates (svelte, vue, etc.) that mixes CSS, HTML and JS/TS modes
 (use-package web-mode
   :config 
   ;; define a new mode for svelte so I can hook to it specifically instead of
