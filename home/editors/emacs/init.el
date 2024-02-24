@@ -416,8 +416,7 @@
   :config
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-move)
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-paste)
-  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file)
-  )
+  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file))
 
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
@@ -507,8 +506,7 @@
   (evil-snipe-mode +1)
   (evil-snipe-override-mode +1)
   ;; snipe in whole buffer, not just current line
-  (setq evil-snipe-scope 'whole-buffer)
-  )
+  (setq evil-snipe-scope 'whole-buffer))
 
 ;; TODO: Try to set up some way to exchange args order
 ;; for example see: https://github.com/wcsmith/evil-args/issues/4
@@ -526,8 +524,7 @@
   (:states 'motion
            "L" 'evil-forward-arg
            "H" 'evil-backward-arg
-           )
-  )
+           ))
 
 ;; TODO: There's an alternative package for this that does the same but it's not specifically for evil, right? what was its name? maybe ask chatgpt. UPDATE: It's volatile-highlights
 ;; TODO: Colors aren't very visible. This issue:
@@ -552,10 +549,8 @@
    ;; I'm not even entirely sure what these characters are
    ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
    ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
-   hungry-delete-chars-to-skip " \t\r\f\v"
-   )
-  (global-hungry-delete-mode)
-  )
+   hungry-delete-chars-to-skip " \t\r\f\v")
+  (global-hungry-delete-mode))
 
 ;; TODO: There's an expand-region version that uses tree-sitter
 ;; expand-region
@@ -563,8 +558,7 @@
 (use-package expand-region
   :config
   ;; disable fast keys since my hydra does that and they conflict otherwise
-  (setq expand-region-fast-keys-enabled nil)
-  )
+  (setq expand-region-fast-keys-enabled nil))
 
 ;; lorem-ipsum
 ;; TODO: Maybe also configure separators, etc. for text-mode and markdown-mode
@@ -580,8 +574,7 @@
           lorem-ipsum-list-item-end "</li>\n"
           lorem-ipsum-list-end "</ul>\n"))
 
-  :hook ((web-mode . haf/configure-html-lorem-ipsum))
-  )
+  :hook ((web-mode . haf/configure-html-lorem-ipsum)))
 
 ;; eglot
 ;; ================
@@ -594,8 +587,7 @@
    '(
      ;; disable semantic highlighting, leave it for tree-sitter
      :semanticTokensProvider
-     )
-   )
+     ))
   :config 
   ;; auto-save current buffer when any code action is executed.
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
@@ -607,11 +599,9 @@
   (add-to-list 'eglot-server-programs
                '(svelte-mode . ("svelteserver" "--stdio")))
 
-  :hook
-  ((tsx-ts-mode . eglot-ensure)
-   (typescript-ts-mode . eglot-ensure)
-   (svelte-mode . eglot-ensure))
-  )
+  :hook ((tsx-ts-mode . eglot-ensure)
+         (typescript-ts-mode . eglot-ensure)
+         (svelte-mode . eglot-ensure)))
 
 ;; apheleia
 ;; =====================
@@ -637,21 +627,17 @@
                  ensure dape-ensure-command port :autoport fn dape-config-autoport 
                  :cwd dape-cwd-fn 
                  :program dape-find-file 
-                 :args [])
-               )
-  )
+                 :args [])))
 
 ;; cape
 (use-package cape
   :init
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  )
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 ;; Enable vertico
 (use-package vertico
   :init
-  (vertico-mode)
-  )
+  (vertico-mode))
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
 (use-package savehist
@@ -749,8 +735,7 @@
   :hook (prog-mode . smartparens-mode)
   :config
   ;; load default config
-  (require 'smartparens-config)
-  )
+  (require 'smartparens-config))
 
 ;; avy
                                         ;: =====================
@@ -829,10 +814,12 @@
 ;; =====================
 ;; dims non-selected window so it's clearer which one is currently selected
 (use-package dimmer
-   :config
-   (dimmer-configure-which-key)
-   (dimmer-configure-hydra)
-   (dimmer-mode t))
+  :custom
+  (dimmer-fraction 0.4)
+  :config
+  (dimmer-configure-which-key)
+  (dimmer-configure-hydra)
+  (dimmer-mode t))
 
 ;; modeline
 (use-package doom-modeline
