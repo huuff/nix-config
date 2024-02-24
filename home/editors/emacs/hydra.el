@@ -22,6 +22,7 @@ _q_: Quit         ^ ^
     ("n" flymake-goto-next-error)
     ("N" flymake-goto-prev-error)
     ("f" eglot-code-action-quickfix)
+    ;; TODO: This is wrong, should be haf/close-flymake-diagnostics
     ("c" (progn (close-flymake-diagnostics) (consult-flymake)) :color blue)
     ("q" nil :color blue))
 
