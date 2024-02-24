@@ -370,9 +370,11 @@
 ;; dired
 ;; =====================
 ;; the built-in file-manager
-;; TODO: Enable hl-line mode because it's mad cool
 (use-package dired
   :ensure nil ;; already included in emacs
+  ;; TODO: Maybe this cold be a little bit brighter?
+  ;; mark with the whole current line in dired
+  :hook (dired-mode . hl-line-mode)
   :custom
   ;; sort so directories are on top
   (dired-listing-switches "-aBhl  --group-directories-first")
