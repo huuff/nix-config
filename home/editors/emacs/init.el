@@ -1,5 +1,5 @@
-;; TODO: Keybindings for dired-ranger commands
 ;; TODO: Make dired-sidebar reload after any dired-ranger commands
+;; TODO: Use justl mode
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for creating a file (at a specific directory) in dired
@@ -370,6 +370,7 @@
 ;; dired
 ;; =====================
 ;; the built-in file-manager
+;; TODO: Enable hl-line mode because it's mad cool
 (use-package dired
   :ensure nil ;; already included in emacs
   :custom
@@ -382,9 +383,21 @@
 ;; for example `dired-ranger-copy` `dired-ranger-mode` and `dired-ranger-paste` allow selecting
 ;; several files, moving to a directory and then moving/pasting them there
 (use-package dired-ranger
-  :after dired)
+  :general
+  (:keymaps '(dired-mode-map)
+   :states '(normal)
+            "c" 'dired-ranger-copy
+            "p" 'dired-ranger-paste
+            "P" 'dired-ranger-move))
+
+;(use-package dired-ranger
+  ;:bind (:map dired-mode-map
+         ;("c" . dired-ranger-copy)
+         ;("p" . dired-ranger-paste)
+         ;("P" . dired-ranger-move)))
 
 ;; TODO: Auto open sidebar when changing a project with project.el
+;; TODO: Configure following file (dired-sidebar-should-follow-file and others)
 ;; dired-sidebar
 ;; =====================
 ;; use dired as a tree directory explorer in a sidebar just like a real IDE
@@ -392,7 +405,9 @@
   :ensure t
   :commands (dired-sidebar-toggle-sidebar))
 
+;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
+
 ;; nerd-icons-dired
 ;; =====================
 ;; icons for dired
@@ -443,33 +458,33 @@
   :after evil
   :ensure t
   :config
-  (evil-collection-init)
-  )
+  ;; XXX: evil collection is pretty damn aggressive overriding keymaps
+  ;; and you might not even get a change to define your own (it loads them at runtime
+  ;; and maybe even several time, so it will override yours no matter what you do).
+  ;; Be wary of disabling it when you find your keymaps won't work.
+  (delete 'dired evil-collection-mode-list)
+  (evil-collection-init))
 
 (use-package evil-nerd-commenter
   :init
-  (evilnc-default-hotkeys)
-  )
+  (evilnc-default-hotkeys))
+
 (use-package evil-surround
   :after evil
   :config
-  (global-evil-surround-mode 1)
-  )
+  (global-evil-surround-mode 1))
 
 (use-package evil-matchit
   :after evil
   :config
-  (global-evil-matchit-mode 1)
-  )
+  (global-evil-matchit-mode 1))
 
 (use-package evil-numbers
   :general
   ;; TODO: Use embark for this!
   (:states '(normal insert)
            "C-c +" 'evil-numbers/inc-at-pt
-           "C-c -" 'evil-numbers/dec-at-pt
-           )
-  )
+           "C-c -" 'evil-numbers/dec-at-pt))
 
 ;; TODO: Can I configure it so n and N also cycle results as for search?
 (use-package evil-snipe
@@ -528,6 +543,7 @@
   (global-hungry-delete-mode)
   )
 
+;; TODO: There's an expand-region version that uses tree-sitter
 ;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
 (use-package expand-region
