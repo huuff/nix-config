@@ -383,8 +383,10 @@
     :states '(normal)
     ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
     ;; rather than having two separate keys
+    ;; TODO: Add revert-buffer (g r)
       "m" 'dired-mark
       "u" 'dired-unmark
+      ;; TODO: Should be d
       "x" 'dired-do-delete
       "r" 'dired-do-rename
       "!" 'dired-do-shell-command
