@@ -383,6 +383,7 @@
 ;; for example `dired-ranger-copy` `dired-ranger-mode` and `dired-ranger-paste` allow selecting
 ;; several files, moving to a directory and then moving/pasting them there
 (use-package dired-ranger
+  :after dired
   :general
   (:keymaps '(dired-mode-map)
    :states '(normal)
@@ -390,11 +391,6 @@
             "p" 'dired-ranger-paste
             "P" 'dired-ranger-move))
 
-;(use-package dired-ranger
-  ;:bind (:map dired-mode-map
-         ;("c" . dired-ranger-copy)
-         ;("p" . dired-ranger-paste)
-         ;("P" . dired-ranger-move)))
 
 ;; TODO: Auto open sidebar when changing a project with project.el
 ;; TODO: Configure following file (dired-sidebar-should-follow-file and others)
