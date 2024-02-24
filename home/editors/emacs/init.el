@@ -375,12 +375,6 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; nix-mode
-;; =====================
-;; TODO: I actually don't know what it does besides highlighting and treesitter might be better at it, so remove it
-(use-package nix-mode
-  :mode "\\.nix\\'")
-
 ;; TODO: Is there any way I can manage dired to sort sveltekit files on top? They start with
 ;; + which I assume is so they appear on top for listings, but for some reason, dired uses `ls`
 ;; and it just won't show them on top
@@ -617,15 +611,13 @@
 ;; eglot
 ;; =====================
 ;; Built-in integration with the LSP protocol
-;; TODO: Enable it for nix
 ;; TODO: Maybe enable it for rust? rustic mode does it but I don't know for how long I'll use it
 (use-package eglot
   :custom
   (eglot-ignored-capabilities
    '(
      ;; disable semantic highlighting, leave it for tree-sitter
-     :semanticTokensProvider
-     ))
+     :semanticTokensProvider))
   :config 
   ;; auto-save current buffer when any code action is executed.
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
@@ -639,7 +631,8 @@
 
   :hook ((tsx-ts-mode . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
-         (svelte-mode . eglot-ensure)))
+         (svelte-mode . eglot-ensure)
+         (nix-ts-mode . eglot-ensure)))
 
 ;; apheleia
 ;; =====================
@@ -708,6 +701,13 @@
         sideline-backends-right '(sideline-flymake))
   :hook ((flymake-mode  . sideline-mode)))
 (use-package sideline-flymake)
+
+;; TODO: It won't work because I don't have the nix recipe for tree-sitter-auto!
+;; nix-ts-mode
+;; =====================
+;; nix syntax highlighting using built-in tree-sitter
+(use-package nix-ts-mode
+ :mode "\\.nix\\'")
 
 ;; rust
 ;; =====================

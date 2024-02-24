@@ -23,6 +23,7 @@
   outputs = { self, nixpkgs, nix-soapui, nixos-hardware, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts, nix-index-database}:
   let
     system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
       inherit system;
 
@@ -101,23 +102,31 @@
   in
   {
 
-    nixosConfigurations.desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
+    nixosConfigurations = {
+      desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
 
-    nixosConfigurations.office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [
-      ./nixos/bluetooth.nix
-    ];
+      office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [
+        ./nixos/bluetooth.nix
+      ];
 
-    nixosConfigurations.t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
+      t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
       [
         ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
         nixos-hardware.nixosModules.lenovo-thinkpad-t420
       ];
 
-    nixosConfigurations.zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf"
+      zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf"
       [
         ./nixos/wireless.nix { haf.networking.interface = "wlp1s0"; }
         ./nixos/bluetooth.nix
       ];
+    };
+
+    devShells.${system}.default = with pkgs; mkShell {
+        buildInputs = [
+          rnix-lsp
+        ];
+    };
   };
 }
 
