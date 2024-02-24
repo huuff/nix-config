@@ -1,5 +1,4 @@
 ;; TODO: Use justl mode
-;; TODO: I should actually try to use dimmer-mode or window-accent-mode or something because I find it hard to determine in which window I am
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for creating a file (at a specific directory) in dired
@@ -826,6 +825,15 @@
 (use-package solaire-mode
   :config
   (solaire-global-mode +1))
+
+;; dimmer
+;; =====================
+;; dims non-selected window so it's clearer which one is currently selected
+(use-package dimmer
+   :config
+   (dimmer-configure-which-key)
+   (dimmer-configure-hydra)
+   (dimmer-mode t))
 
 ;; modeline
 (use-package doom-modeline
