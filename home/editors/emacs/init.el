@@ -1,4 +1,4 @@
-;; TODO: Make dired-sidebar reload after any dired-ranger commands
+;; TODO: Apparently, disabling evil-collection I also disabled the mark and unmark keymaps of dired, so I should map 'em again
 ;; TODO: Use justl mode
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
@@ -399,7 +399,11 @@
 ;; use dired as a tree directory explorer in a sidebar just like a real IDE
 (use-package dired-sidebar
   :ensure t
-  :commands (dired-sidebar-toggle-sidebar))
+  :commands (dired-sidebar-toggle-sidebar)
+  :config
+  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-move)
+  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-paste)
+  )
 
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
