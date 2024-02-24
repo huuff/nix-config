@@ -1,5 +1,4 @@
 ;; TODO: Use justl mode
-;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
@@ -738,9 +737,15 @@
   (require 'smartparens-config))
 
 ;; avy
-                                        ;: =====================
+;; =====================
 ;; powerful jumping anywhere in the frame (any window) with visual feedback
 (use-package avy)
+
+;; ace-window
+;; =====================
+;; quickly switch between windows like when navigating around a buffer with avy
+(use-package ace-window
+  :commands ace-window)
 
 ;; TODO: Just set up a .project file instead of Cargo.toml 
 ;; (project)
@@ -926,4 +931,6 @@
 
   "t k" '(haf/tab-line-close-other-tabs :which-key "Kill other tabs")
 
-  "C-s" '(avy-goto-char-timer :which-key "Jump"))
+  "C-s" '(avy-goto-char-timer :which-key "Jump")
+  
+  "w" '(ace-window :which-key "Switch window"))
