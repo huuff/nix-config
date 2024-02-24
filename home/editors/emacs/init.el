@@ -1,5 +1,5 @@
-;; TODO: Apparently, disabling evil-collection I also disabled the mark and unmark keymaps of dired, so I should map 'em again
 ;; TODO: Use justl mode
+;; TODO: I should actually try to use dimmer-mode or window-accent-mode or something because I find it hard to determine in which window I am
 ;; TODO: Install ace-window
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for creating a file (at a specific directory) in dired
@@ -375,7 +375,19 @@
   :ensure nil ;; already included in emacs
   :custom
   ;; sort so directories are on top
-  (dired-listing-switches "-aBhl  --group-directories-first"))
+  (dired-listing-switches "-aBhl  --group-directories-first")
+  :general
+  (:keymaps '(dired-mode-map)
+    :states '(normal)
+    ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
+    ;; rather than having two separate keys
+      "m" 'dired-mark
+      "u" 'dired-unmark
+      "x" 'dired-do-delete
+      "r" 'dired-do-rename
+      "!" 'dired-do-shell-command
+      "+" 'dired-create-empty-file
+      "*" 'dired-create-directory))
 
 ;; dired-ranger
 ;; =====================
