@@ -603,6 +603,10 @@
 
   :hook ((web-mode . haf/configure-html-lorem-ipsum)))
 
+;; TODO: It's possible that I broke nice syntax highlighting in
+;; typescript file because of un-disabling semantic tokens.
+
+
 ;; eglot
 ;; =====================
 ;; Built-in integration with the LSP protocol
