@@ -603,10 +603,10 @@
 
   :hook ((web-mode . haf/configure-html-lorem-ipsum)))
 
+;; TODO: I think I broke eglot for rust mode and inlay hints don't seem to work
 ;; eglot
 ;; =====================
 ;; Built-in integration with the LSP protocol
-;; TODO: Enable inlay hints mode, rust pretty much needs it
 (use-package eglot
   :config 
   ;; auto-save current buffer when any code action is executed.
@@ -627,7 +627,9 @@
          (typescript-ts-mode . eglot-ensure)
          (svelte-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
-         (rust-ts-mode . eglot-ensure)))
+         (rust-ts-mode . eglot-ensure)
+          ;; auto-enable inlay hints
+         (eglot-managed-mode . eglot-inlay-hints-mode)))
 
 ;; apheleia
 ;; =====================
@@ -703,6 +705,8 @@
 (use-package nix-ts-mode
  :mode "\\.nix\\'")
 
+
+;; XXX: TODO: Please note you may need clang to build rust's grammar. I may need to provide a message or something for all this information
 ;; FUTURE: This may not be needed in emacs 30 or further,
 ;;but currently, it's much easier this way
 ;; treesit-auto
