@@ -795,7 +795,6 @@
 (use-package ace-window
   :commands ace-window)
 
-;; TODO: Just set up a .project file instead of Cargo.toml 
 ;; project
 ;; =====================
 ;; emacs' native project management that allows deciding which files belong to a single project
@@ -804,8 +803,9 @@
   :ensure nil
   :init
   (setq 
-   ;; use directories with these files as project roots (useful so it detects nested projects)
-   project-vc-extra-root-markers '("Cargo.toml")
+   ;; allow creating a dummy, empty .project file to mark a project root
+   ;; this is useful so it detects nested projects as independent projects
+   project-vc-extra-root-markers '(".project")
    ;; ignore these directories (normally it gets them from .gitignore, but this is useful for nested projects)
    project-vc-ignores '("target/" "bin/" "obj/")))
 
