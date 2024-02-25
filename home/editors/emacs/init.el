@@ -626,8 +626,10 @@
   ;; TODO: Maybe only set it for rustic-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
-  (add-to-list 'eglot-server-programs
-               '(svelte-mode . ("svelteserver" "--stdio")))
+  (setq eglot-server-programs
+        (append eglot-server-programs
+                (list '(svelte-mode . ("svelteserver" "--stdio")) 
+                      '(nix-ts-mode . ("rnix-lsp")))))
 
   :hook ((tsx-ts-mode . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
@@ -702,7 +704,6 @@
   :hook ((flymake-mode  . sideline-mode)))
 (use-package sideline-flymake)
 
-;; TODO: It won't work because I don't have the nix recipe for tree-sitter-auto!
 ;; nix-ts-mode
 ;; =====================
 ;; nix syntax highlighting using built-in tree-sitter
@@ -733,19 +734,29 @@
   :config
   ;; remove rust because rustic-mode is not compatible with treesitter
   (delete 'rust treesit-auto-langs)
+  (add-to-list 'treesit-auto-langs 'nix)
 
   ;; set v0.20.2 version for typescript since the default is master and that's
   ;; incompatible with emacs' version
-  (let ((typescript-recipe (make-treesit-auto-recipe
-                            :lang 'typescript
-                            :ts-mode 'typescript-ts-mode
-                            :remap 'typescript-mode
-                            :requires 'tsx
-                            :url "https://github.com/tree-sitter/tree-sitter-typescript"
-                            :revision "v0.20.2"
-                            :source-dir "typescript/src"
-                            :ext "\\.ts\\'")))
-    (add-to-list 'treesit-auto-recipe-list typescript-recipe))
+  (setq treesit-auto-recipe-list
+        (append treesit-auto-recipe-list
+                (list (make-treesit-auto-recipe
+                         :lang 'typescript
+                         :ts-mode 'typescript-ts-mode
+                         :remap 'typescript-mode
+                         :requires 'tsx
+                         :url "https://github.com/tree-sitter/tree-sitter-typescript"
+                         :revision "v0.20.2"
+                         :source-dir "typescript/src"
+                         :ext "\\.ts\\'")
+                      ;; XXX: please note that treesit-auto doesn't appear to install it automatically
+                      ;; you have to run treesit-auto-install-all
+                      (make-treesit-auto-recipe
+                         :lang 'nix
+                         :ts-mode 'nix-ts-mode
+                         :remap 'nix-mode
+                         :url "https://github.com/nix-community/tree-sitter-nix"
+                         :ext "\\.nix\\'"))))
 
   ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
   (treesit-auto-add-to-auto-mode-alist 'all)
@@ -759,8 +770,7 @@
   (shackle-mode)
   :config
   (setq
-   shackle-rules '(
-                   (help-mode :size 0.3 :align below :select t)
+   shackle-rules '((help-mode :size 0.3 :align below :select t)
                    (helpful-mode :size 0.3 :align below :select t)
 
                    ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
