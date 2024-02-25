@@ -603,7 +603,6 @@
 
   :hook ((web-mode . haf/configure-html-lorem-ipsum)))
 
-;; TODO: I think I broke eglot for rust mode and inlay hints don't seem to work
 ;; eglot
 ;; =====================
 ;; Built-in integration with the LSP protocol
@@ -613,7 +612,7 @@
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
   ;; this makes the warnings in the buffer obsolete, and it's especially
   ;; bothersome when I'm cycling through errors.
-  ;; TODO: Maybe only set it for rustic-mode?
+  ;; TODO: Maybe only set it for rust-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
   (setq eglot-server-programs
