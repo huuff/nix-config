@@ -620,6 +620,7 @@
         (append eglot-server-programs
                 (list '(svelte-mode . ("svelteserver" "--stdio")) 
                       '(nix-ts-mode . ("rnix-lsp"))
+                      ;; TODO: Enable clippy with rust-analyzer, rust-analyzer itself has a guide to do it with eglot
                       '(rust-ts-mode . ("rust-analyzer")))))
 
   :hook ((tsx-ts-mode . eglot-ensure)
