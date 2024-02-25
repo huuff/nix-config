@@ -746,12 +746,12 @@
                          :ext "\\.ts\\'")
                       ;; XXX: please note that treesit-auto doesn't appear to install it automatically
                       ;; you have to run treesit-auto-install-all
-                      ;; TODO: A specific revision
                       (make-treesit-auto-recipe
                          :lang 'nix
                          :ts-mode 'nix-ts-mode
                          :remap 'nix-mode
                          :url "https://github.com/nix-community/tree-sitter-nix"
+                         :revision "763168f"
                          :ext "\\.nix\\'"))))
 
   ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
