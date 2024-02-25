@@ -10,7 +10,6 @@
       (pkgs.emacsWithPackagesFromUsePackage {
         config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
             ./util.el
-            ./rustic-window-management.el
 
             # XXX: dape (for debugging) needs the vscode LLDB adapter
             # so I just substitute it into the elisp from here

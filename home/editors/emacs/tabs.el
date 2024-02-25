@@ -194,7 +194,6 @@
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes '(help-mode 
                                  compilation-mode
-                                 rustic-compilation-mode
                                  dashboard-mode
                                  dired-mode
                                  dired-sidebar-mode))

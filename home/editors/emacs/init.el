@@ -6,7 +6,7 @@
 ;; TODO: Use anzu? Not excessively important but might improve the experience
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
-;; TODO: Try out lsp-booster, it may be impressive
+;; TODO: Try out lsp-booster, it may be impressive. UPDATE: Also add these configs https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Make eshell a popup buffer
 ;; TODO: Use eglot-x?
@@ -17,7 +17,6 @@
 ;; TODO: Use meow? It seems pretty rad
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
-;; TODO: My rustic window management stuff doesn't work sometimes
 ;; TODO: Maybe set-up some code folding
 ;; TODO: A hydra for changing the font size
 ;; TODO: vterm maybe?
@@ -25,16 +24,12 @@
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
-;; TODO: An embark action to toggle mut in rust-mode (and maybe others?) (is there a toggle pub?)
 ;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Maybe I should add #' in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
-;; TODO: eglot's flymake diagnostics for rust aren't long enough and it drives me crazy!
-;; I might get a "mismatched types" but need to run rustc to know which type was the actual
-;; and which was the expected!
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
@@ -611,7 +606,7 @@
 ;; eglot
 ;; =====================
 ;; Built-in integration with the LSP protocol
-;; TODO: Maybe enable it for rust? rustic mode does it but I don't know for how long I'll use it
+;; TODO: Enable inlay hints mode, rust pretty much needs it
 (use-package eglot
   :config 
   ;; auto-save current buffer when any code action is executed.
@@ -624,12 +619,14 @@
   (setq eglot-server-programs
         (append eglot-server-programs
                 (list '(svelte-mode . ("svelteserver" "--stdio")) 
-                      '(nix-ts-mode . ("rnix-lsp")))))
+                      '(nix-ts-mode . ("rnix-lsp"))
+                      '(rust-ts-mode . ("rust-analyzer")))))
 
   :hook ((tsx-ts-mode . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
          (svelte-mode . eglot-ensure)
-         (nix-ts-mode . eglot-ensure)))
+         (nix-ts-mode . eglot-ensure)
+         (rust-ts-mode . eglot-ensure)))
 
 ;; apheleia
 ;; =====================
@@ -705,19 +702,6 @@
 (use-package nix-ts-mode
  :mode "\\.nix\\'")
 
-;; rust
-;; =====================
-;; rustic-mode auto-configures the lsp client, provides syntax highlighting and many commands
-;; for calling cargo/rust commands
-;; TODO (MAYBE) rustic-mode won't work with tree-sitter, so maybe I'll just have to drop it
-(use-package rustic
-  :init
-  (setq rustic-lsp-client 'eglot)
-                                        ;:config
-  (advice-add 'rustic-cargo-add :before #'haf/advice-set-ran-rustic-dependency-management)
-  (advice-add 'rustic-cargo-rm :before #'haf/advice-set-ran-rustic-dependency-management))
-(use-package rust-mode)
-
 ;; FUTURE: This may not be needed in emacs 30 or further,
 ;;but currently, it's much easier this way
 ;; treesit-auto
@@ -727,8 +711,6 @@
   :custom
   (treesit-auto-install 'prompt)
   :config
-  ;; remove rust because rustic-mode is not compatible with treesitter
-  (delete 'rust treesit-auto-langs)
   (add-to-list 'treesit-auto-langs 'nix)
 
   ;; set v0.20.2 version for typescript since the default is master and that's
@@ -767,11 +749,7 @@
   :config
   (setq
    shackle-rules '((help-mode :size 0.3 :align below :select t)
-                   (helpful-mode :size 0.3 :align below :select t)
-
-                   ('(:custom haf/is-rustic-dependency-management) :size 0.3 :align below)
-                   (rustic-compilation-mode :size 0.4 :align right :select t)
-                   (rustic-cargo-clippy-mode :size 0.4 :align right :select t))))
+                   (helpful-mode :size 0.3 :align below :select t))))
 
 ;; popper
 ;; =====================
@@ -784,11 +762,7 @@
                                    "\\*Async Shell Command\\*"
                                    help-mode
                                    helpful-mode
-                                   compilation-mode
-
-                                   ;; rust
-                                   rustic-compilation-mode
-                                   rustic-cargo-clippy-mode))
+                                   compilation-mode))
   (popper-mode +1)
   ;; enables echo area hints
   (popper-echo-mode +1)
@@ -857,7 +831,7 @@
   "Switches theme depending on current major-mode"
   (interactive)
   (let ((next-theme (cl-case major-mode
-                      ('rustic-mode 'doom-gruvbox)
+                      ('rust-ts-mode 'doom-gruvbox)
                       ('emacs-lisp-mode 'doom-one)
                       ('typescript-ts-mode 'doom-material)
                       ('svelte-mode 'doom-moonlight)
@@ -988,13 +962,6 @@
   "w w" '(popper-toggle :which-key "Toggle popup")
   "w t" '(popper-cycle :which-key "Cycle popup")
   "w o" '(popper-toggle-type :which-key "Change popup type"))
-
-(normal-leader-bindings 
-  :keymaps 'rustic-mode-map
-  ;; TODO: Maybe cargo-test DWIM? Seems cool. Or do that with embark?
-  "p t" '(rustic-cargo-test :which-key "Run tests")
-  "p c" '(rustic-cargo-build :which-key "Compile")
-  "p k" '(rustic-cargo-clippy :which-key "Clippy"))
 
 ;; keybindings that are supposed to work in all states (included insert)
 (general-create-definer insert-leader-bindings
