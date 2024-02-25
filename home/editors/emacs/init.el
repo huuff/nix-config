@@ -613,11 +613,6 @@
 ;; Built-in integration with the LSP protocol
 ;; TODO: Maybe enable it for rust? rustic mode does it but I don't know for how long I'll use it
 (use-package eglot
-  :custom
-  (eglot-ignored-capabilities
-   '(
-     ;; disable semantic highlighting, leave it for tree-sitter
-     :semanticTokensProvider))
   :config 
   ;; auto-save current buffer when any code action is executed.
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
@@ -751,6 +746,7 @@
                          :ext "\\.ts\\'")
                       ;; XXX: please note that treesit-auto doesn't appear to install it automatically
                       ;; you have to run treesit-auto-install-all
+                      ;; TODO: A specific revision
                       (make-treesit-auto-recipe
                          :lang 'nix
                          :ts-mode 'nix-ts-mode
