@@ -1,3 +1,5 @@
+;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
+;; TODO: Use diredfl or dired-k?
 ;; TODO: Use justl mode
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for kill-current-buffer
@@ -430,30 +432,14 @@
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
 
-;; nerd-icons-dired
-;; =====================
-;; icons for dired
-(use-package nerd-icons-dired
-  :preface
-  ;; nerd-icons won't show initially with dired-subtree, this will refresh
-  ;; the buffer every time some subtree is toggled
-  (defun haf/dired-subtree-add-nerd-icons ()
-    (interactive)
-    (revert-buffer))
-  (defun haf/dired-subtree-toggle-nerd-icons ()
-    (when (require 'dired-subtree nil t)
-      (if nerd-icons-dired-mode
-          ;; TODO: Maybe I should use dired-subtree-insert and dired-subtree-remove instead of cycle
-          ;; and toggle, since those are the commands that actually change subtree visibility and are called
-          ;; by the former two
-          (progn
-            (advice-add #'dired-subtree-toggle :after #'haf/dired-subtree-add-nerd-icons)
-            (advice-add #'dired-subtree-cycle :after #'haf/dired-subtree-add-nerd-icons))
-        (progn 
-          (advice-remove #'dired-subtree-toggle #'haf/dired-subtree-add-nerd-icons)
-          (advice-remove #'dired-subtree-cycle #'haf/dired-subtree-add-nerd-icons)))))
-  :hook ((dired-mode . nerd-icons-dired-mode)
-         (nerd-icons-dired-mode . haf/dired-subtree-toggle-nerd-icons)))
+;; enable icons in dired
+(use-package all-the-icons-dired
+  :after (dired all-the-icons)
+  :custom
+  ;; colorize icons
+  (all-the-icons-dired-monochrome nil)
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 
 ;; TODO: I haven't added a use-package definition for nerdicons... should I?
 ;; all-the-icons 
