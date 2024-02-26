@@ -1,5 +1,4 @@
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
-;; TODO: Use diredfl or dired-k?
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
 ;; TODO: Install eglot-signature-eldoc-talkative
@@ -433,6 +432,8 @@
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
 
+;; all-the-icons-dired
+;; =====================
 ;; enable icons in dired
 (use-package all-the-icons-dired
   :after (dired all-the-icons)
@@ -440,6 +441,13 @@
   ;; colorize icons
   (all-the-icons-dired-monochrome nil)
   :hook (dired-mode . all-the-icons-dired-mode))
+
+;; dired-fl
+;; =====================
+;; more beautiful colors in dired.
+;; specific colors for file extensions and types.
+(use-package diredfl
+  :hook (dired-mode . diredfl-mode))
 
 
 ;; TODO: I haven't added a use-package definition for nerdicons... should I?
