@@ -2,6 +2,7 @@
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
+;; TODO: Maybe use evil-quickscope
 ;; TODO: Maybe use no-littering?
 ;; TODO: Use anzu? Not excessively important but might improve the experience
 ;; TODO: Maybe use literate-calc-mode
@@ -19,7 +20,7 @@
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: Maybe set-up some code folding
 ;; TODO: A hydra for changing the font size
-;; TODO: vterm maybe?
+;; TODO: EAT maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
@@ -386,17 +387,17 @@
   (dired-listing-switches "-aBhl  --group-directories-first")
   :general
   (:keymaps '(dired-mode-map)
-    :states '(normal)
-    ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
-    ;; rather than having two separate keys
-      "m" 'dired-mark
-      "u" 'dired-unmark
-      "d" 'dired-do-delete
-      "r" 'dired-do-rename
-      "!" 'dired-do-shell-command
-      "+" 'dired-create-empty-file
-      "*" 'dired-create-directory
-      "g r" 'revert-buffer))
+            :states '(normal)
+            ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
+            ;; rather than having two separate keys
+            "m" 'dired-mark
+            "u" 'dired-unmark
+            "d" 'dired-do-delete
+            "r" 'dired-do-rename
+            "!" 'dired-do-shell-command
+            "+" 'dired-create-empty-file
+            "*" 'dired-create-directory
+            "g r" 'revert-buffer))
 
 ;; dired-ranger
 ;; =====================
@@ -407,7 +408,7 @@
   :after dired
   :general
   (:keymaps '(dired-mode-map)
-   :states '(normal)
+            :states '(normal)
             "c" 'dired-ranger-copy
             "p" 'dired-ranger-paste
             "P" 'dired-ranger-move))
@@ -442,9 +443,9 @@
   (defun haf/dired-subtree-toggle-nerd-icons ()
     (when (require 'dired-subtree nil t)
       (if nerd-icons-dired-mode
-        ;; TODO: Maybe I should use dired-subtree-insert and dired-subtree-remove instead of cycle
-        ;; and toggle, since those are the commands that actually change subtree visibility and are called
-        ;; by the former two
+          ;; TODO: Maybe I should use dired-subtree-insert and dired-subtree-remove instead of cycle
+          ;; and toggle, since those are the commands that actually change subtree visibility and are called
+          ;; by the former two
           (progn
             (advice-add #'dired-subtree-toggle :after #'haf/dired-subtree-add-nerd-icons)
             (advice-add #'dired-subtree-cycle :after #'haf/dired-subtree-add-nerd-icons))
@@ -631,7 +632,7 @@
          (svelte-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
          (rust-ts-mode . eglot-ensure)
-          ;; auto-enable inlay hints
+         ;; auto-enable inlay hints
          (eglot-managed-mode . eglot-inlay-hints-mode)))
 
 ;; apheleia
@@ -706,7 +707,7 @@
 ;; =====================
 ;; nix syntax highlighting using built-in tree-sitter
 (use-package nix-ts-mode
- :mode "\\.nix\\'")
+  :mode "\\.nix\\'")
 
 
 ;; XXX: TODO: Please note you may need clang to build rust's grammar. I may need to provide a message or something for all this information
@@ -723,26 +724,24 @@
 
   ;; set v0.20.2 version for typescript since the default is master and that's
   ;; incompatible with emacs' version
-  (setq treesit-auto-recipe-list
-        (append treesit-auto-recipe-list
-                (list (make-treesit-auto-recipe
-                         :lang 'typescript
-                         :ts-mode 'typescript-ts-mode
-                         :remap 'typescript-mode
-                         :requires 'tsx
-                         :url "https://github.com/tree-sitter/tree-sitter-typescript"
-                         :revision "v0.20.2"
-                         :source-dir "typescript/src"
-                         :ext "\\.ts\\'")
+  (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
+                       :lang 'typescript
+                       :ts-mode 'typescript-ts-mode
+                       :remap 'typescript-mode
+                       :requires 'tsx
+                       :url "https://github.com/tree-sitter/tree-sitter-typescript"
+                       :revision "v0.20.2"
+                       :source-dir "typescript/src"
+                       :ext "\\.ts\\'"))
                       ;; XXX: please note that treesit-auto doesn't appear to install it automatically
                       ;; you have to run treesit-auto-install-all
-                      (make-treesit-auto-recipe
-                         :lang 'nix
-                         :ts-mode 'nix-ts-mode
-                         :remap 'nix-mode
-                         :url "https://github.com/nix-community/tree-sitter-nix"
-                         :revision "763168f"
-                         :ext "\\.nix\\'"))))
+  (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
+                       :lang 'nix
+                       :ts-mode 'nix-ts-mode
+                       :remap 'nix-mode
+                       :url "https://github.com/nix-community/tree-sitter-nix"
+                       :revision "763168f"
+                       :ext "\\.nix\\'"))
 
   ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
   (treesit-auto-add-to-auto-mode-alist 'all)
