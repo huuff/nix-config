@@ -733,14 +733,17 @@
                        :revision "v0.20.2"
                        :source-dir "typescript/src"
                        :ext "\\.ts\\'"))
+  ;; TODO: See if I can get treesit-auto to prompt to install it automatically
                       ;; XXX: please note that treesit-auto doesn't appear to install it automatically
                       ;; you have to run treesit-auto-install-all
   (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
                        :lang 'nix
                        :ts-mode 'nix-ts-mode
                        :remap 'nix-mode
-                       :url "https://github.com/nix-community/tree-sitter-nix"
-                       :revision "763168f"
+                       ;; XXX: I had to fork it just to create a tag to a commit 
+                       ;; I knew was working for my emacs version
+                       :url "https://github.com/huuff/tree-sitter-nix"
+                       :revision "emacs-29.1.90"
                        :ext "\\.nix\\'"))
 
   ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
