@@ -1,6 +1,7 @@
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
 ;; TODO: Use diredfl or dired-k?
 ;; TODO: Use justl mode
+;; TODO: persistent-scratch-mode might be cool
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
