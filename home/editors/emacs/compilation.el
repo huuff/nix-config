@@ -8,6 +8,7 @@
   "Run a compile command specific for this kind of project"
   (interactive)
   (let ((default-directory (project-root (project-current))))
+    ;; TODO: this broke and I don't know when
     (cond ((eq major-mode 'rust-ts-mode) (compile "cargo build"))
           ;; TODO: More types of build systems
           ((eq major-mode 'svelte-mode) (compile "pnpm check"))
