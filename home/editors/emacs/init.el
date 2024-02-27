@@ -958,11 +958,11 @@
   "l u" '(xref-find-references :which-key "Find usages")
   "l m" '(consult-imenu :which-key "imenu")
 
-  ;; TODO: compile for non-rustic mode
   "p f" '(consult-fd :which-key "Find file")
   "p F" '(consult-ripgrep :which-key "Find text")
   "p r" '(haf/project-remember-current-project :which-key "Remember project")
   "p p" '(project-switch-project :which-key "Switch project")
+  "p c" '(haf/compile-project :which-key "Compile project")
 
   "w w" '(popper-toggle :which-key "Toggle popup")
   "w t" '(popper-cycle :which-key "Cycle popup")
