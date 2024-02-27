@@ -1,3 +1,4 @@
+;; TODO: Try to fix dimmer.el so it doesn't do weird stuff with corfu
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
@@ -129,12 +130,13 @@
   ;; disable default horrible autosave mode that leaves thousands of backup files
   (setq auto-save-default nil))
 
-;; (bind-key) necessary for use-package
+;; bind-key
+;; =====================
+;; use-package needs it for its :bind configuration
 (use-package bind-key
   :ensure t
   :config
-  (add-to-list 'same-window-buffer-names "*Personal Keybindings*")
-  )
+  (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: It'd be huge to display an elfeed with planetemacs
