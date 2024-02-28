@@ -1,4 +1,6 @@
-;; TODO: Try to fix dimmer.el so it doesn't do weird stuff with corfu
+;; TODO: Fix dimmer for:
+;;   - eldoc-box
+;;   - corfu
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
