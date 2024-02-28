@@ -1,6 +1,15 @@
 ;; compilation-mode customizations
 
-;; TODO: Maybe I'd need to put these configs into alists instead of into cond/cl-case
+;; TODO: I'm setting these configs into a list so I can have everything in a single place.
+;; Then, I'd use find-compilation-config to find the one I want and then I'd use it to run commands and set the regexp alist
+;; Maybe a plist is better?
+(setq haf/compilation-configs '((:marker-file "Cargo.toml" :build-command "cargo build" :error-regexp '("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))
+                                (:marker-file "pnpm-lock.yaml" :build-command "pnpm check")))
+
+(defun haf/find-compilation-config ()
+  (let ((default-directory (project-root (project-current))))
+    (seq-find (lambda (cfg) (file-exists-p (expand-file-name (cadr (memq :marker-file cfg)) default-directory))) haf/compilation-configs)))
+
 ;; TODO: maybe a separate function to check instead of compile
 ;; TODO: a separate function for running tests
 ;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
