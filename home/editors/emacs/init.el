@@ -622,6 +622,7 @@
   (setq eglot-server-programs
         (append eglot-server-programs
                 (list '(svelte-mode . ("svelteserver" "--stdio")) 
+                      ;; TODO: rnix-lsp is hyper-deprecated. I have to use nil
                       '(nix-ts-mode . ("rnix-lsp"))
                       ;; TODO: Enable clippy with rust-analyzer, rust-analyzer itself has a guide to do it with eglot
                       '(rust-ts-mode . ("rust-analyzer")))))
@@ -724,26 +725,26 @@
   ;; set v0.20.2 version for typescript since the default is master and that's
   ;; incompatible with emacs' version
   (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
-                       :lang 'typescript
-                       :ts-mode 'typescript-ts-mode
-                       :remap 'typescript-mode
-                       :requires 'tsx
-                       :url "https://github.com/tree-sitter/tree-sitter-typescript"
-                       :revision "v0.20.2"
-                       :source-dir "typescript/src"
-                       :ext "\\.ts\\'"))
+                                          :lang 'typescript
+                                          :ts-mode 'typescript-ts-mode
+                                          :remap 'typescript-mode
+                                          :requires 'tsx
+                                          :url "https://github.com/tree-sitter/tree-sitter-typescript"
+                                          :revision "v0.20.2"
+                                          :source-dir "typescript/src"
+                                          :ext "\\.ts\\'"))
   ;; TODO: See if I can get treesit-auto to prompt to install it automatically
-                      ;; XXX: please note that treesit-auto doesn't appear to install it automatically
-                      ;; you have to run treesit-auto-install-all
+  ;; XXX: please note that treesit-auto doesn't appear to install it automatically
+  ;; you have to run treesit-auto-install-all
   (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
-                       :lang 'nix
-                       :ts-mode 'nix-ts-mode
-                       :remap 'nix-mode
-                       ;; XXX: I had to fork it just to create a tag to a commit 
-                       ;; I knew was working for my emacs version
-                       :url "https://github.com/huuff/tree-sitter-nix"
-                       :revision "emacs-29.1.90"
-                       :ext "\\.nix\\'"))
+                                          :lang 'nix
+                                          :ts-mode 'nix-ts-mode
+                                          :remap 'nix-mode
+                                          ;; XXX: I had to fork it just to create a tag to a commit 
+                                          ;; I knew was working for my emacs version
+                                          :url "https://github.com/huuff/tree-sitter-nix"
+                                          :revision "emacs-29.1.90"
+                                          :ext "\\.nix\\'"))
 
   ;; auto switch to the treesitter mode for all langs included in treesit-auto-langs
   (treesit-auto-add-to-auto-mode-alist 'all)

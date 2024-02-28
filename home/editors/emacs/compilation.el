@@ -20,6 +20,7 @@
   (let* ((default-directory (project-root (project-current)))
          (project-type (haf/get-project-type default-directory)))
     (cl-case project-type
+      ;; TODO: I broke this again
       ('cargo (let ((compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3)))) (compile "cargo build")))
       ('pnpm (compile "pnpm check"))
       ('npm (compile "npm run build")))))
