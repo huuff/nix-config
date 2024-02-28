@@ -703,6 +703,22 @@
   :hook ((flymake-mode  . sideline-mode)))
 (use-package sideline-flymake)
 
+;; diff-hl
+;; =====================
+;; shows git status in the gutter (uncommited changes)
+;; TODO: Some keybindings or hydra to cycle across hunks
+(use-package diff-hl
+  :ensure t
+  :hook 
+    ;; enable it in dired
+    ((dired-mode . diff-hl-dired-mode-unless-remote)
+    ;; integrates it with magit
+    (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+    (magit-post-refresh . diff-hl-magit-post-refresh))
+  :init (global-diff-hl-mode)
+  ;; show the hunk on clicking on the gutter
+  :config (global-diff-hl-show-hunk-mouse-mode))
+
 ;; nix-ts-mode
 ;; =====================
 ;; nix syntax highlighting using built-in tree-sitter
