@@ -836,6 +836,7 @@
 ;; THEMES
 ;; =====================
 
+;; TODO: Check whether the next theme is the same as the current one, and don't switch otherwise. This may give a noticeable speedup
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
