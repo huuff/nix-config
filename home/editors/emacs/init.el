@@ -1,4 +1,5 @@
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
+;; TODO: Lower dimmer's dimming a little. Editing two files in split screen gives too much focus to the currently selected one
 ;; TODO: Fix dimmer for:
 ;;   - eldoc-box
 ;;   - corfu
