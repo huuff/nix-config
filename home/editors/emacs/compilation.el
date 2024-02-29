@@ -1,5 +1,11 @@
 ;; compilation-mode customizations
 
+(require 'compile)
+
+(define-compilation-mode rust-compilation-mode "Rust"
+  "Rust compilation mode"
+  (setq-local compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
+
 ;; TODO: I'm setting these configs into a list so I can have everything in a single place.
 ;; Then, I'd use find-compilation-config to find the one I want and then I'd use it to run commands and set the regexp alist
 ;; Maybe a plist is better?
@@ -20,8 +26,7 @@
   (let* ((default-directory (project-root (project-current)))
          (project-type (haf/get-project-type default-directory)))
     (cl-case project-type
-      ;; TODO: I broke this again
-      ('cargo (let ((compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3)))) (compile "cargo build")))
+      ('cargo (compilation-start "cargo build" 'rust-compilation-mode))
       ('pnpm (compile "pnpm check"))
       ('npm (compile "npm run build")))))
 
@@ -30,4 +35,5 @@
   (cond ((file-exists-p (expand-file-name "Cargo.toml" directory)) 'cargo)
         ((file-exists-p (expand-file-name "pnpm-lock.yaml" directory)) 'pnpm)
         ((file-exists-p (expand-file-name "package-lock.json" directory)) 'npm)))
+
 
