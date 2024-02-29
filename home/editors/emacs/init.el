@@ -1,3 +1,4 @@
+;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
 ;; TODO: Fix dimmer for:
 ;;   - eldoc-box
 ;;   - corfu
