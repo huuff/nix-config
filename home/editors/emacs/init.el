@@ -712,11 +712,11 @@
 (use-package diff-hl
   :ensure t
   :hook 
-    ;; enable it in dired
-    ((dired-mode . diff-hl-dired-mode-unless-remote)
-    ;; integrates it with magit
-    (magit-pre-refresh  . diff-hl-magit-pre-refresh)
-    (magit-post-refresh . diff-hl-magit-post-refresh))
+  ;; enable it in dired
+  ((dired-mode . diff-hl-dired-mode-unless-remote)
+   ;; integrates it with magit
+   (magit-pre-refresh  . diff-hl-magit-pre-refresh)
+   (magit-post-refresh . diff-hl-magit-post-refresh))
   :init (global-diff-hl-mode)
   ;; show the hunk on clicking on the gutter
   :config (global-diff-hl-show-hunk-mouse-mode))
@@ -855,7 +855,6 @@
 ;; THEMES
 ;; =====================
 
-;; TODO: Check whether the next theme is the same as the current one, and don't switch otherwise. This may give a noticeable speedup
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
@@ -865,9 +864,10 @@
                       ('typescript-ts-mode 'doom-material)
                       ('svelte-mode 'doom-moonlight)
                       (t nil))))
-    (when next-theme (progn 
-                       (dolist (theme custom-enabled-themes) (disable-theme theme))
-                       (load-theme next-theme t)))))
+    (when next-theme
+      (when (not (custom-theme-enabled-p next-theme)) (progn 
+                                                        (dolist (theme custom-enabled-themes) (disable-theme theme))
+                                                        (load-theme next-theme t))))))
 
 ;; doom-themes
 ;; =====================
