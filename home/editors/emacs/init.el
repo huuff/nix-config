@@ -46,7 +46,6 @@
 ;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
-;; TODO: Use magit
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
@@ -950,6 +949,12 @@
   ;; every web-mode
   (define-derived-mode svelte-mode web-mode "Svelte")
   (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode)))
+
+;; TODO: Also use "forge"?
+;; magit
+;; =====================
+;; super-duper integration with git
+(use-package magit)
 
 ;; keybindings
 ;; =====================
