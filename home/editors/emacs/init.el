@@ -988,6 +988,7 @@
   "p r" '(haf/project-remember-current-project :which-key "Remember project")
   "p p" '(project-switch-project :which-key "Switch project")
   "p c" '(haf/compile-project :which-key "Compile project")
+  "p t" '(haf/run-project-tests :which-key "Run tests")
 
   "w w" '(popper-toggle :which-key "Toggle popup")
   "w t" '(popper-cycle :which-key "Cycle popup")
