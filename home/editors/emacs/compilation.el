@@ -1,8 +1,8 @@
 ;; compilation-mode customizations
 
+;; TODO: Try using fancy compilation mode?
 (require 'compile)
 
-;; TODO: maybe a separate function to check instead of compile
 ;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
 (define-compilation-mode rust-compilation-mode "Rust"
   "Rust compilation mode"
@@ -12,9 +12,17 @@
   "Rust compilation mode"
   (setq-local compilation-error-regexp-alist '(("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
 
-(setq haf/compilation-configs (list '(:dominating-file "Cargo.toml" :build-command "cargo build" :test-command "cargo test" :mode rust-compilation-mode)
-                                    '(:dominating-file "pnpm-lock.yaml" :build-command "pnpm check" :test-command "pnpm test -- run":mode svelte-compilation-mode)
-                                    '(:dominating-file "package-lock.json" :build-command "npm run build")))
+(setq haf/compilation-configs (list '(:dominating-file "Cargo.toml"
+                                                       :build-command "cargo build"
+                                                       :test-command "cargo test"
+                                                       :lint-command "cargo clippy"
+                                                       :mode rust-compilation-mode)
+                                    '(:dominating-file "pnpm-lock.yaml"
+                                                       :build-command "pnpm check"
+                                                       :test-command "pnpm test -- run"
+                                                       :lint-command "pnpx eslint . --format unix"
+                                                       :mode svelte-compilation-mode)
+                                    ))
 
 (defun haf/compilation-config-applies (cfg directory)
   "Checks whether a given compilation config applies to the given directory"
@@ -36,3 +44,9 @@
          (cfg (haf/find-compilation-config default-directory)))
     (when cfg (compilation-start (plist-get cfg :test-command) (plist-get cfg :mode)))))
 
+
+(defun haf/lint-project ()
+  (interactive)
+  (let* ((default-directory (project-root (project-current)))
+         (cfg (haf/find-compilation-config default-directory)))
+    (when cfg (compilation-start (plist-get cfg :lint-command) (plist-get cfg :mode)))))

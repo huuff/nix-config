@@ -1,4 +1,5 @@
 ;; TODO: Maybe use prodigy
+;; TODO: Maybe use golden-ratio
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
 ;; TODO: Fix dimmer for:
 ;;   - eldoc-box
@@ -989,6 +990,7 @@
   "p p" '(project-switch-project :which-key "Switch project")
   "p c" '(haf/compile-project :which-key "Compile project")
   "p t" '(haf/run-project-tests :which-key "Run tests")
+  "p l" '(haf/lint-project :which-key "Run linter")
 
   "w w" '(popper-toggle :which-key "Toggle popup")
   "w t" '(popper-cycle :which-key "Cycle popup")
