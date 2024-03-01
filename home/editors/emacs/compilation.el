@@ -9,8 +9,12 @@
   "Rust compilation mode"
   (setq-local compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
 
+(define-compilation-mode svelte-compilation-mode "Svelte"
+  "Rust compilation mode"
+  (setq-local compilation-error-regexp-alist '(("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
+
 (setq haf/compilation-configs (list '(:dominating-file "Cargo.toml" :build-command "cargo build" :mode rust-compilation-mode)
-                                    '(:dominating-file "pnpm-lock.yaml" :build-command "pnpm check")
+                                    '(:dominating-file "pnpm-lock.yaml" :build-command "pnpm check" :mode svelte-compilation-mode)
                                     '(:dominating-file "package-lock.json" :build-command "npm run build")))
 
 (defun haf/compilation-config-applies (cfg directory)
