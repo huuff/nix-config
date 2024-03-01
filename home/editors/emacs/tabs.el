@@ -49,6 +49,7 @@
         ("g T" . centaur-tabs-backward))
   )
 
+;; TODO: Hide magit buffers
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :if (eq haf/tabs-package 'tab-line)
