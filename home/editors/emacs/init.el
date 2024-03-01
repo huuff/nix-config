@@ -474,8 +474,7 @@
   :config
   (evil-mode 1)
   ;; enable redo
-  (evil-set-undo-system 'undo-redo)
-  )
+  (evil-set-undo-system 'undo-redo))
 
 ;; evil-collection
 ;; =====================
@@ -604,9 +603,6 @@
           lorem-ipsum-list-end "</ul>\n"))
 
   :hook ((web-mode . haf/configure-html-lorem-ipsum)))
-
-;; TODO: It's possible that I broke nice syntax highlighting in
-;; typescript file because of un-disabling semantic tokens.
 
 
 ;; eglot
