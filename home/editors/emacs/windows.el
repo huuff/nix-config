@@ -4,7 +4,8 @@
                           (:mode compilation-mode :size 0.4 :align right :select nil)
                           (:mode messages-buffer-mode :size 0.3 :align below :select nil)
                           ;; TODO: Not exactly working... why?
-                          (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t)))
+                          (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t)
+                          (:mode magit-status-mode :size 0.4 :align below :select t)))
 
 (defun haf/popup-modes ()
   (mapcar #'(lambda (it) (plist-get it :mode)) haf/popup-buffers))

@@ -34,6 +34,7 @@
               ;; if I don't do this, project-current will run for these and CPU usage
               ;; goes through the roof
               ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
+              ((s-prefix-p "magit" (buffer-name buffer)) "magit")
               ((eq major-mode 'dired-mode) "dired")
               ((eq major-mode 'dired-sidebar-mode) "dired")
               ;; otherwise, group by current project.el project
