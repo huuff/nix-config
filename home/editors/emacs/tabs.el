@@ -7,7 +7,6 @@
 ;; TODO: Maybe make a hydra/transient for tabbing around
 
 
-;; TODO: Hide magit buffers
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :init
@@ -20,7 +19,7 @@
   (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :preface
   ;; TODO: Maybe use a few lets here so I don't repeat calls to buffer-name
-  ;; group buffers criteria
+  ;; group buffers criteria. UPD: wtf? let bufname is there but I didn't use it?
   (defun haf/tab-line-group-by-project (buffer)
     "Split buffers into appropriate groups"
     (with-current-buffer buffer

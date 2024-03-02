@@ -2,6 +2,7 @@
 (setq haf/popup-buffers '((:mode help-mode :size 0.3 :align below :select t)
                           (:mode helpful-mode :size 0.3 :align below :select t)
                           (:mode compilation-mode :size 0.4 :align right :select nil)
+                          ;; TODO: tab-line still not disappearing for messages?
                           (:mode messages-buffer-mode :size 0.3 :align below :select nil)
                           ;; TODO: Not exactly working... why?
                           (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t)
