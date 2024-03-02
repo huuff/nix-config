@@ -6,7 +6,11 @@
 
 ;; fancy-compilation
 ;; =====================
-;; interprets ANSI escape sequences in compilation mode so it doesn't look so ugly
+;; interprets ANSI escape sequences in compilation mode so it should:
+;; * show colors
+;; * allow showing single-line auto-updating progress bars to work
+;; XXX: Please note that this doesn't actually work for some cases, and it's missing both
+;; colors and progress bars
 (use-package fancy-compilation
   :demand t
   :config
@@ -39,22 +43,20 @@
   (let ((default-directory (project-root (project-current))))
     (seq-find (lambda (cfg) (haf/compilation-config-applies cfg default-directory)) haf/compilation-configs)))
 
-;; TODO: A macro for these
-(defun haf/compile-project ()
-  (interactive)
+(defun haf/compile-action (action)
   (let* ((default-directory (project-root (project-current)))
          (cfg (haf/find-compilation-config default-directory)))
-    (when cfg (compilation-start (plist-get cfg :build-command) (plist-get cfg :mode)))))
+    (when cfg (compilation-start (plist-get cfg (intern (format ":%s-command" action))) (plist-get cfg :mode)))))
+
+(defun haf/compile-project ()
+  (interactive)
+  (haf/compile-action "build"))
 
 (defun haf/run-project-tests ()
   (interactive)
-  (let* ((default-directory (project-root (project-current)))
-         (cfg (haf/find-compilation-config default-directory)))
-    (when cfg (compilation-start (plist-get cfg :test-command) (plist-get cfg :mode)))))
-
+  (haf/compile-action "test"))
 
 (defun haf/lint-project ()
   (interactive)
-  (let* ((default-directory (project-root (project-current)))
-         (cfg (haf/find-compilation-config default-directory)))
-    (when cfg (compilation-start (plist-get cfg :lint-command) (plist-get cfg :mode)))))
+  (haf/compile-action "lint"))
+
