@@ -150,11 +150,11 @@
                                                               (buffer-name buf2))))
 
   ;; do not show the tab-line for these modes
-  (setq tab-line-exclude-modes '(help-mode 
-                                 compilation-mode
-                                 dashboard-mode
-                                 dired-mode
-                                 dired-sidebar-mode))
+  (setq tab-line-exclude-modes (append '(help-mode 
+                                         compilation-mode
+                                         dashboard-mode
+                                         dired-mode
+                                         dired-sidebar-mode) (haf/popup-modes)))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
