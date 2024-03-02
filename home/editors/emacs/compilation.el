@@ -9,31 +9,24 @@
 ;; interprets ANSI escape sequences in compilation mode so it should:
 ;; * show colors
 ;; * allow showing single-line auto-updating progress bars to work
-;; XXX: Please note that this doesn't actually work for some cases, and it's missing both
-;; colors and progress bars
 (use-package fancy-compilation
   :demand t
   :config
   (fancy-compilation-mode 1))
 
-(define-compilation-mode rust-compilation-mode "Rust"
-  "Rust compilation mode"
-  (setq-local compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
+(setq compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3) ;; cargo build
+                                       ("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))) ;; svelte check (TODO: Do I need the / in the middle? Can I put it at the beginning?)
 
-(define-compilation-mode svelte-compilation-mode "Svelte"
-  "Rust compilation mode"
-  (setq-local compilation-error-regexp-alist '(("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
 
 (setq haf/compilation-configs (list '(:dominating-file "Cargo.toml"
                                                        :build-command "cargo build"
                                                        :test-command "cargo test"
-                                                       :lint-command "cargo clippy"
-                                                       :mode rust-compilation-mode)
+                                                       :lint-command "cargo clippy")
                                     '(:dominating-file "pnpm-lock.yaml"
                                                        :build-command "pnpm check"
                                                        :test-command "pnpm test -- run"
-                                                       :lint-command "pnpx eslint . --format unix"
-                                                       :mode svelte-compilation-mode)))
+                                                       ;; TODO: This is kinda terrible because I install eslint every time
+                                                       :lint-command "pnpx eslint . --format unix")))
 
 (defun haf/compilation-config-applies (cfg directory)
   "Checks whether a given compilation config applies to the given directory"
@@ -46,7 +39,7 @@
 (defun haf/compile-action (action)
   (let* ((default-directory (project-root (project-current)))
          (cfg (haf/find-compilation-config default-directory)))
-    (when cfg (compilation-start (plist-get cfg (intern (format ":%s-command" action))) (plist-get cfg :mode)))))
+    (when cfg (compile (plist-get cfg (intern (format ":%s-command" action)))))))
 
 (defun haf/compile-project ()
   (interactive)
