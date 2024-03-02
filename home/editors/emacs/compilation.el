@@ -2,7 +2,47 @@
 
 ;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
 ;; TODO: Also interpret warnings and infos
-(require 'compile)
+(use-package compile
+  :ensure nil ;; already included in emacs
+  :preface
+  (defun haf/compilation-config-applies (cfg directory)
+    "Checks whether a given compilation config applies to the given directory"
+    (file-exists-p (expand-file-name (plist-get cfg :dominating-file) directory)))
+
+  (defun haf/find-compilation-config (directory)
+    (let ((default-directory (project-root (project-current))))
+      (seq-find (lambda (cfg) (haf/compilation-config-applies cfg default-directory)) haf/compilation-configs)))
+
+  (defun haf/compile-action (action)
+    (let* ((default-directory (project-root (project-current)))
+           (cfg (haf/find-compilation-config default-directory)))
+      (when cfg (compile (plist-get cfg (intern (format ":%s-command" action)))))))
+
+  (defun haf/compile-project ()
+    (interactive)
+    (haf/compile-action "build"))
+
+  (defun haf/run-project-tests ()
+    (interactive)
+    (haf/compile-action "test"))
+
+  (defun haf/lint-project ()
+    (interactive)
+    (haf/compile-action "lint"))
+  :config
+  (setq compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3) ;; cargo build
+                                         ("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))) ;; svelte check (TODO: Do I need the / in the middle? Can I put it at the beginning?)
+
+
+  (setq haf/compilation-configs (list '(:dominating-file "Cargo.toml"
+                                                         :build-command "cargo build"
+                                                         :test-command "cargo test"
+                                                         :lint-command "cargo clippy")
+                                      '(:dominating-file "pnpm-lock.yaml"
+                                                         :build-command "pnpm check"
+                                                         :test-command "pnpm test -- run"
+                                                         ;; TODO: This is kinda terrible because I install eslint every time
+                                                         :lint-command "pnpx eslint . --format unix"))))
 
 ;; fancy-compilation
 ;; =====================
@@ -13,43 +53,4 @@
   :demand t
   :config
   (fancy-compilation-mode 1))
-
-(setq compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3) ;; cargo build
-                                       ("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))) ;; svelte check (TODO: Do I need the / in the middle? Can I put it at the beginning?)
-
-
-(setq haf/compilation-configs (list '(:dominating-file "Cargo.toml"
-                                                       :build-command "cargo build"
-                                                       :test-command "cargo test"
-                                                       :lint-command "cargo clippy")
-                                    '(:dominating-file "pnpm-lock.yaml"
-                                                       :build-command "pnpm check"
-                                                       :test-command "pnpm test -- run"
-                                                       ;; TODO: This is kinda terrible because I install eslint every time
-                                                       :lint-command "pnpx eslint . --format unix")))
-
-(defun haf/compilation-config-applies (cfg directory)
-  "Checks whether a given compilation config applies to the given directory"
-  (file-exists-p (expand-file-name (plist-get cfg :dominating-file) directory)))
-
-(defun haf/find-compilation-config (directory)
-  (let ((default-directory (project-root (project-current))))
-    (seq-find (lambda (cfg) (haf/compilation-config-applies cfg default-directory)) haf/compilation-configs)))
-
-(defun haf/compile-action (action)
-  (let* ((default-directory (project-root (project-current)))
-         (cfg (haf/find-compilation-config default-directory)))
-    (when cfg (compile (plist-get cfg (intern (format ":%s-command" action)))))))
-
-(defun haf/compile-project ()
-  (interactive)
-  (haf/compile-action "build"))
-
-(defun haf/run-project-tests ()
-  (interactive)
-  (haf/compile-action "test"))
-
-(defun haf/lint-project ()
-  (interactive)
-  (haf/compile-action "lint"))
 
