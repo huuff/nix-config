@@ -1,7 +1,7 @@
 ;; compilation-mode customizations
 
 ;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
-;; TODO: Also interpret warnings, etc.
+;; TODO: Also interpret warnings and infos
 (require 'compile)
 
 ;; fancy-compilation
