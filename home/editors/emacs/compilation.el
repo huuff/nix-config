@@ -1,9 +1,17 @@
 ;; compilation-mode customizations
 
-;; TODO: Try using fancy compilation mode?
+;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
+;; TODO: Also interpret warnings, etc.
 (require 'compile)
 
-;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
+;; fancy-compilation
+;; =====================
+;; interprets ANSI escape sequences in compilation mode so it doesn't look so ugly
+(use-package fancy-compilation
+  :demand t
+  :config
+  (fancy-compilation-mode 1))
+
 (define-compilation-mode rust-compilation-mode "Rust"
   "Rust compilation mode"
   (setq-local compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))))
@@ -21,8 +29,7 @@
                                                        :build-command "pnpm check"
                                                        :test-command "pnpm test -- run"
                                                        :lint-command "pnpx eslint . --format unix"
-                                                       :mode svelte-compilation-mode)
-                                    ))
+                                                       :mode svelte-compilation-mode)))
 
 (defun haf/compilation-config-applies (cfg directory)
   "Checks whether a given compilation config applies to the given directory"
@@ -32,6 +39,7 @@
   (let ((default-directory (project-root (project-current))))
     (seq-find (lambda (cfg) (haf/compilation-config-applies cfg default-directory)) haf/compilation-configs)))
 
+;; TODO: A macro for these
 (defun haf/compile-project ()
   (interactive)
   (let* ((default-directory (project-root (project-current)))
