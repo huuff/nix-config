@@ -149,6 +149,7 @@
 
   ;; do not show the tab-line for these modes
   (setq tab-line-exclude-modes (append '(dashboard-mode
+                                         magit-diff-mode
                                          dired-mode
                                          dired-sidebar-mode)
                                        (haf/popup-modes)))
