@@ -1,3 +1,4 @@
+;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Maybe use prodigy
 ;; TODO: Maybe use golden-ratio
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
@@ -25,7 +26,7 @@
 ;; TODO: Use meow? It seems pretty rad
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe start using transient instead of hydra?
-;; TODO: Maybe set-up some code folding
+;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
 ;; TODO: A hydra for changing the font size
 ;; TODO: EAT maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
