@@ -60,6 +60,7 @@
     python3 # TODO: In nixos config?
     ntfs3g # TODO: In nixos config?
     gnupg
+    # TODO: Remove this and just put it in whatever projects I use latex as a devshell
     texlive.combined.scheme-full
     _1password
     sshfs
