@@ -18,22 +18,20 @@
   (tab-line-tab-current ((t (:inherit tab-line-tab :weight bold))))
   (tab-line-tab-modified ((t (:inherit tab-line-tab :slant italic))))
   :preface
-  ;; TODO: Maybe use a few lets here so I don't repeat calls to buffer-name
-  ;; group buffers criteria. UPD: wtf? let bufname is there but I didn't use it?
   (defun haf/tab-line-group-by-project (buffer)
     "Split buffers into appropriate groups"
     (with-current-buffer buffer
       (let ((bufname (buffer-name buffer)))
         ;; group buffers that start with an asterisk under "temporary"
-        (cond ((or (s-prefix-p "*" (buffer-name buffer))
-                   (s-prefix-p " *" (buffer-name buffer))
+        (cond ((or (s-prefix-p "*" bufname)
+                   (s-prefix-p " *" bufname)
                    ;; also put this weird buffer there since it's regularly popping up
-                   (s-prefix-p "Treemacs Update Single File" (buffer-name buffer))) "temporary")
+                   (s-prefix-p "Treemacs Update Single File" bufname)) "temporary")
               ;; group paths under /nix/store under the "external" grou
               ;; if I don't do this, project-current will run for these and CPU usage
               ;; goes through the roof
               ((s-prefix-p "/nix/store" (buffer-file-name buffer)) "external")
-              ((s-prefix-p "magit" (buffer-name buffer)) "magit")
+              ((s-prefix-p "magit" bufname) "magit")
               ((eq major-mode 'dired-mode) "dired")
               ((eq major-mode 'dired-sidebar-mode) "dired")
               ;; otherwise, group by current project.el project
@@ -150,11 +148,10 @@
                                                               (buffer-name buf2))))
 
   ;; do not show the tab-line for these modes
-  (setq tab-line-exclude-modes (append '(help-mode 
-                                         compilation-mode
-                                         dashboard-mode
+  (setq tab-line-exclude-modes (append '(dashboard-mode
                                          dired-mode
-                                         dired-sidebar-mode) (haf/popup-modes)))
+                                         dired-sidebar-mode)
+                                       (haf/popup-modes)))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
