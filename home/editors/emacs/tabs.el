@@ -1,11 +1,6 @@
-;; TABS CONFIG
-;; ==================
-;; My config for the topmost tabs for selecting between open buffers. I switch between
-;; centaur-tabs and the builtin tab-line with 'haf/tabs-package'
-
-
 ;; TODO: Maybe make a hydra/transient for tabbing around
-
+;; TODO: Maybe change the close, prev/next icons? they look ugly
+;; TODO: Maybe there's too much space around tab names?
 
 (use-package tab-line
   :ensure nil ;; already included in emacs
@@ -95,6 +90,7 @@
                                           :height (face-attribute 'tab-line-tab-current :height)
                                           :background (face-background 'tab-line-tab-current)
                                           :overline (face-attribute 'tab-line-tab-current :overline))
+                                  ;; TODO: Some icons (such as nix) won't show nicely with this
                                   (list :inherit icon-face-raw
                                         :height (face-attribute 'tab-line-tab :height)
                                         :background (face-background 'tab-line-tab)
