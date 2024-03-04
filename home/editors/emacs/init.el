@@ -18,7 +18,6 @@
 ;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: Try out lsp-booster, it may be impressive. UPDATE: Also add these configs https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
-;; TODO: Make eshell a popup buffer
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
 ;; TODO: Some form of changing font size for all buffers, please
@@ -28,7 +27,6 @@
 ;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
 ;; TODO: A hydra for changing the font size
-;; TODO: EAT maybe?
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
@@ -378,6 +376,8 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+;; TODO: I use diffhl to highlight vc-changed files, but this doesn't look that cool and
+;; doesn't integrate that well with dired-subtree.. maybe I should use dired-rainbow to configure that?
 ;; TODO: Is there any way I can manage dired to sort sveltekit files on top? They start with
 ;; + which I assume is so they appear on top for listings, but for some reason, dired uses `ls`
 ;; and it just won't show them on top
@@ -388,6 +388,7 @@
   :ensure nil ;; already included in emacs
   ;; TODO: Maybe this cold be a little bit brighter?
   ;; mark with the whole current line in dired
+  ;; TODO: This gets lost after some seconds... can I fix that?
   :hook (dired-mode . hl-line-mode)
   :custom
   ;; sort so directories are on top
@@ -920,6 +921,15 @@
 ;; =====================
 ;; super-duper integration with git
 (use-package magit)
+
+;; eat (Emulate A Terminal)
+;; =====================
+;; fully-featured terminal emulator that interprets all escape sequences, allowing you to see
+;; all colors, run full-screen programs, etc.
+(use-package eat
+  :hook
+  (eshell-load . eat-eshell-mode)
+  (eshell-load . eat-eshell-visual-command-mode))
 
 ;; keybindings
 ;; =====================

@@ -6,6 +6,8 @@
                           (:mode messages-buffer-mode :size 0.3 :align below :select nil)
                           ;; TODO: Not exactly working... why?
                           (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t)
+                          ;; TODO: Also not exactly working like ielm!
+                          (:mode eshell-mode :size 0.3 :align below :select t)
                           (:mode magit-status-mode :size 0.4 :align below :select t)))
 
 (defun haf/popup-modes ()

@@ -74,6 +74,10 @@
         # To allow installing node packages globally
         export PATH=~/.npm-packages/bin:$PATH
         export NODE_PATH=~/.npm-packages/lib/node_modules
+
+        # emacs' EAT shell integration
+        [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+          source "$EAT_SHELL_INTEGRATION_DIR/bash"
       '';
     };
 
@@ -90,6 +94,10 @@
       initExtra = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
+
+        # emacs' EAT shell integration
+        [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+          source "$EAT_SHELL_INTEGRATION_DIR/zsh"
       '';
     };
   }
