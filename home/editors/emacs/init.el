@@ -46,7 +46,7 @@
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
 ;; TODO: Set correct dependencies between packages with use-package (:after)
-;; TODO: Indent guides for YAML
+;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use flymake-clippy?
 ;; TODO: Maybe use hl-todo-mode and consult-todo
