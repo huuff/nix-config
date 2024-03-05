@@ -2,8 +2,6 @@
 ;; TODO: Maybe use prodigy
 ;; TODO: Maybe use golden-ratio
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
-;; TODO: Fix dimmer for:
-;;   - eldoc-box
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
@@ -888,6 +886,10 @@
     (add-to-list
      'dimmer-prevent-dimming-predicates
      #'corfu-frame-p))
+  ;; for eldoc-box integration
+  (defun dimmer--is-eldoc-box ()
+    (when (boundp 'eldoc-box--buffer)
+      (equal eldoc-box--buffer (buffer-name))))
   :config
   ;; which-key integration
   (dimmer-configure-which-key)
@@ -901,6 +903,9 @@
    'dimmer-config-change-handler
    :override 'advise-dimmer-config-change-handler)
   (dimmer-configure-corfu)
+  ;; eldoc-box integration
+  (add-to-list 'dimmer-prevent-dimming-predicates
+               #'dimmer--is-eldoc-box)
   ;; enable globally
   (dimmer-mode t))
 
