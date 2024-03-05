@@ -865,10 +865,19 @@
 ;; dims non-selected window so it's clearer which one is currently selected
 (use-package dimmer
   :custom
+  ;; a little darker than default
   (dimmer-fraction 0.3)
+  ;; don't dim everything when the frame loses focus.
+  ;; it's bothersome with two monitors
+  (dimmer-watch-frame-focus-events nil)
   :config
+  ;; which-key integration
   (dimmer-configure-which-key)
+  ;; hydra integration
   (dimmer-configure-hydra)
+  ;; I don't even know whether I use posrframe, but configure its integration
+  ;; just in case
+  (dimmer-configure-posframe)
   (dimmer-mode t))
 
 ;; modeline
@@ -954,7 +963,7 @@
   ;; TODO: Maybe use xref-find-definitions?
   "l d" '(eglot-find-declaration :which-key "Go to definition")
   "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
-  "l i" '(eglot-find-implementation :which-key "Go to implementation")
+  "l  nil)" '(eglot-find-implementation :which-key "Go to implementation")
   "l u" '(xref-find-references :which-key "Find usages")
   "l m" '(consult-imenu :which-key "imenu")
 
