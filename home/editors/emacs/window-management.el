@@ -1,4 +1,5 @@
 
+;; TODO: Add the flymake window here too
 (setq haf/popup-buffers '((:mode help-mode :size 0.3 :align below :select t)
                           (:mode helpful-mode :size 0.3 :align below :select t)
                           (:mode compilation-mode :size 0.4 :align right :select nil)
