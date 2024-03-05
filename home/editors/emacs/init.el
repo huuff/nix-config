@@ -4,7 +4,6 @@
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
 ;; TODO: Fix dimmer for:
 ;;   - eldoc-box
-;;   - corfu
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
@@ -871,6 +870,24 @@
   ;; don't dim everything when the frame loses focus.
   ;; it's bothersome with two monitors
   (dimmer-watch-frame-focus-events nil)
+  :init
+  ;; these three defuns were copied off https://github.com/gonewest818/dimmer.el/issues/62#issuecomment-1820362245
+  ;; for corfu integration
+  (defun advise-dimmer-config-change-handler ()
+    "Advise to only force process if no predicate is truthy."
+    (let ((ignore (cl-some (lambda (f) (and (fboundp f) (funcall f)))
+                           dimmer-prevent-dimming-predicates)))
+      (unless ignore
+        (when (fboundp 'dimmer-process-all)
+          (dimmer-process-all t)))))
+  (defun corfu-frame-p ()
+    "Check if the buffer is a corfu frame buffer."
+    (string-match-p "\\` \\*corfu" (buffer-name)))
+  (defun dimmer-configure-corfu ()
+    "Convenience settings for corfu users."
+    (add-to-list
+     'dimmer-prevent-dimming-predicates
+     #'corfu-frame-p))
   :config
   ;; which-key integration
   (dimmer-configure-which-key)
@@ -879,6 +896,12 @@
   ;; I don't even know whether I use posrframe, but configure its integration
   ;; just in case
   (dimmer-configure-posframe)
+  ;; corfu integration
+  (advice-add
+   'dimmer-config-change-handler
+   :override 'advise-dimmer-config-change-handler)
+  (dimmer-configure-corfu)
+  ;; enable globally
   (dimmer-mode t))
 
 ;; modeline
