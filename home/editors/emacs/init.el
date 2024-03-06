@@ -1057,3 +1057,22 @@
   "C-s" '(avy-goto-char-timer :which-key "Jump")
   
   "w" '(ace-window :which-key "Switch window"))
+
+(transient-define-prefix haf/cape-transient ()
+  "Transient for starting autocompletions"
+  ["Autocomplete"
+   :pad-keys t
+   ("TAB" "Normal" completion-at-point)
+   ("f" "File" cape-file)
+   ("w" "Dictionary" cape-dict)
+   (":" "Emoji" cape-emoji)
+   ("\\" "Tex" cape-tex)
+   ("_" "Tex" cape-tex)
+   ("^" "Tex" cape-tex)
+   ("&" "SGML" cape-sgml)
+   ("s" "Snippet" yasnippet-capf)])
+
+(transient-define-prefix haf/transient ()
+  "Prefix that waves at the user"
+  [("TAB" "Autocomplete" haf/cape-transient)
+   ("C-t" "Sidebar" dired-sidebar-toggle-sidebar)])
