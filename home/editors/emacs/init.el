@@ -420,6 +420,7 @@
 
 ;; TODO: Auto open sidebar when changing a project with project.el
 ;; TODO: Configure following file (dired-sidebar-should-follow-file and others)
+;; TODO: Infuriatingly, forward-history for dired-rename gives the wrong path instead of the current file's path
 ;; dired-sidebar
 ;; =====================
 ;; use dired as a tree directory explorer in a sidebar just like a real IDE
