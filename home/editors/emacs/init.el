@@ -46,7 +46,6 @@
 ;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use flymake-clippy?
-;; TODO: Maybe use hl-todo-mode and consult-todo
 ;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
@@ -968,6 +967,30 @@
   :hook
   (eshell-load . eat-eshell-mode)
   (eshell-load . eat-eshell-visual-command-mode))
+
+;; hl-todo
+;; =====================
+;; highlights TODO, FIXME, MAYBE, OPT, etc. in comments
+(use-package hl-todo
+  :custom (hl-todo-keyword-faces
+           '(("TODO"   . "#cc9393") 
+             ("OPT"   . "#dc8cc3")
+             ("MAYBE"   . "#7cb8bb")
+             ("NOTE"   . "#d0bf8f")
+             ("HACK"   . "#d0bf8f")
+             ("TEMP"   . "#d0bf8f")
+             ("FIXME"  . "#cc9393")
+             ("XXXX*"  . "#cc9393")) "Mostly copy-pasted the default, but deleted some and added OPT and MAYBE")
+  :config
+  (global-hl-todo-mode))
+
+;; hl-todo integration with magit, show TODOs also in magit buffers
+(use-package magit-todos
+  :after magit
+  :config (magit-todos-mode 1))
+
+;; navigate TODOs with consult
+(use-package consult-todo :demand t)
 
 ;; keybindings
 ;; =====================
