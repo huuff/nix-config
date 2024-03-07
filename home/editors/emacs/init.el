@@ -1,4 +1,5 @@
 ;; TODO: Can I make magit close the status buffer automatically after a push?
+;; TODO: Use this cool snippet for maximizing windows https://www.reddit.com/r/emacs/comments/yzjmmf/comment/ix1xpab/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 ;; TODO: Maybe use prodigy
 ;; TODO: Maybe use golden-ratio
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
@@ -1032,34 +1033,8 @@
   "w t" '(popper-cycle :which-key "Cycle popup")
   "w o" '(popper-toggle-type :which-key "Change popup type"))
 
-;; keybindings that are supposed to work in all states (included insert)
-(general-create-definer insert-leader-bindings
-  :states '(normal insert visual emacs)
-  :keymaps 'override
-  :prefix "C-z")
-
-(insert-leader-bindings
-  "TAB f" '(cape-file :which-key "File")
-  "TAB TAB" '(completion-at-point :which-key "Normal")
-  "TAB w" '(cape-dict :which-key "Dictionary")
-  "TAB :" '(cape-emoji :which-key "Emoji")
-  "TAB \\" '(cape-tex :which-key "Tex")
-  "TAB _" '(cape-tex :which-key "Tex")
-  "TAB ^" '(cape-tex :which-key "Tex")
-  "TAB &" '(cape-tex :which-key "SGML")
-  "TAB s" '(yasnippet-capf :which-key "Snippet")
-
-  "C-w" '(haf/expand-and-start-region-hydra :which-key "Expand region")
-  "C-d" '(haf/next-cursor-and-start-region-hydra :which-key "Add cursor")
-
-  "t k" '(haf/tab-line-close-other-tabs :which-key "Kill other tabs")
-
-  "C-s" '(avy-goto-char-timer :which-key "Jump")
-  
-  "w" '(ace-window :which-key "Switch window"))
-
-(transient-define-prefix haf/cape-transient ()
-  "Transient for starting autocompletions"
+(transient-define-prefix haf/autocomplete-transient ()
+  "Transient autocompletions"
   ["Autocomplete"
    :pad-keys t
    ("TAB" "Normal" completion-at-point)
@@ -1072,7 +1047,28 @@
    ("&" "SGML" cape-sgml)
    ("s" "Snippet" yasnippet-capf)])
 
+;; TODO: This is pretty good, I just have to add a binding for switching to a specific tab
+(transient-define-prefix haf/tab-line-transient ()
+  "Transient tab line"
+  ["Tabs"
+   :pad-keys t
+   ("k" "Kill other" haf/tab-line-close-other-tabs)
+   ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
+   ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)])
+
 (transient-define-prefix haf/transient ()
   "Prefix that waves at the user"
-  [("TAB" "Autocomplete" haf/cape-transient)
-   ("C-t" "Sidebar" dired-sidebar-toggle-sidebar)])
+  ["Transients"
+   :pad-keys t
+   ("TAB" "Autocomplete" haf/autocomplete-transient)
+   ("C-t" "Sidebar" dired-sidebar-toggle-sidebar)
+   ("C-w" "Expand region" haf/expand-and-start-region-hydra)
+   ("C-d" "Create cursor" haf/next-cursor-and-start-region-hydra)
+   ("C-s" "Jump" avy-goto-char-timer)
+   ("w" "Switch window" ace-window)
+   ("t" "Tabs" haf/tab-line-transient)])
+
+(general-define-key
+ :states '(normal visual insert motion)
+ :keymaps 'override
+ "C-z" 'haf/transient)
