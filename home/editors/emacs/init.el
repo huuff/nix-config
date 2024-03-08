@@ -1003,7 +1003,6 @@
   :prefix "SPC")
 
 (normal-leader-bindings
-  "t" '(dired-sidebar-toggle-sidebar :which-key "Toggle sidebar")
   "e" '(hydra-flymake/body :which-key "Errors")
   ;; TODO: Can I nest a prefix?
   ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
@@ -1047,14 +1046,36 @@
    ("&" "SGML" cape-sgml)
    ("s" "Snippet" yasnippet-capf)])
 
-;; TODO: This is pretty good, I just have to add a binding for switching to a specific tab
 (transient-define-prefix haf/tab-line-transient ()
   "Transient tab line"
   ["Tabs"
    :pad-keys t
    ("k" "Kill other" haf/tab-line-close-other-tabs)
    ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
-   ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)])
+   ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)]
+  ;; TODO: Use a macro or something to not repeat this shit 9 times
+  ;; TODO: Align it vertically with the previous group, and maybe use better names
+  ;; TODO: Use :if to only display each entry when that tab actually exists
+  ["Switch"
+   :pad-keys t
+   ("1" "Tab 1"
+    (lambda () (interactive) (haf/switch-to-tab-index 1)))
+   ("2" "Tab 2"
+    (lambda () (interactive) (haf/switch-to-tab-index 2)))
+   ("3" "Tab 3"
+    (lambda () (interactive) (haf/switch-to-tab-index 3)))
+   ("4" "Tab 4"
+    (lambda () (interactive) (haf/switch-to-tab-index 4)))
+   ("5" "Tab 5"
+    (lambda () (interactive) (haf/switch-to-tab-index 5)))
+   ("6" "Tab 6"
+    (lambda () (interactive) (haf/switch-to-tab-index 6)))
+   ("7" "Tab 7"
+    (lambda () (interactive) (haf/switch-to-tab-index 7)))
+   ("8" "Tab 8"
+    (lambda () (interactive) (haf/switch-to-tab-index 8)))
+   ("9" "Tab 9"
+    (lambda () (interactive) (haf/switch-to-tab-index 9)))])
 
 (transient-define-prefix haf/transient ()
   "Prefix that waves at the user"

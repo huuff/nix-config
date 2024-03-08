@@ -1,4 +1,3 @@
-;; TODO: Maybe make a hydra/transient for tabbing around
 ;; TODO: Maybe change the close, prev/next icons? they look ugly
 ;; TODO: Maybe there's too much space around tab names?
 
