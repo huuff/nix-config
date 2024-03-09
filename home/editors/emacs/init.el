@@ -1005,22 +1005,28 @@
   :prefix "SPC")
 
 (normal-leader-bindings
-  "e" '(hydra-flymake/body :which-key "Errors")
-  ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
-  ;; so they match these? such as embark-act + d for go to definition
+  "e" '(hydra-flymake/body :which-key "Errors"))
 
-  ;; code (mostly LSP, but also xref)
-  "l a" '(eglot-code-actions :which-key "Code actions")
-  "l r" '(eglot-rename :which-key "Rename")
-  "l f" '(eglot-format-buffer :which-key "Format buffer")
-  ;; TODO: Maybe use xref-find-definitions?
-  "l d" '(eglot-find-declaration :which-key "Go to definition")
-  "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
-  "l i" '(eglot-find-implementation :which-key "Go to implementation")
-  "l u" '(xref-find-references :which-key "Find usages")
-  "l m" '(consult-imenu :which-key "imenu"))
+;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
+;; so they match these? such as embark-act + d for go to definition
+(transient-define-prefix haf/language-transient ()
+  "Transient for language-specific actions"
+  [["Actions"
+    :pad-keys t
+    ("a" "Code actions" eglot-code-actions)
+    ("r" "Rename" eglot-rename)
+    ("f" "Format" eglot-format-buffer)
+    ("o" "Organize imports" eglot-organize-imports :if (lambda () (fboundp 'eglot-organize-imports)))]
+   ["Find"
+    ;; TODO: Maybe also use xref-find-definitions? What's the difference?
+    :pad-keys t
+    ("d" "Declaration" eglot-find-declaration)
+    ("i" "Implementation" eglot-find-implementation)
+    ("u" "References" xref-find-references)
+    ("m" "Outline" consult-imenu)]])
 
 (transient-define-prefix haf/project-transient ()
+  "Transient for project-wide actions"
   [["Project"
     :pad-keys t
     ("p" "Switch" project-switch-project)
@@ -1095,7 +1101,8 @@
     ("t" "Tabs" haf/tab-line-transient)]
    ["Actions"
     :pad-keys t
-    ("p" "Project" haf/project-transient)]])
+    ("p" "Project" haf/project-transient)
+    ("l" "Language" haf/language-transient)]])
 
 (general-define-key
  :states '(normal visual insert motion)
