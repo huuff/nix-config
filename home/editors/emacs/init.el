@@ -1056,8 +1056,6 @@
    ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
    ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)]
   ;; TODO: Align it vertically with the previous group, and maybe use better names
-  ;; TODO: I'm using :if to only show tabs that are actually open... but since I'm generating them
-  ;; dynamically, can't I just generate the open ones?
   ["Switch"
    :pad-keys t
    :setup-children
@@ -1068,9 +1066,8 @@
                        transient--prefix
                        `(,(number-to-string i)
                          ,(format "Tab %d" i)
-                         (lambda () (interactive) (haf/switch-to-tab-index ,i))
-                         :if (lambda () (>= ,(length tabs) ,i)))))
-        (number-sequence 1 9))))])
+                         (lambda () (interactive) (haf/switch-to-tab-index ,i)))))
+        (number-sequence 1 (length tabs)))))])
 
 
 (transient-define-prefix haf/transient ()
