@@ -988,7 +988,9 @@
   :config
   (global-hl-todo-mode))
 
-;; hl-todo integration with magit, show TODOs also in magit buffers
+;; hl-todo integration with magit, show TODOs also in magit buffers.
+;; It's pretty cool, actually. It shows them in the status buffer and even shows you
+;; how many were added in this branch from its parent
 (use-package magit-todos
   :after magit
   :config (magit-todos-mode 1))
@@ -998,8 +1000,6 @@
 
 ;; keybindings
 ;; =====================
-;; keybindings that are supposed to work in normal state, but that
-;; I don't expect (or need) to work in insert state
 (general-create-definer normal-leader-bindings
   :states '(normal visual emacs)
   :prefix "SPC")
@@ -1045,6 +1045,7 @@
   "Window transients"
   ["Windows"
    :pad-keys t
+   ("C-t" "Toggle sidebar" dired-sidebar-toggle-sidebar)
    ("w" "Toggle popup" popper-toggle)
    ("t" "Cycle popup" popper-cycle)
    ("g" "Switch window" ace-window)])
@@ -1096,7 +1097,6 @@
     ("C-s" "Jump" avy-goto-char-timer)]
    ["Views"
     :pad-keys t
-    ("C-t" "Sidebar" dired-sidebar-toggle-sidebar)
     ("w" "Windows" haf/window-transient)
     ("t" "Tabs" haf/tab-line-transient)]
    ["Actions"
