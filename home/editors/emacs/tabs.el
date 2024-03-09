@@ -114,11 +114,13 @@
                     space))
         tab-string)))
   
+  (defun haf/current-tabs ()
+    (cl-remove-if #'haf/tab-line-tab-is-group (tab-line-tabs-buffer-groups)))
 
   (defun haf/switch-to-tab-index (count)
     "Switch to a tab by its number in current group"
     (interactive "p")
-    (let ((tabs (cl-remove-if #'haf/tab-line-tab-is-group (tab-line-tabs-buffer-groups))))
+    (let ((tabs (haf/current-tabs)))
       (if-let ((target-tab (nth (1- count) tabs)))
           (switch-to-buffer (cdr (assoc 'buffer target-tab)))
         (error (format "There is no tab at index %d" count)))))
