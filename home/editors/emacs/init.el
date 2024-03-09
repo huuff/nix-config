@@ -1,3 +1,4 @@
+;; TODO: A keybinding for opening magit
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Use this cool snippet for maximizing windows https://www.reddit.com/r/emacs/comments/yzjmmf/comment/ix1xpab/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
@@ -8,7 +9,6 @@
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
 ;; TODO: Install eglot-signature-eldoc-talkative
-;; TODO: A keybinding for kill-current-buffer
 ;; TODO: Maybe use evil-snipe only for the current line and avy for all else
 ;; TODO: Maybe use evil-quickscope
 ;; TODO: Maybe use no-littering?
@@ -1064,7 +1064,8 @@
          (number-sequence 1 (length tabs)))))]
    ["Tabs"
     :pad-keys t
-    ("k" "Kill other" haf/tab-line-close-other-tabs)
+    ("k" "Kill current" kill-current-buffer)
+    ("K" "Kill other" haf/tab-line-close-other-tabs)
     ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
     ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)]])
 
