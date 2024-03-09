@@ -1020,15 +1020,19 @@
   "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
   "l i" '(eglot-find-implementation :which-key "Go to implementation")
   "l u" '(xref-find-references :which-key "Find usages")
-  "l m" '(consult-imenu :which-key "imenu")
+  "l m" '(consult-imenu :which-key "imenu"))
 
-  "p f" '(consult-fd :which-key "Find file")
-  "p F" '(consult-ripgrep :which-key "Find text")
-  "p r" '(haf/project-remember-current-project :which-key "Remember project")
-  "p p" '(project-switch-project :which-key "Switch project")
-  "p c" '(haf/compile-project :which-key "Compile project")
-  "p t" '(haf/run-project-tests :which-key "Run tests")
-  "p l" '(haf/lint-project :which-key "Run linter"))
+(transient-define-prefix haf/project-transient ()
+  [["Project"
+    ("p" "Switch" project-switch-project)
+    ("r" "Remember" haf/project-remember-current-project)]
+   ["Find"
+    ("f" "File" consult-fd)
+    ("F" "Text" consult-ripgrep)]
+   ["Run"
+    ("c" "Compile" haf/compile-project)
+    ("t" "Test" haf/run-project-tests)
+    ("l" "Lint" haf/lint-project)]])
 
 (transient-define-prefix haf/window-transient ()
   "Window transients"
@@ -1085,7 +1089,8 @@
    ("C-d" "Create cursor" haf/next-cursor-and-start-region-hydra)
    ("C-s" "Jump" avy-goto-char-timer)
    ("w" "Windows" haf/window-transient)
-   ("t" "Tabs" haf/tab-line-transient)])
+   ("t" "Tabs" haf/tab-line-transient)
+   ("p" "Project" haf/project-transient)])
 
 (general-define-key
  :states '(normal visual insert motion)
