@@ -1050,28 +1050,27 @@
 
 (transient-define-prefix haf/tab-line-transient ()
   "Transient tab line"
-  ["Tabs"
-   :pad-keys t
-   ("k" "Kill other" haf/tab-line-close-other-tabs)
-   ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
-   ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)]
-  ;; TODO: Align it vertically with the previous group, and maybe use better names
-  ["Switch"
-   :pad-keys t
-   :setup-children
-   (lambda (_)
-     (let ((tabs (haf/current-tabs)))
-       (mapcar
-        #'(lambda (i) (transient-parse-suffix
-                       transient--prefix
-                       `(,(number-to-string i)
-                         ,(format "Tab %d" i)
-                         (lambda () (interactive) (haf/switch-to-tab-index ,i)))))
-        (number-sequence 1 (length tabs)))))])
+  [["Switch"
+    :pad-keys t
+    :setup-children
+    (lambda (_)
+      (let ((tabs (haf/current-tabs)))
+        (mapcar
+         #'(lambda (i) (transient-parse-suffix
+                        transient--prefix
+                        `(,(number-to-string i)
+                          ,(format "Tab %d" i)
+                          (lambda () (interactive) (haf/switch-to-tab-index ,i)))))
+         (number-sequence 1 (length tabs)))))]
+   ["Tabs"
+    :pad-keys t
+    ("k" "Kill other" haf/tab-line-close-other-tabs)
+    ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
+    ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)]])
 
 
 (transient-define-prefix haf/transient ()
-  "Prefix that waves at the user"
+  "Prefix for all of my own keybindings"
   ["Transients"
    :pad-keys t
    ("TAB" "Autocomplete" haf/autocomplete-transient)
