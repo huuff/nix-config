@@ -1000,12 +1000,47 @@
 
 ;; keybindings
 ;; =====================
+;; TODO: Move all this to a transient-keybindings file
 (general-create-definer normal-leader-bindings
   :states '(normal visual emacs)
   :prefix "SPC")
 
-(normal-leader-bindings
-  "e" '(hydra-flymake/body :which-key "Errors"))
+;; TODO: Once there is more than one flymake diagnostics buffer, this won't be able to complete a name (try-completion only finds a prefix) and thus won't close the window
+(defun haf/close-flymake-diagnostics ()
+  "Close the window on flymake diagnostics"
+  (interactive)
+  (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
+
+(defun haf/start-error-transient ()
+  "Starts the error transient, opens the flymake diagnostics and goes to the next error"
+  (interactive)
+  (flymake-show-buffer-diagnostics)
+  (flymake-goto-next-error)
+  (haf/error-transient))
+
+(defun haf/close-flymake-and-open-consult ()
+  "Closes flymake diagnostics and opens consult-flymake"
+  (interactive)
+  (haf/close-flymake-diagnostics)
+  (consult-flymake))
+
+(defun haf/quickfix-and-next-error ()
+  "Tries to quickfix current error and then goes to the next one"
+  (interactive)
+  (eglot-code-action-quickfix (point))
+  (flymake-goto-next-error))
+
+;; TODO: Allow switching to project diagnostics
+;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
+(transient-define-prefix haf/error-transient ()
+  "Transient for jumping around errors and fixing them"
+  ["Errors"
+   :pad-keys t
+   ("<right>" "Next" flymake-goto-next-error :transient t)
+   ("<left>" "Previous" flymake-goto-prev-error :transient t)
+   ("f" "Quickfix" haf/quickfix-and-next-error :transient t)
+   ("c" "Consult" haf/close-flymake-and-open-consult)
+   ("q" "Close" haf/close-flymake-diagnostics)])
 
 ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
 ;; so they match these? such as embark-act + d for go to definition
@@ -1102,7 +1137,8 @@
    ["Actions"
     :pad-keys t
     ("p" "Project" haf/project-transient)
-    ("l" "Language" haf/language-transient)]])
+    ("l" "Language" haf/language-transient)
+    ("e" "Errors" haf/start-error-transient)]])
 
 (general-define-key
  :states '(normal visual insert motion)

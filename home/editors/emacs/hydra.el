@@ -5,26 +5,6 @@
 ;; also they look very nice and can explain what they do
 (use-package hydra
   :config
-  ;; TODO: Allow switching to project diagnostics
-  ;; TODO: Different keybindings for errors and warnings/notes (prefix goes to these for flymake-goto-«next or previous»-error)
-  ;; TODO: This barely works, go into a rust file, delete a long import section and try to fix them one by one, you'll find that it's broken all around
-  (defhydra hydra-flymake
-    (:pre (progn (flymake-show-buffer-diagnostics) (flymake-goto-next-error))
-     :post (haf/close-flymake-diagnostics)
-     :hint nil)
-    "
-^Navigation^      ^Actions^
---------------------------------
-_n_: Next         _f_: Quickfix
-_N_: Previous     _c_: Consult
-_q_: Quit         ^ ^
-    "
-    ("n" flymake-goto-next-error)
-    ("N" flymake-goto-prev-error)
-    ("f" eglot-code-action-quickfix)
-    ;; TODO: This is wrong, should be haf/close-flymake-diagnostics
-    ("c" (progn (close-flymake-diagnostics) (consult-flymake)) :color blue)
-    ("q" nil :color blue))
 
   ;; TODO: maybe make q exit multiple cursors and remove region for all packages
   (defhydra hydra-region
@@ -44,13 +24,6 @@ _q_: Quit         ^ ^
     ("N" haf/remove-previous-multicursor)
     ("t" haf/toggle-multicursor-package)
     ("q" nil :color blue)))
-
-;; TODO: Once there is more than one flymake diagnostics buffer, this won't be able to complete a name (try-completion only finds a prefix) and thus won't close the window
-(defun haf/close-flymake-diagnostics ()
-  "Close the window on flymake diagnostics"
-  (interactive)
-  (quit-windows-on (try-completion "*Flymake diagnostics for" (mapcar #'buffer-name (buffer-list)))))
-
 
 (defun haf/expand-and-start-region-hydra ()
   "Expands region and runs the hydra 'hydra-region'."
