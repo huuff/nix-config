@@ -1006,8 +1006,6 @@
 
 (normal-leader-bindings
   "e" '(hydra-flymake/body :which-key "Errors")
-  ;; TODO: Can I nest a prefix?
-  ;; TODO: If I could, it'd be great to add a which-key hint there, currently l just shows "+prefix"
   ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
   ;; so they match these? such as embark-act + d for go to definition
 
@@ -1024,12 +1022,15 @@
 
 (transient-define-prefix haf/project-transient ()
   [["Project"
+    :pad-keys t
     ("p" "Switch" project-switch-project)
     ("r" "Remember" haf/project-remember-current-project)]
    ["Find"
+    :pad-keys t
     ("f" "File" consult-fd)
     ("F" "Text" consult-ripgrep)]
    ["Run"
+    :pad-keys t
     ("c" "Compile" haf/compile-project)
     ("t" "Test" haf/run-project-tests)
     ("l" "Lint" haf/lint-project)]])
@@ -1081,16 +1082,20 @@
 
 (transient-define-prefix haf/transient ()
   "Prefix for all of my own keybindings"
-  ["Transients"
-   :pad-keys t
-   ("TAB" "Autocomplete" haf/autocomplete-transient)
-   ("C-t" "Sidebar" dired-sidebar-toggle-sidebar)
-   ("C-w" "Expand region" haf/expand-and-start-region-hydra)
-   ("C-d" "Create cursor" haf/next-cursor-and-start-region-hydra)
-   ("C-s" "Jump" avy-goto-char-timer)
-   ("w" "Windows" haf/window-transient)
-   ("t" "Tabs" haf/tab-line-transient)
-   ("p" "Project" haf/project-transient)])
+  [["Editing"
+    :pad-keys t
+    ("TAB" "Autocomplete" haf/autocomplete-transient)
+    ("C-w" "Expand region" haf/expand-and-start-region-hydra)
+    ("C-d" "Create cursor" haf/next-cursor-and-start-region-hydra)
+    ("C-s" "Jump" avy-goto-char-timer)]
+   ["Views"
+    :pad-keys t
+    ("C-t" "Sidebar" dired-sidebar-toggle-sidebar)
+    ("w" "Windows" haf/window-transient)
+    ("t" "Tabs" haf/tab-line-transient)]
+   ["Actions"
+    :pad-keys t
+    ("p" "Project" haf/project-transient)]])
 
 (general-define-key
  :states '(normal visual insert motion)
