@@ -1018,7 +1018,7 @@
   ;; TODO: Maybe use xref-find-definitions?
   "l d" '(eglot-find-declaration :which-key "Go to definition")
   "l o" '(eglot-code-action-organize-imports :which-key "Organize imports")
-  "l  nil)" '(eglot-find-implementation :which-key "Go to implementation")
+  "l i" '(eglot-find-implementation :which-key "Go to implementation")
   "l u" '(xref-find-references :which-key "Find usages")
   "l m" '(consult-imenu :which-key "imenu")
 
@@ -1028,11 +1028,16 @@
   "p p" '(project-switch-project :which-key "Switch project")
   "p c" '(haf/compile-project :which-key "Compile project")
   "p t" '(haf/run-project-tests :which-key "Run tests")
-  "p l" '(haf/lint-project :which-key "Run linter")
+  "p l" '(haf/lint-project :which-key "Run linter"))
 
-  "w w" '(popper-toggle :which-key "Toggle popup")
-  "w t" '(popper-cycle :which-key "Cycle popup")
-  "w o" '(popper-toggle-type :which-key "Change popup type"))
+(transient-define-prefix haf/window-transient ()
+  "Window transients"
+  ["Windows"
+   :pad-keys t
+   ("w" "Toggle popup" popper-toggle)
+   ("t" "Cycle popup" popper-cycle)
+   ("g" "Switch window" ace-window)])
+
 
 (transient-define-prefix haf/autocomplete-transient ()
   "Transient autocompletions"
@@ -1079,7 +1084,7 @@
    ("C-w" "Expand region" haf/expand-and-start-region-hydra)
    ("C-d" "Create cursor" haf/next-cursor-and-start-region-hydra)
    ("C-s" "Jump" avy-goto-char-timer)
-   ("w" "Switch window" ace-window)
+   ("w" "Windows" haf/window-transient)
    ("t" "Tabs" haf/tab-line-transient)])
 
 (general-define-key
