@@ -23,6 +23,7 @@
 
             ./hydra.el
             ./multicursor.el
+            ./keybindings.el
         ]);
 
         defaultInitFile = true;
