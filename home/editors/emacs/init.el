@@ -794,8 +794,7 @@
   "Remembers the current project"
   (interactive)
   (project-remember-project (project-current))
-  ;; TODO: I could just do this with a simple substitution like (message "remembering project '%S'") or smth
-  (message (concat "Remembering project '" (caddr (project-current)) "'")))
+  (message (format "Remembering project '%s'" (caddr (project-current)))))
 
 ;; which-key
 ;; =====================
