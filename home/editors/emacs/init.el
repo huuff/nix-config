@@ -617,8 +617,7 @@
   (setq eglot-server-programs
         (append eglot-server-programs
                 (list '(svelte-mode . ("svelteserver" "--stdio")) 
-                      ;; TODO: rnix-lsp is hyper-deprecated. I have to use nil
-                      '(nix-ts-mode . ("rnix-lsp"))
+                      '(nix-ts-mode . ("nil"))
                       ;; TODO: Enable clippy with rust-analyzer, rust-analyzer itself has a guide to do it with eglot
                       '(rust-ts-mode . ("rust-analyzer")))))
 

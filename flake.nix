@@ -124,7 +124,7 @@
 
     devShells.${system}.default = with pkgs; mkShell {
         buildInputs = [
-          rnix-lsp
+          nil
         ];
     };
   };
