@@ -3,8 +3,8 @@
   [["Editing"
     :pad-keys t
     ("TAB" "Autocomplete" haf/autocomplete-transient)
-    ("C-w" "Expand region" haf/expand-and-start-region-hydra)
-    ("C-d" "Create cursor" haf/next-cursor-and-start-region-hydra)
+    ("C-w" "Expand region" haf/expand-and-start-region-transient)
+    ("C-d" "Create cursor" haf/next-cursor-and-start-region-transient)
     ("C-s" "Jump" avy-goto-char-timer)]
    ["Views"
     :pad-keys t
@@ -20,6 +20,10 @@
  :states '(normal visual insert motion)
  :keymaps 'override
  "C-z" 'haf/transient)
+
+(defun haf/transient-quit ()
+  "Dummy function that does nothing so I can use for exiting transients"
+  (interactive))
 
 
 ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
@@ -100,6 +104,46 @@
     ("K" "Kill other" haf/tab-line-close-other-tabs)
     ("<right>" "Next" tab-line-switch-to-next-tab :transient t)
     ("<left>" "Previous" tab-line-switch-to-prev-tab :transient t)]])
+
+;; ================
+;; REGION/CURSOR TRANSIENT
+;; ================
+
+(transient-define-prefix haf/region-transient ()
+  "Transient for expanding regions and adding cursors"
+  [["Region"
+    :pad-keys t
+    ("+" "Expand" er/expand-region :transient t)
+    ("-" "Contract" er/contract-region :transient t)
+    ("C-w" "Expand" er/expand-region :transient t)]
+   ["Cursors"
+    :pad-keys t
+    ("n" "Next" haf/add-next-multicursor :transient t)
+    ("N" "Previous" haf/remove-previous-multicursor :transient t)
+    ("C-d" "Next" haf/add-next-multicursor :transient t)
+    ("t" haf/toggle-multicursor-package
+     :description (lambda () (format "Package (%s)" (symbol-name haf/multicursor-package)))
+     :transient t)]
+   ["Quit"
+    ;; TODO: maybe make q exit multiple cursors and remove region for all packages
+    :pad-keys t
+    ("q" "Quit" haf/transient-quit)]])
+
+(defun haf/expand-and-start-region-transient ()
+  "Expands region and runs the 'region-transient'."
+  (interactive)
+  (er/expand-region 1)
+  (haf/region-transient))
+
+(defun haf/next-cursor-and-start-region-transient ()
+  "Adds a multicursor and runs the 'region-transient'"
+  (interactive)
+  (haf/add-next-multicursor)
+  (haf/region-transient))
+
+;; ================
+;; END OF REGION/CURSOR TRANSIENT
+;; ================
 
 ;; =================
 ;; FLYMAKE TRANSIENT

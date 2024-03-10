@@ -23,14 +23,12 @@
 ;; TODO: I think any errors during nix-rebuild that say "assignment to free variable" mean that I'm assigning to variables that don't even exist
 ;; TODO: Use meow? It seems pretty rad
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
-;; TODO: Maybe start using transient instead of hydra?
 ;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
-;; TODO: A hydra for changing the font size
+;; TODO: A transient for changing the font size
 ;; TODO: Maybe use tempel instead of yasnippet
-;; TODO: Can I make popper.el buffers be "other window"? Otherwise, I can't close them with C-w o!!
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
-;; TODO: A hydra to interactively indent/deindent visually selected regions without losing the selection
+;; TODO: A transient to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
@@ -41,13 +39,13 @@
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: Try to split some sections to different files
-;; TODO: There are two commands I need to run so fonts work. Is there anyway I could automate it or notify whether it's needed?:
+;; TODO: There are two commands I need to run so fonts work. Is there any way I could automate it or notify whether it's needed?:
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
-;; TODO: Use flymake-clippy?
+;; TODO: Use flymake-clippy? (UPDATE: Or is just configuring the LSP to use clippy enough?)
 ;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects

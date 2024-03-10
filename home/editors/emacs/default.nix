@@ -21,7 +21,6 @@
             })
             ./tabs.el
 
-            ./hydra.el
             ./multicursor.el
             ./keybindings.el
         ]);
