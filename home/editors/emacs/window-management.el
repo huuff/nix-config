@@ -5,9 +5,6 @@
                           (:mode compilation-mode :size 0.4 :align right :select nil)
                           ;; TODO: tab-line still not disappearing for messages?
                           (:mode messages-buffer-mode :size 0.3 :align below :select nil)
-                          ;; TODO: I managed to get ielm's shackle config to work but only because evil-collection
-                          ;; has a nice keybinding (g z) that makes it work. I should create my own keybindings for this and eshell to ensure they
-                          ;; work with this config
                           (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t :buffer-name "*ielm*")
                           (:mode eshell-mode :size 0.3 :align below :select t :buffer-name "*eshell*")
                           (:mode magit-status-mode :size 0.4 :align below :select t)))

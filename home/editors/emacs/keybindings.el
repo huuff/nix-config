@@ -16,7 +16,8 @@
     ("p" "Project" haf/project-transient)
     ("l" "Language" haf/language-transient)
     ("e" "Errors" haf/start-error-transient)
-    ("g" "Git" haf/git-transient)]])
+    ("g" "Git" haf/git-transient)
+    ("!" "REPL" haf/repl-transient)]])
 
 (general-define-key
  :states '(normal visual insert motion)
@@ -26,6 +27,34 @@
 (defun haf/transient-quit ()
   "Dummy function that does nothing so I can use for exiting transients"
   (interactive))
+
+
+;; ================
+;; REPL TRANSIENT
+;; ================
+;; TODO: It'd be great to also have some calculator REPL
+(defun haf/pop-eshell-buffer ()
+  "Opens an eshell buffer in the current project"
+  (interactive)
+  (pop-to-buffer (get-buffer-create "*eshell*"))
+  (project-eshell))
+
+(defun haf/pop-ielm-buffer ()
+  "Opens an eshell buffer in the current project"
+  (interactive)
+  (pop-to-buffer (get-buffer-create "*ielm*"))
+  (ielm))
+
+(transient-define-prefix haf/repl-transient ()
+  "Transient for REPLs"
+  ["REPL"
+   :pad-keys t
+   ("!" "Terminal" haf/pop-eshell-buffer)
+   ("e" "Emacs" haf/pop-ielm-buffer)])
+
+;; ================
+;; END OF REPL TRANSIENT
+;; ================
 
 (transient-define-prefix haf/git-transient ()
   "Transient for Git actions"
@@ -103,6 +132,7 @@
   [["Switch"
     :pad-keys t
     :setup-children
+    ;; TODO: Limit to 9 tabs, otherwise it breaks
     (lambda (_)
       (let ((tabs (haf/current-tabs)))
         (mapcar
