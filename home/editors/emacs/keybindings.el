@@ -9,7 +9,8 @@
    ["Views"
     :pad-keys t
     ("w" "Windows" haf/window-transient)
-    ("t" "Tabs" haf/tab-line-transient)]
+    ("t" "Tabs" haf/tab-line-transient)
+    ("'" "Font size" global-text-scale-adjust)]
    ["Actions"
     :pad-keys t
     ("p" "Project" haf/project-transient)
@@ -109,6 +110,9 @@
 ;; REGION/CURSOR TRANSIENT
 ;; ================
 
+;; TODO: Can I make any keybindings not expressed here to go through to the actual command, like hydra does?
+;; Otherwise, when I have multiple cursors, pressing "C" does nothing (I have to press q first to exit the transient
+;; to change the text)
 (transient-define-prefix haf/region-transient ()
   "Transient for expanding regions and adding cursors"
   [["Region"

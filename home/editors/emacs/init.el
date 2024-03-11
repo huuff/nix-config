@@ -24,7 +24,6 @@
 ;; TODO: Use meow? It seems pretty rad
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
-;; TODO: A transient for changing the font size
 ;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
