@@ -9,7 +9,6 @@
 ;; TODO: Use justl mode
 ;; TODO: persistent-scratch-mode might be cool
 ;; TODO: Install eglot-signature-eldoc-talkative
-;; TODO: Maybe use evil-snipe only for the current line and avy for all else
 ;; TODO: Maybe use evil-quickscope
 ;; TODO: Maybe use no-littering?
 ;; TODO: Use anzu? Not excessively important but might improve the experience
@@ -44,7 +43,6 @@
 ;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Use flymake-clippy? (UPDATE: Or is just configuring the LSP to use clippy enough?)
-;; TODO: Maybe enable go-to-address-mode?
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
@@ -53,6 +51,9 @@
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
+
+;; makes links clickable
+(global-goto-address-mode)
 
 ;; disable ugly top toolbars and scroll bars
 (tool-bar-mode -1)
@@ -521,9 +522,7 @@
   :after evil
   :config
   (evil-snipe-mode +1)
-  (evil-snipe-override-mode +1)
-  ;; snipe in whole buffer, not just current line
-  (setq evil-snipe-scope 'whole-buffer))
+  (evil-snipe-override-mode +1))
 
 ;; gives an argument text-object so you can do `daa` for example to delete a whole argument
 ;; TODO: Try to set up some way to exchange args order
@@ -533,7 +532,6 @@
   :general
   (evil-inner-text-objects-map "a" 'evil-inner-arg)
   (evil-outer-text-objects-map "a" 'evil-outer-arg)
-  ;; TODO: I don't even use any of these... bind them to something else?
   (:states 'normal
            "L" 'evil-forward-arg
            "H" 'evil-backward-arg
@@ -571,7 +569,6 @@
   (global-hungry-delete-mode))
 
 ;; TODO: There's an expand-region version that uses tree-sitter
-;; expand-region
 ;; TODO: Maybe I should use combobulate when I can configure tree-sitter?
 ;; expand-region
 ;; =====================
