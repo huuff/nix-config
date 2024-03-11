@@ -19,7 +19,6 @@
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
-;; TODO: Some form of changing font size for all buffers, please
 ;; TODO: I think any errors during nix-rebuild that say "assignment to free variable" mean that I'm assigning to variables that don't even exist
 ;; TODO: Use meow? It seems pretty rad
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
