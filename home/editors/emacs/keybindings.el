@@ -32,7 +32,8 @@
 ;; ================
 ;; REPL TRANSIENT
 ;; ================
-;; TODO: It'd be great to also have some calculator REPL
+;; TODO: It does not work as intended. When I open eshells for different projects,
+;; it always sends me to the incorrect one
 (defun haf/pop-eshell-buffer ()
   "Opens an eshell buffer in the current project"
   (interactive)
@@ -45,6 +46,7 @@
   (pop-to-buffer (get-buffer-create "*ielm*"))
   (ielm))
 
+;; TODO: It'd be great to also have some calculator REPL
 (transient-define-prefix haf/repl-transient ()
   "Transient for REPLs"
   ["REPL"
