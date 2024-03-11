@@ -1,4 +1,3 @@
-;; TODO: A keybinding for opening magit
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Use this cool snippet for maximizing windows https://www.reddit.com/r/emacs/comments/yzjmmf/comment/ix1xpab/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
@@ -695,7 +694,6 @@
 ;; diff-hl
 ;; =====================
 ;; shows git status in the gutter (uncommited changes)
-;; TODO: Some keybindings or hydra to cycle across hunks
 (use-package diff-hl
   :ensure t
   :hook 

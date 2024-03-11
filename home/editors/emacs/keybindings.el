@@ -15,7 +15,8 @@
     :pad-keys t
     ("p" "Project" haf/project-transient)
     ("l" "Language" haf/language-transient)
-    ("e" "Errors" haf/start-error-transient)]])
+    ("e" "Errors" haf/start-error-transient)
+    ("g" "Git" haf/git-transient)]])
 
 (general-define-key
  :states '(normal visual insert motion)
@@ -25,6 +26,18 @@
 (defun haf/transient-quit ()
   "Dummy function that does nothing so I can use for exiting transients"
   (interactive))
+
+(transient-define-prefix haf/git-transient ()
+  "Transient for Git actions"
+  [["Git"
+    :pad-keys t
+    ("g" "Magit" magit)]
+   ;; TODO: Can't I just remove the diff-hl transient and override it with mine? I'd have to remove the keymap and
+   ;; the footer
+   ["Hunks"
+    :pad-keys t
+    ("n" "Next" diff-hl-show-hunk-next)
+    ("p" "Previous" diff-hl-show-hunk-previous)]])
 
 
 ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
