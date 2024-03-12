@@ -122,8 +122,7 @@
 (use-package super-save
   :ensure t
   :custom
-  ;; auto-save also when idle
-  (super-save-auto-save-when-idle t)
+  (super-save-auto-save-when-idle t "Auto-save when idle")
   :config
   (super-save-mode +1)
   ;; disable default horrible autosave mode that leaves thousands of backup files
@@ -146,24 +145,15 @@
 (use-package dashboard
   :ensure t
   :custom
-  ;; choose project.el vs projectile for the project list
-  (dashboard-projects-backend 'project-el)
-  ;; choose widgets, order and size in lines for the dashboard
-  ;; for example (projects . 5) shows 5 projects
+  (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
-                     (recents  . 5)))
-  ;; choose icons between all-the-icons and nerd-icons
-  (dashboard-icon-type 'all-the-icons)
-  ;; display icons (in general)
-  (dashboard-display-icons-p t)
-  ;; display icons in widget headings
-  (dashboard-set-heading-icons t)
-  ;; display file icons
-  (dashboard-set-file-icons t)
-  ;; show navigator with some options below the banner
-  (dashboard-set-navigator t)
-  ;; self-descriptive
-  (dashboard-center-content t)
+                     (recents  . 5)) "Widget order and size. (projects . 5) means to show 5 projects")
+  (dashboard-icon-type 'all-the-icons "Show icons with all-the-icons")
+  (dashboard-display-icons-p t "Show icons")
+  (dashboard-set-heading-icons t "Show icons in widget headings")
+  (dashboard-set-file-icons t "Show icons for files")
+  (dashboard-set-navigator t "Show a navigator with options under the banner")
+  (dashboard-center-content t "Horizontaly center widgets")
   :config
   (dashboard-setup-startup-hook))
 
