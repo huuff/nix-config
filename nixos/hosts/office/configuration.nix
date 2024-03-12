@@ -39,6 +39,10 @@
         8080 # Some other web apps
       ];
     };
+
+    extraHosts = ''
+      127.0.0.1 office.local
+    '';
   };
 
   console = {
