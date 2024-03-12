@@ -33,11 +33,10 @@
 (use-package shackle
   :init
   (shackle-mode)
-  :config
-  ;; TODO: Try using :custom
-  (setq shackle-rules (append
-                       (mapcar #'cdr haf/popup-buffers)
-                       (haf/popup-buffers-by-bufname))))
+  :custom
+  (shackle-rules (append
+                  (mapcar #'cdr haf/popup-buffers)
+                  (haf/popup-buffers-by-bufname))))
 
 ;; popper
 ;; =====================
