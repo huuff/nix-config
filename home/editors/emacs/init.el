@@ -22,6 +22,7 @@
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
 ;; TODO: Maybe use tempel instead of yasnippet
+;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: A transient to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
@@ -228,8 +229,8 @@
            :keymaps 'override
            ;; same key as for vim
            "K" 'eldoc-box-help-at-point)
-  :custom
-  (eldoc-box-clear-with-C-g t))
+  :config
+  (setq eldoc-box-clear-with-C-g t))
 
 ;; marginalia
 ;; =====================
@@ -246,7 +247,6 @@
   :after marginalia
   :config
   (nerd-icons-completion-mode)
-  ;; TODO: use :hook?
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 ;; helpful
@@ -281,7 +281,8 @@
 ;; and more intelligent matching
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
-  :bind (([remap Info-search] . consult-info)
+  :bind (
+         ([remap Info-search] . consult-info)
          ;; C-x bindings in `ctl-x-map'
          ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
@@ -553,17 +554,17 @@
 ;; =====================
 ;; deletes large sequences of whitespace with a single press
 (use-package hungry-delete
-  :custom
-  ;; do not delete aggresively join words
-  ;; without it, deleting the space between "word1      word2"
-  ;; ends up with "word1word2", with it, it's "word1 word2"
-  (hungry-delete-join-reluctantly t)
-
-  ;; I'm not even entirely sure what these characters are
-  ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
-  ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
-  (hungry-delete-chars-to-skip " \t\r\f\v")
   :config
+  (setq 
+   ;; do not delete aggresively join words
+   ;; without it, deleting the space between "word1      word2"
+   ;; ends up with "word1word2", with it, it's "word1 word2"
+   hungry-delete-join-reluctantly t
+
+   ;; I'm not even entirely sure what these characters are
+   ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
+   ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
+   hungry-delete-chars-to-skip " \t\r\f\v")
   (global-hungry-delete-mode))
 
 ;; TODO: There's an expand-region version that uses tree-sitter
@@ -572,9 +573,9 @@
 ;; =====================
 ;; increases selection progressively by syntactical units
 (use-package expand-region
-  :custom
+  :config
   ;; disable fast keys since my hydra does that and they conflict otherwise
-  (expand-region-fast-keys-enabled nil))
+  (setq expand-region-fast-keys-enabled nil))
 
 ;; lorem-ipsum
 ;; =====================
@@ -822,10 +823,10 @@
 ;; a curated collection of nice themes
 (use-package doom-themes
   :ensure t
-  :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
   :config
+  (setq 
+   doom-themes-enable-bold t
+   doom-themes-enable-italic t)
   (load-theme 'doom-one t)
 
   ;; enable flashing mode-line on errors

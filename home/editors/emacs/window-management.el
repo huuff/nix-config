@@ -34,10 +34,10 @@
 (use-package shackle
   :init
   (shackle-mode)
-  :custom
-  (shackle-rules (append
-                  (mapcar #'cdr haf/popup-buffers)
-                  (haf/popup-buffers-by-bufname))))
+  :config
+  (setq shackle-rules (append
+                       (mapcar #'cdr haf/popup-buffers)
+                       (haf/popup-buffers-by-bufname))))
 
 ;; popper
 ;; =====================
