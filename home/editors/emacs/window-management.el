@@ -1,13 +1,13 @@
 
 ;; TODO: Add the flymake window here too
-(setq haf/popup-buffers '((:mode help-mode :size 0.3 :align below :select t)
-                          (:mode helpful-mode :size 0.3 :align below :select t)
-                          (:mode compilation-mode :size 0.4 :align right :select nil)
+(setq haf/popup-buffers '((:mode help-mode :size 0.3 :align below :select t :popup t)
+                          (:mode helpful-mode :size 0.3 :align below :select t :popup t)
+                          (:mode compilation-mode :size 0.4 :align right :select nil :popup t)
                           ;; TODO: tab-line still not disappearing for messages?
-                          (:mode messages-buffer-mode :size 0.3 :align below :select nil)
-                          (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t :buffer-name "*ielm*")
-                          (:mode eshell-mode :size 0.3 :align below :select t :buffer-name "*eshell*")
-                          (:mode magit-status-mode :size 0.4 :align below :select t)))
+                          (:mode messages-buffer-mode :size 0.3 :align below :select nil :popup t)
+                          (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t :buffer-name "*ielm*" :popup t)
+                          (:mode eshell-mode :size 0.3 :align below :select t :buffer-name "\\*.*?eshell\\*" :regexp t :popup t)
+                          (:mode magit-status-mode :size 0.4 :align below :select t :popup t)))
 
 (defun haf/popup-modes ()
   (mapcar #'(lambda (it) (plist-get it :mode)) haf/popup-buffers))
@@ -35,7 +35,9 @@
   :init
   (shackle-mode)
   :config
-  (setq shackle-rules (append (mapcar #'cdr haf/popup-buffers) (haf/popup-buffers-by-bufname))))
+  (setq shackle-rules (append
+                       (mapcar #'cdr haf/popup-buffers)
+                       (haf/popup-buffers-by-bufname))))
 
 ;; popper
 ;; =====================

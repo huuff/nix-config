@@ -32,27 +32,13 @@
 ;; ================
 ;; REPL TRANSIENT
 ;; ================
-;; TODO: It does not work as intended. When I open eshells for different projects,
-;; it always sends me to the incorrect one
-(defun haf/pop-eshell-buffer ()
-  "Opens an eshell buffer in the current project"
-  (interactive)
-  (pop-to-buffer (get-buffer-create "*eshell*"))
-  (project-eshell))
-
-(defun haf/pop-ielm-buffer ()
-  "Opens an eshell buffer in the current project"
-  (interactive)
-  (pop-to-buffer (get-buffer-create "*ielm*"))
-  (ielm))
-
 ;; TODO: It'd be great to also have some calculator REPL
 (transient-define-prefix haf/repl-transient ()
   "Transient for REPLs"
   ["REPL"
    :pad-keys t
-   ("!" "Terminal" haf/pop-eshell-buffer)
-   ("e" "Emacs" haf/pop-ielm-buffer)])
+   ("!" "Terminal" project-eshell)
+   ("e" "Emacs" ielm)])
 
 ;; ================
 ;; END OF REPL TRANSIENT
