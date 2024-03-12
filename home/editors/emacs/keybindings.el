@@ -29,9 +29,6 @@
   (interactive))
 
 
-;; ================
-;; REPL TRANSIENT
-;; ================
 ;; TODO: It'd be great to also have some calculator REPL
 (transient-define-prefix haf/repl-transient ()
   "Transient for REPLs"
@@ -39,10 +36,6 @@
    :pad-keys t
    ("!" "Terminal" project-eshell)
    ("e" "Emacs" ielm)])
-
-;; ================
-;; END OF REPL TRANSIENT
-;; ================
 
 (transient-define-prefix haf/git-transient ()
   "Transient for Git actions"
@@ -91,14 +84,26 @@
     ("t" "Test" haf/run-project-tests)
     ("l" "Lint" haf/lint-project)]])
 
+(defun haf/toggle-full-window ()
+  "Toggle full view of selected window."
+  (interactive)
+  ;; @see http://www.gnu.org/software/emacs/manual/html_node/elisp/Splitting-Windows.html
+  (if (window-parent)
+      (delete-other-windows)
+    (winner-undo)))
+
 (transient-define-prefix haf/window-transient ()
   "Window transients"
-  ["Windows"
-   :pad-keys t
-   ("C-t" "Toggle sidebar" dired-sidebar-toggle-sidebar)
-   ("w" "Toggle popup" popper-toggle)
-   ("t" "Cycle popup" popper-cycle)
-   ("g" "Switch window" ace-window)])
+  [["Windows"
+    :pad-keys t
+    ("SPC" "Toggle sidebar" dired-sidebar-toggle-sidebar)
+    ("f" "Maximize/minimize" haf/toggle-full-window)
+    ;; TODO: Maybe I should not autoswitch with ace when there are only 2 windows
+    ("g" "Ace" ace-window)]
+   ["Popups"
+    :pad-keys t
+    ("w" "Toggle popup" popper-toggle)
+    ("t" "Cycle popup" popper-cycle :transient t)]])
 
 
 (transient-define-prefix haf/autocomplete-transient ()

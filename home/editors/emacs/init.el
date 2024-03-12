@@ -1,6 +1,5 @@
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
-;; TODO: Use this cool snippet for maximizing windows https://www.reddit.com/r/emacs/comments/yzjmmf/comment/ix1xpab/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 ;; TODO: Maybe use prodigy
 ;; TODO: Maybe use golden-ratio
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
@@ -52,6 +51,11 @@
 
 ;; makes links clickable
 (global-goto-address-mode)
+
+;; stores window configurations so after any changes (closing windows)
+;; you can call winner-undo to go back to the previous state
+;; I use it to maximize/minimize windows
+(winner-mode)
 
 ;; disable ugly top toolbars and scroll bars
 (tool-bar-mode -1)
