@@ -1,3 +1,4 @@
+;; TODO: Start putting some docstrings into my :customs!
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Maybe use prodigy
@@ -183,8 +184,8 @@
 (use-package corfu
   :init
   (global-corfu-mode)
-  ;; TODO: Try setting this in :custom
-  (setq corfu-auto-delay 0.75)
+  :custom
+  (corfu-auto-delay 0.75)
   :general
   (:states '(normal insert)
            :keymaps 'override
