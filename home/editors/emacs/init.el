@@ -1,4 +1,3 @@
-;; TODO: Start putting some docstrings into my :customs!
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Maybe use prodigy
@@ -174,15 +173,13 @@
 (use-package corfu
   :init
   (global-corfu-mode)
-  :custom
-  (corfu-auto-delay 0.75)
   :general
   (:states '(normal insert)
            :keymaps 'override
            "C-SPC" 'completion-at-point)
   :custom
-  ;; enable autocompletion
-  (corfu-auto t))
+  (corfu-auto t "Enable autocompletion")
+  (corfu-auto-delay 0.75 "Time to wait before autocompletion"))
 
 ;; show a pop-up with documentation on each autocompletion candidate after a small delay
 (use-package corfu-popupinfo
@@ -205,6 +202,7 @@
 (use-package orderless
   :ensure t
   :custom
+  ;; TODO: docstrings
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
@@ -214,7 +212,7 @@
 (use-package eldoc
   :ensure nil ;; already included in emacs
   :custom
-  (eldoc-idle-delay 0.75))
+  (eldoc-idle-delay 0.75 "Seconds to wait before showing help in the echo area"))
 
 ;; displays eldoc in a floating childframe
 (use-package eldoc-box
@@ -224,7 +222,7 @@
            ;; same key as for vim
            "K" 'eldoc-box-help-at-point)
   :custom
-  (eldoc-box-clear-with-C-g t))
+  (eldoc-box-clear-with-C-g t "Allow closing the popup with C-g"))
 
 ;; marginalia
 ;; =====================
@@ -378,8 +376,7 @@
   ;; TODO: This gets lost after some seconds... can I fix that?
   :hook (dired-mode . hl-line-mode)
   :custom
-  ;; sort so directories are on top
-  (dired-listing-switches "-aBhl  --group-directories-first")
+  (dired-listing-switches "-aBhl  --group-directories-first" "Sort so directories are on top")
   :general
   (:keymaps '(dired-mode-map)
             :states '(normal)
@@ -432,8 +429,7 @@
 (use-package all-the-icons-dired
   :after (dired all-the-icons)
   :custom
-  ;; colorize icons
-  (all-the-icons-dired-monochrome nil)
+  (all-the-icons-dired-monochrome nil "Colorize icons")
   :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; dired-fl
@@ -718,6 +714,7 @@
 ;; autoinstalls tree-sitter grammars and maps non-tree-sitter modes to tree-sitter ones
 (use-package treesit-auto
   :custom
+  ;; TODO: docstring
   (treesit-auto-install 'prompt)
   :config
   (add-to-list 'treesit-auto-langs 'nix)
@@ -851,11 +848,8 @@
 ;; dims non-selected window so it's clearer which one is currently selected
 (use-package dimmer
   :custom
-  ;; a little darker than default
-  (dimmer-fraction 0.3)
-  ;; don't dim everything when the frame loses focus.
-  ;; it's bothersome with two monitors
-  (dimmer-watch-frame-focus-events nil)
+  (dimmer-fraction 0.3 "A little darker than default")
+  (dimmer-watch-frame-focus-events nil "Don't dim everything when the frame loses focus. It's bothersome with two monitors")
   :init
   ;; these three defuns were copied off https://github.com/gonewest818/dimmer.el/issues/62#issuecomment-1820362245
   ;; for corfu integration
@@ -883,7 +877,7 @@
   (dimmer-configure-which-key)
   ;; hydra integration
   (dimmer-configure-hydra)
-  ;; I don't even know whether I use posrframe, but configure its integration
+  ;; I don't even know whether I use postrame, but configure its integration
   ;; just in case
   (dimmer-configure-posframe)
   ;; corfu integration
@@ -911,8 +905,8 @@
 (use-package pulse
   :ensure nil ;; already included in emacs
   :custom
-  (pulse-delay 0.05)
-  (pulse-iterations 5)
+  (pulse-delay 0.05 "Seconds before each iteration")
+  (pulse-iterations 5 "Number of iterations")
   :preface
   (defface haf/pulse-face
     '((t (:inherit region)))
