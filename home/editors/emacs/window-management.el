@@ -3,7 +3,6 @@
 (setq haf/popup-buffers '((:mode help-mode :size 0.3 :align below :select t :popup t)
                           (:mode helpful-mode :size 0.3 :align below :select t :popup t)
                           (:mode compilation-mode :size 0.4 :align right :select nil :popup t)
-                          ;; TODO: tab-line still not disappearing for messages?
                           (:mode messages-buffer-mode :size 0.3 :align below :select nil :popup t)
                           (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t :buffer-name "*ielm*" :popup t)
                           (:mode eshell-mode :size 0.3 :align below :select t :buffer-name "\\*.*?eshell\\*" :regexp t :popup t)

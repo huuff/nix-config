@@ -4,6 +4,12 @@
 (use-package tab-line
   :ensure nil ;; already included in emacs
   :init
+  ;; do not show the tab-line for these modes
+  (setq tab-line-exclude-modes (append '(dashboard-mode
+                                         magit-diff-mode
+                                         dired-mode
+                                         dired-sidebar-mode)
+                                       (haf/popup-modes)))
   (global-tab-line-mode)
   :custom-face
   ;; I need a different font family to make it italic when modified
@@ -144,12 +150,6 @@
                                                      (string< (buffer-name buf1)
                                                               (buffer-name buf2))))
 
-  ;; do not show the tab-line for these modes
-  (setq tab-line-exclude-modes (append '(dashboard-mode
-                                         magit-diff-mode
-                                         dired-mode
-                                         dired-sidebar-mode)
-                                       (haf/popup-modes)))
 
   ;; do not go into other groups after last tab, go back
   ;; to the first one
