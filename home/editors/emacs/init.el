@@ -234,9 +234,8 @@
            :keymaps 'override
            ;; same key as for vim
            "K" 'eldoc-box-help-at-point)
-  ;; TODO: Try using :custom
-  :config
-  (setq eldoc-box-clear-with-C-g t))
+  :custom
+  (eldoc-box-clear-with-C-g t))
 
 ;; marginalia
 ;; =====================
