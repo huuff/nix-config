@@ -20,6 +20,7 @@
 (use-package evil-mc
   :after evil
   :config 
+  ;; TODO: Try using :custom
   ;; remove cursors when pressing C-g
   (setq evil-mc-undo-cursors-on-keyboard-quit t)
   (global-evil-mc-mode 1))
@@ -32,6 +33,7 @@
 ;; contrary to evil-mc it keeps your region, but it lacks evil-mc's power
 (use-package evil-multiedit
   :config
+  ;; TODO: try using :custom
   (setq evil-multiedit-follow-matches t))
 
 (defvar haf/multicursor-package 'evil-multiedit
@@ -43,25 +45,25 @@
   (interactive)
   ;; TODO: Can I use pcase instead?
   (cond
-    ((eq haf/multicursor-package 'evil-multiedit) (setq haf/multicursor-package 'evil-mc))
-    ((eq haf/multicursor-package 'evil-mc) (setq haf/multicursor-package 'multiple-cursors))
-    ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-multiedit))))
+   ((eq haf/multicursor-package 'evil-multiedit) (setq haf/multicursor-package 'evil-mc))
+   ((eq haf/multicursor-package 'evil-mc) (setq haf/multicursor-package 'multiple-cursors))
+   ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-multiedit))))
 
 (defun haf/add-next-multicursor ()
   "Creates a multi-cursor for the selected region using the package in 'haf/multicursor-package'"
   (interactive)
   ;; TODO: Can I use pcase instead?
   (cond
-    ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
-    ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
-    ((eq haf/multicursor-package 'evil-multiedit) (call-interactively 'evil-multiedit-match-and-next))))
+   ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
+   ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
+   ((eq haf/multicursor-package 'evil-multiedit) (call-interactively 'evil-multiedit-match-and-next))))
 
 (defun haf/remove-previous-multicursor ()
   "Removes the last created multi-cursor using the package in 'haf/multicursor-package'"
   (interactive)
   ;; TODO: Can I use pcase instead?
   (cond
-    ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
-    ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
-    ;; TODO: Maybe try to remove this option in the hydra?
-    ((eq haf/multicursor-package 'evil-multiedit) (message "Not available in evil-multiedit"))))
+   ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
+   ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
+   ;; TODO: Maybe try to remove this option in the hydra?
+   ((eq haf/multicursor-package 'evil-multiedit) (message "Not available in evil-multiedit"))))

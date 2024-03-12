@@ -22,7 +22,6 @@
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
 ;; TODO: Maybe use tempel instead of yasnippet
-;; TODO: Try to use :custom in use-package instead of :config with a setq
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: A transient to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
@@ -180,6 +179,7 @@
 (use-package corfu
   :init
   (global-corfu-mode)
+  ;; TODO: Try setting this in :custom
   (setq corfu-auto-delay 0.75)
   :general
   (:states '(normal insert)
@@ -219,6 +219,7 @@
 (use-package eldoc
   :ensure nil ;; already included in emacs
   :init
+  ;; TODO: Try using :custom
   (setq 
    eldoc-idle-delay 0.75))
 
@@ -229,6 +230,7 @@
            :keymaps 'override
            ;; same key as for vim
            "K" 'eldoc-box-help-at-point)
+  ;; TODO: Try using :custom
   :config
   (setq eldoc-box-clear-with-C-g t))
 
@@ -555,6 +557,7 @@
 ;; deletes large sequences of whitespace with a single press
 (use-package hungry-delete
   :config
+  ;; TODO: Try using :custom
   (setq 
    ;; do not delete aggresively join words
    ;; without it, deleting the space between "word1      word2"
@@ -573,6 +576,7 @@
 ;; =====================
 ;; increases selection progressively by syntactical units
 (use-package expand-region
+  ;; TODO: Try using :custom
   :config
   ;; disable fast keys since my hydra does that and they conflict otherwise
   (setq expand-region-fast-keys-enabled nil))
@@ -686,6 +690,7 @@
 ;; TODO: Use sideline-blame?
 (use-package sideline
   :init 
+  ;; TODO: Try using :custom
   (setq sideline-display-backend-name t
         sideline-backends-right '(sideline-flymake))
   :hook ((flymake-mode  . sideline-mode)))
@@ -824,6 +829,7 @@
 (use-package doom-themes
   :ensure t
   :config
+  ;; TODO: Try using :custom
   (setq 
    doom-themes-enable-bold t
    doom-themes-enable-italic t)
