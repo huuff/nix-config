@@ -222,10 +222,8 @@
 ;; buil-in documentation browsing mode
 (use-package eldoc
   :ensure nil ;; already included in emacs
-  :init
-  ;; TODO: Try using :custom
-  (setq 
-   eldoc-idle-delay 0.75))
+  :custom
+  (eldoc-idle-delay 0.75))
 
 ;; displays eldoc in a floating childframe
 (use-package eldoc-box
