@@ -203,7 +203,7 @@
   :ensure t
   :custom
   (completion-styles '(orderless basic) "Use orderless completion by default and basic as a fallback")
-  (completion-category-overrides '((file (styles basic partial-completion)))) "I don't know exactly what this does, but the Orderless' README recommends it. Apparently is so hostname completion works for TRAMP")
+  (completion-category-overrides '((file (styles basic partial-completion))) "I don't know exactly what this does, but the Orderless' README recommends it. Apparently is so hostname completion works for TRAMP"))
 
 ;; eldoc
 ;; =====================
