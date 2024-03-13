@@ -202,9 +202,8 @@
 (use-package orderless
   :ensure t
   :custom
-  ;; TODO: docstrings
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-styles '(orderless basic) "Use orderless completion by default and basic as a fallback")
+  (completion-category-overrides '((file (styles basic partial-completion)))) "I don't know exactly what this does, but the Orderless' README recommends it. Apparently is so hostname completion works for TRAMP")
 
 ;; eldoc
 ;; =====================
@@ -544,18 +543,11 @@
 ;; =====================
 ;; deletes large sequences of whitespace with a single press
 (use-package hungry-delete
+  :custom
+  (hungry-delete-join-reluctantly t "Do not join words. Without it, deleting between 'word1       word2' would give 'word1word2', but with it, it's 'word1 word2'") 
+  ;; copied off https://github.com/nflath/hungry-delete/issues/20
+  (hungry-delete-chars-to-skip " \t\r\f\v" "Prevents it from being too hungry and deleting all newlines and tabs")
   :config
-  ;; TODO: Try using :custom
-  (setq 
-   ;; do not delete aggresively join words
-   ;; without it, deleting the space between "word1      word2"
-   ;; ends up with "word1word2", with it, it's "word1 word2"
-   hungry-delete-join-reluctantly t
-
-   ;; I'm not even entirely sure what these characters are
-   ;; but I copied this off https://github.com/nflath/hungry-delete/issues/20
-   ;; so far, it prevents hungry-delete from being *too* hungry and at least doesn't delete newlines
-   hungry-delete-chars-to-skip " \t\r\f\v")
   (global-hungry-delete-mode))
 
 ;; TODO: There's an expand-region version that uses tree-sitter
