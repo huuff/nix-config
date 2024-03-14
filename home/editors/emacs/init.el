@@ -1,3 +1,5 @@
+;; TODO: Use restclient
+;; TODO: Use company-restclient but convert it to capf with cape
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Maybe use prodigy
