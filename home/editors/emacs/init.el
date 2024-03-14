@@ -137,7 +137,7 @@
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: It'd be huge to display an elfeed with planetemacs
-;; TODO: Change the image to the one that appears in the awesome-emacs repo
+;; TODO: Solaire mode is making the image display a weird background, try disabling it for the dashboard-mode
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -153,6 +153,7 @@
   (dashboard-set-file-icons t "Show icons for files")
   (dashboard-set-navigator t "Show a navigator with options under the banner")
   (dashboard-center-content t "Horizontaly center widgets")
+  (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
   :config
   (dashboard-setup-startup-hook))
 
