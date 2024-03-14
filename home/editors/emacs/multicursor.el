@@ -20,7 +20,6 @@
 (use-package evil-mc
   :after evil
   :config 
-  ;; TODO: Try using :custom
   ;; remove cursors when pressing C-g
   (setq evil-mc-undo-cursors-on-keyboard-quit t)
   (global-evil-mc-mode 1))
