@@ -31,9 +31,7 @@
 ;; ==================
 ;; contrary to evil-mc it keeps your region, but it lacks evil-mc's power
 (use-package evil-multiedit
-  :config
-  ;; TODO: try using :custom
-  (setq evil-multiedit-follow-matches t))
+  :custom (evil-multiedit-follow-matches t "Jump to each next match instead of just marking it"))
 
 (defvar haf/multicursor-package 'evil-multiedit
   "The package to be used for multiple cursors, either 'evil-mc, 'evil-multiedit or 'multiple-cursors")
