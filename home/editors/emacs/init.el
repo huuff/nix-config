@@ -76,6 +76,14 @@
 ;; set font 
 (set-frame-font "Fira Code 10" nil t)
 
+;; XXX I'm not even entirely sure what this does. But I use it so directories
+;; in dired are actually sorted alphabetically. Dired uses `ls` under the covers, and
+;; apparently this env var influences `ls`'s listing order. Hopefully it won't affect anything
+;; else unexpected.
+;; I'm mainly interested in it because sveltekit names special files with `+` prefixes so they appear
+;; on top, but the default order ignores this.
+(setenv "LC_ALL" "C")
+
 ;; use-package
 ;; =====================
 ;; modular package configuration
@@ -365,17 +373,13 @@
 
 ;; TODO: I use diffhl to highlight vc-changed files, but this doesn't look that cool and
 ;; doesn't integrate that well with dired-subtree.. maybe I should use dired-rainbow to configure that?
-;; TODO: Is there any way I can manage dired to sort sveltekit files on top? They start with
-;; + which I assume is so they appear on top for listings, but for some reason, dired uses `ls`
-;; and it just won't show them on top
-;; dired
 ;; =====================
 ;; the built-in file-manager
 (use-package dired
   :ensure nil ;; already included in emacs
   ;; TODO: Maybe this cold be a little bit brighter?
-  ;; mark with the whole current line in dired
   ;; TODO: This gets lost after some seconds... can I fix that?
+  ;; mark with the whole current line in dired
   :hook (dired-mode . hl-line-mode)
   :custom
   (dired-listing-switches "-aBhl  --group-directories-first" "Sort so directories are on top")
