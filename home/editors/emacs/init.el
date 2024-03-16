@@ -14,7 +14,6 @@
 ;; TODO: Use anzu? Not excessively important but might improve the experience
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
-;; TODO: Try out lsp-booster, it may be impressive. UPDATE: Also add these configs https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Use eglot-x?
 ;; TODO: Maybe I should use defcustom for my vars instead of defvar
@@ -606,6 +605,11 @@
                       ;; TODO: Enable clippy with rust-analyzer, rust-analyzer itself has a guide to do it with eglot
                       '(rust-ts-mode . ("rust-analyzer")))))
 
+  ;; these two make eglot faster according to
+  ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+  (setq eglot-events-buffer-size 0)
+  (fset #'jsonrpc--log-event #'ignore)
+  
   :hook ((tsx-ts-mode . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
          (svelte-mode . eglot-ensure)
@@ -613,6 +617,11 @@
          (rust-ts-mode . eglot-ensure)
          ;; auto-enable inlay hints
          (eglot-managed-mode . eglot-inlay-hints-mode)))
+
+(use-package eglot-booster
+  :load-path "@snatches@/eglot-booster" 
+  :after eglot
+  :config (eglot-booster-mode))
 
 ;; apheleia
 ;; =====================
@@ -947,6 +956,10 @@
 ;; fully-featured terminal emulator that interprets all escape sequences, allowing you to see
 ;; all colors, run full-screen programs, etc.
 (use-package eat
+  :config
+  ;; makes EAT quicker according to
+  ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+  (setq process-adaptive-read-buffering nil) 
   :hook
   (eshell-load . eat-eshell-mode)
   (eshell-load . eat-eshell-visual-command-mode))
