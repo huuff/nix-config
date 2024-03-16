@@ -605,7 +605,9 @@
                 (list '(svelte-mode . ("svelteserver" "--stdio")) 
                       '(nix-ts-mode . ("nil"))
                       ;; TODO: Enable clippy with rust-analyzer, rust-analyzer itself has a guide to do it with eglot
-                      '(rust-ts-mode . ("rust-analyzer")))))
+                      '(rust-ts-mode . ("rust-analyzer"
+                                        :initializationOptions (:cargo (:features "all")
+                                                                       :procMacro (:enable true)))))))
 
   ;; these two make eglot faster according to
   ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
@@ -782,9 +784,7 @@
   (setq 
    ;; allow creating a dummy, empty .project file to mark a project root
    ;; this is useful so it detects nested projects as independent projects
-   project-vc-extra-root-markers '(".project")
-   ;; ignore these directories (normally it gets them from .gitignore, but this is useful for nested projects)
-   project-vc-ignores '("target/" "bin/" "obj/")))
+   project-vc-extra-root-markers '(".project")))
 
 (defun haf/project-remember-current-project ()
   "Remembers the current project"
