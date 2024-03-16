@@ -603,12 +603,15 @@
   (setq eglot-server-programs
         (append eglot-server-programs
                 (list '(svelte-mode . ("svelteserver" "--stdio")) 
-                      '(nix-ts-mode . ("nil"))
-                      ;; TODO: Enable clippy with rust-analyzer, rust-analyzer itself has a guide to do it with eglot
-                      '(rust-ts-mode . ("rust-analyzer"
-                                        :initializationOptions (:cargo (:features "all")
-                                                                       :procMacro (:enable true)))))))
-
+                      '(nix-ts-mode . ("nil")))))
+  (add-to-list
+   'eglot-server-programs
+   '((rust-mode rust-ts-mode) .
+     ("rust-analyzer" :initializationOptions
+      (:procMacro (:enable t)
+                  :cargo (:buildScripts (:enable t) :features "all")
+                  ;; Use Clippy for extra lints.
+                  :check (:command "clippy")))))
   ;; these two make eglot faster according to
   ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
   (setq eglot-events-buffer-size 0)

@@ -44,6 +44,7 @@
       christian-kohler.path-intellisense # autocomplete paths
       firefox-devtools.vscode-firefox-debug # allow debugging with firefox
       usernamehw.errorlens # nicer error inlays
+      rust-lang.rust-analyzer # rust-analyzer
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
        
       {
