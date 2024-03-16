@@ -91,12 +91,6 @@
         {
           boot.supportedFilesystems = [ "ntfs" ];
         }
-
-        {
-          # Use all features of declarative containers for imperative containers
-          # https://github.com/erikarvstedt/extra-container
-          programs.extra-container.enable = true;
-        }
       ] ++ extraModules;
     };
   in
