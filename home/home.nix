@@ -21,7 +21,6 @@
       ./desktop-environment/screen-lock.nix
       ./keybindings.nix
       ./tmux.nix
-      ./email.nix
 
       ./shell.nix
       ./virtualization.nix
