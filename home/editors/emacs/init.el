@@ -1,3 +1,5 @@
+;; TODO: Try to solve this https://www.reddit.com/r/emacs/comments/1bfk7mj/how_to_disable_the_startup_blinding_white/
+;; TODO: Something like restclient, but for graphql
 ;; TODO: Use restclient
 ;; TODO: Use company-restclient but convert it to capf with cape
 ;; TODO: Remove tabs from *dape-* buffers
