@@ -601,11 +601,12 @@
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
   (setq eglot-server-programs
-        (append eglot-server-programs
-                (list '(svelte-mode . ("svelteserver" "--stdio")) 
-                      '(nix-ts-mode . ("nil"))
-                      '(rust-ts-mode . ("rust-analyzer" :initializationOptions
-                                        (:cargo (:features "all")))))))
+        (list '(svelte-mode . ("svelteserver" "--stdio")) 
+              '(nix-ts-mode . ("nil"))
+              ;; TODO: Use clippy
+              '(rust-ts-mode . ("rust-analyzer" :initializationOptions
+                                (:cargo (:features "all")
+                                        :check (:features "all"))))))
   ;; these two make eglot faster according to
   ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
   (setq eglot-events-buffer-size 0)
