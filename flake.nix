@@ -103,12 +103,6 @@
         ./nixos/bluetooth.nix
       ];
 
-      t420 = mkConfig ./nixos/hosts/t420/configuration.nix "haf"
-      [
-        ./nixos/wireless.nix { haf.networking.interface = "wlp3s0"; }
-        nixos-hardware.nixosModules.lenovo-thinkpad-t420
-      ];
-
       zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf"
       [
         ./nixos/wireless.nix { haf.networking.interface = "wlp1s0"; }
