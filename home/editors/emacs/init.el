@@ -1,4 +1,3 @@
-;; TODO: Try to solve this https://www.reddit.com/r/emacs/comments/1bfk7mj/how_to_disable_the_startup_blinding_white/
 ;; TODO: Something like restclient, but for graphql
 ;; TODO: Use restclient
 ;; TODO: Use company-restclient but convert it to capf with cape
@@ -991,3 +990,8 @@
 ;; navigate TODOs with consult
 (use-package consult-todo :demand t)
 
+
+;; I set the background black in early-init so it's not flashing white
+;; while starting up. This, however, breaks the mouse pointer, making it full-black.
+;; I force it to be white after everything has loaded to fix it.
+(set-mouse-color "#FFFFFF")
