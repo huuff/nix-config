@@ -805,6 +805,7 @@
 ;; THEMES
 ;; =====================
 
+;; TODO: A theme for SQL
 (defun haf/switch-theme-by-mode (&optional args)
   "Switches theme depending on current major-mode"
   (interactive)
