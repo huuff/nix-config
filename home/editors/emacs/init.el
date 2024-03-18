@@ -1,3 +1,4 @@
+;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
 ;; TODO: Use company-restclient but convert it to capf with cape
