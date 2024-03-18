@@ -34,10 +34,9 @@
                                          ("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))) ;; svelte check (TODO: Do I need the / in the middle? Can I put it at the beginning?)
 
 
-  ;; TODO: Make cargo commands use --all-features
   (setq haf/compilation-configs (list '(:dominating-file "Cargo.toml"
-                                                         :build-command "cargo build"
-                                                         :test-command "cargo test"
+                                                         :build-command "cargo build --all-features"
+                                                         :test-command "cargo test --all-features"
                                                          :lint-command "cargo clippy")
                                       '(:dominating-file "pnpm-lock.yaml"
                                                          :build-command "pnpm check"
