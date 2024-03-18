@@ -1,6 +1,5 @@
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
-;; TODO: Use restclient
 ;; TODO: Use company-restclient but convert it to capf with cape
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
@@ -992,6 +991,11 @@
 ;; navigate TODOs with consult
 (use-package consult-todo :demand t)
 
+
+;; restclient
+;; =====================
+;; postman-like HTTP client in emacs
+(use-package restclient)
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.

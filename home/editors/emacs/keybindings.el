@@ -17,7 +17,10 @@
     ("l" "Language" haf/language-transient)
     ("e" "Errors" haf/start-error-transient)
     ("g" "Git" haf/git-transient)
-    ("!" "REPL" haf/repl-transient)]])
+    ("!" "REPL" haf/repl-transient)]
+   ["Other"
+    :pad-keys t
+    ("@" "Restclient" haf/open-restclient)]])
 
 (general-define-key
  :states '(normal visual insert motion)
@@ -231,3 +234,9 @@
 ;; =================
 ;; END OF FLYMAKE TRANSIENT
 ;; =================
+
+(defun haf/open-restclient ()
+  "Pop to a new or existing restclient buffer."
+  (interactive)
+  (pop-to-buffer-same-window (get-buffer-create "*restclient*"))
+  (restclient-mode))
