@@ -592,6 +592,7 @@
 ;; eglot
 ;; =====================
 ;; Built-in integration with the LSP protocol
+
 (use-package eglot
   :config 
   ;; auto-save current buffer when any code action is executed.
@@ -601,6 +602,10 @@
   ;; TODO: Maybe only set it for rust-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
+  ;; TODO: I broke all language servers different to the ones specified here! I had to
+  ;; force this configuration so I could override the default settings for rust, but this overrides everything else
+  ;; which is NOT COOL.
+  ;; Since then, typescript language server doesn't work for me.
   (setq eglot-server-programs
         (list '(svelte-mode . ("svelteserver" "--stdio")) 
               '(nix-ts-mode . ("nil"))
