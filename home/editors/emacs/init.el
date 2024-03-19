@@ -1,3 +1,4 @@
+;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
@@ -996,7 +997,30 @@
 ;; restclient
 ;; =====================
 ;; postman-like HTTP client in emacs
-(use-package restclient)
+(use-package restclient
+  :hook (restclient-mode . display-line-numbers-mode))
+
+;; activities
+;; =====================
+;; stores specific windows configurations as tabs
+;; I use it to split my day-to-day file editing from email/restclient/etc.
+(use-package activities
+  :init
+  (activities-mode)
+  (activities-tabs-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+
+  :bind
+  (("C-x C-a C-n" . activities-new)
+   ("C-x C-a C-d" . activities-define)
+   ("C-x C-a C-a" . activities-resume)
+   ("C-x C-a C-s" . activities-suspend)
+   ("C-x C-a C-k" . activities-kill)
+   ("C-x C-a RET" . activities-switch)
+   ("C-x C-a b" . activities-switch-buffer)
+   ("C-x C-a g" . activities-revert)
+   ("C-x C-a l" . activities-list)))
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
