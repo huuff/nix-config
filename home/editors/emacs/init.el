@@ -602,17 +602,13 @@
   ;; TODO: Maybe only set it for rust-mode?
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
 
-  ;; TODO: I broke all language servers different to the ones specified here! I had to
-  ;; force this configuration so I could override the default settings for rust, but this overrides everything else
-  ;; which is NOT COOL.
-  ;; Since then, typescript language server doesn't work for me.
-  (setq eglot-server-programs
-        (list '(svelte-mode . ("svelteserver" "--stdio")) 
-              '(nix-ts-mode . ("nil"))
-              ;; TODO: Use clippy
-              '(rust-ts-mode . ("rust-analyzer" :initializationOptions
-                                (:cargo (:features "all")
-                                        :check (:features "all"))))))
+  (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
+  (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nix")))
+  ;; TODO: Use clippy
+  (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
+                                                                    (:cargo (:features "all")
+                                                                            :check (:features "all")))))
+  
   ;; these two make eglot faster according to
   ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
   (setq eglot-events-buffer-size 0)
