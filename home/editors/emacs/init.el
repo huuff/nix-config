@@ -1,4 +1,5 @@
 ;; TODO: Try to get a nice activities.el + restclient configuration
+;; TODO: I don't think the mode that autosaves to uglily named files is really disabled because I still see some of these from time to time
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
@@ -43,7 +44,6 @@
 ;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
-;; TODO: Use flymake-clippy? (UPDATE: Or is just configuring the LSP to use clippy enough?)
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
@@ -604,10 +604,9 @@
 
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
   (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nix")))
-  ;; TODO: Use clippy
   (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
                                                                     (:cargo (:features "all")
-                                                                            :check (:features "all")))))
+                                                                            :check (:command "clippy" :features "all")))))
   
   ;; these two make eglot faster according to
   ;; https://www.reddit.com/r/emacs/comments/1aw6xkc/comment/kriu3ye/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
