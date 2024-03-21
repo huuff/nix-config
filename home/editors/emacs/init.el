@@ -390,6 +390,7 @@
             :states '(normal)
             ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
             ;; rather than having two separate keys
+            "i" 'wdired-change-to-wdired-mode
             "m" 'dired-mark
             "u" 'dired-unmark
             "d" 'dired-do-delete
@@ -424,9 +425,12 @@
   :ensure t
   :commands (dired-sidebar-toggle-sidebar)
   :config
+  ;; auto-refresh sidebar when running any dired-ranger commands
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-move)
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-paste)
-  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file))
+  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file)
+  ;; refresh sidebar after exiting dired without changes (otherwise dired-subtree breaks)
+  (add-to-list 'dired-sidebar-special-refresh-commands 'wdired-abort-changes))
 
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
