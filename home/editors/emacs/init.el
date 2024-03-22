@@ -1,3 +1,4 @@
+;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode)
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: I don't think the mode that autosaves to uglily named files is really disabled because I still see some of these from time to time
 ;; TODO: Use mu4e
@@ -149,7 +150,6 @@
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: It'd be huge to display an elfeed with planetemacs
-;; TODO: Solaire mode is making the image display a weird background, try disabling it for the dashboard-mode
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -772,6 +772,8 @@
   ;; load default config
   (require 'smartparens-config))
 
+;; TODO: karthinks has a cool config for desaturating the screen when jumping with avy but
+;; I haven't seen it... how can I do that? Search "karthinks avy" to see his notes on it
 ;; avy
 ;; =====================
 ;; powerful jumping anywhere in the frame (any window) with visual feedback
@@ -854,6 +856,14 @@
 ;; gives a brighter color to file-visiting buffers (where editing happens)
 ;; and a darker one to the rest, so the "main" buffer is highlighted
 (use-package solaire-mode
+  :preface
+  (defun haf/solaire-mode-real-buffer-p ()
+    "My custom override to decide where to apply solaire"
+    ;; do not apply in dashboard, it makes the logo look ugly
+    (or (eq major-mode 'dashboard-mode)
+        (solaire-mode-real-buffer-p)))
+  :custom
+  (solaire-mode-real-buffer-fn #'haf/solaire-mode-real-buffer-p "My custom rules to decide where to apply solaire") 
   :config
   (solaire-global-mode +1))
 
