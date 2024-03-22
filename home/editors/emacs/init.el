@@ -418,6 +418,7 @@
 ;; TODO: Auto open sidebar when changing a project with project.el
 ;; TODO: Configure following file (dired-sidebar-should-follow-file and others)
 ;; TODO: Infuriatingly, forward-history for dired-rename gives the wrong path instead of the current file's path
+;; TODO: Exiting wdired goes back to dired-mode, not dired-sidebar-mode. There is an advice for this (dired-sidebar-wdired-change-to-wdired-mode-advice) but it doesn't seem to be working
 ;; dired-sidebar
 ;; =====================
 ;; use dired as a tree directory explorer in a sidebar just like a real IDE
