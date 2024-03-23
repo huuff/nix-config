@@ -1,4 +1,5 @@
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode)
+;; TODO: I'm STILL getting a thousand of ugly backup files even though I supposedly disabled that
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
