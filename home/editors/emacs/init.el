@@ -1,6 +1,5 @@
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode)
 ;; TODO: Try to get a nice activities.el + restclient configuration
-;; TODO: I don't think the mode that autosaves to uglily named files is really disabled because I still see some of these from time to time
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
@@ -834,11 +833,10 @@
 ;; a curated collection of nice themes
 (use-package doom-themes
   :ensure t
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
   :config
-  ;; TODO: Try using :custom
-  (setq 
-   doom-themes-enable-bold t
-   doom-themes-enable-italic t)
   (load-theme 'doom-one t)
 
   ;; enable flashing mode-line on errors
@@ -1036,6 +1034,16 @@
    ("C-x C-a b" . activities-switch-buffer)
    ("C-x C-a g" . activities-revert)
    ("C-x C-a l" . activities-list)))
+
+;; markdown-mode
+;; =====================
+;; self-explanatory
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+              ("C-c C-e" . markdown-do)))
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
