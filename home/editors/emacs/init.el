@@ -1,5 +1,4 @@
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode)
-;; TODO: I'm STILL getting a thousand of ugly backup files even though I supposedly disabled that
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
@@ -66,6 +65,10 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
+
+;; put backup files in a backup directory instead of the same directory as the source file
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
 
 ;; maximum highlighting with tree-sitter
 (setq treesit-font-lock-level 4)
@@ -136,9 +139,7 @@
   :custom
   (super-save-auto-save-when-idle t "Auto-save when idle")
   :config
-  (super-save-mode +1)
-  ;; disable default horrible autosave mode that leaves thousands of backup files
-  (setq auto-save-default nil))
+  (super-save-mode +1))
 
 ;; bind-key
 ;; =====================
