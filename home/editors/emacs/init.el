@@ -49,6 +49,7 @@
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
 ;; TODO: Maybe set up dictionaries and spell checking?
 ;; TODO: Maybe use bufler? It's pretty cool, but I'd love to have a preview (consult) for switching buffers. Also, workspaces seem pretty sensible and I could use them for my tab-line
+;; TODO: If I can use emacs-sideline to show the function signature with eldoc on the left, that's be really cool
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -76,8 +77,8 @@
 ;; do not use tabs for indenting (only spaces)
 (setq-default indent-tabs-mode nil)
 
-;; show line numbers in programming modes
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;; show line numbers
+(display-line-numbers-mode)
 
 ;; set font 
 (set-frame-font "Fira Code 10" nil t)
@@ -229,6 +230,7 @@
 
 ;; displays eldoc in a floating childframe
 (use-package eldoc-box
+  :after eldoc
   :general
   (:states 'normal
            :keymaps 'override
@@ -370,6 +372,7 @@
 
 ;; consult integration
 (use-package embark-consult
+  :after (embark consult)
   :ensure t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
@@ -451,6 +454,7 @@
 ;; more beautiful colors in dired.
 ;; specific colors for file extensions and types.
 (use-package diredfl
+  :after (dired)
   :hook (dired-mode . diredfl-mode))
 
 
@@ -600,6 +604,7 @@
 ;; Built-in integration with the LSP protocol
 
 (use-package eglot
+  :after yasnippet
   :config 
   ;; auto-save current buffer when any code action is executed.
   ;; it helps mainly with rust, since rust-analyzer only lints on save. 
@@ -628,6 +633,7 @@
          (eglot-managed-mode . eglot-inlay-hints-mode)))
 
 (use-package eglot-booster
+  :ensure nil ;; I just downloaded it
   :load-path "@snatches@/eglot-booster" 
   :after eglot
   :config (eglot-booster-mode))
@@ -699,7 +705,8 @@
   (setq sideline-display-backend-name t
         sideline-backends-right '(sideline-flymake))
   :hook ((flymake-mode  . sideline-mode)))
-(use-package sideline-flymake)
+(use-package sideline-flymake
+  :after sideline)
 
 ;; diff-hl
 ;; =====================
