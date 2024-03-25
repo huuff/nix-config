@@ -78,7 +78,8 @@
 (setq-default indent-tabs-mode nil)
 
 ;; show line numbers
-(display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
 
 ;; set font 
 (set-frame-font "Fira Code 10" nil t)
