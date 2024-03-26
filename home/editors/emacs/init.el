@@ -1,4 +1,4 @@
-;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode)
+;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode )
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
@@ -576,10 +576,8 @@
 ;; =====================
 ;; increases selection progressively by syntactical units
 (use-package expand-region
-  ;; TODO: Try using :custom
-  :config
-  ;; disable fast keys since my hydra does that and they conflict otherwise
-  (setq expand-region-fast-keys-enabled nil))
+  :custom
+  (expand-region-fast-keys-enabled nil "Disable fast keys since I do the same thing with a transient"))
 
 ;; lorem-ipsum
 ;; =====================
@@ -702,7 +700,6 @@
 ;; TODO: Use sideline-blame?
 (use-package sideline
   :init 
-  ;; TODO: Try using :custom
   (setq sideline-display-backend-name t
         sideline-backends-right '(sideline-flymake))
   :hook ((flymake-mode  . sideline-mode)))
@@ -733,7 +730,7 @@
 
 ;; XXX: TODO: Please note you may need clang to build rust's grammar. I may need to provide a message or something for all this information
 ;; FUTURE: This may not be needed in emacs 30 or further,
-;;but currently, it's much easier this way
+;; but currently, it's much easier this way
 ;; treesit-auto
 ;; =====================
 ;; autoinstalls tree-sitter grammars and maps non-tree-sitter modes to tree-sitter ones
