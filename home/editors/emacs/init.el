@@ -1,5 +1,6 @@
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode )
 ;; TODO: Try to get a nice activities.el + restclient configuration
+;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
 ;; TODO: Use mu4e
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
@@ -41,7 +42,6 @@
 ;; TODO: There are two commands I need to run so fonts work. Is there any way I could automate it or notify whether it's needed?:
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
-;; TODO: Set correct dependencies between packages with use-package (:after)
 ;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Maybe try embark with which-key integration? There's apparently an elisp snippet somewhere that does this
