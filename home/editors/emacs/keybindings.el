@@ -152,11 +152,10 @@
 ;; REGION/CURSOR TRANSIENT
 ;; ================
 
-;; TODO: Can I make any keybindings not expressed here to go through to the actual command, like hydra does?
-;; Otherwise, when I have multiple cursors, pressing "C" does nothing (I have to press q first to exit the transient
-;; to change the text)
 (transient-define-prefix haf/region-transient ()
   "Transient for expanding regions and adding cursors"
+  :transient-suffix 'transient--do-call
+  :transient-non-suffix 'transient--do-exit
   [["Region"
     :pad-keys t
     ("+" "Expand" er/expand-region :transient t)
