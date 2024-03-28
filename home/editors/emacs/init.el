@@ -32,7 +32,6 @@
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Use move-text with the advice to indent the region
-;; TODO: Maybe I should add #' in front of my functions (that I defined with defun or lambda)? It's supposed to compile them so it should be faster?
 ;; TODO: Enable the daemon mode
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
@@ -135,12 +134,15 @@
 ;; super-save
 ;; =====================
 ;; auto-saves the buffer to its file on certain events (such as switching buffer)
-;; TODO: This package has a list of hooks on which to save... maybe I could put here saving after an eglot code action rather than use my own hook there.
 (use-package super-save
   :ensure t
   :custom
   (super-save-auto-save-when-idle t "Auto-save when idle")
   :config
+  ;; autosave on eglot code actions.
+  ;; this helps with rust-analyzer because it only runs some analyzes on save, and otherwise,
+  ;; the buffer highlights get outdated
+  (add-to-list 'super-save-triggers 'eglot-code-actions)
   (super-save-mode +1))
 
 ;; bind-key
@@ -605,13 +607,6 @@
 (use-package eglot
   :after yasnippet
   :config 
-  ;; auto-save current buffer when any code action is executed.
-  ;; it helps mainly with rust, since rust-analyzer only lints on save. 
-  ;; this makes the warnings in the buffer obsolete, and it's especially
-  ;; bothersome when I'm cycling through errors.
-  ;; TODO: Maybe only set it for rust-mode?
-  (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
-
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
   (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nix")))
   (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
