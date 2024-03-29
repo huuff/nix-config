@@ -126,21 +126,17 @@
 (transient-define-prefix haf/tab-line-transient ()
   "Transient tab line"
   [["Switch"
-    :class transient-column
+    ;; TODO: The class is completely ignored, right?
+    :class transient-row
     :pad-keys t
     ;; TODO: Limit to 9 tabs, otherwise it breaks
-    ;; TODO: I broke this with the latest transient update
-    ;; :setup-children
-    ;; (lambda (_)
-    ;;   (let ((tabs (haf/current-tabs)))
-    ;;     (mapcar
-    ;;      (lambda (i) (transient-parse-suffix
-    ;;                   transient--prefix
-    ;;                   `(,(number-to-string i)
-    ;;                     ,(format "Tab %d" i)
-    ;;                     (lambda () (interactive) (haf/switch-to-tab-index ,i)))))
-    ;;      (number-sequence 1 (length tabs)))))
-    ]
+    :setup-children
+    (lambda (_)
+      (transient-parse-suffixes
+       (oref transient--prefix command)
+       `[,@(mapcar (lambda (i)
+                     `(,(number-to-string i) ,(format "Tab %d" i) (lambda () (interactive) (haf/switch-to-tab-index ,i))))
+                   (number-sequence 1 (length (haf/current-tabs))))]))]
    ["Tabs"
     :pad-keys t
     ("k" "Kill current" kill-current-buffer)
