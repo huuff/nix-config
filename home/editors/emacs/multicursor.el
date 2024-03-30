@@ -33,8 +33,11 @@
 (use-package evil-multiedit
   :custom (evil-multiedit-follow-matches t "Jump to each next match instead of just marking it"))
 
-(defvar haf/multicursor-package 'evil-multiedit
-  "The package to be used for multiple cursors, either 'evil-mc, 'evil-multiedit or 'multiple-cursors")
+(defcustom haf/multicursor-package 'evil-multiedit
+  "The package to be used for multiple cursors, either 'evil-mc, 'evil-multiedit or 'multiple-cursors"
+  :type '(choice (const :tag "multiple-cursors" multiple-cursors)
+                 (const :tag "evil-multiedit" evil-multiedit)
+                 (const :tag "evil-mc" evil-mc)))
 
 ;; TODO: Use an array and iterate through it with a modulo length
 (defun haf/toggle-multicursor-package ()
