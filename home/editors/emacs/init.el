@@ -460,12 +460,18 @@
   :hook (dired-mode . diredfl-mode))
 
 
-;; TODO: I haven't added a use-package definition for nerdicons... should I?
 ;; all-the-icons 
 ;; =====================
 ;; icon package
 (use-package all-the-icons
   :if (display-graphic-p))
+
+;; nerd.icons
+;; =====================
+;; another icon package
+;; I don't know what for, but I'm sure I use it for something but as a
+;; transitive dependency. So I'm adding it here
+(use-package nerd-icons)
 
 ;; evil
 ;; =====================
