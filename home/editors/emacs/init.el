@@ -138,10 +138,6 @@
   :custom
   (super-save-auto-save-when-idle t "Auto-save when idle")
   :config
-  ;; autosave on eglot code actions.
-  ;; this helps with rust-analyzer because it only runs some analyzes on save, and otherwise,
-  ;; the buffer highlights get outdated
-  (add-to-list 'super-save-triggers 'eglot-code-actions)
   (super-save-mode +1))
 
 ;; bind-key
@@ -612,6 +608,9 @@
 (use-package eglot
   :after yasnippet
   :config 
+  ;; save on code actions, I use it for rust-analyzer because it only runs some checks on save
+  ;; note that super-save-triggers does not work for this
+  (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
   (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nix")))
   (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
