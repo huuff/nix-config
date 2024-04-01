@@ -129,14 +129,13 @@
     ;; TODO: The class is completely ignored, right?
     :class transient-row
     :pad-keys t
-    ;; TODO: Limit to 9 tabs, otherwise it breaks
     :setup-children
     (lambda (_)
       (transient-parse-suffixes
        (oref transient--prefix command)
        `[,@(mapcar (lambda (i)
                      `(,(number-to-string i) ,(format "Tab %d" i) (lambda () (interactive) (haf/switch-to-tab-index ,i))))
-                   (number-sequence 1 (length (haf/current-tabs))))]))]
+                   (number-sequence 1 (min (length (haf/current-tabs)) 9)))]))]
    ["Tabs"
     :pad-keys t
     ("k" "Kill current" kill-current-buffer)
