@@ -40,17 +40,19 @@
    ("!" "Terminal" project-eshell)
    ("e" "Emacs" ielm)])
 
-;; TODO: vc-revert keybinding
-;; TODO: vc-region diff keybinding
 (transient-define-prefix haf/git-transient ()
   "Transient for Git actions"
   [["Git"
     :pad-keys t
-    ("g" "Magit" magit)]
+    ("g" "Magit" magit)
+    ("b" "Blame" magit-blame)
+    ("r" "Revert" vc-revert)
+    ("d" "Region diff" vc-region-history :if use-region-p)]
    ;; TODO: Can't I just remove the diff-hl transient and override it with mine? I'd have to remove the keymap and
    ;; the footer
    ["Hunks"
     :pad-keys t
+    ("h" "Show" diff-hl-show-hunk)
     ("n" "Next" diff-hl-show-hunk-next)
     ("p" "Previous" diff-hl-show-hunk-previous)]])
 
