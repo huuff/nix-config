@@ -40,6 +40,8 @@
    ("!" "Terminal" project-eshell)
    ("e" "Emacs" ielm)])
 
+;; TODO: vc-revert keybinding
+;; TODO: vc-region diff keybinding
 (transient-define-prefix haf/git-transient ()
   "Transient for Git actions"
   [["Git"

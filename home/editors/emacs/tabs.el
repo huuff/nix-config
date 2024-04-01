@@ -90,17 +90,15 @@
                            (nerd-icons-icon-for-mode major-mode))))
                  (icon-face-raw (get-text-property 0 'face icon))
                  (icon-face (if selected-p
-                                (if (mode-line-window-selected-p)
-                                    (list :inherit icon-face-raw
-                                          :height (face-attribute 'tab-line-tab-current :height)
-                                          :background (face-background 'tab-line-tab-current)
-                                          :overline (face-attribute 'tab-line-tab-current :overline))
-                                  ;; TODO: Some icons (such as nix) won't show nicely with this
-                                  (list :inherit icon-face-raw
-                                        :height (face-attribute 'tab-line-tab :height)
-                                        :background (face-background 'tab-line-tab)
-                                        :overline (face-attribute 'tab-line-tab :overline)))
-                              'tab-line-tab-inactive))
+                                (list :inherit icon-face-raw
+                                      :height (face-attribute 'tab-line-tab-current :height)
+                                      :background (face-background 'tab-line-tab-current)
+                                      :overline (face-attribute 'tab-line-tab-current :overline))
+                              (list :inherit icon-face-raw
+                                    :height (face-attribute 'tab-line-tab-inactive :height)
+                                    :background (face-background 'tab-line-tab-inactive)
+                                    :foreground (face-foreground 'tab-line-tab-inactive)
+                                    :overline (face-attribute 'tab-line-tab-inactive :overline))))
                  (space-face (if selected-p
                                  (if (mode-line-window-selected-p)
                                      'tab-line-tab-current
@@ -119,7 +117,7 @@
                     tab-string
                     space))
         tab-string)))
-  
+
   (defun haf/current-tabs ()
     (cl-remove-if #'haf/tab-line-tab-is-group (tab-line-tabs-buffer-groups)))
 
