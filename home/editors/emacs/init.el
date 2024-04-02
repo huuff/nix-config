@@ -418,7 +418,6 @@
 
 
 ;; TODO: Auto open sidebar when changing a project with project.el
-;; TODO: Configure following file (dired-sidebar-should-follow-file and others)
 ;; TODO: Infuriatingly, forward-history for dired-rename gives the wrong path instead of the current file's path
 ;; TODO: Exiting wdired goes back to dired-mode, not dired-sidebar-mode. There is an advice for this (dired-sidebar-wdired-change-to-wdired-mode-advice) but it doesn't seem to be working
 ;; dired-sidebar
@@ -427,6 +426,8 @@
 (use-package dired-sidebar
   :ensure t
   :commands (dired-sidebar-toggle-sidebar)
+  :custom
+  (dired-sidebar-should-follow-file t "Follow currently-open file in the sidebar")
   :config
   ;; auto-refresh sidebar when running any dired-ranger commands
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-move)
