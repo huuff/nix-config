@@ -457,7 +457,6 @@ targets."
             "P" 'dired-ranger-move))
 
 
-;; TODO: Auto open sidebar when changing a project with project.el
 ;; TODO: Infuriatingly, forward-history for dired-rename gives the wrong path instead of the current file's path
 ;; TODO: Exiting wdired goes back to dired-mode, not dired-sidebar-mode. There is an advice for this (dired-sidebar-wdired-change-to-wdired-mode-advice) but it doesn't seem to be working
 ;; dired-sidebar
@@ -465,7 +464,7 @@ targets."
 ;; use dired as a tree directory explorer in a sidebar just like a real IDE
 (use-package dired-sidebar
   :ensure t
-  :commands (dired-sidebar-toggle-sidebar)
+  :commands (dired-sidebar-toggle-sidebar dired-sidebar-show-sidebar)
   :custom
   (dired-sidebar-should-follow-file t "Follow currently-open file in the sidebar")
   :config
@@ -474,7 +473,12 @@ targets."
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-paste)
   (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file)
   ;; refresh sidebar after exiting dired without changes (otherwise dired-subtree breaks)
-  (add-to-list 'dired-sidebar-special-refresh-commands 'wdired-abort-changes))
+  (add-to-list 'dired-sidebar-special-refresh-commands 'wdired-abort-changes)
+  ;; show sidebar when switching project
+  ;; TODO: Also try to do it when selecting a project with dashboard. I think I'd need to
+  ;; customize the dashboard-projects-backend-switch-function for that, so that it calls
+  ;; dired-sidebar-show-sidebar after finding a file
+  (advice-add 'project-switch-project :after #'(lambda (&rest _) (dired-sidebar-show-sidebar))))
 
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
@@ -1097,3 +1101,5 @@ targets."
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
 ;; I force it to be white after everything has loaded to fix it.
 (set-mouse-color "#FFFFFF")
+
+
