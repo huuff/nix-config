@@ -819,18 +819,10 @@ targets."
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
-;; smartparens
-;; =====================
-;; TODO: I don't know what it does and might even remove it
-(use-package smartparens
-  :defer t
-  :hook (prog-mode . smartparens-mode)
-  :config
-  ;; load default config
-  (require 'smartparens-config))
 
 ;; TODO: karthinks has a cool config for desaturating the screen when jumping with avy but
 ;; I haven't seen it... how can I do that? Search "karthinks avy" to see his notes on it
+;; UPDATE: ace-window has that, so I could just copy it
 ;; avy
 ;; =====================
 ;; powerful jumping anywhere in the frame (any window) with visual feedback
