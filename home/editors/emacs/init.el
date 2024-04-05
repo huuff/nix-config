@@ -154,6 +154,13 @@
 ;; nice dash board for the first screen
 (use-package dashboard
   :ensure t
+  :preface
+  (defun haf/switch-project-and-open-sidebar (project)
+    "Switches project.el project (by finding file) and opens dired-sidebar"
+    (let ((default-directory project))
+      (progn
+        (project-find-file)
+        (dired-sidebar-show-sidebar))))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
@@ -165,6 +172,7 @@
   (dashboard-set-navigator t "Show a navigator with options under the banner")
   (dashboard-center-content t "Horizontaly center widgets")
   (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
+  (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
   :config
   (dashboard-setup-startup-hook))
 
@@ -475,9 +483,6 @@ targets."
   ;; refresh sidebar after exiting dired without changes (otherwise dired-subtree breaks)
   (add-to-list 'dired-sidebar-special-refresh-commands 'wdired-abort-changes)
   ;; show sidebar when switching project
-  ;; TODO: Also try to do it when selecting a project with dashboard. I think I'd need to
-  ;; customize the dashboard-projects-backend-switch-function for that, so that it calls
-  ;; dired-sidebar-show-sidebar after finding a file
   (advice-add 'project-switch-project :after #'(lambda (&rest _) (dired-sidebar-show-sidebar))))
 
 ;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
