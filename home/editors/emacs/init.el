@@ -33,7 +33,6 @@
 ;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Enable the daemon mode
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
-;; TODO: Maybe I should use electric-pair-mode instead of smartparens?
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: Try to split some sections to different files
@@ -128,6 +127,14 @@
   :after (yasnippet cape)
   :config
   (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+
+;; electric-pair-mode
+;; ====================
+;; auto inserts closing braces, parentheses and quotes
+(use-package elec-pair
+  :ensure nil ;; already included in emacs
+  :config
+  (electric-pair-mode))
 
 ;; super-save
 ;; =====================
@@ -512,7 +519,7 @@ targets."
 (use-package all-the-icons
   :if (display-graphic-p))
 
-;; nerd.icons
+;; nerd-icons
 ;; =====================
 ;; another icon package
 ;; I don't know what for, but I'm sure I use it for something but as a
@@ -661,6 +668,8 @@ targets."
   ;; save on code actions, I use it for rust-analyzer because it only runs some checks on save
   ;; note that super-save-triggers does not work for this
   (advice-add 'eglot-code-actions :after #'(lambda (&rest r) (save-buffer)))
+
+  ;; setup LSPs
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
   (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nix")))
   (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
