@@ -1,3 +1,5 @@
+;; TODO: Apparently, move-text won't work correctly in evil-mode, but drag-stuff does (even though it hasn't been updated in 7 years)
+;; I should maybe set up both and choose which one to use depending on whether we're in evil mode or not?
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode )
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
