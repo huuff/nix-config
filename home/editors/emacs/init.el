@@ -30,7 +30,6 @@
 ;; TODO: A transient to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: I'd love to use project-x, but it's not on MELPA
-;; TODO: Use move-text with the advice to indent the region
 ;; TODO: Enable the daemon mode
 ;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
@@ -231,6 +230,25 @@
   :custom
   (completion-styles '(orderless basic) "Use orderless completion by default and basic as a fallback")
   (completion-category-overrides '((file (styles basic partial-completion))) "I don't know exactly what this does, but the Orderless' README recommends it. Apparently is so hostname completion works for TRAMP"))
+
+;; move-text
+;; ====================
+;; move text around like in vscode
+(use-package move-text
+  :ensure t
+  :config
+  ;; default bindings: M-up and M-down
+  (move-text-default-bindings)
+  ;; advice to auto-indent region after moving
+  (defun haf/indent-region-advice (&rest ignored)
+    (let ((deactivate deactivate-mark))
+      (if (region-active-p)
+          (indent-region (region-beginning) (region-end))
+        (indent-region (line-beginning-position) (line-end-position)))
+      (setq deactivate-mark deactivate)))
+
+  (advice-add 'move-text-up :after 'haf/indent-region-advice)
+  (advice-add 'move-text-down :after 'haf/indent-region-advice))
 
 ;; eldoc
 ;; =====================
