@@ -1,5 +1,3 @@
-;; TODO: Apparently, move-text won't work correctly in evil-mode, but drag-stuff does (even though it hasn't been updated in 7 years)
-;; I should maybe set up both and choose which one to use depending on whether we're in evil mode or not?
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode )
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
@@ -88,6 +86,12 @@
 ;; I'm mainly interested in it because sveltekit names special files with `+` prefixes so they appear
 ;; on top, but the default order ignores this.
 (setenv "LC_ALL" "C")
+
+(defcustom haf/keybinding-mode 'evil
+  "The keybinding mode to use, either 'evil, 'emacs or 'meow"
+  :type '(choice (const :tag "evil" evil)
+                 (const :tag "emacs" evil-multiedit)
+                 (const :tag "meow" meow)))
 
 ;; use-package
 ;; =====================
@@ -238,6 +242,7 @@
 ;; move text around like in vscode
 (use-package move-text
   :ensure t
+  :if (not (eq haf/keybinding-mode 'evil))
   :config
   ;; default bindings: M-up and M-down
   (move-text-default-bindings)
@@ -251,6 +256,20 @@
 
   (advice-add 'move-text-up :after 'haf/indent-region-advice)
   (advice-add 'move-text-down :after 'haf/indent-region-advice))
+
+;; TODO: Maybe I also need an indenting advice for this, like as for move-text
+;; drag-stuff
+;; =====================
+;; move text around like in vscode
+;; this is like move-text, but works in evil-mode
+(use-package drag-stuff
+  :ensure t
+  :if (eq haf/keybinding-mode 'evil)
+  :config
+  ;; enable it
+  (drag-stuff-global-mode 1)
+  ;; enable default keybindings like M-up, M-down
+  (drag-stuff-define-keys))
 
 ;; eldoc
 ;; =====================
@@ -314,6 +333,8 @@
 (use-package rainbow-delimiters
   :hook (emacs-lisp-mode . rainbow-delimiters-mode))
 
+;; TODO: When I do consult-line-multi, I'd absolutely love being able to
+;; use embark like I do for consult-file to open the file in the other window
 ;; consult
 ;; =====================
 ;; an assortment of commands that enhance native ones with nicer displays, previews
