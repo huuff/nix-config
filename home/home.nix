@@ -4,6 +4,7 @@
       ./editors/vim/nvim.nix
       ./editors/emacs
       ./editors/vscode.nix
+      ./postman.nix
 
       ./browsers/firefox.nix
 
@@ -69,7 +70,6 @@
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
 
-    #postman # TODO: Broken for some reason
     feh
 
     kubernetes-helm
