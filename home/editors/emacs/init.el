@@ -1144,6 +1144,15 @@ targets."
   :bind (:map markdown-mode-map
               ("C-c C-e" . markdown-do)))
 
+;; elfeed
+;; =====================
+;; RSS reader in emacs
+(use-package elfeed
+  :ensure t
+  :config
+  (setq elfeed-feeds
+        '("https://planet.emacslife.com/atom.xml")))
+
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
 ;; I force it to be white after everything has loaded to fix it.
