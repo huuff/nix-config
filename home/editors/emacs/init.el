@@ -571,6 +571,7 @@ targets."
 ;; =====================
 ;; VIM emulation layer
 (use-package evil
+  :if (eq haf/keybinding-mode 'evil)
   :init
   ;; these 2 are necessary for evil-collection
   (setq evil-want-integration t)
@@ -588,6 +589,7 @@ targets."
 ;; * vim-unimpaired keybindings
 ;; * hungry-delete integration with evil
 (use-package evil-collection
+  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :ensure t
   :config
@@ -601,17 +603,20 @@ targets."
 
 ;; nerd-commenter emulation
 (use-package evil-nerd-commenter
+  :if (eq haf/keybinding-mode 'evil)
   :init
   (evilnc-default-hotkeys))
 
 ;; vim-surround emulation
 (use-package evil-surround
+  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (global-evil-surround-mode 1))
 
 ;; vim match-it emulation
 (use-package evil-matchit
+  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (global-evil-matchit-mode 1))
@@ -619,7 +624,7 @@ targets."
 ;; provides commands like `C-a` and `C-x` in vim to increase/decrease numbers
 (use-package evil-numbers
   :general
-  ;; TODO: Use embark for this!
+  ;; TODO: Use embark for this?
   (:states '(normal insert)
            "C-c +" 'evil-numbers/inc-at-pt
            "C-c -" 'evil-numbers/dec-at-pt))
@@ -628,6 +633,7 @@ targets."
 ;; more precise
 ;; TODO: Can I configure it so n and N also cycle results as for search?
 (use-package evil-snipe
+  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (evil-snipe-mode +1)
@@ -637,6 +643,7 @@ targets."
 ;; TODO: Try to set up some way to exchange args order
 ;; for example see: https://github.com/wcsmith/evil-args/issues/4
 (use-package evil-args
+  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :general
   (evil-inner-text-objects-map "a" 'evil-inner-arg)
@@ -656,6 +663,7 @@ targets."
 ;; it with no result
 ;; pulses when providing feedback for many evil commands
 (use-package evil-goggles
+  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (evil-goggles-mode))
