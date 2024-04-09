@@ -16,7 +16,6 @@
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: Maybe use evil-quickscope
 ;; TODO: Maybe use no-littering?
-;; TODO: Use anzu? Not excessively important but might improve the experience
 ;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
@@ -1160,6 +1159,22 @@ targets."
   :config
   (setq elfeed-feeds
         '("https://planet.emacslife.com/atom.xml")))
+
+;; anzu
+;; =====================
+;; current match and total matches in mode line for searches
+(use-package anzu
+  :ensure t
+  :config
+  (global-anzu-mode +1)
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
+
+(use-package evil-anzu
+  :ensure t
+  :if (eq haf/keybinding-mode 'evil)
+  :after (evil anzu))
+
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
