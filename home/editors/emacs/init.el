@@ -159,6 +159,7 @@
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
+;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
 ;; TODO: It'd be huge to display an elfeed with planetemacs
 ;; dashboard
 ;; =====================
