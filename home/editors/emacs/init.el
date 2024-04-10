@@ -532,8 +532,8 @@ targets."
   ;; show sidebar when switching project
   (advice-add 'project-switch-project :after #'(lambda (&rest _) (dired-sidebar-show-sidebar))))
 
-;; TODO: The below TODO is for dired-subtree, which I'm implicitly using because dired-sidebar requires it... should I just directly use-package dired-subtree? Even if I stop using dired-sidebar, I'm likely to keep using dired-subtree because it's cool
 ;; TODO: Maybe a command for contracting all trees would be nice
+(use-package dired-subtree)
 
 ;; all-the-icons-dired
 ;; =====================
