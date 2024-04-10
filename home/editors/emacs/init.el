@@ -172,6 +172,14 @@
       (progn
         (project-find-file)
         (dired-sidebar-show-sidebar))))
+  (defun haf/dashboard-insert-elfeed (list-size)
+    (dashboard-insert-section
+     "RSS:"
+     (make-list list-size 'lol)
+     'feeds
+     "f"
+     (lambda (&rest _) (message "holi"))
+     (format "%s" el)))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
