@@ -174,13 +174,20 @@
         (project-find-file)
         (dired-sidebar-show-sidebar))))
   (defun haf/dashboard-insert-elfeed (list-size)
+    "Add the list of LIST-SIZE items of RSS entroes."
+    (setq dashboard--projects-cache-item-format nil)
     (dashboard-insert-section
      "RSS:"
-     (make-list list-size 'lol)
-     'feeds
+     (dashboard-shorten-paths
+      (dashboard-subseq (dashboard-projects-backend-load-projects) list-size)
+      'dashboard-projects-alist 'projects)
+     list-size
+     'projects
      "f"
-     (lambda (&rest _) (message "holi"))
-     (format "%s" el)))
+     `(lambda (&rest _)
+        (funcall (dashboard-projects-backend-switch-function)
+                 (dashboard-expand-path-alist ,el dashboard-projects-alist)))
+     "test"))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
@@ -194,6 +201,8 @@
   (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
   :config
+  (add-to-list 'dashboard-item-generators  '(elfeed . haf/dashboard-insert-elfeed))
+  (add-to-list 'dashboard-items '(elfeed) t)
   (dashboard-setup-startup-hook))
 
 ;; try
