@@ -783,7 +783,13 @@ targets."
                  command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
                  ensure dape-ensure-command port :autoport fn dape-config-autoport 
                  :cwd dape-cwd-fn 
-                 :program dape-find-file 
+                 :program (lambda ()
+                      (file-name-concat "target" "debug"
+                                        (thread-first (dape-cwd)
+                                                      (directory-file-name)
+                                                      (file-name-split)
+                                                      (last)
+                                                      (car))))
                  :args [])))
 
 ;; cape
