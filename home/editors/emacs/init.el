@@ -174,17 +174,17 @@
         (project-find-file)
         (dired-sidebar-show-sidebar))))
   (defun haf/dashboard-insert-elfeed (list-size)
-    "Add the list of LIST-SIZE items of RSS entroes."
+    "Add the list of LIST-SIZE items of RSS entries."
     (dashboard-insert-section
      "RSS:"
-     (seq-take (mapcar (lambda (entry) (elfeed-entry-title entry)) (elfeed-feed-entries "https://planet.emacslife.com/atom.xml")) list-size)
+     (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
      list-size
      'elfeed
      "f"
      `(lambda (&rest _)
         (funcall (dashboard-projects-backend-switch-function)
                  (dashboard-expand-path-alist ,el dashboard-projects-alist)))
-     (format "%s" el)))
+     (elfeed-entry-title el)))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
