@@ -175,6 +175,7 @@
         (dired-sidebar-show-sidebar))))
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
+    (elfeed-update)
     (dashboard-insert-section
      "RSS:"
      (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
