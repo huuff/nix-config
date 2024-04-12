@@ -179,7 +179,7 @@
      "RSS:"
      (seq-take (mapcar (lambda (entry) (elfeed-entry-title entry)) (elfeed-feed-entries "https://planet.emacslife.com/atom.xml")) list-size)
      list-size
-     'projects
+     'elfeed
      "f"
      `(lambda (&rest _)
         (funcall (dashboard-projects-backend-switch-function)
@@ -198,8 +198,9 @@
   (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
   :config
+  ;; add my elfeed widget
   (add-to-list 'dashboard-item-generators  '(elfeed . haf/dashboard-insert-elfeed))
-  (add-to-list 'dashboard-items '(elfeed . 5) t)
+  (add-to-list 'dashboard-items '(elfeed . 10) t)
   (dashboard-setup-startup-hook))
 
 ;; try
