@@ -201,7 +201,7 @@
          " "
          'display
          `(space :align-to ,date-align))
-        "date"))))
+        (number-to-string (elfeed-entry-date el))))))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
