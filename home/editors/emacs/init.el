@@ -168,6 +168,7 @@
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
 ;; TODO: It'd be huge to display an elfeed with planetemacs
+;; TODO: hl-line for this?
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -181,6 +182,8 @@
       (progn
         (project-find-file)
         (dired-sidebar-show-sidebar))))
+  ;; TODO: An icon
+  ;; TODO: Fix jumping to section (I think 'f' is taken by evil)
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
     (elfeed-update)
@@ -190,6 +193,7 @@
      list-size
      'elfeed
      "f"
+     ;; TODO: It's a copypasted from dashboard-insert-projects, fix it so it opens elfeed
      `(lambda (&rest _)
         (funcall (dashboard-projects-backend-switch-function)
                  (dashboard-expand-path-alist ,el dashboard-projects-alist)))
@@ -197,11 +201,12 @@
             (date-align (+ max-title-width 75)))
        (concat
         (s-truncate max-title-width (elfeed-entry-title el))
+        ;; TODO: Align to longest line in buffer?
         (propertize
          " "
          'display
          `(space :align-to ,date-align))
-        (number-to-string (elfeed-entry-date el))))))
+        (format-time-string "%Y-%m-%d" (elfeed-entry-date el))))))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
