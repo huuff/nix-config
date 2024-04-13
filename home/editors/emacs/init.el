@@ -2,6 +2,7 @@
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
 ;; TODO: Use mu4e
+;; TODO: Add jira?
 ;; TODO: Some mode or configuration to directly interact with a SQL database
 ;; TODO: Something like restclient, but for graphql
 ;; TODO: Use company-restclient but convert it to capf with cape
@@ -158,6 +159,12 @@
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
+;; TODO: Maybe put this in a "libraries" file?
+;; s
+;; =====================
+;; string manipulation library
+(use-package s)
+
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
 ;; TODO: It'd be huge to display an elfeed with planetemacs
@@ -166,6 +173,7 @@
 ;; nice dash board for the first screen
 (use-package dashboard
   :ensure t
+  :after s ;; I need it for my custom widget
   :preface
   (defun haf/switch-project-and-open-sidebar (project)
     "Switches project.el project (by finding file) and opens dired-sidebar"
@@ -185,7 +193,15 @@
      `(lambda (&rest _)
         (funcall (dashboard-projects-backend-switch-function)
                  (dashboard-expand-path-alist ,el dashboard-projects-alist)))
-     (elfeed-entry-title el)))
+     (let* ((max-title-width 50)
+            (date-align (+ max-title-width 75)))
+       (concat
+        (s-truncate max-title-width (elfeed-entry-title el))
+        (propertize
+         " "
+         'display
+         `(space :align-to ,date-align))
+        "date"))))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
@@ -784,12 +800,12 @@ targets."
                  ensure dape-ensure-command port :autoport fn dape-config-autoport 
                  :cwd dape-cwd-fn 
                  :program (lambda ()
-                      (file-name-concat "target" "debug"
-                                        (thread-first (dape-cwd)
-                                                      (directory-file-name)
-                                                      (file-name-split)
-                                                      (last)
-                                                      (car))))
+                            (file-name-concat "target" "debug"
+                                              (thread-first (dape-cwd)
+                                                            (directory-file-name)
+                                                            (file-name-split)
+                                                            (last)
+                                                            (car))))
                  :args [])))
 
 ;; cape
