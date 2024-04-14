@@ -167,7 +167,6 @@
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
-;; TODO: It'd be huge to display an elfeed with planetemacs
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -181,7 +180,6 @@
       (progn
         (project-find-file)
         (dired-sidebar-show-sidebar))))
-  ;; TODO: Fix jumping to section (I think 'f' is taken by evil)
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
     (elfeed-update)
@@ -190,7 +188,7 @@
      (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
      list-size
      'elfeed
-     "f"
+     (dashboard-get-shortcut 'elfeed)
      ;; TODO: It's a copypasted from dashboard-insert-projects, fix it so it opens elfeed
      `(lambda (&rest _)
         (funcall (dashboard-projects-backend-switch-function)
@@ -199,6 +197,7 @@
             (date (format-time-string "%Y-%m-%d" (elfeed-entry-date el)))
             (max-title-width 50)
             (truncated-title (s-truncate max-title-width title))
+            ;; TODO: Can I make this depend on the longest line in the buffer?
             (date-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
        (concat truncated-title date-align date))))
   :custom
@@ -215,10 +214,13 @@
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
   :config
   ;; add my elfeed widget
+  (add-to-list 'dashboard-item-shortcuts '(elfeed . "f"))
   (add-to-list 'dashboard-item-generators  '(elfeed . haf/dashboard-insert-elfeed))
   (add-to-list 'dashboard-items '(elfeed . 10) t)
   ;; this won't work because sections are hardcoded in dashboard-insert-heading!!!!
   ;; (add-to-list 'dashboard-heading-icons '(elfeed . "rocket") t)
+  ;; evil-collection has dashboard shortcuts hardcoded, so I have to add my own for elfeed
+  (evil-collection-define-key 'normal 'dashboard-mode-map "f" (symbol-function (lookup-key dashboard-mode-map "f")))
   (dashboard-setup-startup-hook))
 
 ;; try
