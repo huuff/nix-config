@@ -172,7 +172,10 @@
 ;; nice dash board for the first screen
 (use-package dashboard
   :ensure t
-  :after s ;; I need it for my custom widget
+  ;; TODO: after evil-collection because that breaks shortcuts to my custom widgets, but that doesn't seem
+  ;; like a nice way of doing it because this now depends on evil-collection
+  ;; TODO: Even with that, it still won't work!
+  :after (s evil-collection) ;; I need it for my custom widget
   :preface
   (defun haf/switch-project-and-open-sidebar (project)
     "Switches project.el project (by finding file) and opens dired-sidebar"
