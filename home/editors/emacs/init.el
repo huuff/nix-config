@@ -168,7 +168,6 @@
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
 ;; TODO: It'd be huge to display an elfeed with planetemacs
-;; TODO: hl-line for this?
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -197,16 +196,12 @@
      `(lambda (&rest _)
         (funcall (dashboard-projects-backend-switch-function)
                  (dashboard-expand-path-alist ,el dashboard-projects-alist)))
-     (let* ((max-title-width 50)
-            (date-align (+ max-title-width 75)))
-       (concat
-        (s-truncate max-title-width (elfeed-entry-title el))
-        ;; TODO: Align to longest line in buffer?
-        (propertize
-         " "
-         'display
-         `(space :align-to ,date-align))
-        (format-time-string "%Y-%m-%d" (elfeed-entry-date el))))))
+     (let* ((title (elfeed-entry-title el))
+            (date (format-time-string "%Y-%m-%d" (elfeed-entry-date el)))
+            (max-title-width 50)
+            (truncated-title (s-truncate max-title-width title))
+            (date-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
+       (concat truncated-title date-align date))))
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
   (dashboard-items '((projects . 7)
