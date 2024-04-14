@@ -181,13 +181,12 @@
       (progn
         (project-find-file)
         (dired-sidebar-show-sidebar))))
-  ;; TODO: An icon
   ;; TODO: Fix jumping to section (I think 'f' is taken by evil)
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
     (elfeed-update)
     (dashboard-insert-section
-     "RSS:"
+     (concat (all-the-icons-faicon "rss") " RSS:")
      (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
      list-size
      'elfeed
@@ -218,6 +217,8 @@
   ;; add my elfeed widget
   (add-to-list 'dashboard-item-generators  '(elfeed . haf/dashboard-insert-elfeed))
   (add-to-list 'dashboard-items '(elfeed . 10) t)
+  ;; this won't work because sections are hardcoded in dashboard-insert-heading!!!!
+  ;; (add-to-list 'dashboard-heading-icons '(elfeed . "rocket") t)
   (dashboard-setup-startup-hook))
 
 ;; try
