@@ -172,10 +172,7 @@
 ;; nice dash board for the first screen
 (use-package dashboard
   :ensure t
-  ;; TODO: after evil-collection because that breaks shortcuts to my custom widgets, but that doesn't seem
-  ;; like a nice way of doing it because this now depends on evil-collection
-  ;; TODO: Even with that, it still won't work!
-  :after (s evil-collection) ;; I need it for my custom widget
+  :after s ;; I need it for my custom widget
   :preface
   (defun haf/switch-project-and-open-sidebar (project)
     "Switches project.el project (by finding file) and opens dired-sidebar"
@@ -185,9 +182,11 @@
         (dired-sidebar-show-sidebar))))
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
+    ;; TODO: Doesn't seem to be always updating
     (elfeed-update)
     (dashboard-insert-section
      (concat (all-the-icons-faicon "rss") " RSS:")
+     ;; TODO: Get by some "emacs" tag, and only unread
      (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
      list-size
      'elfeed
@@ -220,7 +219,9 @@
   ;; this won't work because sections are hardcoded in dashboard-insert-heading!!!!
   ;; (add-to-list 'dashboard-heading-icons '(elfeed . "rocket") t)
   ;; evil-collection has dashboard shortcuts hardcoded, so I have to add my own for elfeed
-  (evil-collection-define-key 'normal 'dashboard-mode-map "f" (symbol-function (lookup-key dashboard-mode-map "f")))
+  ;; TODO: This still won't work
+  (with-eval-after-load 'evil-collection
+    (evil-collection-define-key 'normal 'dashboard-mode-map "f" (symbol-function (lookup-key dashboard-mode-map "f"))))
   (dashboard-setup-startup-hook))
 
 ;; try
