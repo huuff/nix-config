@@ -192,10 +192,7 @@
      list-size
      'elfeed
      (dashboard-get-shortcut 'elfeed)
-     ;; TODO: It's a copypasted from dashboard-insert-projects, fix it so it opens elfeed
-     `(lambda (&rest _)
-        (funcall (dashboard-projects-backend-switch-function)
-                 (dashboard-expand-path-alist ,el dashboard-projects-alist)))
+     `(lambda (&rest _) (elfeed-search-show-entry ,el))
      (let* ((title (elfeed-entry-title el))
             (date (format-time-string "%Y-%m-%d" (elfeed-entry-date el)))
             (max-title-width 50)
