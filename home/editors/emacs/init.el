@@ -1204,7 +1204,7 @@ targets."
   :ensure t
   :config
   (setq elfeed-feeds
-        '("https://planet.emacslife.com/atom.xml")))
+        '(("https://planet.emacslife.com/atom.xml" emacs))))
 
 ;; anzu
 ;; =====================
