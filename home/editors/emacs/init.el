@@ -185,6 +185,7 @@
     ;; TODO: Doesn't seem to be always updating
     (elfeed-update)
     (dashboard-insert-section
+     ;; I have to add the icon here because sections are hardcoded in dashboard-insert-heading
      (concat (all-the-icons-faicon "rss") " RSS:")
      ;; TODO: Get by some "emacs" tag, and only unread
      (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
@@ -208,7 +209,7 @@
   (dashboard-set-heading-icons t "Show icons in widget headings")
   (dashboard-set-file-icons t "Show icons for files")
   (dashboard-set-navigator t "Show a navigator with options under the banner")
-  (dashboard-center-content t "Horizontaly center widgets")
+  (dashboard-center-content t "Horizontally center widgets")
   (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
   :config
@@ -216,12 +217,14 @@
   (add-to-list 'dashboard-item-shortcuts '(elfeed . "f"))
   (add-to-list 'dashboard-item-generators  '(elfeed . haf/dashboard-insert-elfeed))
   (add-to-list 'dashboard-items '(elfeed . 10) t)
-  ;; this won't work because sections are hardcoded in dashboard-insert-heading!!!!
-  ;; (add-to-list 'dashboard-heading-icons '(elfeed . "rocket") t)
-  ;; evil-collection has dashboard shortcuts hardcoded, so I have to add my own for elfeed
-  ;; TODO: This still won't work
-  (with-eval-after-load 'evil-collection
-    (evil-collection-define-key 'normal 'dashboard-mode-map "f" (symbol-function (lookup-key dashboard-mode-map "f"))))
+  ;; fix the jump to section for my elfeed section with evil
+  ;; everything about this is an absolute clusterfuck
+  ;; sections are hardcored, and dashboard sets keybinding at a weird time
+  ;; check out 'evil-dashboard-setup-jump-commands' if you want an explanation for this weirdness
+  (advice-add 'dashboard-insert-startupify-lists :after
+              (lambda ()
+                ;; TODO: This still won't work
+                (evil-collection-define-key 'normal 'dashboard-mode-map "f" (symbol-function (lookup-key dashboard-mode-map "f")))))
   (dashboard-setup-startup-hook))
 
 ;; try
