@@ -45,6 +45,7 @@
 ;; TODO: Maybe set up dictionaries and spell checking?
 ;; TODO: Maybe use bufler? It's pretty cool, but I'd love to have a preview (consult) for switching buffers. Also, workspaces seem pretty sensible and I could use them for my tab-line
 ;; TODO: If I can use emacs-sideline to show the function signature with eldoc on the left, that's be really cool
+;; TODO: With ace-window, many times I have to put the bottom window (such as when opening help) side by side with the current window. I usually do `C-z w g b «main window»' to split it horizontally, `C-z w g m «new window»' to switch the bottom window with the next one, `C-z w g x «bottom window»`' to close the bottom window I just opened. This is incredibly long and bothersome, is there any other way?
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -187,8 +188,16 @@
     (dashboard-insert-section
      ;; I have to add the icon here because sections are hardcoded in dashboard-insert-heading
      (concat (all-the-icons-faicon "rss") " RSS:")
-     ;; TODO: Get by some "emacs" tag, and only unread
+     ;; TODO: Use elfeed-db-return to return early when list-size is filled and avoid iterating
+     ;; through all entries
      (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
+     ;; TODO: Not working for some reason!!
+     ;; (seq-take (let (entries)
+     ;;             (with-elfeed-db-visit (entry)
+     ;;               (let ((tags (elfeed-entry-tags entry)))
+     ;;                 (when (and (member 'emacs tags) (member 'unread tags))
+     ;;                   (push entry entries))))
+     ;;             (nreverse entries)) list-size)
      list-size
      'elfeed
      (dashboard-get-shortcut 'elfeed)
@@ -223,7 +232,6 @@
   ;; check out 'evil-dashboard-setup-jump-commands' if you want an explanation for this weirdness
   (advice-add 'dashboard-insert-startupify-lists :after
               (lambda ()
-                ;; TODO: This still won't work
                 (evil-collection-define-key 'normal 'dashboard-mode-map "f" (symbol-function (lookup-key dashboard-mode-map "f")))))
   (dashboard-setup-startup-hook))
 
