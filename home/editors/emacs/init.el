@@ -197,23 +197,22 @@
     "Add the list of LIST-SIZE items of RSS entries."
     ;; TODO: Doesn't seem to be always updating
     (elfeed-update)
-    (let ((entries (haf/elfeed-entries list-size)))
-      (dashboard-insert-section
-       ;; I have to add the icon here because sections are hardcoded in dashboard-insert-heading
-       (concat (all-the-icons-faicon "rss") " RSS:")
-       ;; TODO: Try to replace with haf/elfeed-entries when I get it to work (which may be never)
-       (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
-       list-size
-       'elfeed
-       (dashboard-get-shortcut 'elfeed)
-       `(lambda (&rest _) (elfeed-search-show-entry ,el))
-       (let* ((title (elfeed-entry-title el))
-              (date (format-time-string "%Y-%m-%d" (elfeed-entry-date el)))
-              (max-title-width 50)
-              (truncated-title (s-truncate max-title-width title))
-              ;; TODO: Can I make this depend on the longest line in the buffer?
-              (date-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
-         (concat truncated-title date-align date)))))
+    (dashboard-insert-section
+     ;; I have to add the icon here because sections are hardcoded in dashboard-insert-heading
+     (concat (all-the-icons-faicon "rss") " RSS:")
+     ;; TODO: Try to replace with haf/elfeed-entries when I get it to work (which may be never)
+     (seq-take (elfeed-feed-entries "https://planet.emacslife.com/atom.xml") list-size)
+     list-size
+     'elfeed
+     (dashboard-get-shortcut 'elfeed)
+     `(lambda (&rest _) (elfeed-search-show-entry ,el))
+     (let* ((title (elfeed-entry-title el))
+            (date (format-time-string "%Y-%m-%d" (elfeed-entry-date el)))
+            (max-title-width 50)
+            (truncated-title (s-truncate max-title-width title))
+            ;; TODO: Can I make this depend on the longest line in the buffer?
+            (date-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
+       (concat truncated-title date-align date))))
   
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
