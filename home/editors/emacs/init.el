@@ -31,14 +31,14 @@
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
 ;; TODO: I'd love to use project-x, but it's not on MELPA
 ;; TODO: Enable the daemon mode
-;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions)
+;; TODO: Maybe check out whether I want some corfu extensions (see https://github.com/minad/corfu#extensions )
 ;; TODO: follow this config a little https://andreyor.st/posts/2023-09-09-migrating-from-lsp-mode-to-eglot/ 
 ;; TODO: Entire buffer textobj would be nice, I do `cae` or `dae` a lot in vim
 ;; TODO: Try to split some sections to different files
 ;; TODO: There are two commands I need to run so fonts work. Is there any way I could automate it or notify whether it's needed?:
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
-;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars)
+;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars )
 ;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
@@ -48,6 +48,7 @@
 ;; TODO: With ace-window, many times I have to put the bottom window (such as when opening help) side by side with the current window. I usually do `C-z w g b «main window»' to split it horizontally, `C-z w g m «new window»' to switch the bottom window with the next one, `C-z w g x «bottom window»`' to close the bottom window I just opened. This is incredibly long and bothersome, is there any other way?
 ;; TODO: consult for diff-hl hunks?
 ;; TODO: Maybe use consult-web?
+;; TODO: ignore anything under .gitignore for consult-todo
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -183,8 +184,6 @@
       (progn
         (project-find-file)
         (dired-sidebar-show-sidebar))))
-  ;; TODO: Use elfeed-db-return to return early when list-size is filled and avoid iterating
-  ;; through all entries
   (defun haf/elfeed-entries (limit)
     (let (entries)
       ;; XXX: I outright had to inline (aka copy-paste) the with-elfeed-db-visit macro
@@ -197,9 +196,12 @@
              (let* ((entry (elfeed-db-get-entry id))
                     (tags (elfeed-entry-tags entry)))
                (when (and (member 'emacs tags) (member 'unread tags))
-                 (push entry entries))))
+                 (push entry entries))
+               (when (>= (length entries) limit)
+                 ;; XXX: I also had to inline elfeed-db-return here because for some reason nothing works!
+                 (throw 'elfeed-db-done nil))))
            elfeed-db-index)))
-      (seq-take (nreverse entries) limit)))
+      (nreverse entries)))
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
     ;; TODO: Doesn't seem to be always updating
@@ -218,6 +220,7 @@
               (max-title-width 50)
               (truncated-title (s-truncate max-title-width title))
               ;; TODO: Can I make this depend on the longest line in the buffer?
+              ;; TODO: UPDATE: Or maybe just put the date in front like the elfeed buffer does?
               (date-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
          (concat truncated-title date-align date)))))
   
