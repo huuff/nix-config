@@ -204,7 +204,6 @@
       (nreverse entries)))
   (defun haf/dashboard-insert-elfeed (list-size)
     "Add the list of LIST-SIZE items of RSS entries."
-    ;; TODO: Doesn't seem to be always updating
     (elfeed-update)
     (let ((entries (haf/elfeed-entries list-size)))
       (dashboard-insert-section
@@ -217,12 +216,13 @@
        `(lambda (&rest _) (elfeed-search-show-entry ,el))
        (let* ((title (elfeed-entry-title el))
               (date (format-time-string "%Y-%m-%d" (elfeed-entry-date el)))
+              (feed-name (elfeed-feed-title (elfeed-entry-feed el)))
               (max-title-width 50)
               (truncated-title (s-truncate max-title-width title))
               ;; TODO: Can I make this depend on the longest line in the buffer?
-              ;; TODO: UPDATE: Or maybe just put the date in front like the elfeed buffer does?
-              (date-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
-         (concat truncated-title date-align date)))))
+              ;; TODO: Use the colors that the elfeed buffer uses?
+              (right-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
+         (concat date " " truncated-title right-align "(" feed-name ")")))))
   
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
