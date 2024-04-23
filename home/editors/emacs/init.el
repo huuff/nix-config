@@ -169,8 +169,6 @@
 ;; string manipulation library
 (use-package s)
 
-;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
-;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
 ;; TODO: Maybe also a section for activities.el
 ;; dashboard
 ;; =====================
@@ -237,6 +235,16 @@
   (dashboard-center-content t "Horizontally center widgets")
   (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
+  (dashboard-navigator-buttons
+   `(;; line1
+     ((,(all-the-icons-faicon "folder" :height 1.1 :v-adjust 0.0)
+       "Open"
+       "Open file"
+       (lambda (&rest _) (find-file)))
+      (,(all-the-icons-faicon "sticky-note" :height 1.1 :v-adjust 0.0)
+       "Scratch"
+       "Open scratch buffer"
+       (lambda (&rest _) (scratch-buffer))))))
   :config
   ;; add my elfeed widget
   (add-to-list 'dashboard-item-shortcuts '(elfeed . "f"))
