@@ -169,7 +169,6 @@
 ;; string manipulation library
 (use-package s)
 
-;; TODO: Maybe also a section for activities.el
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -219,9 +218,13 @@
               (max-title-width 50)
               (truncated-title (s-truncate max-title-width title))
               ;; TODO: Can I make this depend on the longest line in the buffer?
-              ;; TODO: Use the colors match that the elfeed buffer uses?
               (right-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
-         (concat date " " truncated-title right-align "(" feed-name ")")))))
+         (concat
+          (propertize date 'face 'elfeed-search-date-face)
+          " "
+          truncated-title
+          right-align
+          (propertize (format "(%s)" feed-name) 'face 'elfeed-search-feed-face))))))
   
   :custom
   (dashboard-projects-backend 'project-el "Choose project.el instead of projectile for the project list")
