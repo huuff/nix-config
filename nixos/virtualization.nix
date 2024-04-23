@@ -9,6 +9,11 @@ with lib;
     # Necessary for virt-manager
     programs.dconf.enable = true;
 
+    # Necessary for shared folders with virt-manager
+    environment.systemPackages = with pkgs; [
+      virtiofsd
+    ];
+
     virtualisation = {
       # TODO: Enable UID remapping!
       # TODO: Actually, remove it when I fix my usages that depend on root (mainly, COPY instructions) and use podman

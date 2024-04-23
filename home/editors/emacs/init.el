@@ -242,6 +242,7 @@
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
   (dashboard-navigator-buttons
    `(;; line1
+     ;; TODO: This doesn't work
      ((,(all-the-icons-faicon "folder" :height 1.1 :v-adjust 0.0)
        "Open"
        "Open file"
