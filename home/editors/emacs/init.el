@@ -1239,7 +1239,8 @@ targets."
   :ensure t
   :config
   (setq elfeed-feeds
-        '(("https://planet.emacslife.com/atom.xml" emacs))))
+        '(("https://planet.emacslife.com/atom.xml" emacs)
+          ("https://www.reddit.com/r/emacs/.rss" emacs))))
 
 ;; anzu
 ;; =====================
