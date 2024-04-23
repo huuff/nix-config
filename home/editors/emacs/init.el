@@ -171,6 +171,7 @@
 
 ;; TODO: I enabled set-navigator but have no navigation links! maybe try choosing some
 ;; TODO: Some ideas for it: "Open scratch buffer", "Open file"
+;; TODO: Maybe also a section for activities.el
 ;; dashboard
 ;; =====================
 ;; nice dash board for the first screen
@@ -220,7 +221,7 @@
               (max-title-width 50)
               (truncated-title (s-truncate max-title-width title))
               ;; TODO: Can I make this depend on the longest line in the buffer?
-              ;; TODO: Use the colors that the elfeed buffer uses?
+              ;; TODO: Use the colors match that the elfeed buffer uses?
               (right-align (s-repeat (- (+ max-title-width 15) (string-width truncated-title)) " "))) 
          (concat date " " truncated-title right-align "(" feed-name ")")))))
   
