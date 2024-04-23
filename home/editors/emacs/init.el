@@ -49,6 +49,7 @@
 ;; TODO: consult for diff-hl hunks?
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
+;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -206,6 +207,7 @@
     (let ((entries (haf/elfeed-entries list-size)))
       (dashboard-insert-section
        ;; I have to add the icon here because sections are hardcoded in dashboard-insert-heading
+       ;; TODO: Put the last update date here?
        (concat (all-the-icons-faicon "rss") " RSS:")
        entries
        list-size
