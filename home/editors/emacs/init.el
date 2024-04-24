@@ -1,4 +1,6 @@
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode )
+;; TODO: UPDATE: Maybe I should use verb.el instead of restclient since restclient just got archived
+;; TODO: Maybe an activity for elfeed?
 ;; TODO: Try to get a nice activities.el + restclient configuration
 ;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
 ;; TODO: Use mu4e
