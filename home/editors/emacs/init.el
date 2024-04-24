@@ -50,6 +50,8 @@
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
+;; TODO: Use noctuid's link-hint
+;; TODO: Configure this: https://www.reddit.com/r/emacs/comments/1cb56ch/sorting_branches_by_least_recently_used_in_magit/
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -207,8 +209,7 @@
     (let ((entries (haf/elfeed-entries list-size)))
       (dashboard-insert-section
        ;; I have to add the icon here because sections are hardcoded in dashboard-insert-heading
-       ;; TODO: Put the last update date here?
-       (concat (all-the-icons-faicon "rss") " RSS:")
+       (concat (all-the-icons-faicon "rss") " RSS (Updated " (format-time-string "%Y-%m-%d %H:%M:%S" (elfeed-db-last-update)) "):")
        entries
        list-size
        'elfeed
