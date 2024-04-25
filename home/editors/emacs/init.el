@@ -54,7 +54,6 @@
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
 ;; TODO: Use noctuid's link-hint
-;; TODO: Configure this: https://www.reddit.com/r/emacs/comments/1cb56ch/sorting_branches_by_least_recently_used_in_magit/
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -1157,7 +1156,9 @@ targets."
 ;; magit
 ;; =====================
 ;; super-duper integration with git
-(use-package magit)
+(use-package magit
+  :custom
+  (magit-list-refs-sortby "-creatordate" "Sort revs by least recently used instead of alphabetically"))
 
 ;; eat (Emulate A Terminal)
 ;; =====================
