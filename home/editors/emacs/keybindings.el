@@ -5,7 +5,8 @@
     ("TAB" "Autocomplete" haf/autocomplete-transient)
     ("C-w" "Expand region" haf/expand-and-start-region-transient)
     ("C-d" "Create cursor" haf/next-cursor-and-start-region-transient)
-    ("C-s" "Jump" avy-goto-char-timer)]
+    ("C-s" "Jump" avy-goto-char-timer)
+    ("C-o" "Open link" link-hint-open-link)]
    ["Views"
     :pad-keys t
     ("w" "Windows" haf/window-transient)
@@ -59,6 +60,7 @@
 
 ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
 ;; so they match these? such as embark-act + d for go to definition
+;; TODO: Add keybindings for other LSP actions like inline or extract variable
 (transient-define-prefix haf/language-transient ()
   "Transient for language-specific actions"
   [["Actions"

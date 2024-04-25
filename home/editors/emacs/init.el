@@ -53,7 +53,6 @@
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
-;; TODO: Use noctuid's link-hint
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -970,6 +969,12 @@ targets."
 ;; =====================
 ;; powerful jumping anywhere in the frame (any window) with visual feedback
 (use-package avy)
+
+;; link-hint
+;; ====================
+;; avy interface for highlighting and jumping to/opening links in buffer
+(use-package link-hint
+  :ensure t)
 
 ;; project
 ;; =====================
