@@ -10,6 +10,7 @@
     (
       (pkgs.emacsWithPackagesFromUsePackage {
         config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
+          ./libs.el
           ./util.el
           ./compilation.el
           ./window-management.el

@@ -54,6 +54,7 @@
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
 ;; TODO: Do something cool with next-error-follow-minor-mode. For example, auto enable it in compilation mode
+;; TODO: Maybe use wgrep?
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -168,11 +169,6 @@
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
-;; TODO: Maybe put this in a "libraries" file?
-;; s
-;; =====================
-;; string manipulation library
-(use-package s)
 
 ;; dashboard
 ;; =====================

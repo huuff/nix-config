@@ -30,6 +30,7 @@
     (interactive)
     (haf/compile-action "lint"))
   :config
+  ;; TODO: Some types of cargo errors are not highlighted (test, maybe?) note them here to fix them
   (setq compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3) ;; cargo build
                                          ("\\(.*?/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))) ;; svelte check (TODO: Do I need the / in the middle? Can I put it at the beginning?)
 
