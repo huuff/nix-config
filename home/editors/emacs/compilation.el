@@ -43,7 +43,9 @@
                                                          :build-command "pnpm check"
                                                          :test-command "pnpm test -- run"
                                                          ;; TODO: This is kinda terrible because I install eslint every time
-                                                         :lint-command "pnpx eslint . --format unix"))))
+                                                         :lint-command "pnpx eslint . --format unix")))
+  ;; always enable next-error-follow-minor-mode for compilation mode
+  :hook (compilation-mode . next-error-follow-minor-mode))
 
 ;; fancy-compilation
 ;; =====================
