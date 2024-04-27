@@ -105,7 +105,7 @@
   "Window transients"
   [["Windows"
     :pad-keys t
-    ("SPC" "Toggle sidebar" dired-sidebar-toggle-sidebar)
+    ("SPC" "Toggle sidebar" dirvish-side)
     ("f" "Maximize/minimize" haf/toggle-full-window)
     ;; TODO: Maybe I should not autoswitch with ace when there are only 2 windows
     ("g" "Ace" ace-window)]

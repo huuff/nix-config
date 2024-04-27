@@ -182,7 +182,7 @@
     (let ((default-directory project))
       (progn
         (project-find-file)
-        (dired-sidebar-show-sidebar))))
+        (dirvish-side))))
   (defun haf/elfeed-entries (limit)
     (let (entries)
       ;; XXX: I outright had to inline (aka copy-paste) the with-elfeed-db-visit macro
@@ -546,80 +546,6 @@ targets."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-;; TODO: I use diffhl to highlight vc-changed files, but this doesn't look that cool and
-;; doesn't integrate that well with dired-subtree.. maybe I should use dired-rainbow to configure that?
-;; =====================
-;; the built-in file-manager
-(use-package dired
-  :ensure nil ;; already included in emacs
-  ;; TODO: Maybe this cold be a little bit brighter?
-  ;; TODO: This gets lost after some seconds... can I fix that?
-  ;; mark with the whole current line in dired
-  :hook (dired-mode . hl-line-mode)
-  :custom
-  (dired-listing-switches "-aBhl  --group-directories-first" "Sort so directories are on top")
-  :general
-  (:keymaps '(dired-mode-map)
-            :states '(normal)
-            ;; TODO: It'd be cool to have a dired-toggle-mark command that just toggles
-            ;; rather than having two separate keys
-            "i" 'wdired-change-to-wdired-mode
-            "m" 'dired-mark
-            "u" 'dired-unmark
-            "d" 'dired-do-delete
-            "r" 'dired-do-rename
-            "!" 'dired-do-shell-command
-            "+" 'dired-create-empty-file
-            "*" 'dired-create-directory
-            "g r" 'revert-buffer))
-
-;; dired-ranger
-;; =====================
-;; a handful of commands for dired that add functionalities like those of ranger. 
-;; for example `dired-ranger-copy` `dired-ranger-mode` and `dired-ranger-paste` allow selecting
-;; several files, moving to a directory and then moving/pasting them there
-(use-package dired-ranger
-  :after dired
-  :general
-  (:keymaps '(dired-mode-map)
-            :states '(normal)
-            "c" 'dired-ranger-copy
-            "p" 'dired-ranger-paste
-            "P" 'dired-ranger-move))
-
-
-;; TODO: Infuriatingly, forward-history for dired-rename gives the wrong path instead of the current file's path
-;; TODO: Exiting wdired goes back to dired-mode, not dired-sidebar-mode. There is an advice for this (dired-sidebar-wdired-change-to-wdired-mode-advice) but it doesn't seem to be working
-;; dired-sidebar
-;; =====================
-;; use dired as a tree directory explorer in a sidebar just like a real IDE
-(use-package dired-sidebar
-  :ensure t
-  :commands (dired-sidebar-toggle-sidebar dired-sidebar-show-sidebar)
-  :custom
-  (dired-sidebar-should-follow-file t "Follow currently-open file in the sidebar")
-  :config
-  ;; auto-refresh sidebar when running any dired-ranger commands
-  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-move)
-  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-ranger-paste)
-  (add-to-list 'dired-sidebar-special-refresh-commands 'dired-create-empty-file)
-  ;; refresh sidebar after exiting dired without changes (otherwise dired-subtree breaks)
-  (add-to-list 'dired-sidebar-special-refresh-commands 'wdired-abort-changes)
-  ;; show sidebar when switching project
-  (advice-add 'project-switch-project :after #'(lambda (&rest _) (dired-sidebar-show-sidebar))))
-
-;; TODO: Maybe a command for contracting all trees would be nice
-(use-package dired-subtree)
-
-;; all-the-icons-dired
-;; =====================
-;; enable icons in dired
-(use-package all-the-icons-dired
-  :after (dired all-the-icons)
-  :custom
-  (all-the-icons-dired-monochrome nil "Colorize icons")
-  :hook (dired-mode . all-the-icons-dired-mode))
-
 ;; dired-fl
 ;; =====================
 ;; more beautiful colors in dired.
@@ -668,12 +594,6 @@ targets."
   :after evil
   :ensure t
   :config
-  ;; XXX: evil collection is pretty damn aggressive overriding keymaps
-  ;; and you might not even get a change to define your own (it loads them at runtime
-  ;; and maybe even several time, so it will override yours no matter what you do).
-  ;; Be wary of disabling it when you find your keymaps won't work.
-  ;; TODO: Maybe also disable ielm and eshell. Shell in vim-mode is pretty weird
-  (delete 'dired evil-collection-mode-list)
   (evil-collection-init))
 
 ;; nerd-commenter emulation
@@ -1266,6 +1186,12 @@ targets."
   :ensure t
   :if (eq haf/keybinding-mode 'evil)
   :after (evil anzu))
+
+(use-package dirvish
+  :init (dirvish-override-dired-mode)
+  :custom
+  (dirvish-attributes
+   '(vc-state subtree-state all-the-icons git-msg file-time file-size)))
 
 
 ;; I set the background black in early-init so it's not flashing white
