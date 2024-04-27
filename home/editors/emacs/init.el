@@ -53,8 +53,8 @@
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
-;; TODO: Do something cool with next-error-follow-minor-mode. For example, auto enable it in compilation mode
 ;; TODO: Maybe use wgrep?
+;; TODO: Rather than copy-pasting packages to /snatches like a noob, try building them with :straight (I don't think it's possible) or building it with emacs2nix or something (check out the nix overlay)
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
