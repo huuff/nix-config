@@ -55,6 +55,7 @@
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
 ;; TODO: Maybe use wgrep?
 ;; TODO: Rather than copy-pasting packages to /snatches like a noob, try building them with :straight (I don't think it's possible) or building it with emacs2nix or something (check out the nix overlay)
+;; TODO: I don't think the nix lsp is working
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -815,7 +816,6 @@ targets."
 
 (use-package eglot-booster
   :ensure nil ;; I just downloaded it
-  :load-path "@snatches@/eglot-booster" 
   :after eglot
   :config (eglot-booster-mode))
 

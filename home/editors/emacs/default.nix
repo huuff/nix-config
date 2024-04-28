@@ -20,10 +20,8 @@
             # XXX: dape (for debugging) needs the vscode LLDB adapter
             # so I just substitute it into the elisp from here
             codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-            # XXX: some packages are not on ELPA nor MELPA, and I don't think straight works in nixos,
-            # so I just clone them into ./snatches and then add them to the load path
-            snatches = ./snatches;
           })
+
           ./tabs.el
 
           ./multicursor.el
@@ -37,6 +35,10 @@
           withNativeCompilation = true;
         };
         alwaysEnsure = true;
+
+        extraEmacsPackages = epkgs: [
+          (pkgs.callPackage ./eglot-booster.nix { inherit pkgs epkgs; })
+        ];
       })
     )
   ];
