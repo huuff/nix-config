@@ -1134,12 +1134,11 @@ targets."
   ;; pulse when changing buffers
   (add-hook 'window-buffer-change-functions #'haf/pulse-line))
 
-;; direnv
+;; envrc
 ;; =====================
 ;; automatically loads direnv config
-(use-package direnv
-  :config
-  (direnv-mode))
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
 
 ;; web-mode
 ;; =====================
