@@ -54,7 +54,6 @@
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
 ;; TODO: Maybe use wgrep?
-;; TODO: I don't think the nix lsp is working
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -795,7 +794,7 @@ targets."
 
   ;; setup LSPs
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
-  (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nix")))
+  (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nil")))
   (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
                                                                     (:cargo (:features "all")
                                                                             :check (:command "clippy" :features "all")))))
