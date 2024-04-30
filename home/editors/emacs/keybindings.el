@@ -101,13 +101,19 @@
       (delete-other-windows)
     (winner-undo)))
 
+(defun haf/aw-machine-gun ()
+  "Just calls ace-window in a loop so you can arrange your windows without invoking the prefix"
+  (interactive)
+  (while t (call-interactively 'ace-window)))
+
 (transient-define-prefix haf/window-transient ()
   "Window transients"
   [["Windows"
     :pad-keys t
     ("SPC" "Toggle sidebar" dired-sidebar-toggle-sidebar)
     ("f" "Maximize/minimize" haf/toggle-full-window)
-    ("g" "Ace" ace-window)]
+    ("g" "Ace" ace-window)
+    ("G" "Ace Machine Gun" haf/aw-machine-gun)]
    ["Popups"
     :pad-keys t
     ("w" "Toggle popup" popper-toggle)

@@ -48,7 +48,6 @@
 ;; TODO: Maybe set up dictionaries and spell checking?
 ;; TODO: Maybe use bufler? It's pretty cool, but I'd love to have a preview (consult) for switching buffers. Also, workspaces seem pretty sensible and I could use them for my tab-line
 ;; TODO: If I can use emacs-sideline to show the function signature with eldoc on the left, that's be really cool
-;; TODO: With ace-window, many times I have to put the bottom window (such as when opening help) side by side with the current window. I usually do `C-z w g b «main window»' to split it horizontally, `C-z w g m «new window»' to switch the bottom window with the next one, `C-z w g x «bottom window»`' to close the bottom window I just opened. This is incredibly long and bothersome, is there any other way?
 ;; TODO: consult for diff-hl hunks?
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
