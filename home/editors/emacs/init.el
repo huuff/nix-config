@@ -971,6 +971,12 @@ targets."
 (use-package link-hint
   :ensure t)
 
+;; ace-window
+(use-package ace-window
+  :ensure t
+  :custom
+  (aw-dispatch-always t))
+
 ;; project
 ;; =====================
 ;; emacs' native project management that allows deciding which files belong to a single project
