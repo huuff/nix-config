@@ -18,10 +18,7 @@
     ("l" "Language" haf/language-transient)
     ("e" "Errors" haf/start-error-transient)
     ("g" "Git" haf/git-transient)
-    ("!" "REPL" haf/repl-transient)]
-   ["Other"
-    :pad-keys t
-    ("@" "Restclient" haf/open-restclient)]])
+    ("!" "REPL" haf/repl-transient)]])
 
 (general-define-key
  :states '(normal visual insert motion)
@@ -101,6 +98,8 @@
       (delete-other-windows)
     (winner-undo)))
 
+;; TODO: Currently this loops forever until ace-window returns an error, so the only way to exit it is to
+;; use some keybinding it doesn't understand. Try to make it so pressing C-g is able to exit
 (defun haf/aw-machine-gun ()
   "Just calls ace-window in a loop so you can arrange your windows without invoking the prefix"
   (interactive)
@@ -239,9 +238,3 @@
 ;; =================
 ;; END OF FLYMAKE TRANSIENT
 ;; =================
-
-(defun haf/open-restclient ()
-  "Pop to a new or existing restclient buffer."
-  (interactive)
-  (pop-to-buffer-same-window (get-buffer-create "*restclient*"))
-  (restclient-mode))

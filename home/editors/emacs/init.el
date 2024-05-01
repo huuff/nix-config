@@ -1,14 +1,12 @@
 ;; TODO: Some nice config for follow-mode (see https://mbork.pl/2024-03-18_Follow_mode )
-;; TODO: UPDATE: Maybe I should use verb.el instead of restclient since restclient just got archived
 ;; TODO: Maybe an activity for elfeed?
 ;; TODO: Use the elisp tree sitter
-;; TODO: Try to get a nice activities.el + restclient configuration
+;; TODO: Try to get a nice activities.el + verb.el configuration
 ;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
 ;; TODO: Use mu4e
 ;; TODO: Add jira?
 ;; TODO: Some mode or configuration to directly interact with a SQL database
-;; TODO: Something like restclient, but for graphql
-;; TODO: Use company-restclient but convert it to capf with cape
+;; TODO: Something like verb.el, but for graphql
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
 ;; TODO: Maybe use prodigy
@@ -1205,11 +1203,16 @@ targets."
 (use-package consult-todo :demand t)
 
 
-;; restclient
+;; verb
 ;; =====================
 ;; postman-like HTTP client in emacs
-(use-package restclient
-  :hook (restclient-mode . display-line-numbers-mode))
+(use-package verb)
+
+;; org
+;; =====================
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;; activities
 ;; =====================
