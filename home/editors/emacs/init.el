@@ -6,6 +6,7 @@
 ;; TODO: Use mu4e
 ;; TODO: Add jira?
 ;; TODO: Some mode or configuration to directly interact with a SQL database
+;; TODO: Use oauth2.el (https://elpa.gnu.org/packages/oauth2.html ) with verb.el for my work duties
 ;; TODO: Something like verb.el, but for graphql
 ;; TODO: Remove tabs from *dape-* buffers
 ;; TODO: Can I make magit close the status buffer automatically after a push?
