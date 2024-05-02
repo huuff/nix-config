@@ -15,7 +15,6 @@
 ;; TODO: Perhaps I could use aggressive-indent-mode for elisp only
 ;; TODO: Maybe I should bring back evil-collection for dired and try to get used to wdired instead
 ;; TODO: Use justl mode
-;; TODO: persistent-scratch-mode might be cool
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: Maybe use evil-quickscope
 ;; TODO: Maybe use no-littering?
@@ -1272,6 +1271,10 @@ targets."
   :ensure t
   :if (eq haf/keybinding-mode 'evil)
   :after (evil anzu))
+
+(use-package persistent-scratch
+  :ensure t
+  :config (persistent-scratch-setup-default))
 
 
 ;; I set the background black in early-init so it's not flashing white
