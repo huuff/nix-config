@@ -49,7 +49,6 @@
 ;; TODO: consult for diff-hl hunks?
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
-;; TODO: I could remove all of my :if to check whether evil keybindings are enable and just use packages :after evil
 ;; TODO: Maybe use wgrep?
 
 ;; refresh open buffers when filesystem changes
@@ -660,7 +659,6 @@ targets."
 ;; * vim-unimpaired keybindings
 ;; * hungry-delete integration with evil
 (use-package evil-collection
-  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :ensure t
   :config
@@ -680,14 +678,12 @@ targets."
 
 ;; vim-surround emulation
 (use-package evil-surround
-  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (global-evil-surround-mode 1))
 
 ;; vim match-it emulation
 (use-package evil-matchit
-  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (global-evil-matchit-mode 1))
@@ -704,7 +700,6 @@ targets."
 ;; more precise
 ;; TODO: Can I configure it so n and N also cycle results as for search?
 (use-package evil-snipe
-  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (evil-snipe-mode +1)
@@ -714,7 +709,6 @@ targets."
 ;; TODO: Try to set up some way to exchange args order
 ;; for example see: https://github.com/wcsmith/evil-args/issues/4
 (use-package evil-args
-  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :general
   (evil-inner-text-objects-map "a" 'evil-inner-arg)
@@ -734,7 +728,6 @@ targets."
 ;; it with no result
 ;; pulses when providing feedback for many evil commands
 (use-package evil-goggles
-  :if (eq haf/keybinding-mode 'evil)
   :after evil
   :config
   (evil-goggles-mode))
@@ -1269,7 +1262,6 @@ targets."
 
 (use-package evil-anzu
   :ensure t
-  :if (eq haf/keybinding-mode 'evil)
   :after (evil anzu))
 
 (use-package persistent-scratch
