@@ -666,8 +666,9 @@ targets."
   ;; and you might not even get a change to define your own (it loads them at runtime
   ;; and maybe even several time, so it will override yours no matter what you do).
   ;; Be wary of disabling it when you find your keymaps won't work.
-  ;; TODO: Maybe also disable ielm and eshell. Shell in vim-mode is pretty weird
   (delete 'dired evil-collection-mode-list)
+  ;; I find vim keybindings uncomfortable in the shell
+  (delete 'eshell evil-collection-mode-list)
   (evil-collection-init))
 
 ;; nerd-commenter emulation
