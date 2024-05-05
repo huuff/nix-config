@@ -43,27 +43,24 @@
 (defun haf/toggle-multicursor-package ()
   "Toggles the current multi-cursor package"
   (interactive)
-  ;; TODO: Can I use pcase instead?
-  (cond
-   ((eq haf/multicursor-package 'evil-multiedit) (setq haf/multicursor-package 'evil-mc))
-   ((eq haf/multicursor-package 'evil-mc) (setq haf/multicursor-package 'multiple-cursors))
-   ((eq haf/multicursor-package 'multiple-cursors) (setq haf/multicursor-package 'evil-multiedit))))
+  (cl-case haf/multicursor-package
+    (evil-multiedit (setq haf/multicursor-package 'evil-mc))
+    (evil-mc (setq haf/multicursor-package 'multiple-cursors))
+    (multiple-cursors (setq haf/multicursor-package 'evil-multiedit))))
 
 (defun haf/add-next-multicursor ()
   "Creates a multi-cursor for the selected region using the package in 'haf/multicursor-package'"
   (interactive)
-  ;; TODO: Can I use pcase instead?
-  (cond
-   ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/mark-next-like-this))
-   ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-make-and-goto-next-match))
-   ((eq haf/multicursor-package 'evil-multiedit) (call-interactively 'evil-multiedit-match-and-next))))
+  (call-interactively (cl-case haf/multicursor-package
+                        ('multiple-cursors #'mc/mark-next-like-this)
+                        ('evil-mc #'evil-mc-make-and-goto-next-match)
+                        ('evil-multiedit #'evil-multiedit-match-and-next))))
 
 (defun haf/remove-previous-multicursor ()
   "Removes the last created multi-cursor using the package in 'haf/multicursor-package'"
   (interactive)
-  ;; TODO: Can I use pcase instead?
-  (cond
-   ((eq haf/multicursor-package 'multiple-cursors) (call-interactively #'mc/unmark-next-like-this))
-   ((eq haf/multicursor-package 'evil-mc) (call-interactively #'evil-mc-undo-last-added-cursor))
-   ;; TODO: Maybe try to remove this option in the hydra?
-   ((eq haf/multicursor-package 'evil-multiedit) (message "Not available in evil-multiedit"))))
+  (cl-case haf/multicursor-package
+    (multiple-cursors (call-interactively #'mc/unmark-next-like-this))
+    (evil-mc (call-interactively #'evil-mc-undo-last-added-cursor))
+    ;; TODO: Maybe try to remove this option in the transient?
+    (evil-multiedit (message "Not available in evil-multiedit"))))
