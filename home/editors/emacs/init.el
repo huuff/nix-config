@@ -1006,11 +1006,11 @@ targets."
   "Switches theme depending on current major-mode"
   (interactive)
   (let ((next-theme (cl-case major-mode
-                      ('rust-ts-mode 'doom-gruvbox)
-                      ('emacs-lisp-mode 'doom-one)
-                      ('typescript-ts-mode 'doom-dark+)
-                      ('svelte-mode 'doom-moonlight)
-                      ('sql-mode 'doom-vibrant)
+                      (rust-ts-mode 'doom-gruvbox)
+                      (emacs-lisp-mode 'doom-one)
+                      (typescript-ts-mode 'doom-dark+)
+                      (svelte-mode 'doom-moonlight)
+                      (sql-mode 'doom-vibrant)
                       (t nil))))
     (when next-theme
       (when (not (custom-theme-enabled-p next-theme)) (progn 
