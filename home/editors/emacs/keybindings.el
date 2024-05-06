@@ -54,6 +54,14 @@
     ("n" "Next" diff-hl-show-hunk-next)
     ("p" "Previous" diff-hl-show-hunk-previous)]])
 
+;; there's an 'eglot-reconnect' function but it breaks after I added eglot-booster
+(defun haf/restart-eglot ()
+  "Restarts eglot"
+  (interactive)
+  (let ((y-or-n-p (lambda (a &rest b) t)))
+    (progn (ignore-errors (eglot-shutdown (eglot-current-server)))
+           (call-interactively 'eglot))))
+
 
 ;; TODO: for some of these (such as go to definition and go to implementation), a target is required (a workspace symbol). Wouldn't they be better as embark actions? UPDATE: I'm sure they exist as embark actions, but maybe I should fix keybindings
 ;; so they match these? such as embark-act + d for go to definition
@@ -72,7 +80,10 @@
     ("d" "Declaration" eglot-find-declaration)
     ("i" "Implementation" eglot-find-implementation)
     ("u" "References" xref-find-references)
-    ("m" "Outline" consult-imenu)]])
+    ("m" "Outline" consult-imenu)]
+   ["Other"
+    :pad-keys t
+    ("R" "Restart" haf/restart-eglot)]])
 
 (transient-define-prefix haf/project-transient ()
   "Transient for project-wide actions"
