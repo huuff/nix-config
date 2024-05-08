@@ -316,18 +316,10 @@
   :config
   ;; default bindings: M-up and M-down
   (move-text-default-bindings)
-  ;; advice to auto-indent region after moving
-  (defun haf/indent-region-advice (&rest ignored)
-    (let ((deactivate deactivate-mark))
-      (if (region-active-p)
-          (indent-region (region-beginning) (region-end))
-        (indent-region (line-beginning-position) (line-end-position)))
-      (setq deactivate-mark deactivate)))
 
-  (advice-add 'move-text-up :after 'haf/indent-region-advice)
-  (advice-add 'move-text-down :after 'haf/indent-region-advice))
+  (advice-add 'move-text-up :after 'haf/indent-region)
+  (advice-add 'move-text-down :after 'haf/indent-region))
 
-;; TODO: Maybe I also need an indenting advice for this, like as for move-text
 ;; drag-stuff
 ;; =====================
 ;; move text around like in vscode
@@ -339,7 +331,9 @@
   ;; enable it
   (drag-stuff-global-mode 1)
   ;; enable default keybindings like M-up, M-down
-  (drag-stuff-define-keys))
+  (drag-stuff-define-keys)
+  (advice-add 'drag-stuff-up :after 'haf/indent-region)
+  (advice-add 'drag-stuff-down :after 'haf/indent-region))
 
 ;; eldoc
 ;; =====================
