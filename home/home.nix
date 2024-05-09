@@ -80,6 +80,7 @@
     podman-compose
 
     spotify 
+    discord
 
     # TODO: Maybe put this somewhere else
     (google-cloud-sdk.withExtraComponents ([
