@@ -791,6 +791,7 @@ targets."
   
   :hook ((tsx-ts-mode . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
+         (js-ts-mode . eglot-ensure)
          (svelte-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
          (rust-ts-mode . eglot-ensure)
@@ -906,6 +907,8 @@ targets."
 ;; treesit-auto
 ;; =====================
 ;; autoinstalls tree-sitter grammars and maps non-tree-sitter modes to tree-sitter ones
+;; TODO: Some times I need clang for treesitter grammars to be installed... why do I only need
+;; it some times?
 (use-package treesit-auto
   :custom
   ;; TODO: docstring
@@ -924,6 +927,23 @@ targets."
                                           :revision "v0.20.2"
                                           :source-dir "typescript/src"
                                           :ext "\\.ts\\'"))
+  (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
+                                          :lang 'typescript
+                                          :ts-mode 'typescript-ts-mode
+                                          :remap 'typescript-mode
+                                          :requires 'tsx
+                                          :url "https://github.com/tree-sitter/tree-sitter-typescript"
+                                          :revision "v0.20.2"
+                                          :source-dir "typescript/src"
+                                          :ext "\\.ts\\'"))
+  (add-to-list 'treesit-auto-recipe-list (make-treesit-auto-recipe
+                                          :lang 'javascript
+                                          :ts-mode 'js-ts-mode
+                                          :remap '(js-mode javascript-mode js2-mode)
+                                          :url "https://github.com/tree-sitter/tree-sitter-javascript"
+                                          :revision "v0.20.1"
+                                          :source-dir "src"
+                                          :ext "\\.jsx?\\'"))
   ;; TODO: See if I can get treesit-auto to prompt to install it automatically
   ;; XXX: please note that treesit-auto doesn't appear to install it automatically
   ;; you have to run treesit-auto-install-all
@@ -1003,6 +1023,7 @@ targets."
                       (rust-ts-mode 'doom-gruvbox)
                       (emacs-lisp-mode 'doom-one)
                       (typescript-ts-mode 'doom-dark+)
+                      (js-ts-mode 'doom-dark+)
                       (svelte-mode 'doom-moonlight)
                       (sql-mode 'doom-vibrant)
                       (t nil))))
