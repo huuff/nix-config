@@ -2,7 +2,6 @@
 ;; TODO: Maybe an activity for elfeed?
 ;; TODO: Use the elisp tree sitter
 ;; TODO: Try to get a nice activities.el + verb.el configuration
-;; TODO: See if I can use casual (https://irreal.org/blog/?p=12065 ), but in general, I should get more used to calc-mode and learn more about it.
 ;; TODO: Use mu4e
 ;; TODO: Add jira?
 ;; TODO: Some mode or configuration to directly interact with a SQL database
@@ -40,7 +39,6 @@
 ;; - nerd-icons-install-fonts
 ;; - all-the-icons-install-fonts
 ;; TODO: Indent guides for YAML and python (https://github.com/jdtsmith/indent-bars )
-;; TODO: Since I'm using the nixpkgs overlay, I think there is some binary cache I have to setup
 ;; TODO: Some way to go back to the previous buffer for when I'm switching between projects
 ;; TODO: A config to go to "alternate files", such as, for example, going to the test, or the the css module of a file
 ;; TODO: Maybe set up dictionaries and spell checking?
@@ -901,14 +899,12 @@ targets."
   :mode "\\.nix\\'")
 
 
-;; XXX: TODO: Please note you may need clang to build rust's grammar. I may need to provide a message or something for all this information
+;; XXX: Please note you may need clang to build rust's grammar. I may need to provide a message or something for all this information
 ;; FUTURE: This may not be needed in emacs 30 or further,
 ;; but currently, it's much easier this way
 ;; treesit-auto
 ;; =====================
 ;; autoinstalls tree-sitter grammars and maps non-tree-sitter modes to tree-sitter ones
-;; TODO: Some times I need clang for treesitter grammars to be installed... why do I only need
-;; it some times?
 (use-package treesit-auto
   :custom
   ;; TODO: docstring
@@ -1280,9 +1276,20 @@ targets."
   :ensure t
   :after (evil anzu))
 
+;; persistent-scratch
+;; =====================
+;; keep your scratch session between restarts
 (use-package persistent-scratch
   :ensure t
   :config (persistent-scratch-setup-default))
+
+;; casual
+;; =====================
+;; a transient for using calc-mode
+(use-package casual
+  :ensure t
+  ;; TODO: This conflicts with evil, I need a different one
+  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu)))
 
 
 ;; I set the background black in early-init so it's not flashing white

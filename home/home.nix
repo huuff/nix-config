@@ -51,6 +51,7 @@
   home.packages = with pkgs; [
     cachix
     xsel
+    cachix
     scripts.clipscrot
 
     anki
