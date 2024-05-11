@@ -49,6 +49,7 @@
   };
 
   home.packages = with pkgs; [
+    cachix
     xsel
     scripts.clipscrot
 
