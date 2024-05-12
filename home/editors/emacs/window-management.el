@@ -1,4 +1,5 @@
 
+;; TODO: Some alignment for calc-mode and also remove tabs from it
 ;; TODO: Add the flymake window here too
 (setq haf/popup-buffers '((:mode help-mode :size 0.3 :align below :select t :popup t)
                           (:mode helpful-mode :size 0.3 :align below :select t :popup t)

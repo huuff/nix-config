@@ -30,13 +30,13 @@
   (interactive))
 
 
-;; TODO: It'd be great to also have some calculator REPL
 (transient-define-prefix haf/repl-transient ()
   "Transient for REPLs"
   ["REPL"
    :pad-keys t
    ("!" "Terminal" project-eshell)
-   ("e" "Emacs" ielm)])
+   ("e" "Emacs" ielm)
+   ("c" "Calculator" calc)])
 
 (transient-define-prefix haf/git-transient ()
   "Transient for Git actions"

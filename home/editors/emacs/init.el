@@ -1288,13 +1288,12 @@ targets."
 ;; a transient for using calc-mode
 (use-package casual
   :ensure t
-  ;; TODO: This conflicts with evil, I need a different one
-  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu)))
+  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu))
+  ;; XXX: This beast is necessary to override the evil-collection keybindings which are useless in calc-mode
+  :hook (evil-collection-setup . (lambda (&rest a) (evil-define-key 'normal 'calc-mode-map (kbd "C-o") 'casual-main-menu))))
 
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
 ;; I force it to be white after everything has loaded to fix it.
 (set-mouse-color "#FFFFFF")
-
-
