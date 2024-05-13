@@ -48,6 +48,7 @@
 ;; TODO: Maybe use consult-web?
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: Maybe use wgrep?
+;; TODO: A keybinding or something to replace selected text with clipboard
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -1287,10 +1288,10 @@ targets."
 ;; =====================
 ;; a transient for using calc-mode
 (use-package casual
-  :ensure t
-  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu))
-  ;; XXX: This beast is necessary to override the evil-collection keybindings which are useless in calc-mode
-  :hook (evil-collection-setup . (lambda (&rest a) (evil-define-key 'normal 'calc-mode-map (kbd "C-o") 'casual-main-menu))))
+  :hook
+  (calc-mode . casual-main-menu)
+  :config
+  (evil-collection-define-key 'normal 'calc-mode-map (kbd "C-o") 'casual-main-menu))
 
 
 ;; I set the background black in early-init so it's not flashing white
