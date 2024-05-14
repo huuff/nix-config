@@ -52,14 +52,14 @@
 
   home.packages = with pkgs; [
     cachix
-    xsel
+    xsel # managing Xorg clipboard
     cachix
-    scripts.clipscrot
+    scripts.clipscrot # my own script to send screenshot to clipboard
 
     anki
-    zathura
-    scrot
-    cloc
+    zathura # pdf reader
+    scrot # making screenshots
+    cloc # count lines of code
     pavucontrol
     python3 # TODO: In nixos config?
     ntfs3g # TODO: In nixos config?
@@ -67,19 +67,19 @@
     # TODO: Remove this and just put it in whatever projects I use latex as a devshell
     texlive.combined.scheme-full
     _1password
-    sshfs
     deluge
     slack
-    translate-shell # very useful! translate text in the shell, as in `trans "hola mundo" es:en -b`
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
 
-    feh
+    feh # image viewer
 
+    # TODO: Maybe these all in kubernetes-something
     kubernetes-helm
     helmfile
     kustomize
 
+    # TODO: Maybe in virtualization
     vagrant
     podman-compose
 
