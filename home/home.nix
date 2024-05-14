@@ -4,7 +4,9 @@
       ./editors/vim/nvim.nix
       ./editors/emacs
       ./editors/vscode.nix
+
       ./postman.nix
+      ./email.nix
 
       ./browsers/firefox.nix
 
