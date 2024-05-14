@@ -2,6 +2,7 @@
 
 ;; TODO: also set compile-command in case I just want to run it instead of the wrappers?
 ;; TODO: Also interpret warnings and infos
+;; TODO: My rust regex fails, specially for tests
 (use-package compile
   :ensure nil ;; already included in emacs
   :preface
