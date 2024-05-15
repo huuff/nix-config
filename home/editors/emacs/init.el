@@ -123,7 +123,8 @@
 ;; tempel
 ;; ====================
 ;; snippets
-;; Configure Tempel
+;; TODO: Cycling template parts is done with C-up and C-down which is super uncomfortable.
+;;       can I switch to TAB like yasnippet?
 (use-package tempel
   :after bind-key
   ;; Require trigger prefix before template name when completing.
@@ -152,6 +153,7 @@
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf)
 
+  ;; TODO: Can I enable it but make it trigger only with the trigger-prefix?
   ;; Optionally make the Tempel templates available to Abbrev,
   ;; either locally or globally. `expand-abbrev' is bound to C-x '.
   ;; (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
