@@ -123,8 +123,6 @@
 ;; tempel
 ;; ====================
 ;; snippets
-;; TODO: Cycling template parts is done with C-up and C-down which is super uncomfortable.
-;;       can I switch to TAB like yasnippet?
 (use-package tempel
   :after bind-key
   ;; Require trigger prefix before template name when completing.
@@ -135,7 +133,6 @@
          ("M-*" . tempel-insert))
 
   :init
-
   ;; Setup completion at point
   (defun tempel-setup-capf ()
     ;; Add the Tempel Capf to `completion-at-point-functions'.
@@ -153,6 +150,9 @@
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf)
 
+  ;; go to next placeholder in template with TAB like for yasnippet
+  :bind (:map tempel-map ([tab] . tempel-next))
+
   ;; TODO: Can I enable it but make it trigger only with the trigger-prefix?
   ;; Optionally make the Tempel templates available to Abbrev,
   ;; either locally or globally. `expand-abbrev' is bound to C-x '.
@@ -161,6 +161,7 @@
   )
 
 ;; package of ready-made snippets
+;; TODO: Maybe I should just do my own
 (use-package tempel-collection)
 
 ;; use tempel for LSP templates in eglot (by default eglot forces yasnippet)
