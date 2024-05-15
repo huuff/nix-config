@@ -25,7 +25,6 @@
 ;; TODO: Use meow? It seems pretty rad
 ;; TODO: Some evil-mc keybindings for creating a cursor on each line beginning/end
 ;; TODO: Maybe set-up some code folding. UPDATE: Theres a cool ts-fold package that does folding with treesitter, but I don't think it works with the builtin treesitter so I may need to wait for a next release
-;; TODO: Maybe use tempel instead of yasnippet
 ;; TODO: There's some error that appears when building it with nix, build with -L to find out what it is
 ;; TODO: A transient to interactively indent/deindent visually selected regions without losing the selection
 ;; TODO: Can I make some packages load lazily with :command? Is it worth it?
@@ -49,6 +48,7 @@
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: Maybe use wgrep?
 ;; TODO: A keybinding or something to replace selected text with clipboard
+;; TODO: Maybe bring back rustic, since it has a new maintainer (https://github.com/emacs-rustic/rustic )
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -119,23 +119,54 @@
 ;; allow pasting with Ctrl+V, even in minibuffer
 (general-define-key "C-S-v" 'yank)
 
-;; yasnippet
-;; =====================
-;; allows inserting snippets/templates into your buffers
-(use-package yasnippet
-  :defer 2
-  :config
-  (yas-global-mode 1))
 
-;; a collection of pre-made snippets
-(use-package yasnippet-snippets
-  :defer)
+;; tempel
+;; ====================
+;; snippets
+;; Configure Tempel
+(use-package tempel
+  :after bind-key
+  ;; Require trigger prefix before template name when completing.
+  :custom
+  (tempel-trigger-prefix "<")
 
-;; adds a completion function and integrates it with corfu
-(use-package yasnippet-capf
-  :after (yasnippet cape)
-  :config
-  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+  :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
+         ("M-*" . tempel-insert))
+
+  :init
+
+  ;; Setup completion at point
+  (defun tempel-setup-capf ()
+    ;; Add the Tempel Capf to `completion-at-point-functions'.
+    ;; `tempel-expand' only triggers on exact matches. Alternatively use
+    ;; `tempel-complete' if you want to see all matches, but then you
+    ;; should also configure `tempel-trigger-prefix', such that Tempel
+    ;; does not trigger too often when you don't expect it. NOTE: We add
+    ;; `tempel-expand' *before* the main programming mode Capf, such
+    ;; that it will be tried first.
+    (setq-local completion-at-point-functions
+                (cons #'tempel-complete
+                      completion-at-point-functions)))
+
+  (add-hook 'conf-mode-hook 'tempel-setup-capf)
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+
+  ;; Optionally make the Tempel templates available to Abbrev,
+  ;; either locally or globally. `expand-abbrev' is bound to C-x '.
+  ;; (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
+  ;; (global-tempel-abbrev-mode)
+  )
+
+;; package of ready-made snippets
+(use-package tempel-collection)
+
+;; use tempel for LSP templates in eglot (by default eglot forces yasnippet)
+(use-package eglot-tempel
+  :ensure t
+  :after (eglot tempel)
+  :init (eglot-tempel-mode))
+
 
 ;; electric-pair-mode
 ;; ====================
@@ -770,7 +801,6 @@ targets."
 ;; Built-in integration with the LSP protocol
 
 (use-package eglot
-  :after yasnippet
   :config 
   ;; save on code actions, I use it for rust-analyzer because it only runs some checks on save
   ;; note that super-save-triggers does not work for this

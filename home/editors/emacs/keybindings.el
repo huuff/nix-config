@@ -142,7 +142,7 @@
    ("_" "Tex" cape-tex)
    ("^" "Tex" cape-tex)
    ("&" "SGML" cape-sgml)
-   ("s" "Snippet" yasnippet-capf)])
+   ("s" "Snippet" tempel-insert)])
 
 (transient-define-prefix haf/tab-line-transient ()
   "Transient tab line"
