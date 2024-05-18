@@ -841,6 +841,13 @@ targets."
 (use-package apheleia
   :config (apheleia-global-mode +1))
 
+;; dtrt-indent
+;; =====================
+;; auto-configures indentation settings from file
+;; should fix my woes with JSX/Svele files
+(use-package dtrt-indent
+  :init (dtrt-indent-global-mode 1))
+
 ;; dape
 ;; =====================
 ;; Adapters for the DAP protocol to debug in emacs
