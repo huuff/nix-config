@@ -43,5 +43,8 @@
     )
   ];
 
-  home.file.".emacs.d/early-init.el".text = builtins.readFile ./early-init.el;
+  home.file = {
+    ".emacs.d/early-init.el".text = builtins.readFile ./early-init.el;
+    ".emacs.d/templates".text = builtins.readFile ./templates.eld;
+  };
 }

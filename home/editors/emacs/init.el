@@ -126,8 +126,8 @@
 (use-package tempel
   :after bind-key
   ;; Require trigger prefix before template name when completing.
-  :custom
-  (tempel-trigger-prefix "<")
+  ;; :custom
+  ;; (tempel-trigger-prefix "<")
 
   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
          ("M-*" . tempel-insert))
@@ -143,7 +143,7 @@
     ;; `tempel-expand' *before* the main programming mode Capf, such
     ;; that it will be tried first.
     (setq-local completion-at-point-functions
-                (cons #'tempel-complete
+                (cons #'tempel-expand
                       completion-at-point-functions)))
 
   (add-hook 'conf-mode-hook 'tempel-setup-capf)
@@ -159,10 +159,6 @@
   ;; (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
   ;; (global-tempel-abbrev-mode)
   )
-
-;; package of ready-made snippets
-;; TODO: Maybe I should just do my own
-(use-package tempel-collection)
 
 ;; use tempel for LSP templates in eglot (by default eglot forces yasnippet)
 (use-package eglot-tempel
