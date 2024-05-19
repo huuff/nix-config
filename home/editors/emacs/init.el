@@ -17,7 +17,6 @@
 ;; TODO: Install eglot-signature-eldoc-talkative
 ;; TODO: Maybe use evil-quickscope
 ;; TODO: Maybe use no-littering?
-;; TODO: Maybe use literate-calc-mode
 ;; TODO: repl-driven-development might be incredibly cool
 ;; TODO: I did rebind k to eldoc-box, but I'd like being able to open eldoc in a separate window split like I did before. I don't even remember what the actual command was, so maybe I should unbind it and try `C-h k k` to find it
 ;; TODO: Use eglot-x?
@@ -1343,6 +1342,8 @@ targets."
 ;; =====================
 ;; a transient for using calc-mode
 (use-package casual
+  ;; TODO: This does not work... Can't I change the default welcome message to hint to open the transient?
+  :hook (calc-mode . (lambda () (message "Press C-o to open the casual transient")))
   :config
   (evil-collection-define-key 'normal 'calc-mode-map (kbd "C-o") 'casual-main-menu))
 

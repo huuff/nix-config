@@ -29,6 +29,16 @@
   "Dummy function that does nothing so I can use for exiting transients"
   (interactive))
 
+;; TODO: Remove tabs for it
+;; TODO: Define as a popper pop-up
+;; TODO: Use shackle to put it to the bottom
+;; TODO: Maybe use a bookmark or something to put some default text to indicate how to use literate-calc-mode
+(defun haf/pop-to-calc ()
+  "Pop to a new 'literate-calc-mode' buffer"
+  (interactive)
+  (pop-to-buffer (get-buffer-create "*literate-calc*"))
+  (literate-calc-mode))
+
 
 (transient-define-prefix haf/repl-transient ()
   "Transient for REPLs"
@@ -36,7 +46,7 @@
    :pad-keys t
    ("!" "Terminal" project-eshell)
    ("e" "Emacs" ielm)
-   ("c" "Calculator" calc)])
+   ("c" "Calculator" haf/pop-to-calc)])
 
 (transient-define-prefix haf/git-transient ()
   "Transient for Git actions"
