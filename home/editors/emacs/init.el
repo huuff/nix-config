@@ -1342,10 +1342,16 @@ targets."
 ;; =====================
 ;; a transient for using calc-mode
 (use-package casual
-  :hook
-  (calc-mode . casual-main-menu)
   :config
   (evil-collection-define-key 'normal 'calc-mode-map (kbd "C-o") 'casual-main-menu))
+
+;; literate-calc-mode
+;; ====================
+;; it's calc mode but solutions are given as inlay hints in a buffer
+;; instead of that weird stack stuff
+(use-package literate-calc-mode
+  :ensure t
+  :hook (literate-calc-mode . display-line-numbers-mode))
 
 
 ;; I set the background black in early-init so it's not flashing white
