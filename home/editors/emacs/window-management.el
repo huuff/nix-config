@@ -7,7 +7,8 @@
                           (:mode messages-buffer-mode :size 0.3 :align below :select nil :popup t)
                           (:mode inferior-emacs-lisp-mode :size 0.3 :align below :select t :buffer-name "*ielm*" :popup t)
                           (:mode eshell-mode :size 0.3 :align below :select t :buffer-name "\\*.*?eshell\\*" :regexp t :popup t)
-                          (:mode magit-status-mode :size 0.4 :align below :select t :popup t)))
+                          (:mode magit-status-mode :size 0.4 :align below :select t :popup t)
+                          (:mode literate-calc-mode :buffer-name "*literate-calc*" :size 0.3 :align below :select t :popup t)))
 
 (defun haf/popup-modes ()
   (mapcar #'(lambda (it) (plist-get it :mode)) haf/popup-buffers))
