@@ -776,23 +776,41 @@ targets."
   :custom
   (expand-region-fast-keys-enabled nil "Disable fast keys since I do the same thing with a transient"))
 
+
 ;; lorem-ipsum
 ;; =====================
 ;; inserts filler text (lorem ipsum)
-;; TODO: Maybe also configure separators, etc. for text-mode and markdown-mode
-;; TODO: Can I configure an abbrev for this? (so writing lorem would expand to a paragraph) That's be cool
+;; TODO: Can I configure an abbrev for this? (so writing lorem would expand to a paragraph) That's be cool. UPDATE: I've done it with tempel but I haven't linked that to abbrev yet
 (use-package lorem-ipsum
   :commands (lorem-ipsum-insert-sentences lorem-ipsum-insert-list lorem-ipsum-insert-paragraphs)
   :preface 
-  (defun haf/configure-html-lorem-ipsum ()
-    (setq lorem-ipsum-paragraph-separator "<br><br>\n"
-          lorem-ipsum-sentence-separator "&nbsp;&nbsp;"
-          lorem-ipsum-list-beginning "<ul>\n"
-          lorem-ipsum-list-bullet "<li>"
-          lorem-ipsum-list-item-end "</li>\n"
-          lorem-ipsum-list-end "</ul>\n"))
+  (defun haf/configure-lorem-ipsum ()
+    (cond
+     ((derived-mode-p 'web-mode) (setq
+                                  lorem-ipsum-paragraph-separator "<br><br>\n"
+                                  lorem-ipsum-sentence-separator "&nbsp;&nbsp;"
+                                  lorem-ipsum-list-beginning "<ul>\n"
+                                  lorem-ipsum-list-bullet "<li>"
+                                  lorem-ipsum-list-item-end "</li>\n"
+                                  lorem-ipsum-list-end "</ul>\n"))
+     ((derived-mode-p 'markdown-mode) (setq
+                                       lorem-ipsum-paragraph-separator "\n\n"
+                                       lorem-ipsum-sentence-separator " "
+                                       lorem-ipsum-list-beginning "\n"
+                                       lorem-ipsum-list-bullet "* "
+                                       lorem-ipsum-list-item-end "\n"
+                                       lorem-ipsum-list-end "\n"))
+     ((derived-mode-p 'text-mode) (setq
+                                   lorem-ipsum-paragraph-separator "\n\n"
+                                   lorem-ipsum-sentence-separator " "
+                                   lorem-ipsum-list-beginning "\n"
+                                   lorem-ipsum-list-bullet "- "
+                                   lorem-ipsum-list-item-end "\n"
+                                   lorem-ipsum-list-end "\n"))))
 
-  :hook ((web-mode . haf/configure-html-lorem-ipsum)))
+  :hook ((web-mode . haf/configure-lorem-ipsum)
+         (markdown-mode . haf/configure-lorem-ipsum)
+         (text-mode . haf/configure-lorem-ipsum)))
 
 
 ;; eglot
