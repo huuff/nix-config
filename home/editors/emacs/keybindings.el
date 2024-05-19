@@ -29,12 +29,17 @@
   "Dummy function that does nothing so I can use for exiting transients"
   (interactive))
 
-;; TODO: Maybe use a bookmark or something to put some default text to indicate how to use literate-calc-mode
 (defun haf/pop-to-calc ()
   "Pop to a new 'literate-calc-mode' buffer"
   (interactive)
   (pop-to-buffer (get-buffer-create "*literate-calc*"))
-  (literate-calc-mode))
+  (literate-calc-mode)
+  (if (eq (buffer-size (current-buffer)) 0)
+      (insert "\
+;; Welcome to literate-calc-mode\n\
+;; You can evaluate mathematical expressions by prefixing them with '='\n\
+;; For example '= 3 + 5'\n\
+;; You can also store to variables ('x = 3 + 5') and even use units ('x = 5kg')\n\n")))
 
 
 (transient-define-prefix haf/repl-transient ()
