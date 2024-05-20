@@ -261,8 +261,18 @@
   (dashboard-center-content t "Horizontally center widgets")
   (dashboard-startup-banner 'logo "Show an alternative, modern, emacs logo.")
   (dashboard-projects-switch-function 'haf/switch-project-and-open-sidebar "Open sidebar when opening a project")
-  ;; TODO: the navigator buttons broke at some point and I have no idea when but I think it might be when I updated to emacs 29.3
-  (dashboard-set-navigator t "Show a navigator with options under the banner")
+  (dashboard-startupify-list '(
+                               dashboard-insert-banner
+                               dashboard-insert-newline
+                               dashboard-insert-banner-title
+                               dashboard-insert-newline
+                               dashboard-insert-navigator
+                               dashboard-insert-newline
+                               dashboard-insert-init-info
+                               dashboard-insert-newline
+                               dashboard-insert-items
+                               dashboard-insert-newline
+                               dashboard-insert-footer))
   (dashboard-navigator-buttons
    `(;; line1
      ((,(all-the-icons-faicon "folder" :height 1.1 :v-adjust 0.0)
