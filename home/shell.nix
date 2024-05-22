@@ -1,4 +1,4 @@
-{ modules, config, pkgs, ... }:
+{ modules, config, ... }:
 {
   imports = [
     modules.shell

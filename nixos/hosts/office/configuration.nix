@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -19,12 +19,6 @@
   };
 
   time.timeZone = "Europe/Madrid";
-
-  virtualisation = {
-    virtualbox.host = {
-      enable = true;
-    };
-  };
 
   networking = {
     hostName = "office";

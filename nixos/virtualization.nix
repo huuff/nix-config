@@ -1,4 +1,4 @@
-{ pkgs, config, lib, user, ... }:
+{ pkgs, lib, user, ... }:
 with lib;
 {
   config = {
@@ -23,6 +23,10 @@ with lib;
       };
       libvirtd.enable = true;
       podman.enable = true;
+
+      virtualbox.host = {
+        enable = true;
+      };
     };
 
     # XXX: NFS port? I'm not sure why I did this and might be dangerous.
