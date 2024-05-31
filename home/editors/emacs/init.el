@@ -514,6 +514,11 @@
   ;; Both < and C-+ work reasonably well.
   (setq consult-narrow-key "<"))
 
+;; wgrep
+;; =====================
+;; allow editing search results directly, across the whole project
+(use-package wgrep)
+
 ;; embark
 ;; =====================
 ;; gives actions for the thing at which the cursor is
