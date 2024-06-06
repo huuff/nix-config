@@ -33,6 +33,7 @@
         package = pkgs.emacs-unstable.override {
           withTreeSitter = true;
           withNativeCompilation = true;
+          withImageMagick = true;
         };
         alwaysEnsure = true;
 

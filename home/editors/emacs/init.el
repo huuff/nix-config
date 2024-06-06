@@ -1370,6 +1370,13 @@ targets."
   :ensure t
   :hook (literate-calc-mode . display-line-numbers-mode))
 
+;; TODO: Comment explaining auctex
+(use-package tex
+  :ensure auctex
+  :config
+  (setq TeX-auto-save t
+        TeX-parse-self t))
+
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
