@@ -1375,8 +1375,19 @@ targets."
   :ensure auctex
   :config
   (setq TeX-auto-save t
-        TeX-parse-self t))
+        TeX-parse-self t
+        ;; use pdf-tools to open pdfs
+        TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-source-correlate-start-server t)
+  ;; update PDF buffers after successful LaTeX runs
+    (add-hook 'TeX-after-compilation-finished-functions
+                #'TeX-revert-document-buffer))
 
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page))
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
