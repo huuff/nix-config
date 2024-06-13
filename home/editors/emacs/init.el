@@ -920,6 +920,11 @@ targets."
   :init
   (vertico-mode))
 
+;; cc-isearch-menu
+;; =====================
+;; a casual transient for isearch
+(use-package cc-isearch-menu
+ :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
 (use-package savehist
