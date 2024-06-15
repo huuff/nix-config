@@ -856,6 +856,7 @@ targets."
          (svelte-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
          (rust-ts-mode . eglot-ensure)
+         (c-ts-mode . eglot-ensure)
          ;; auto-enable inlay hints
          (eglot-managed-mode . eglot-inlay-hints-mode)))
 
@@ -924,7 +925,7 @@ targets."
 ;; =====================
 ;; a casual transient for isearch
 (use-package cc-isearch-menu
- :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
+  :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
 (use-package savehist
