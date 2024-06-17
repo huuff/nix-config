@@ -55,6 +55,7 @@
     xsel # managing Xorg clipboard
     cachix
     scripts.clipscrot # my own script to send screenshot to clipboard
+    scripts.bakup # my own script to nicely backup files
 
     anki
     zathura # pdf reader
