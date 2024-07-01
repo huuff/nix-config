@@ -160,6 +160,7 @@
       { id = "jnihajbhpnppcggbcgedagnkighmdlei"; } # livereload
       { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1password
       { id = "jdkknkkbebbapilgoeccciglkfbmbnfm"; } # apollo client devtools
+      { id = "ahfhijdlegdabablpippeagghigmibma"; } # web vitals
     ];
   };
 
