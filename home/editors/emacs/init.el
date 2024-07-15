@@ -869,7 +869,14 @@ targets."
 ;; =====================
 ;; auto-format buffers on save
 (use-package apheleia
-  :config (apheleia-global-mode +1))
+  :config
+  (push '(djlint-jinja . ("djlint"
+                          "--reformat"
+                          "--profile=jinja"
+                          "-"))
+        apheleia-formatters)
+  (add-to-list 'apheleia-mode-alist '(jinja-web-mode . djlint-jinja))
+  (apheleia-global-mode +1))
 
 ;; dtrt-indent
 ;; =====================
@@ -1232,7 +1239,9 @@ targets."
   ;; define a new mode for svelte so I can hook to it specifically instead of
   ;; every web-mode
   (define-derived-mode svelte-mode web-mode "Svelte")
-  (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode)))
+  (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode))
+  (define-derived-mode jinja-web-mode web-mode "Jinja")
+  (add-to-list 'auto-mode-alist '("\\.html.jinja\\'" . jinja-web-mode)))
 
 ;; TODO: Also use "forge"?
 ;; TODO: It'd be great if i could use marginalia or something to put the last time a branch was updated next to it
