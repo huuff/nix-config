@@ -1404,6 +1404,11 @@ targets."
   (pdf-tools-install)
   (setq-default pdf-view-display-size 'fit-page))
 
+;; graphql-mode
+;; ====================
+;; TODO I'm not entirely sure what it does yet but I know it allows sending queries and maybe it has something else
+(use-package graphql-mode)
+
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
 ;; I force it to be white after everything has loaded to fix it.
