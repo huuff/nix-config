@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   commands = import ./commands.nix { inherit pkgs; };
 in
@@ -10,6 +10,7 @@ in
       "super + F9" = commands.lock;
       "super + F4" = "${pkgs.brightnessctl}/bin/brightnessctl s 10-";
       "super + F5" = "${pkgs.brightnessctl}/bin/brightnessctl s 10+";
+      "super + F3" = "${commands.toggle-lang}/bin/toggle.sh";
     };
   };
 }
