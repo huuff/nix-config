@@ -1,14 +1,10 @@
-{ pkgs, lib, ... }:
-with lib;
-let
-  lockCommand = "${pkgs.i3lock}/bin/i3lock --nofork --color 000000";
-in
+{ ... }:
 {
   xsession = {
     enable = true;
     windowManager.i3 = {
       enable = true;
-      config = rec {
+      config = {
         modifier = "Mod4";
         window.titlebar = false;
         terminal = "alacritty";
