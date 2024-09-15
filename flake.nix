@@ -73,6 +73,7 @@
         ./nixos/nixconf.nix
         ./nixos/ssh.nix
         ./nixos/virtualization.nix
+        ./nixos/gnupg.nix
 
         {
           # XXX: I have it enabled in home-manager but that seems to not be enough
@@ -96,12 +97,6 @@
   {
 
     nixosConfigurations = {
-      desktop = mkConfig ./nixos/hosts/desktop/configuration.nix "haf" [];
-
-      office = mkConfig ./nixos/hosts/office/configuration.nix "fran" [
-        ./nixos/bluetooth.nix
-      ];
-
       zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf"
       [
         ./nixos/wireless.nix { haf.networking.interface = "wlp1s0"; }
@@ -109,6 +104,7 @@
       ];
     };
 
+    # TODO formatting and pre-commit
     devShells.${system}.default = with pkgs; mkShell {
         buildInputs = [
           nil

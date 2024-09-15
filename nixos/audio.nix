@@ -1,4 +1,4 @@
-{ config, lib, user, ... }:
+{ user, ... }:
 {
     hardware.pulseaudio.enable = false;
     services.pipewire = {

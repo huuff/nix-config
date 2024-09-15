@@ -4,6 +4,7 @@
     enable = true;
     userName = "Haf";
     userEmail = "haf@protonmail.ch";
+    signing.key = "7E66BB1D1107BA57";
     ignores = [ 
       "*~"
       "*.swp" # vim swap files 
