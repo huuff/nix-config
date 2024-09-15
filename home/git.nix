@@ -1,4 +1,4 @@
-{ pkgs, secrets, ... }:
+{  secrets, ... }:
 {
   programs.git = {
     enable = true;
@@ -19,7 +19,7 @@
     ];
     extraConfig = {
       credential.helper = "cache --timeout=3600";
-      init.defaultBranch = "master";
+      init.defaultBranch = "main";
       merge = {
         # Always creates a merge commit, even if a merge can be fast-forwarded.
         # If the commits are fast-forwarded, these might be very bulk in the history
