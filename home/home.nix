@@ -64,9 +64,8 @@
     pavucontrol
     python3 # TODO: In nixos config?
     ntfs3g # TODO: In nixos config?
-    gnupg
+    gnupg # TODO somewhere else with the rest of the config
     _1password
-    deluge
     slack
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
@@ -82,18 +81,14 @@
     vagrant
     podman-compose
 
-    spotify 
     discord
 
     clang # I just need it to build tree-sitter grammars in emacs
 
-    # TODO: Maybe put this somewhere else
-    (google-cloud-sdk.withExtraComponents ([
-      google-cloud-sdk.components.app-engine-go
-    ]))
-
     pgcli
-    jrnl
+
+    # TODO configure some emacs client and remove this
+    thunderbird
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
