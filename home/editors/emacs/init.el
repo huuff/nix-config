@@ -1101,6 +1101,7 @@ targets."
   (let ((next-theme (cl-case major-mode
                       (rust-ts-mode 'doom-gruvbox)
                       (emacs-lisp-mode 'doom-one)
+                      (nix-ts-mode 'doom-city-lights)
                       (typescript-ts-mode 'doom-dark+)
                       (js-ts-mode 'doom-dark+)
                       (svelte-mode 'doom-moonlight)
