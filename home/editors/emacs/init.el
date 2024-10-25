@@ -48,6 +48,8 @@
 ;; TODO: Maybe use wgrep?
 ;; TODO: A keybinding or something to replace selected text with clipboard
 ;; TODO: Maybe bring back rustic, since it has a new maintainer (https://github.com/emacs-rustic/rustic )
+;; TODO: bring back cc-isearch-menu
+;; TODO: maybe bring back casual?
 
 ;; refresh open buffers when filesystem changes
 (global-auto-revert-mode)
@@ -928,11 +930,6 @@ targets."
   :init
   (vertico-mode))
 
-;; cc-isearch-menu
-;; =====================
-;; a casual transient for isearch
-(use-package cc-isearch-menu
-  :bind (:package isearch :map isearch-mode-map ([f2] . cc-isearch-menu-transient)))
 
 ;; save history over emacs restarts, useful for vertico which sorts by it
 (use-package savehist
@@ -1368,15 +1365,6 @@ targets."
 (use-package persistent-scratch
   :ensure t
   :config (persistent-scratch-setup-default))
-
-;; casual
-;; =====================
-;; a transient for using calc-mode
-(use-package casual
-  ;; TODO: This does not work... Can't I change the default welcome message to hint to open the transient?
-  :hook (calc-mode . (lambda () (message "Press C-o to open the casual transient")))
-  :config
-  (evil-collection-define-key 'normal 'calc-mode-map (kbd "C-o") 'casual-main-menu))
 
 ;; literate-calc-mode
 ;; ====================

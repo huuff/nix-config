@@ -32,7 +32,6 @@
       # Languages
       vim-nix
       vim-twig
-      vim-vagrant
       vim-helm
       kotlin-vim
       coc-tsserver
@@ -56,7 +55,7 @@
       nerdcommenter # <spc>C<spc> to toggle comment
       vim-gitgutter # git indicators in the gutter
       vim-repeat # allows me to repeat some plugin commands with .
-      suda-vim # use :SudaWrite to save as sudo
+      vim-suda # use :SudaWrite to save as sudo
       undotree # run :UndotreeTogglet to see the panel
       vim-sneak # use s to act like f but with two characters and in the whole buffer
       vim-airline

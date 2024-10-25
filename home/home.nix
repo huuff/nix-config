@@ -78,7 +78,6 @@
     kustomize
 
     # TODO: Maybe in virtualization
-    vagrant
     podman-compose
 
     discord
