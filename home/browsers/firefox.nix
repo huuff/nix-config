@@ -8,7 +8,9 @@ in {
     enable = true;
     profiles = {
       default = {
+        id = 0;
         isDefault = true;
+        search.default = "DuckDuckGo";
 
         extensions = with firefox-addons; [
           ublock-origin
@@ -23,6 +25,12 @@ in {
           bitwarden
           istilldontcareaboutcookies
         ];
+      };
+
+      workgpt = {
+        id = 1;
+        isDefault = false;
+        search.default = "DuckDuckGo";
       };
     };
   };
