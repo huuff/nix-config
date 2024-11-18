@@ -1375,6 +1375,7 @@ targets."
   :hook (literate-calc-mode . display-line-numbers-mode))
 
 ;; TODO: Comment explaining auctex
+;; Use C-c C-c to compile latex and then C-c C-v to view the output
 (use-package tex
   :ensure auctex
   :config
