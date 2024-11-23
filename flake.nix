@@ -74,6 +74,7 @@
         ./nixos/ssh.nix
         ./nixos/virtualization.nix
         ./nixos/gnupg.nix
+        ./nixos/scanner.nix
 
         {
           # XXX: I have it enabled in home-manager but that seems to not be enough
