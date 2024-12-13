@@ -10,7 +10,10 @@ in {
       default = {
         id = 0;
         isDefault = true;
-        search.default = "DuckDuckGo";
+        search = {  
+          default = "DuckDuckGo";
+          force = true;
+        };
 
         extensions = with firefox-addons; [
           ublock-origin
@@ -30,7 +33,10 @@ in {
       workgpt = {
         id = 1;
         isDefault = false;
-        search.default = "DuckDuckGo";
+        search = {
+          default = "DuckDuckGo";
+          force = true;
+        };
       };
     };
   };
