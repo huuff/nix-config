@@ -26,6 +26,8 @@
       wlp1s0.useDHCP = true;
     };
   };
+
+  services.tailscale.enable = true;
   
 
   console = {
