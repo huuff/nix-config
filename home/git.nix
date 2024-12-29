@@ -5,6 +5,7 @@
     userName = "Haf";
     userEmail = "haf@protonmail.ch";
     signing.key = "7E66BB1D1107BA57";
+
     ignores = [ 
       "*~"
       "*.swp" # vim swap files 
@@ -18,6 +19,7 @@
       "hs_err_pid*.log" # some Java crash logs
       "replay_pid*.log" # other random Java crash logs I guess
     ];
+
     extraConfig = {
       credential.helper = "cache --timeout=3600";
       init.defaultBranch = "main";
@@ -60,6 +62,10 @@
       co = "checkout";
       ss = "status";
       cm = "commit -m";
+    };
+
+    iniContent = {
+      blame.ignoreRevsFile = ".git-blame-ignore-revs";
     };
   };
 
