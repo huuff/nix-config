@@ -53,10 +53,12 @@
   home.packages = with pkgs; [
     cachix
     xsel # managing Xorg clipboard
-    cachix
+
+    # TODO: any way to just pick-up all packages from scripts?
     scripts.clipscrot # my own script to send screenshot to clipboard
     scripts.bakup # my own script to nicely backup files
-    scripts.docker-nuke # just cleanup everything docker
+    scripts.docker-nuke # cleanup everything docker
+    scripts.nix-nuke # cleanup everythin nix
 
     anki
     zathura # pdf reader

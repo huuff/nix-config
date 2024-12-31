@@ -10,7 +10,10 @@
 
     myDrvs.url = "github:huuff/derivations";
     secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
-    scripts.url = "github:huuff/nix-scripts";
+    scripts = {
+      url = "github:huuff/nix-scripts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-soapui.url = "github:huuff/nix-soapui";
     nix-portable-shell.url = "github:huuff/nix-portable-shell";
     hm-kubernetes.url = "github:huuff/hm-kubernetes";
