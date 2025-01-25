@@ -219,6 +219,11 @@
         };
       };
     };
+    hooks = {
+      postswitch = {
+        notify = ''notify-send "Switched screen profile" "$AUTORANDR_CURRENT_PROFILE"'';
+      }; 
+    };
   };
 
   # dark mode
