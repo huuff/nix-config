@@ -1,5 +1,7 @@
 { ... }: {
 
+  # TODO: This should be triggered when plugging or disconecting monitors,
+  # but I think there's no udev rule? I should investigate it further
   services.autorandr.enable = true;
   programs.autorandr = {
     enable = true;

@@ -85,6 +85,11 @@
           programs.zsh.enable = true;
         }
 
+        {
+          # TODO honestly I need something better than just putting all of my host configs here
+          services.udev.enable = true;
+        }
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useUserPackages = true;
