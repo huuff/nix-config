@@ -5,9 +5,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [
+  imports = [
     ./hardware-configuration.nix
+    ./screens.nix
   ];
   # It gets too slow without this
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

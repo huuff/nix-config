@@ -25,7 +25,6 @@
       ./keybindings.nix
       ./tmux.nix
 
-      ./screens.nix
 
       ./shell.nix
       ./virtualization.nix
