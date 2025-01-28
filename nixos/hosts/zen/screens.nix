@@ -1,5 +1,6 @@
-{ ... }: {
+{ pkgs, ... }: {
 
+  services.xserver.displayManager.setupCommands = "${pkgs.autorandr}/bin/autorandr --change";
   services.autorandr = {
     enable = true;
     profiles = 

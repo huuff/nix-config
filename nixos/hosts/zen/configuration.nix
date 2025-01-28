@@ -28,7 +28,6 @@
   };
 
   services.tailscale.enable = true;
-  
 
   console = {
     font = "Lat2-Terminus16";
