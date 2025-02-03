@@ -844,7 +844,7 @@ targets."
   (add-to-list 'eglot-server-programs '(svelte-mode . ("svelteserver" "--stdio")))
   (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nil")))
   (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
-                                                                    (:cargo (:features "all")
+                                                                    (:cargo (:features "all" :targetDir 't)
                                                                             :check (:command "clippy" :features "all")))))
   
   ;; these two make eglot faster according to
