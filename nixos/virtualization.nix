@@ -29,19 +29,6 @@ with lib;
       };
     };
 
-    # XXX: NFS port? I'm not sure why I did this and might be dangerous.
-    # Likely some app I used needed sharing a volume between a VM and host through NFS.
-    networking = {
-      firewall = {
-        extraCommands = ''
-          ip46tables -I INPUT 1 -i vboxnet+ -p tcp -m tcp --dport 2049 -j ACCEPT
-        '';
-        allowedTCPPorts = [ 2049 ];
-        checkReversePath = false;
-
-      };
-    };
-
     environment.etc."vbox/networks.conf".text = ''
       * 192.168.0.0/16
     '';
