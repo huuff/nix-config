@@ -1,4 +1,4 @@
-{ pkgs, user, secrets, myModules, derivations, modules, scripts, ... }:
+{ pkgs, unstablePkgs, user, secrets, myModules, derivations, modules, scripts, ... }:
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -89,6 +89,8 @@
     clang # I just need it to build tree-sitter grammars in emacs
 
     pgcli
+
+    unstablePkgs.aider-chat
 
     # TODO configure some emacs client and remove this
     thunderbird
