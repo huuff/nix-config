@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, user, secrets, myModules, derivations, modules, scripts, ... }:
+{ pkgs, unstablePkgs, user, secrets, myModules, myHomeModules, derivations, modules, scripts, ... }:
 {
     imports = [
       ./editors/vim/nvim.nix
@@ -23,12 +23,12 @@
       ./desktop-environment
       ./desktop-environment/screen-lock.nix
       ./keybindings.nix
-      ./tmux.nix
-
 
       ./shell.nix
       ./virtualization.nix
       modules.kubernetes
+
+      myHomeModules.aider
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -90,8 +90,6 @@
 
     pgcli
 
-    unstablePkgs.aider-chat
-
     # TODO configure some emacs client and remove this
     thunderbird
     awscli2
@@ -105,6 +103,14 @@
       "maven.wagon.http.ssl.ignore.validity" = "true";
     };
     settings = secrets.mavenSettings;
+  };
+
+  programs.aider = {
+    enable = true;
+    package = unstablePkgs.aider-chat;
+    settings = {
+      autoCommits = false;
+    };
   };
 
   programs.kubernetes = {

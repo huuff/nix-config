@@ -18,13 +18,17 @@
     };
     nix-soapui.url = "github:huuff/nix-soapui";
     nix-portable-shell.url = "github:huuff/nix-portable-shell";
+    nix-home-modules = {
+      url = "github:huuff/nix-home-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hm-kubernetes.url = "github:huuff/hm-kubernetes";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-soapui, home-manager, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts, nix-index-database}:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-soapui, home-manager, nix-home-modules, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts, nix-index-database}:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
@@ -35,8 +39,8 @@
       specialArgs = { 
         inherit user emacs-overlay nur secrets unstablePkgs; 
         scripts = scripts.packages.x86_64-linux;
-        myOverlays = myDrvs.overlays;
         myModules = myDrvs.nixosModules;
+        myHomeModules = nix-home-modules.homeManagerModules;
         # TODO: Maybe it should be in an overlay?
         derivations = {
           soapui57 = nix-soapui.packages.x86_64-linux.default;
