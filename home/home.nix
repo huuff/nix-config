@@ -52,6 +52,8 @@
   };
 
   home.packages = with pkgs; [
+    irust
+
     cachix
     xsel # managing Xorg clipboard
 
