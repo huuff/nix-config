@@ -22,6 +22,8 @@
             codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
           })
 
+          ./safe-locals.el
+
           ./tabs.el
 
           ./multicursor.el
