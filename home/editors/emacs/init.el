@@ -877,6 +877,7 @@ targets."
                           "--profile=jinja"
                           "-"))
         apheleia-formatters)
+  (push '(leptosfmt . ("leptosfmt" "--stdin" "--rustfmt")) apheleia-formatters)
   (add-to-list 'apheleia-mode-alist '(jinja-web-mode . djlint-jinja))
   (apheleia-global-mode +1))
 
