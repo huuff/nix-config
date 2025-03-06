@@ -32,7 +32,7 @@
 
         defaultInitFile = true;
 
-        package = pkgs.emacs-unstable.override {
+        package = pkgs.emacs.override {
           withTreeSitter = true;
           withNativeCompilation = true;
           withImageMagick = true;
