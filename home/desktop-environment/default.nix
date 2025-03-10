@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   xsession = {
     enable = true;
@@ -6,78 +6,62 @@
       enable = true;
       config = {
         modifier = "Mod4";
+
         window.titlebar = false;
+
         terminal = "alacritty";
-        menu = "rofi -show run";
+
+        menu = "${pkgs.rofi}/bin/rofi -show run";
+
+        bars = [
+          {
+            position = "bottom";
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-bottom.toml";
+          }
+        ];
       };
     };
   };
 
-  programs.i3status = {
-     enable = true;
-
-      general = {
-        colors = true;
-        interval = 5;
+  programs.i3status-rust = {
+    enable = true;
+    bars = {
+      bottom = {
+        blocks = [
+          {
+            block = "disk_space";
+            path = "/";
+            info_type = "available";
+            interval = 60;
+            warning = 20.0;
+            alert = 10.0;
+          }
+          {
+            block = "memory";
+            format_mem = " $icon $mem_used_percents ";
+            format_swap = " $icon $swap_used_percents ";
+          }
+          {
+            block = "cpu";
+            interval = 1;
+          }
+          {
+            block = "load";
+            interval = 1;
+            format = " $icon $1m ";
+          }
+          { block = "sound"; }
+          {
+            block = "time";
+            interval = 60;
+            format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+          }
+        ];
       };
 
-      modules = {
-        ipv6 = { position = 1; };
 
-        "wireless _first_" = {
-          position = 2;
-          settings = {
-            format_up = "W: (%quality at %essid) %ip";
-            format_down = "W: down";
-          };
-        };
+    };
 
-        "ethernet _first_" = {
-          position = 3;
-          settings = {
-            format_up = "E: %ip (%speed)";
-            format_down = "E: down";
-          };
-        };
-
-        "battery all" = {
-          position = 4;
-          settings = { format = "%status %percentage %remaining"; };
-        };
-
-        "volume master" = {
-            position = 5;
-            settings = {
-              format = "♪ %volume";
-              format_muted = "♪ muted (%volume)";
-              device = "pulse:0";
-            };
-        };
-
-        "disk /" = {
-          position = 6;
-          settings = { format = "%avail"; };
-        };
-
-        load = {
-          position = 7;
-          settings = { format = "%1min"; };
-        };
-
-        memory = {
-          position = 8;
-          settings = {
-            format = "%used | %available";
-            threshold_degraded = "1G";
-            format_degraded = "MEMORY < %available";
-          };
-        };
-
-        "tztime local" = {
-          position = 9;
-          settings = { format = "%Y-%m-%d %H:%M:%S"; };
-        };
-      };
   };
 
   programs.rofi = {
