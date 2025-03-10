@@ -36,21 +36,31 @@
             warning = 20.0;
             alert = 10.0;
           }
+
           {
-            block = "memory";
-            format_mem = " $icon $mem_used_percents ";
-            format_swap = " $icon $swap_used_percents ";
+            block = "battery";
           }
+
+          # TODO not working for some reason?
+          #{
+            #block = "memory";
+            #format_mem = " $icon $mem_used_percents ";
+            #format_swap = " $icon $swap_used_percents ";
+          #}
+
           {
             block = "cpu";
             interval = 1;
           }
+
           {
             block = "load";
             interval = 1;
             format = " $icon $1m ";
           }
+
           { block = "sound"; }
+
           {
             block = "time";
             interval = 60;
