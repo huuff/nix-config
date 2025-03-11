@@ -39,14 +39,13 @@
 
           {
             block = "battery";
+            format = " $icon $percentage ";
           }
 
-          # TODO not working for some reason?
-          #{
-            #block = "memory";
-            #format_mem = " $icon $mem_used_percents ";
-            #format_swap = " $icon $swap_used_percents ";
-          #}
+          {
+            block = "memory";
+            format = " $icon $mem_used.eng(prefix:Mi)/$mem_total.eng(prefix:Mi)($mem_used_percents.eng(w:2)) ";
+          }
 
           {
             block = "cpu";
