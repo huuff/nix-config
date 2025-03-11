@@ -29,6 +29,10 @@
       bottom = {
         blocks = [
           {
+            block = "keyboard_layout";
+          }
+
+          {
             block = "disk_space";
             path = "/";
             info_type = "available";
