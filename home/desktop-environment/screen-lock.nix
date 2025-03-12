@@ -1,6 +1,5 @@
 # TODO: Should this be in the "desktop-environment" directory?
-{ pkgs, lib, ... }:
-with lib;
+{ pkgs,  ... }:
 {
   services.screen-locker = {
     enable = true;

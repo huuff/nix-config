@@ -33,6 +33,11 @@
           }
 
           {
+            block = "net";
+            format = " $icon $speed_down.eng(prefix:K)/$speed_up.eng(prefix:K) ";
+          }
+
+          {
             block = "disk_space";
             path = "/";
             info_type = "available";
@@ -43,12 +48,12 @@
 
           {
             block = "battery";
-            format = " $icon $percentage ";
+            #format = " $icon $percentage ";
           }
 
           {
             block = "memory";
-            format = " $icon $mem_used.eng(prefix:Mi)/$mem_total.eng(prefix:Mi)($mem_used_percents.eng(w:2)) ";
+            #format = " $icon $mem_used.eng(prefix:Mi)/$mem_total.eng(prefix:Mi)($mem_used_percents.eng(w:2)) ";
           }
 
           {
@@ -59,7 +64,7 @@
           {
             block = "load";
             interval = 1;
-            format = " $icon $1m ";
+            #format = " $icon $1m ";
           }
 
           { block = "sound"; }
