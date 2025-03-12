@@ -33,6 +33,14 @@
           }
 
           {
+            block = "vpn";
+            driver = "mullvad";
+            format_connected = " VPN: ON ";
+            state_connected = "good";
+            format_disconnected = " VPN: OFF ";
+          }
+
+          {
             block = "net";
             format = " $icon $speed_down.eng(prefix:K)/$speed_up.eng(prefix:K) ";
           }
