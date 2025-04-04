@@ -9,3 +9,10 @@
         (indent-region (region-beginning) (region-end))
       (indent-region (line-beginning-position) (line-end-position)))
     (setq deactivate-mark deactivate)))
+
+
+(defun haf/evil-replace (start end)
+  "Enters a regexp-replace command with the current selection"
+  (interactive "r")
+  (let ((selection (buffer-substring start end)))
+    (evil-ex (format "%%s/%s/" selection))))
