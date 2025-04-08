@@ -63,6 +63,7 @@
     scripts.bakup # my own script to nicely backup files
     scripts.docker-nuke # cleanup everything docker
     scripts.nix-nuke # cleanup everythin nix
+    scripts.nuke-all
 
     anki
     zathura # pdf reader

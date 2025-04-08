@@ -894,11 +894,11 @@
         "utils": "utils_6"
       },
       "locked": {
-        "lastModified": 1735636720,
-        "narHash": "sha256-YJvhkR5w9urIXiitOgQ9614YtNeQp27LjrD4Z7ranpE=",
+        "lastModified": 1744136347,
+        "narHash": "sha256-F62X49WKRaNZqCBwVSrTd587xwNuez58Q7I5AJhK98o=",
         "owner": "huuff",
         "repo": "nix-scripts",
-        "rev": "eb6366e4f5d95c4919a570efd5d4c03e74023042",
+        "rev": "6f041cfa586d79c3f5d02d5313147b5aabe5d415",
         "type": "github"
       },
       "original": {
