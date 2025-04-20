@@ -21,7 +21,7 @@
       xterm.enable = false;
     };
 
-    layout = "es";
+    layout = "us";
     xkbOptions = "eurosign:e";
   };
 }
