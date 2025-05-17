@@ -11,6 +11,8 @@
   ];
   # It gets too slow without this
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [ "intel_pstate=active" ];
 
   boot.loader.systemd-boot.enable = true;
