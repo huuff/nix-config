@@ -30,6 +30,8 @@
       modules.kubernetes
 
       myHomeModules.aider
+
+      ./cloud.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -96,7 +98,6 @@
 
     # TODO configure some emacs client and remove this
     thunderbird
-    awscli2
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
