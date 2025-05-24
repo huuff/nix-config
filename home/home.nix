@@ -188,6 +188,8 @@
     };
   };
 
+  # Keeps screen on when playing on fullscreen
+  services.caffeine.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
