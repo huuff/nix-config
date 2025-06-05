@@ -24,6 +24,7 @@
 
   networking = {
     useDHCP = false;
+    firewall.enable = false;
     interfaces = {
       wlp1s0.useDHCP = true;
     };
