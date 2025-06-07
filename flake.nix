@@ -118,6 +118,7 @@
       [
         ./nixos/wireless.nix { haf.networking.interface = "wlp1s0"; }
         ./nixos/bluetooth.nix
+        ./nixos/battery.nix
       ];
     };
 
