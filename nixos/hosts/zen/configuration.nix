@@ -33,7 +33,7 @@
   services.tailscale.enable = true;
   services.mullvad-vpn.enable = true;
   # necessary for mullvad
-  services.resolved.enable = true;
+  #services.resolved.enable = true;
 
   console = {
     font = "Lat2-Terminus16";

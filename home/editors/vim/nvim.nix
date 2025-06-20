@@ -38,7 +38,6 @@
       coc-eslint
       coc-yaml
       coc-html
-      coc-rust-analyzer
       coc-go
       ron-vim # Rust Object Notation
 
