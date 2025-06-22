@@ -27,6 +27,7 @@ in {
           onepassword-password-manager
           bitwarden
           istilldontcareaboutcookies
+          libredirect
         ];
       };
 
