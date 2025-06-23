@@ -24,4 +24,8 @@
     layout = "us";
     xkb.options = "eurosign:e";
   };
+
+  # otherwise screen-lockers don't work
+  security.pam.services.xlock.enable = true;
+  programs.i3lock.enable = true;
 }
