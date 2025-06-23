@@ -67,7 +67,7 @@
     programs.zsh = {
       enable = true;
 
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting = {
         enable = true;
       };
@@ -75,7 +75,7 @@
       defaultKeymap = "emacs";
 
       # Move across words with Ctrl + Left/Right
-      initExtra = ''
+      initContent = ''
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
 

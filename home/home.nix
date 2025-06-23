@@ -75,7 +75,7 @@
     python3 # TODO: In nixos config?
     ntfs3g # TODO: In nixos config?
     gnupg # TODO somewhere else with the rest of the config
-    _1password
+    _1password-cli
     slack
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
@@ -154,7 +154,8 @@
 
   programs.lsd = {
     enable = true;
-    enableAliases = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.ssh = {

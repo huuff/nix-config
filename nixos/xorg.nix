@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.xserver = {
     enable = true;
@@ -22,6 +22,6 @@
     };
 
     layout = "us";
-    xkbOptions = "eurosign:e";
+    xkb.options = "eurosign:e";
   };
 }

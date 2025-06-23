@@ -2,7 +2,7 @@
 let 
   firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
 in {
-  nixpkgs.overlays = [ nur.overlay ];
+  nixpkgs.overlays = [ nur.overlays.default ];
 
   programs.firefox = {
     enable = true;
@@ -11,11 +11,11 @@ in {
         id = 0;
         isDefault = true;
         search = {  
-          default = "DuckDuckGo";
+          default = "ddg";
           force = true;
         };
 
-        extensions = with firefox-addons; [
+        extensions.packages = with firefox-addons; [
           ublock-origin
           leechblock-ng 
           decentraleyes
@@ -35,7 +35,7 @@ in {
         id = 1;
         isDefault = false;
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
           force = true;
         };
       };
