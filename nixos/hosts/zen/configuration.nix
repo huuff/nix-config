@@ -24,7 +24,12 @@
 
   networking = {
     useDHCP = false;
-    firewall.enable = false;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        3000 # next.js applications
+      ];
+    };
     interfaces = {
       wlp1s0.useDHCP = true;
     };
