@@ -35,7 +35,13 @@
     };
   };
 
-  services.tailscale.enable = true;
+  services = {
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
+  };
+
   services.mullvad-vpn.enable = true;
   # necessary for mullvad
   #services.resolved.enable = true;
