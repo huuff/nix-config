@@ -64,10 +64,14 @@
 
       defaultKeymap = "emacs";
 
-      # Move across words with Ctrl + Left/Right
       initContent = ''
+        # Move across words with Ctrl + Left/Right
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
+
+        # increase history size
+        export HISTSIZE=100000
+        export SAVEHIST=100000
 
         # emacs' EAT shell integration
         [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
