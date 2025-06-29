@@ -64,6 +64,8 @@
 
       defaultKeymap = "emacs";
 
+      # TODO: Check if some of these settings would be nice to improve my history
+      # https://unix.stackexchange.com/a/273863/483246
       initContent = ''
         # Move across words with Ctrl + Left/Right
         bindkey "^[[1;5C" forward-word
