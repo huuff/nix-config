@@ -6,11 +6,8 @@
 
   programs.shell = {
     aliases = {
-      perms = ''stat -c "%a %n"'';
-      trace-net = ''strace -f -e trace=network''; # is it useful?
       op-login = "eval $(op signin --account my.1password.com)";
       ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
-      l = "ls";
       sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
       watch = "watch "; # same as sudo
       cloc = "cloc --vcs=git";
@@ -19,21 +16,14 @@
       duh = "du -h --max-depth=1";
       k = "kubectl";
       hf = "helmfile";
-      hm = "himalaya";
       xmlfmt = "xmllint --format -";
-      nix-shell = "nix shell"; # Prevent me from ever using nix-shell, since it's older and I'm too used to it
       # disable emacs splash screen, cannot do it from config file, so this will do
       emacs = "emacs --no-splash";
     };
 
     scriptDir = "$HOME/scripts";
 
-    completionsDir = {
-      bash = "${config.home.homeDirectory}/shell-completions/bash";
-      #fish = "${config.home.homeDirectory}/shell-completions/fish";
-      zsh = "${config.home.homeDirectory}/shell-completions/zsh";
-    };
-
+    completionsDir = {};
   };
 
 
