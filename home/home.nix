@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, user, secrets, myModules, myHomeModules, derivations, modules, scripts, ... }:
+{ pkgs, lib, unstablePkgs, user, secrets, myModules, homeModules, derivations, modules, scripts, ... }:
 {
   imports = [
     ./editors/vim/nvim.nix
@@ -29,10 +29,8 @@
     ./virtualization.nix
     modules.kubernetes
 
-    myHomeModules.aider
-
     ./cloud.nix
-  ];
+  ] ++ lib.attrValues homeModules;
 
   nixpkgs.config.allowUnfree = true;
 

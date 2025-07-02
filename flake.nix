@@ -28,21 +28,45 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nix-soapui, home-manager, nix-home-modules, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts, nix-index-database}:
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    nix-soapui,
+    home-manager,
+    nix-home-modules,
+    nur,
+    emacs-overlay,
+    myDrvs,
+    secrets,
+    nix-portable-shell,
+    hm-kubernetes,
+    scripts,
+    nix-index-database,
+    sops-nix
+  }:
   let
     system = "x86_64-linux";
+
     pkgs = import nixpkgs { inherit system; };
+
     unstablePkgs = import nixpkgs-unstable { inherit system; };
+
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
       inherit system;
 
       specialArgs = { 
         inherit user emacs-overlay nur secrets unstablePkgs; 
+
         scripts = scripts.packages.x86_64-linux;
         myModules = myDrvs.nixosModules;
-        myHomeModules = nix-home-modules.homeManagerModules;
         # TODO: Maybe it should be in an overlay?
         derivations = {
           soapui57 = nix-soapui.packages.x86_64-linux.default;
@@ -51,13 +75,19 @@
           shell = nix-portable-shell.nixosModules.shell;
           kubernetes = hm-kubernetes.nixosModules.kubernetes;
         };
+
+        homeModules = pkgs.lib.fold (s1: s2: s1 // s2) {} [
+          nix-home-modules.homeManagerModules
+          sops-nix.homeManagerModules
+        ];
+
       };
 
       modules = [
         host
 
         # For using comma (,) TODO: Maybe put it somewhere else?
-        # TODO: The official example (https://github.com/nix-community/nix-index-database) puts nix-index in home-manager
+        # TODO: The official example (https://github.com/nix-community/nix-index-database ) puts nix-index in home-manager
         nix-index-database.nixosModules.nix-index
         {
           programs.nix-index-database.comma.enable = true; 
