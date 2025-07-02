@@ -1,38 +1,38 @@
 { pkgs, unstablePkgs, user, secrets, myModules, myHomeModules, derivations, modules, scripts, ... }:
 {
-    imports = [
-      ./editors/vim/nvim.nix
-      ./editors/emacs
-      ./editors/vscode.nix
+  imports = [
+    ./editors/vim/nvim.nix
+    ./editors/emacs
+    ./editors/vscode.nix
 
-      ./postman.nix
-      ./email.nix
+    ./postman.nix
+    ./email.nix
 
-      ./browsers/firefox.nix
-      ./browsers/chromium.nix
+    ./browsers/firefox.nix
+    ./browsers/chromium.nix
 
-      ./terminal-emulators/alacritty.nix
+    ./terminal-emulators/alacritty.nix
 
-      # TODO: Improve my modules. UPDATE: Ditch them entirely, redo them better, I'm currently using `modules` for my (better separated) modules
-      myModules.maven
-      myModules.mycli
+    # TODO: Improve my modules. UPDATE: Ditch them entirely, redo them better, I'm currently using `modules` for my (better separated) modules
+    myModules.maven
+    myModules.mycli
 
-      ./thefuck
-      ./git.nix
-      ./starship.nix
-      ./development.nix
-      ./desktop-environment
-      ./desktop-environment/screen-lock.nix
-      ./keybindings.nix
+    ./thefuck
+    ./git.nix
+    ./starship.nix
+    ./development.nix
+    ./desktop-environment
+    ./desktop-environment/screen-lock.nix
+    ./keybindings.nix
 
-      ./shell.nix
-      ./virtualization.nix
-      modules.kubernetes
+    ./shell.nix
+    ./virtualization.nix
+    modules.kubernetes
 
-      myHomeModules.aider
+    myHomeModules.aider
 
-      ./cloud.nix
-    ];
+    ./cloud.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -184,8 +184,17 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Juno";
-      package = pkgs.juno-theme;
+      name = "Arc-Dark";
+      package = pkgs.arc-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    cursorTheme = {
+      name = "Adwaita"; # A good default, or choose another like Bibata
+      package = pkgs.adwaita-icon-theme;
+      size = 24;
     };
   };
 
