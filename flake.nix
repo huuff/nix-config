@@ -154,6 +154,7 @@
         buildInputs = [
           nil
           git-crypt
+          sops
         ];
     };
   };

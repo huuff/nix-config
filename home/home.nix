@@ -30,6 +30,7 @@
     modules.kubernetes
 
     ./cloud.nix
+    ./secrets.nix
   ] ++ lib.attrValues homeModules;
 
   nixpkgs.config.allowUnfree = true;
@@ -45,6 +46,7 @@
   home.homeDirectory = "/home/${user}";
   home.sessionVariables = {
     EDITOR = "nvim";
+    # TODO: remove the flag comments and use the longform which should be self-explanatory
     # -X: keep output in terminal
     # -r: preserve colors
     # -F: exit immediately if the entire output fits the screen

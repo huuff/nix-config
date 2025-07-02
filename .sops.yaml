@@ -1,0 +1,10 @@
+keys:
+  - &my_pgp A5D50328091D738706BA18A07E66BB1D1107BA57
+  - &zen_age age1pqrdd9zatkycl5vykjs5tt84zy4cfwx3kzk3eshqjpsn747lgf0sy0ef8f
+creation_rules:
+  - path_regex: secrets.yaml
+    key_groups:
+      - pgp:
+        - *my_pgp
+        age:
+        - *zen_age
