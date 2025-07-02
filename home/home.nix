@@ -166,9 +166,7 @@
     '';
   };
 
-  xdg = {
-    enable = true;
-  };
+  xdg.enable = true;
 
   services.dunst.enable = true;
 

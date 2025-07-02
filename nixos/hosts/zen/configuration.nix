@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./screens.nix
     ../../flatpak.nix
+    ../../dark-theme.nix
   ];
   # It gets too slow without this
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
@@ -48,12 +49,10 @@
 
   };
 
-
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
-
 
 
   # This value determines the NixOS release from which the default
