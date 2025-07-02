@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ./screens.nix
+    ../../flatpak.nix
   ];
   # It gets too slow without this
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
@@ -40,16 +41,19 @@
       enable = true;
       useRoutingFeatures = "client";
     };
+
+    mullvad-vpn.enable = true;
+    # necessary for mullvad
+    #services.resolved.enable = true;
+
   };
 
-  services.mullvad-vpn.enable = true;
-  # necessary for mullvad
-  #services.resolved.enable = true;
 
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
+
 
 
   # This value determines the NixOS release from which the default
