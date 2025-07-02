@@ -24,8 +24,10 @@
     };
     hm-kubernetes.url = "github:huuff/hm-kubernetes";
 
-    nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nix-soapui, home-manager, nix-home-modules, nur, emacs-overlay, myDrvs, secrets, nix-portable-shell, hm-kubernetes, scripts, nix-index-database}:
@@ -65,7 +67,8 @@
 
         {
           # Set the registry nixpkgs to the one currently in use
-          # This will avoid redownloading nixpkgs on every nix operation
+          # This means that when you do `nix run nixpkgs#something` you're running from the same
+          # nixpkgs as you've set in the system-wide config
           nix.registry.nixpkgs.flake = nixpkgs; 
 
           # The netrc file can contain credentials for sources from which to download
@@ -91,12 +94,6 @@
           # because of an assertion somewhere
           programs.zsh.enable = true;
         }
-
-        # {
-        #   # TODO honestly I need something better than just putting all of my host configs here
-        #   services.udev.enable = true;
-        #   imports = [ ./home/screens.nix ];
-        # }
 
         home-manager.nixosModules.home-manager
         {
