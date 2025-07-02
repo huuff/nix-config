@@ -18,7 +18,7 @@
     };
     nix-soapui.url = "github:huuff/nix-soapui";
     nix-portable-shell.url = "github:huuff/nix-portable-shell";
-    nix-home-modules = {
+    my-home-modules = {
       url = "github:huuff/nix-home-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -41,7 +41,7 @@
     nixpkgs-unstable,
     nix-soapui,
     home-manager,
-    nix-home-modules,
+    my-home-modules,
     nur,
     emacs-overlay,
     myDrvs,
@@ -77,7 +77,7 @@
         };
 
         homeModules = pkgs.lib.fold (s1: s2: s1 // s2) {} [
-          nix-home-modules.homeManagerModules
+          my-home-modules.homeManagerModules
           sops-nix.homeManagerModules
         ];
 
