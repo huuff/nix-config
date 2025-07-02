@@ -15,11 +15,10 @@
           ./compilation.el
           ./window-management.el
 
-          (pkgs.substituteAll { 
-            src = ./init.el;
+          (pkgs.replaceVars ./init.el {
             # XXX: dape (for debugging) needs the vscode LLDB adapter
             # so I just substitute it into the elisp from here
-            codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+             codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
           })
 
           ./safe-locals.el
