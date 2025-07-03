@@ -98,6 +98,8 @@
 
     # TODO configure some emacs client and remove this
     thunderbird
+
+    tor-browser
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
