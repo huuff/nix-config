@@ -1,11 +1,11 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nur.url = "github:nix-community/NUR";
     home-manager = { 
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -38,7 +38,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     nix-soapui,
     home-manager,
     my-home-modules,
@@ -57,13 +56,11 @@
 
     pkgs = import nixpkgs { inherit system; };
 
-    unstablePkgs = import nixpkgs-unstable { inherit system; };
-
     mkConfig = host: user: extraModules: nixpkgs.lib.nixosSystem rec {
       inherit system;
 
       specialArgs = { 
-        inherit user emacs-overlay nur secrets unstablePkgs; 
+        inherit user emacs-overlay nur secrets; 
 
         scripts = scripts.packages.x86_64-linux;
         myModules = myDrvs.nixosModules;

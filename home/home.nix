@@ -17,7 +17,6 @@
     myModules.maven
     myModules.mycli
 
-    ./thefuck
     ./git.nix
     ./starship.nix
     ./development.nix
@@ -73,7 +72,6 @@
     scrot # making screenshots
     cloc # count lines of code
     pavucontrol
-    python3 # TODO: In nixos config?
     ntfs3g # TODO: In nixos config?
     gnupg # TODO somewhere else with the rest of the config
     _1password-cli
