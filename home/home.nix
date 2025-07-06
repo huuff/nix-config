@@ -1,4 +1,4 @@
-{ pkgs, lib, unstablePkgs, user, secrets, myModules, homeModules, derivations, modules, scripts, ... }:
+{ pkgs, lib, user, secrets, myModules, homeModules, derivations, modules, scripts, ... }:
 {
   imports = [
     ./editors/vim/nvim.nix
@@ -31,6 +31,7 @@
 
     ./cloud.nix
     ./secrets.nix
+    ./llm.nix
   ] ++ lib.attrValues homeModules;
 
   nixpkgs.config.allowUnfree = true;
@@ -112,13 +113,6 @@
     settings = secrets.mavenSettings;
   };
 
-  programs.aider = {
-    enable = true;
-    package = unstablePkgs.aider-chat;
-    settings = {
-      autoCommits = false;
-    };
-  };
 
   programs.kubernetes = {
     enable = true;
