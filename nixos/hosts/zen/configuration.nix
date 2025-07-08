@@ -44,9 +44,9 @@
     };
 
     mullvad-vpn.enable = true;
-    # necessary for mullvad
-    #services.resolved.enable = true;
 
+    # necessary for mullvad
+    resolved.enable = true;
   };
 
   console = {
