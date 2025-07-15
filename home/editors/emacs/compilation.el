@@ -35,7 +35,6 @@
   (setq compilation-error-regexp-alist '(("--> \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3) ;; cargo build
                                          ("\\(^/.*?\\):\\([0-9]+\\):\\([0-9]+\\)" 1 2 3))) ;; svelte check 
 
-
   (setq haf/compilation-configs (list '(:dominating-file "Cargo.toml"
                                                          :build-command "cargo build --all-features"
                                                          :test-command "cargo test --all-features"
