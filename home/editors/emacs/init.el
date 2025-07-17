@@ -47,6 +47,7 @@
 ;; TODO: ignore anything under .gitignore for consult-todo
 ;; TODO: Maybe use wgrep?
 ;; TODO: A keybinding or something to replace selected text with clipboard
+;; TODO: Maybe bring back rustic, since it has a new maintainer (https://github.com/emacs-rustic/rustic )
 ;; TODO: bring back cc-isearch-menu
 ;; TODO: maybe bring back casual?
 
@@ -1096,7 +1097,7 @@ targets."
   "Switches theme depending on current major-mode"
   (interactive)
   (let ((next-theme (cl-case major-mode
-                      (rustic-mode 'doom-gruvbox)
+                      (rust-ts-mode 'doom-gruvbox)
                       (emacs-lisp-mode 'doom-one)
                       (nix-ts-mode 'doom-city-lights)
                       (typescript-ts-mode 'doom-dark+)
@@ -1398,21 +1399,6 @@ targets."
 ;; ====================
 ;; TODO I'm not entirely sure what it does yet but I know it allows sending queries and maybe it has something else
 (use-package graphql-mode)
-
-;; rust
-;; ====================
-(use-package rust-mode
-  :ensure t
-  :init
-  (setq rust-mode-treesitter-derive t))
-
-(use-package rustic
-  :ensure t
-  :config
-  ;; already have apheleia
-  (setq rustic-format-on-save nil)
-  (setq rustic-lsp-client 'eglot)
-  :after (rust-mode))
 
 ;; I set the background black in early-init so it's not flashing white
 ;; while starting up. This, however, breaks the mouse pointer, making it full-black.
