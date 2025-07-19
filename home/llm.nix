@@ -13,7 +13,9 @@
       enable = true;
       package = pkgs.aider-chat;
       settings = {
-        autoCommits = false;
+        auto-commits = false;
+        alias = [ "gemini:openrouter/google/gemini-2.5-pro" ];
+        model = "gemini";
       };
     };
     

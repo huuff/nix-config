@@ -304,11 +304,11 @@
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1738859093,
-        "narHash": "sha256-xnG/gWepSyIrF/SH0f5HIGil72xYsxFFve6wmw/4qHk=",
+        "lastModified": 1752941874,
+        "narHash": "sha256-gF0h6V3bvWnOS7ualrVUhClMica+ODbJpCTUELIm4Cs=",
         "owner": "huuff",
         "repo": "nix-home-modules",
-        "rev": "1abd35128c7008c6017546d2409d4f13147d4af9",
+        "rev": "5643f7ae94ee10317f79e76c681ab4129e1cafee",
         "type": "github"
       },
       "original": {
