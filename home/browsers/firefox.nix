@@ -28,6 +28,7 @@ in {
           bitwarden
           istilldontcareaboutcookies
           libredirect
+          youtube-no-translation
         ];
       };
 
