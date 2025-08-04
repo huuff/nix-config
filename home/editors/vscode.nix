@@ -40,7 +40,6 @@
         # TODO: I don't think this is working...
         # is it automatically picking up direnv?
         mkhl.direnv # direnv integration
-        waderyan.gitblame # git blame in the bottom bar
         formulahendry.auto-rename-tag # auto rename matching tags in html
         christian-kohler.path-intellisense # autocomplete paths
         firefox-devtools.vscode-firefox-debug # allow debugging with firefox
