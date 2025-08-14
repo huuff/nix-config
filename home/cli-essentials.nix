@@ -35,4 +35,6 @@
   # I use it to shut off my external HDD when unmounting
   # with my eject-disk script
   hdparm
+
+  gh # github
 ]
