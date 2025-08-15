@@ -6,6 +6,7 @@
 
   home.packages = [
     (pkgs.python3.withPackages(ps: [ps.llm ps.llm-openrouter]))
+    pkgs.claude-code
   ];
 
   programs = {
