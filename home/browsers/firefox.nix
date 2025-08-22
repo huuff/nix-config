@@ -29,6 +29,20 @@ in {
           istilldontcareaboutcookies
           libredirect
           youtube-no-translation
+        ] ++ [
+          # I use it for CSS testing
+          (buildFirefoxXpiAddon {
+            pname = "toggle-dark-mode";
+            version = "1.0.1";
+            addonId = "{6bd40d01-481e-451f-9582-22bde8083fe3}";
+            url = "https://addons.mozilla.org/en-US/firefox/addon/toggle-dark-mode/";
+            sha256 = "sha256-efrD7qPk7qPfJ02Rm+hKOuP11QEad4tcZcgmLh67D2M=";
+            meta = {
+              homepage = "https://addons.mozilla.org/en-US/firefox/addon/toggle-dark-mode/";
+              description = "Toggle the content’s color scheme between preferring light or dark (or inheriting)";
+              license = pkgs.lib.licenses.wtfpl;
+            };
+          })
         ];
       };
 
