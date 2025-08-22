@@ -45,15 +45,6 @@ in {
           })
         ];
       };
-
-      workgpt = {
-        id = 1;
-        isDefault = false;
-        search = {
-          default = "ddg";
-          force = true;
-        };
-      };
     };
   };
 
