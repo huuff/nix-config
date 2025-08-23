@@ -30,13 +30,14 @@ in {
           libredirect
           youtube-no-translation
         ] ++ [
+          # TODO: WTF! home-manager doesn't pick this! it's driving me crazy
           # I use it for CSS testing
           (buildFirefoxXpiAddon {
             pname = "toggle-dark-mode";
             version = "1.0.1";
             addonId = "{6bd40d01-481e-451f-9582-22bde8083fe3}";
-            url = "https://addons.mozilla.org/en-US/firefox/addon/toggle-dark-mode/";
-            sha256 = "sha256-efrD7qPk7qPfJ02Rm+hKOuP11QEad4tcZcgmLh67D2M=";
+            url = "https://addons.mozilla.org/firefox/downloads/file/3855828/toggle_dark_mode-1.0.1.xpi";
+            sha256 = "sha256-MK+968kQz5ynKqUxgZMS5mf+5nZqobMATu42JAxV4qc=";
             meta = {
               homepage = "https://addons.mozilla.org/en-US/firefox/addon/toggle-dark-mode/";
               description = "Toggle the content’s color scheme between preferring light or dark (or inheriting)";
