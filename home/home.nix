@@ -62,10 +62,11 @@
 
     # TODO: any way to just pick-up all packages from scripts?
     scripts.clipscrot # my own script to send screenshot to clipboard
+    scripts.pathscrot # send screenshots to a file and path to clipboard (I use it for claude code)
     scripts.bakup # my own script to nicely backup files
     scripts.docker-nuke # cleanup everything docker
-    scripts.nix-nuke # cleanup everythin nix
-    scripts.nuke-all
+    scripts.nix-nuke # cleanup everything nix
+    scripts.nuke-all #cleanup everything everything
 
     anki
     zathura # pdf reader

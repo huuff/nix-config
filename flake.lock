@@ -883,11 +883,11 @@
         "utils": "utils_6"
       },
       "locked": {
-        "lastModified": 1744137386,
-        "narHash": "sha256-SohmJgeKVSWLmAggkBvcnUf+URp5OfX1hagwgAbjByc=",
+        "lastModified": 1756194013,
+        "narHash": "sha256-S8oWm8j2L6CYJrVsCIkQ/P4gtU6Olea2IS3lMM9igPw=",
         "owner": "huuff",
         "repo": "nix-scripts",
-        "rev": "9612d1ce3a141ad806f97eec6daae0b3e856bb98",
+        "rev": "2e9c74a05acc70e7dc56a10e38e51fe17b4e4f14",
         "type": "github"
       },
       "original": {
