@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ config, lib, ... }:
 with lib;
 {
   options = {
@@ -20,10 +20,15 @@ with lib;
     networking = {
       wireless = {
         enable = true;  # Enables wireless support via wpa_supplicant.
-        userControlled.enable = true;
+        #userControlled.enable = true;
         interfaces = [ config.haf.networking.interface ];
-        networks = secrets.networks;
       };
+    };
+
+    environment.etc."wpa_supplicant.conf" = {
+      source = config.sops.secrets.wpaSupplicantConf.path;
+      enable = true;
+      mode = "0600";
     };
   };
 }

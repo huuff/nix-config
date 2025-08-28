@@ -116,6 +116,9 @@
         ./nixos/gnupg.nix
         ./nixos/scanner.nix
 
+        sops-nix.nixosModules.sops
+        ./nixos/secrets.nix
+
         {
           # XXX: I have it enabled in home-manager but that seems to not be enough
           # because of an assertion somewhere
