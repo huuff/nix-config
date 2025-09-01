@@ -147,6 +147,11 @@
         ./nixos/bluetooth.nix
         ./nixos/battery.nix
       ];
+      mini-s = mkConfig ./nixos/hosts/mini-s/configuration.nix "haf"
+     [
+       ./nixos/wireless.nix { haf.networking.interface = "wlo1"; }
+       ./nixos/bluetooth.nix
+     ];
     };
 
     # TODO formatting and pre-commit
