@@ -8,6 +8,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "coretemp" ]; 
 
   networking = {
     hostName = "mini-s";
@@ -24,6 +25,14 @@
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
+
+  services = {
+    thermald.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    lm_sensors 
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
