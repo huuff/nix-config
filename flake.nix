@@ -115,6 +115,7 @@
         ./nixos/virtualization.nix
         ./nixos/gnupg.nix
         ./nixos/scanner.nix
+        ./nixos/vpn.nix
 
         sops-nix.nixosModules.sops
         ./nixos/secrets.nix
