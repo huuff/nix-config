@@ -96,10 +96,9 @@
 
     pgcli
 
-    # TODO configure some emacs client and remove this
-    thunderbird
-
     tor-browser
+
+    libreoffice
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
 
   programs.maven = {
