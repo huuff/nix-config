@@ -68,7 +68,6 @@
     scripts.nix-nuke # cleanup everything nix
     scripts.nuke-all #cleanup everything everything
 
-    anki
     zathura # pdf reader
     scrot # making screenshots
     cloc # count lines of code
