@@ -75,6 +75,11 @@
         export HISTSIZE=100000
         export SAVEHIST=100000
 
+        # use ^X^E to edit command in $EDITOR
+        autoload -z edit-command-line
+        zle -N edit-command-line
+        bindkey "^X^E" edit-command-line
+
         # emacs' EAT shell integration
         [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
           source "$EAT_SHELL_INTEGRATION_DIR/zsh"
