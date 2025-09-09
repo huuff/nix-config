@@ -44,6 +44,7 @@
         aaron-bond.better-comments # nicer display for todos and such
         # TODO: I think I'm missing LSP config and others
         jnoortheen.nix-ide # nix support
+        bradlc.vscode-tailwindcss # tailwind class autocomplete
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # XXX: I'm leaving this one as an example in case I need to manually add some, but this one's already in
         # nixpkgs
@@ -55,6 +56,25 @@
           #sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
         #}
       ];
+
+      userSettings = {
+        "workbench.iconTheme" = "material-icon-theme";
+
+        "tailwindCSS.experimental.classRegex" = [
+          # for dioxus
+          "class: \"(.*)\""
+        ];
+        "tailwindCSS.includeLanguages" = {
+            # rust frontend frameworks
+            "rust" = "html";
+            "html" = "html";
+          };
+
+          # suggested setting for tailwind
+          "editor.quickSuggestions" = {
+            "strings" = true;
+          };
+      };
     };
   };
 }
