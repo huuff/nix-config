@@ -35,6 +35,7 @@
       extensions = with pkgs.vscode-extensions; [
         pkief.material-icon-theme # nice icon theme
         mkhl.direnv # direnv integration
+        # TODO: is this necessary? I think I've read this is native in vscode
         formulahendry.auto-rename-tag # auto rename matching tags in html
         christian-kohler.path-intellisense # autocomplete paths
         firefox-devtools.vscode-firefox-debug # allow debugging with firefox
@@ -45,6 +46,7 @@
         # TODO: I think I'm missing LSP config and others
         jnoortheen.nix-ide # nix support
         bradlc.vscode-tailwindcss # tailwind class autocomplete
+        vadimcn.vscode-lldb # rust debugger
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # XXX: I'm leaving this one as an example in case I need to manually add some, but this one's already in
         # nixpkgs
