@@ -47,6 +47,7 @@
         jnoortheen.nix-ide # nix support
         bradlc.vscode-tailwindcss # tailwind class autocomplete
         vadimcn.vscode-lldb # rust debugger
+        james-yu.latex-workshop # latex all-in-one
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # XXX: I'm leaving this one as an example in case I need to manually add some, but this one's already in
         # nixpkgs
