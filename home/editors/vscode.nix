@@ -48,6 +48,7 @@
         bradlc.vscode-tailwindcss # tailwind class autocomplete
         vadimcn.vscode-lldb # rust debugger
         james-yu.latex-workshop # latex all-in-one
+        github.vscode-pull-request-github # do pr reviews in vscode
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # XXX: I'm leaving this one as an example in case I need to manually add some, but this one's already in
         # nixpkgs
