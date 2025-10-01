@@ -1,5 +1,7 @@
-{  secrets, ... }:
+{  config, ... }:
 {
+  sops.secrets.gitWorkConfig = {};
+
   programs.git = {
     enable = true;
     userName = "Haf";
@@ -46,7 +48,7 @@
     includes = [
       {
         condition = "gitdir:~/work/";
-        contents = secrets.gitWorkConfig;
+        path = config.sops.secrets.gitWorkConfig.path;
       }
     ];
 

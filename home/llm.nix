@@ -1,8 +1,6 @@
 { pkgs, config, ... }: {
 
-  sops.secrets = {
-    openrouterApiKey = {};
-  };
+  sops.secrets.openrouterApiKey = {};
 
   home.packages = [
     (pkgs.python3.withPackages(ps: [ps.llm ps.llm-openrouter]))

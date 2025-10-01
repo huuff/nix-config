@@ -1,4 +1,4 @@
-{ pkgs, lib, user, secrets, myModules, homeModules, derivations, modules, scripts, ... }:
+{ pkgs, lib, user, secrets, homeModules, derivations, modules, scripts, ... }:
 {
   imports = [
     ./editors/vim/nvim.nix
@@ -11,9 +11,6 @@
     ./browsers/chromium.nix
 
     ./terminal-emulators/alacritty.nix
-
-    # TODO: Improve my modules. UPDATE: Ditch them entirely, redo them better, I'm currently using `modules` for my (better separated) modules
-    myModules.mycli
 
     ./git.nix
     ./starship.nix
@@ -29,6 +26,7 @@
     ./cloud.nix
     ./secrets.nix
     ./llm.nix
+    ./ssh.nix
   ] ++ lib.attrValues homeModules;
 
   nixpkgs.config.allowUnfree = true;
@@ -138,25 +136,9 @@
     enableZshIntegration = true;
   };
 
-  programs.ssh = {
-    enable = true;
-    matchBlocks = secrets.sshMatchBlocks;
-    extraConfig = ''
-      PubkeyAcceptedKeyTypes +ssh-rsa
-    '';
-  };
-
   xdg.enable = true;
 
   services.dunst.enable = true;
-
-  programs.mycli = {
-    enable = true;
-    favoriteQueries = secrets.cfQueries;
-    multiline = true;
-    autoVerticalOutput = true;
-  };
-
 
   # dark mode
   gtk = {

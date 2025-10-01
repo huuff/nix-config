@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nur.url = "github:nix-community/NUR";
     home-manager = { 
@@ -10,8 +9,6 @@
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
-    myDrvs.url = "github:huuff/derivations";
-    secrets.url = "git+ssh://git@github.com/huuff/secrets.git";
     scripts = {
       url = "github:huuff/nix-scripts";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,8 +40,6 @@
     my-home-modules,
     nur,
     emacs-overlay,
-    myDrvs,
-    secrets,
     nix-portable-shell,
     hm-kubernetes,
     scripts,
@@ -60,10 +55,9 @@
       inherit system;
 
       specialArgs = { 
-        inherit user emacs-overlay nur secrets; 
+        inherit user emacs-overlay nur; 
 
         scripts = scripts.packages.x86_64-linux;
-        myModules = myDrvs.nixosModules;
         # TODO: Maybe it should be in an overlay?
         derivations = {
           soapui57 = nix-soapui.packages.x86_64-linux.default;
