@@ -6,7 +6,6 @@
     ./editors/vscode.nix
 
     ./postman.nix
-    ./email.nix
 
     ./browsers/firefox.nix
     ./browsers/chromium.nix
@@ -14,7 +13,6 @@
     ./terminal-emulators/alacritty.nix
 
     # TODO: Improve my modules. UPDATE: Ditch them entirely, redo them better, I'm currently using `modules` for my (better separated) modules
-    myModules.maven
     myModules.mycli
 
     ./git.nix
@@ -99,17 +97,6 @@
 
     libreoffice
   ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
-
-  programs.maven = {
-    enable = true;
-    options = {
-      "maven.wagon.http.ssl.insecure" = "true";
-      "maven.wagon.http.ssl.allowall" = "true";
-      "maven.wagon.http.ssl.ignore.validity" = "true";
-    };
-    settings = secrets.mavenSettings;
-  };
-
 
   programs.kubernetes = {
     enable = true;
