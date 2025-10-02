@@ -142,6 +142,14 @@
         ./nixos/bluetooth.nix
         ./nixos/battery.nix
       ];
+
+      evo = mkConfig ./nixos/hosts/evo/configuration.nix "haf"
+      [
+        ./nixos/wireless.nix { haf.networking.interface = "wlp99s0"; }
+        ./nixos/bluetooth.nix
+        ./nixos/battery.nix
+      ];
+
       mini-s = mkConfig ./nixos/hosts/mini-s/configuration.nix "haf"
      [
        ./nixos/wireless.nix { haf.networking.interface = "wlo1"; }

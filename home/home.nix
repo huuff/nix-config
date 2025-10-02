@@ -1,4 +1,4 @@
-{ pkgs, lib, user, secrets, homeModules, derivations, modules, scripts, ... }:
+{ pkgs, lib, user, homeModules, derivations, modules, scripts, ... }:
 {
   imports = [
     ./editors/vim/nvim.nix
