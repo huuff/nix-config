@@ -11,10 +11,12 @@
       laptopScreenConfig = {
         enable = true;
         primary = true;
-        # TODO: this screen is high dpi (2880x1800) but scaling looks like ass so
-        # I downgrade it... maybe I need wayland for this?
-        mode = "1920x1200";
+        mode = "2880x1800";
         position = "0x0";
+        scale = {
+          x = 0.5;
+          y = 0.5;
+        };
       };
     in
     {
@@ -37,7 +39,7 @@
           "DP-1" = {
             enable = true;
             mode = "1920x1080";
-            position = "1920x0";
+            position = "2880x0";
           };
         };
       };
@@ -52,7 +54,7 @@
           "HDMI-1" = {
             enable = true;
             mode = "1920x1080";
-            position = "1920x0";
+            position = "2880x0";
           };
         };
       };
