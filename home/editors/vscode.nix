@@ -74,10 +74,12 @@
             "html" = "html";
           };
 
-          # suggested setting for tailwind
-          "editor.quickSuggestions" = {
-            "strings" = true;
-          };
+        # suggested setting for tailwind
+        "editor.quickSuggestions" = {
+          "strings" = true;
+        };
+
+        "git.autofetch" = true;
       };
     };
   };
