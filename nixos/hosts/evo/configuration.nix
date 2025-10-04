@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -33,12 +33,25 @@
     keyMap = "us";
   };
 
-  #services.xserver.dpi = 180;
-  #environment.variables = {
-    #GDK_SCALE = "2";
-    #GDK_DPI_SCALE = "0.5";
-    #_JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
-  #};
+  swapDevices = [
+    {
+      device = "/.swapfile";
+      size = 16 * 1024; # 16 GB
+    }
+  ];
+
+  system.activationScripts.setupRootSwapfile = {
+    text = ''
+      if [ ! -e /.swapfile ]; then
+        touch /.swapfile
+        # remove CoW, necessary for swap on btrfs
+        ${pkgs.e2fsprogs}/bin/chattr +C /.swapfile
+        fallocate -l 16G /.swapfile 
+        chmod 600 /.swapfile
+        mkswap /.swapfile
+      fi
+    '';
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
