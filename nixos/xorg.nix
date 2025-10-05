@@ -4,7 +4,7 @@
     enable = true;
     libinput = {
       enable = true;
-      touchpad.scrollMethod = "edge";
+      touchpad.scrollMethod = "twofinger";
     };
     displayManager = {
       lightdm.enable = true;
