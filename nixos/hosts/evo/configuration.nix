@@ -6,6 +6,7 @@
     ./screens.nix
     ../../flatpak.nix
     ../../dark-theme.nix
+    ./disko.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
