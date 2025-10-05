@@ -30,6 +30,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -44,7 +49,8 @@
     hm-kubernetes,
     scripts,
     nix-index-database,
-    sops-nix
+    sops-nix,
+    disko,
   }:
   let
     system = "x86_64-linux";
@@ -113,6 +119,8 @@
 
         sops-nix.nixosModules.sops
         ./nixos/secrets.nix
+
+        disko.nixosModules.disko
 
         {
           # XXX: I have it enabled in home-manager but that seems to not be enough
