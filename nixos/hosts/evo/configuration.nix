@@ -1,16 +1,31 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 
 {
   imports = [
-    ./hardware-configuration.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
     ./screens.nix
     ../../flatpak.nix
     ../../dark-theme.nix
     ./disko.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci" ];
+      kernelModules = [ "kvm-amd" ];
+    };
+
+    extraModulePackages = [];
+  };
+
+  nixpkgs.hostPlatform = "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
 
   networking.hostName = "evo";
 
