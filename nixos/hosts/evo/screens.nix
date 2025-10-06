@@ -25,7 +25,12 @@
           "eDP-1" = laptopScreenFingerprint;
         };
         config = {
-          "eDP-1" = laptopScreenConfig;
+          "eDP-1" = laptopScreenConfig // {
+            scale = {
+              x = 0.667;
+              y = 0.667;
+            };
+          };
         };
       };
       docked = {
