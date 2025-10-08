@@ -13,7 +13,7 @@
     ./terminal-emulators/alacritty.nix
 
     ./git.nix
-    ./starship.nix
+    ./prompt.nix
     ./development.nix
     ./desktop-environment
     ./desktop-environment/screen-lock.nix
