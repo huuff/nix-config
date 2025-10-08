@@ -27,6 +27,7 @@
     ./secrets.nix
     ./llm.nix
     ./ssh.nix
+    ./cli-essentials.nix
   ] ++ lib.attrValues homeModules;
 
   nixpkgs.config.allowUnfree = true;
@@ -94,7 +95,7 @@
     tor-browser
 
     libreoffice
-  ] ++ import ./cli-essentials.nix { inherit pkgs; } ;
+  ];
 
   programs.kubernetes = {
     enable = true;
@@ -129,12 +130,6 @@
   };
 
   services.gpg-agent.enable = true;
-
-  programs.lsd = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
 
   xdg.enable = true;
 
