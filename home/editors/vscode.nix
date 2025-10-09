@@ -49,16 +49,14 @@
         vadimcn.vscode-lldb # rust debugger
         james-yu.latex-workshop # latex all-in-one
         github.vscode-pull-request-github # do pr reviews in vscode
+        jdinhlife.gruvbox # you're wrong if you use any other theme for rust
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        # XXX: I'm leaving this one as an example in case I need to manually add some, but this one's already in
-        # nixpkgs
-        #{
-          ## some comment niceties?
-          #name = "better-comments";
-          #publisher = "aaron-bond";
-          #version = "3.0.2";
-          #sha256 = "hQmA8PWjf2Nd60v5EAuqqD8LIEu7slrNs8luc3ePgZc=";
-        #}
+        {
+          name = "theme-by-language";
+          publisher = "jsaulou";
+          version = "1.3.0";
+          sha256 = "VyXIGPraAABt5bOJH86qvWtbCY2Tp99z26w2qUOCcsQ=";
+        }
       ];
 
       userSettings = {
@@ -80,6 +78,11 @@
         };
 
         "git.autofetch" = true;
+
+        "theme-by-language.themes" = {
+          "*" = "Default Dark Mode";
+          "rust" = "Gruvbox Dark Hard";
+        };
       };
     };
   };
