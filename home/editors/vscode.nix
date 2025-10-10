@@ -50,6 +50,7 @@
         james-yu.latex-workshop # latex all-in-one
         github.vscode-pull-request-github # do pr reviews in vscode
         jdinhlife.gruvbox # you're wrong if you use any other theme for rust
+        vscodevim.vim # vim emulation layer
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "theme-by-language";
@@ -82,6 +83,12 @@
         "theme-by-language.themes" = {
           "*" = "Default Dark Mode";
           "rust" = "Gruvbox Dark Hard";
+        };
+
+        "vim" = {
+          "useSystemClipboard" = true;
+          "leader" = "<space>";
+          "sneak" = true;
         };
       };
     };
