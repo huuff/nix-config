@@ -14,8 +14,8 @@
         mode = "2880x1800";
         position = "0x0";
         scale = {
-          x = 0.5;
-          y = 0.5;
+          x = 0.667;
+          y = 0.667;
         };
       };
     in
@@ -25,12 +25,7 @@
           "eDP-1" = laptopScreenFingerprint;
         };
         config = {
-          "eDP-1" = laptopScreenConfig // {
-            scale = {
-              x = 0.667;
-              y = 0.667;
-            };
-          };
+          "eDP-1" = laptopScreenConfig;
         };
       };
       docked = {
