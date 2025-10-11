@@ -89,6 +89,12 @@
           "useSystemClipboard" = true;
           "leader" = "<space>";
           "sneak" = true;
+          "useCtrlKeys" = true;
+          "handleKeys" = {
+            # let me use ^w to switch windows instead of closing
+            # them
+            "<C-w>" = true;
+          };
         };
       };
     };
