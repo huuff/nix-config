@@ -108,6 +108,11 @@
             # keep vscode's native ^d for multicursor
             "<C-d>" = false;
           };
+
+          "normalModeKeyBindings" = [
+            { "before" = [ "[" "l" ]; "commands" = [ "editor.action.marker.prevInFiles" ]; "when" = "editorTextFocus"; }
+            { "before" = [ "]" "l" ]; "commands" = [ "editor.action.marker.nextInFiles" ]; "when" = "editorTextFocus"; }
+          ];
         };
       };
     };
