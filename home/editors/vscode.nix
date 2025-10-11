@@ -94,6 +94,8 @@
             # let me use ^w to switch windows instead of closing
             # them
             "<C-w>" = true;
+            # keep vscode's native ^d for multicursor
+            "<C-d>" = false;
           };
         };
       };
