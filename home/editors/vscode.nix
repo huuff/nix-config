@@ -90,10 +90,12 @@
 
         "git.autofetch" = true;
 
-        "theme-by-language.themes" = {
-          "*" = "Default Dark Mode";
-          "rust" = "Gruvbox Dark Hard";
-          "nix" = "Iceberg";
+        "theme-by-language" = {
+          "themes" = {
+            "*" = "Default Dark Modern";
+            "rust" = "Gruvbox Dark Hard";
+            "nix" = "Iceberg";
+          };
         };
 
         "vim" = {
