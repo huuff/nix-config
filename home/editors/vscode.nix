@@ -62,12 +62,6 @@
           version = "1.3.0";
           sha256 = "VyXIGPraAABt5bOJH86qvWtbCY2Tp99z26w2qUOCcsQ=";
         }
-        {
-          name = "iceberg-theme";
-          publisher = "cocopon";
-          version = "2.0.5";
-          sha256 = "e1qCrBb0AaIo5O6DHYtOEDpx36VYcierT/DEwwe94sY=";
-        }
       ];
 
       userSettings = {
@@ -106,7 +100,7 @@
           "themes" = {
             "*" = "Default Dark Modern";
             "rust" = "Gruvbox Dark Hard";
-            "nix" = "Iceberg";
+            "nix" = "Tokyo Night";
           };
         };
 
