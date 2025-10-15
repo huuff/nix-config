@@ -91,10 +91,15 @@
         "git.autofetch" = true;
 
         "nix" = {
-            "enableLanguageServer" = true;
-            "serverPath" = "nil"; # don't provide path from `pkgs` so the binary is taken from devshell
-            "formatting.command" = ["nixfmt"]; # same as above
-
+          "enableLanguageServer" = true;
+          "serverPath" = "nil"; # don't provide path from `pkgs` so the binary is taken from devshell
+          "serverSettings"= {
+            "nil" = {
+              "formatting" = {
+                "command" = ["nixfmt"]; # same as above
+              };
+            };
+          };
         };
 
         "theme-by-language" = {
