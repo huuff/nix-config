@@ -43,13 +43,13 @@
         rust-lang.rust-analyzer # rust-analyzer
         tamasfe.even-better-toml # TOML support
         aaron-bond.better-comments # nicer display for todos and such
-        # TODO: I think I'm missing LSP config and others
         jnoortheen.nix-ide # nix support
         bradlc.vscode-tailwindcss # tailwind class autocomplete
         vadimcn.vscode-lldb # rust debugger
         james-yu.latex-workshop # latex all-in-one
         github.vscode-pull-request-github # do pr reviews in vscode
         vscodevim.vim # vim emulation layer
+        hashicorp.terraform 
 
         # themes
         jdinhlife.gruvbox 
