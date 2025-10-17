@@ -39,6 +39,7 @@
         alwaysEnsure = true;
 
         extraEmacsPackages = epkgs: [
+          pkgs.ripgrep # necessary for some find tools
           (pkgs.callPackage ./eglot-booster.nix { inherit pkgs epkgs; })
         ];
       })

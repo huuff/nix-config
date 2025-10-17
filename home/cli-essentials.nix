@@ -13,7 +13,6 @@
 
     fd # find replacement (also needed for emacs)
     silver-searcher # grep replacement
-    ripgrep # another grep replacement (and also needed for emacs)
 
     fzf # TODO: Is it necessary here? I think it's enough to enable it through home-manager
     btop
