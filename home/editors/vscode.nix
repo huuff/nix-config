@@ -122,6 +122,36 @@
             { "before" = [ "]" "l" ]; "commands" = [ "editor.action.marker.nextInFiles" ]; "when" = "editorTextFocus"; }
           ];
         };
+
+        "better-comments.tags" = [
+          {
+            "tag" = "todo";
+            "color" = "#FF8C00";
+            "strikethrough" = false;
+            "underline" = false;
+            "backgroundColor" = "transparent";
+            "bold" = false;
+            "italic" = false;
+          }
+          {
+            "tag" = "xxx";
+            "color" = "#FF2D00";
+            "strikethrough" = false;
+            "underline" = false;
+            "backgroundColor" = "transparent";
+            "bold" = false;
+            "italic" = false;
+          }
+          {
+            "tag" = "maybe";
+            "color" = "#3498DB";
+            "strikethrough" = false;
+            "underline" = false;
+            "backgroundColor" = "transparent";
+            "bold" = false;
+            "italic" = false;
+          }
+        ];
       };
     };
   };
