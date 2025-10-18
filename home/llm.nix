@@ -3,27 +3,25 @@
   sops.secrets.openrouterApiKey = {};
 
   home.packages = [
+    # good for scripts with LLM interaction
     (pkgs.python3.withPackages(ps: [ps.llm ps.llm-openrouter]))
     pkgs.claude-code
+    pkgs.aichat
   ];
 
   programs = {
-    aider = {
-      enable = true;
-      package = pkgs.aider-chat;
-      settings = {
-        auto-commits = false;
-        alias = [ "gemini:openrouter/google/gemini-2.5-pro" ];
-        model = "gemini";
-      };
-    };
     
     zsh = {
       enable = true;
 
+      shellAliases = {
+        # automatically start a new session
+        "aichat" = "aichat --session";
+      };
+
       envExtra = ''
         if [[ -f ${config.sops.secrets.openrouterApiKey.path} ]]; then
-          # needed for aider
+          # needed for aichat
           export OPENROUTER_API_KEY="$(cat ${config.sops.secrets.openrouterApiKey.path})"
           # needed for llm
           export OPENROUTER_KEY="$(cat ${config.sops.secrets.openrouterApiKey.path})"
