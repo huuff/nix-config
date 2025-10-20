@@ -107,7 +107,8 @@
 
         ./nixos/user.nix
         ./nixos/fonts.nix
-        ./nixos/xorg.nix
+        # ./nixos/xorg.nix
+        ./nixos/wayland.nix
         ./nixos/audio.nix
         ./nixos/java.nix
         ./nixos/nixconf.nix

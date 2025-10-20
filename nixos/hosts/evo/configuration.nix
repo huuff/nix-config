@@ -3,7 +3,6 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./screens.nix
     ../../flatpak.nix
     ../../dark-theme.nix
     ./disko.nix
@@ -25,7 +24,6 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
 
   networking.hostName = "evo";
 

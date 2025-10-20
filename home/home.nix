@@ -15,8 +15,8 @@
     ./git.nix
     ./prompt.nix
     ./development.nix
-    ./desktop-environment
-    ./desktop-environment/screen-lock.nix
+    ./desktop-environment/hyprland.nix
+    ./desktop-environment/waybar.nix
     ./keybindings.nix
 
     ./shell.nix
