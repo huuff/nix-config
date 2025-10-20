@@ -67,8 +67,8 @@
         border: none;
       }
 
-      #workspaces button.active {
-        background-color: #458588;
+      #workspaces button.visible {
+        background-color: #689d6a;
         color: #282828;
       }
 
