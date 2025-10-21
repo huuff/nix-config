@@ -1,4 +1,4 @@
-{ pkgs, lib, user, homeModules, derivations, modules, scripts, ... }:
+{ pkgs, user, derivations, modules, scripts, ... }:
 {
   imports = [
     ./editors/vim/nvim.nix
@@ -27,7 +27,7 @@
     ./llm.nix
     ./ssh.nix
     ./cli-essentials.nix
-  ] ++ lib.attrValues homeModules;
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
