@@ -52,6 +52,19 @@
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
       ];
+
+      decoration = {
+        blur = {
+          enabled = true;
+          size = 8;
+          passes = 3;
+        };
+      };
+
+      general = {
+        allow_tearing = false;
+      };
+
     };
   };
 }

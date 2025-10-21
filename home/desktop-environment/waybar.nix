@@ -40,7 +40,7 @@
       }
 
       window#waybar {
-        background-color: #282828;
+        background-color: rgba(40, 40, 40, 0.4);
         color: #ebdbb2;
       }
 
@@ -67,8 +67,8 @@
         border: none;
       }
 
-      #workspaces button.active {
-        background-color: #458588;
+      #workspaces button.visible {
+        background-color: #689d6a;
         color: #282828;
       }
 
