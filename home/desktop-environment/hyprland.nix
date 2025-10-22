@@ -9,6 +9,11 @@
         "${lib.getExe pkgs.waybar}"
       ];
 
+      input = {
+        kb_layout = "us,es";
+        kb_options = "grp:alt_shift_toggle";
+      };
+
       bind = [
         # Terminal
         "$mod, Return, exec, ${lib.getExe pkgs.alacritty}"
@@ -30,9 +35,6 @@
 
         # Fullscreen (i3-style)
         "$mod, f, fullscreen, 0"
-
-        # Reload Hyprland
-        "$mod SHIFT, r, exec, hyprctl reload"
 
         # Close window
         "$mod SHIFT, q, killactive"
