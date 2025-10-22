@@ -55,9 +55,7 @@
     cachix
     xsel # managing Xorg clipboard
 
-    # TODO: any way to just pick-up all packages from scripts?
-    scripts.clipscrot # my own script to send screenshot to clipboard
-    scripts.pathscrot # send screenshots to a file and path to clipboard (I use it for claude code)
+    # TODO: any way to just pick-up all packages from scripts? UPDATE: yeah, `lib.attrValues`?
     scripts.bakup # my own script to nicely backup files
     scripts.docker-nuke # cleanup everything docker
     scripts.nix-nuke # cleanup everything nix

@@ -6,5 +6,6 @@
     ./waybar.nix
     ./wallpapers.nix
     ./screenlock.nix
+    ./screenshot.nix
   ];
 }
