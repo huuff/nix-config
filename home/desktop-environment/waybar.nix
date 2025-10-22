@@ -76,9 +76,21 @@
         position = "bottom";
         height = 25;
 
-        modules-left = [ "cpu" "memory" ];
+        modules-left = [ "cpu" "memory" "disk#root" "disk#home" ];
         modules-right = [ "tray" ];
         modules-center = [ ];
+
+        "disk#root" = {
+          path = "/";
+          format = "󰋊 {specific_used:0.1f}G/{specific_total:0.1f}G (/)";
+          unit = "GB";
+        };
+
+        "disk#home" = {
+          path = "/home";
+          format = "󰋊 {specific_used:0.1f}G/{specific_total:0.1f}G (/home)";
+          unit = "GB";
+        };
 
         cpu = {
           format = "󰘚 {usage}%";
@@ -132,6 +144,14 @@
       }
 
       #battery {
+        padding: 0 10px;
+      }
+
+      #disk.root {
+        padding: 0 10px;
+      }
+
+      #disk.home {
         padding: 0 10px;
       }
 
