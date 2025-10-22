@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = [
     pkgs.nerd-fonts.fira-code
@@ -13,11 +13,32 @@
         height = 25;
 
         modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "network" "hyprland/language" "battery" "pulseaudio" "clock" ];
+        modules-right = [ "custom/mullvad" "network" "hyprland/language" "battery" "pulseaudio" "clock" ];
         modules-center = [ "tray" ];
 
         clock = {
           format = " {:%H:%M}";
+        };
+
+        "custom/mullvad" = {
+          # exec = "mullvad status | grep -q Connected && echo '󰦝' || echo '󰦞'";
+          exec = lib.getExe (pkgs.writeShellApplication {
+            name = "mullvad-waybar";
+            runtimeInputs = with pkgs; [ mullvad jq ];
+            text = ''
+              status=$(mullvad status --json)
+              location="$(echo "$status" | jq -r '"\(.details.location.city), \(.details.location.country)"')"
+              state="$(echo "$status" | jq -r .state)"
+
+              if [ "$state" = "connected" ]; then
+                echo "󰦝 $location"
+              else
+                echo "󰦞 $location"
+              fi
+            '';
+          });
+          interval = 5;
+          tooltip-format = "Mullvad VPN";
         };
 
         network = {
@@ -67,6 +88,10 @@
       }
 
       #clock {
+        padding: 0 10px;
+      }
+
+      #custom-mullvad {
         padding: 0 10px;
       }
 
