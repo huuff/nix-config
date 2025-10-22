@@ -4,7 +4,6 @@
 
   home.packages = [
     # good for scripts with LLM interaction
-    (pkgs.python3.withPackages(ps: [ps.llm ps.llm-openrouter]))
     pkgs.claude-code
     pkgs.aichat
   ];
