@@ -7,5 +7,6 @@
     ./wallpapers.nix
     ./screenlock.nix
     ./screenshot.nix
+    ./launcher.nix
   ];
 }
