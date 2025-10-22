@@ -16,7 +16,6 @@
     ./prompt.nix
     ./development.nix
     ./desktop-environment
-    ./keybindings.nix
 
     ./shell.nix
     ./virtualization.nix
