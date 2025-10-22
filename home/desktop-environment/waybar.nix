@@ -7,17 +7,17 @@
   programs.waybar = {
     enable = true;
     settings = {
-      mainBar = {
+      topBar = {
         layer = "top";
         position = "top";
         height = 25;
 
         modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "custom/mullvad" "network" "hyprland/language" "battery" "pulseaudio" "clock" ];
-        modules-center = [ "tray" ];
+        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" ];
+        modules-center = [ "clock" ];
 
         clock = {
-          format = " {:%H:%M}";
+          format = "{:%H:%M - %a %b %d}";
         };
 
         "custom/mullvad" = {
@@ -57,8 +57,8 @@
         battery = {
           format = "{icon} {capacity}%";
           format-icons = ["" "" "" "" ""];
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
         };
 
         pulseaudio = {
@@ -68,6 +68,26 @@
             default = ["󰕿" "󰖀" "󰕾"];
           };
           on-click = "pavucontrol";
+        };
+      };
+
+      bottomBar = {
+        layer = "top";
+        position = "bottom";
+        height = 25;
+
+        modules-left = [ "cpu" "memory" ];
+        modules-right = [ "tray" ];
+        modules-center = [ ];
+
+        cpu = {
+          format = "󰘚 {usage}%";
+          tooltip = true;
+        };
+
+        memory = {
+          format = "󰍛 {used:0.1f}G/{total:0.1f}G";
+          tooltip-format = "{percentage}% used";
         };
 
         tray = {
@@ -83,7 +103,7 @@
       }
 
       window#waybar {
-        background-color: rgba(40, 40, 40, 0.4);
+        background-color: rgba(40, 40, 40, 0.6);
         color: #ebdbb2;
       }
 
@@ -100,6 +120,14 @@
       }
 
       #language {
+        padding: 0 10px;
+      }
+
+      #cpu {
+        padding: 0 10px;
+      }
+
+      #memory {
         padding: 0 10px;
       }
 
