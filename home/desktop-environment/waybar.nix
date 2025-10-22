@@ -13,11 +13,16 @@
         height = 25;
 
         modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "battery" "pulseaudio" "clock" ];
+        modules-right = [ "hyprland/language" "battery" "pulseaudio" "clock" ];
         modules-center = [ "tray" ];
 
         clock = {
           format = " {:%H:%M}";
+        };
+
+        "hyprland/language" = {
+          format = "⌨ {}";
+          on-click = "hyprctl switchxkblayout video-bus next";
         };
 
         battery = {
@@ -54,6 +59,10 @@
       }
 
       #clock {
+        padding: 0 10px;
+      }
+
+      #language {
         padding: 0 10px;
       }
 
