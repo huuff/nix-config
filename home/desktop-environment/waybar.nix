@@ -13,7 +13,7 @@
         height = 25;
 
         modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "battery" "clock" ];
+        modules-right = [ "battery" "pulseaudio" "clock" ];
         modules-center = [ "tray" ];
 
         clock = {
@@ -25,6 +25,15 @@
           format-icons = ["" "" "" "" ""];
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
+        };
+
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-muted = "󰖁 {volume}%";
+          format-icons = {
+            default = ["󰕿" "󰖀" "󰕾"];
+          };
+          on-click = "pavucontrol";
         };
 
         tray = {
@@ -49,6 +58,10 @@
       }
 
       #battery {
+        padding: 0 10px;
+      }
+
+      #pulseaudio {
         padding: 0 10px;
       }
 
