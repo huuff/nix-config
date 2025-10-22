@@ -16,11 +16,20 @@
         # App launcher
         "$mod, d, exec, ${lib.getExe pkgs.rofi} -show run"
 
-        # Focus controls (i3-style)
-        "$mod, left, movefocus, l"
-        "$mod, down, movefocus, d"
-        "$mod, up, movefocus, u"
-        "$mod, right, movefocus, r"
+        # Focus controls (i3-style with vim keys)
+        "$mod, h, movefocus, l"
+        "$mod, j, movefocus, d"
+        "$mod, k, movefocus, u"
+        "$mod, l, movefocus, r"
+
+        # Move windows (i3-style with vim keys)
+        "$mod SHIFT, h, movewindow, l"
+        "$mod SHIFT, j, movewindow, d"
+        "$mod SHIFT, k, movewindow, u"
+        "$mod SHIFT, l, movewindow, r"
+
+        # Fullscreen (i3-style)
+        "$mod, f, fullscreen, 0"
 
         # Reload Hyprland
         "$mod SHIFT, r, exec, hyprctl reload"
