@@ -13,11 +13,19 @@
         height = 25;
 
         modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "hyprland/language" "battery" "pulseaudio" "clock" ];
+        modules-right = [ "network" "hyprland/language" "battery" "pulseaudio" "clock" ];
         modules-center = [ "tray" ];
 
         clock = {
           format = " {:%H:%M}";
+        };
+
+        network = {
+          format-wifi = "{icon} {ifname}";
+          format-ethernet = "󰈀 {ifname}";
+          format-disconnected = "󰖪";
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          tooltip-format = "{ifname}: {ipaddr}/{cidr}";
         };
 
         "hyprland/language" = {
@@ -59,6 +67,10 @@
       }
 
       #clock {
+        padding: 0 10px;
+      }
+
+      #network {
         padding: 0 10px;
       }
 
