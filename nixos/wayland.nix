@@ -27,6 +27,6 @@
       xwayland.enable = true;
     };
 
-    security.pam.services.swaylock.enable = true;
+    security.pam.services.hyprlock.enable = true;
     programs.hyprlock.enable = true;
 }
