@@ -119,46 +119,15 @@
         color: #ebdbb2;
       }
 
-      #clock {
-        padding: 0 10px;
-      }
-
-      #custom-mullvad {
-        padding: 0 10px;
-      }
-
-      #network {
-        padding: 0 10px;
-      }
-
-      #language {
-        padding: 0 10px;
-      }
-
-      #cpu {
-        padding: 0 10px;
-      }
-
-      #memory {
-        padding: 0 10px;
-      }
-
-      #battery {
-        padding: 0 10px;
-      }
-
-      #disk.root {
-        padding: 0 10px;
-      }
-
-      #disk.home {
-        padding: 0 10px;
-      }
-
-      #pulseaudio {
-        padding: 0 10px;
-      }
-
+      #clock,
+      #custom-mullvad,
+      #network,
+      #language,
+      #cpu,
+      #memory,
+      #battery,
+      #disk,
+      #pulseaudio,
       #tray {
         padding: 0 10px;
       }
