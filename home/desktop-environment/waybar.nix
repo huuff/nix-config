@@ -57,8 +57,8 @@
         battery = {
           format = "{icon} {capacity}%";
           format-icons = ["" "" "" "" ""];
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
         };
 
         pulseaudio = {
