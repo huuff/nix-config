@@ -2,6 +2,8 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    # XXX: conflicts with nixos-level UWSM (see https://wiki.hypr.land/Useful-Utilities/Systemd-start/#uwsm)
+    systemd.enable = false;
     settings = {
       "$mod" = "SUPER";
 
