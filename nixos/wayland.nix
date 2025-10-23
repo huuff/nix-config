@@ -1,4 +1,4 @@
-{ pkgs, lib, user, ... }:
+{ pkgs, lib, ... }:
 {
     services.displayManager = {
       defaultSession = "hyprland";
@@ -12,20 +12,27 @@
       ];
     };
 
-    services.greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          inherit user;
-          command = "${lib.getExe pkgs.tuigreet} --time --cmd ${lib.getExe pkgs.hyprland}";
-        };
-      };
-    };
+    programs.uwsm.enable = true;
 
+    # XXX: this is necessary even if you the configure it with home-manager too
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
     };
+
+
+    # XXX: this is necessary so UWSM runs on login... why doesn't `programs.uwsm.enable = true`
+    # add this automatically?
+    # MAYBE the sad thing is that this is coupled to zsh, maybe I should resurrect my portable shell module
+    # to make it more generic
+    programs.zsh.loginShellInit = let
+      uwsm = lib.getExe pkgs.uwsm;
+    in ''
+      if ${uwsm} check may-start && ${uwsm} select; then
+        exec ${uwsm} start default
+      fi
+    '';
 
     security.pam.services.hyprlock.enable = true;
     programs.hyprlock.enable = true;
