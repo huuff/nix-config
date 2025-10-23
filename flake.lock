@@ -1125,11 +1125,11 @@
         "utils": "utils_8"
       },
       "locked": {
-        "lastModified": 1761039625,
-        "narHash": "sha256-gGh5jC7410euyJPDT76CJPA5XEqLqwqqhzzLG/y6rzw=",
+        "lastModified": 1761240987,
+        "narHash": "sha256-e60UtsOC8UZW2s3g8AFF25RXD1dyOR6VbR9S4vtJY+4=",
         "owner": "huuff",
         "repo": "paintings",
-        "rev": "e7ec0c7a1c5941c717153bba0ae2decbd04f0f50",
+        "rev": "4ffadfb1f56ac3a23aac8d199221af6c73ceec4e",
         "type": "github"
       },
       "original": {
