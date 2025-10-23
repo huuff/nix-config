@@ -29,4 +29,10 @@
       ];
     };
   };
+
+  # keeps screen on when playing on fullscreen
+  services.caffeine.enable = true;
+  # otherwise it doesn't work with UWSM
+  systemd.user.services.caffeine.Unit.After = [ "graphical-session.target" ];
+
 }

@@ -26,7 +26,7 @@
     # add this automatically?
     # MAYBE the sad thing is that this is coupled to zsh, maybe I should resurrect my portable shell module
     # to make it more generic
-    programs.zsh.loginShellInit = let
+    environment.loginShellInit = let
       uwsm = lib.getExe pkgs.uwsm;
     in ''
       if ${uwsm} check may-start && ${uwsm} select; then
