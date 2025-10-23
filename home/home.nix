@@ -26,6 +26,8 @@
     ./llm.nix
     ./ssh.nix
     ./cli-essentials.nix
+
+    ./crypto.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
