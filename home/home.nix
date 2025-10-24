@@ -131,25 +131,6 @@
   xdg.enable = true;
 
   services.dunst.enable = true;
-
-  # dark mode
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Arc-Dark";
-      package = pkgs.arc-theme;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    cursorTheme = {
-      name = "Adwaita"; # A good default, or choose another like Bibata
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
-    };
-  };
-
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
