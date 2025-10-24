@@ -28,7 +28,7 @@
             runtimeInputs = with pkgs; [ mullvad jq ];
             text = ''
               status=$(mullvad status --json)
-              location="$(echo "$status" | jq -r '"\(.details.location.city), \(.details.location.country)"')"
+              location="$(echo "$status" | jq -r '"\(.details.location.country)"')"
               state="$(echo "$status" | jq -r .state)"
 
               if [ "$state" = "connected" ]; then
