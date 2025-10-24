@@ -13,8 +13,8 @@
         position = "top";
         height = 25;
 
-        modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" ];
+        modules-left = [ "hyprland/workspaces" "cpu" "memory" "disk#root" "disk#home" ];
+        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
         modules-center = [ "clock" ];
 
         clock = {
@@ -74,16 +74,6 @@
           };
           on-click = "pavucontrol";
         };
-      };
-
-      bottomBar = {
-        layer = "top";
-        position = "bottom";
-        height = 25;
-
-        modules-left = [ "cpu" "memory" "disk#root" "disk#home" ];
-        modules-right = [ "tray" ];
-        modules-center = [ ];
 
         "disk#root" = {
           path = "/";
