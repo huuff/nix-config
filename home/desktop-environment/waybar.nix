@@ -87,13 +87,12 @@
 
         "disk#root" = {
           path = "/";
-          format = "󰋊 {specific_used:0.1f}G/{specific_total:0.1f}G (/)";
-          unit = "GB";
+          format = "󰙅 {percentage_used}%";
         };
 
         "disk#home" = {
           path = "/home";
-          format = "󰋊 {specific_used:0.1f}G/{specific_total:0.1f}G (/home)";
+          format = "󰋜 {percentage_used}%";
           unit = "GB";
         };
 
@@ -103,8 +102,7 @@
         };
 
         memory = {
-          format = "󰍛 {used:0.1f}G/{total:0.1f}G";
-          tooltip-format = "{percentage}% used";
+          format = "󰍛 {percentage}%";
         };
 
         tray = {
