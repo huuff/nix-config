@@ -34,6 +34,19 @@
         modules-left = [ "hyprland/workspaces" "group/hardware"];
         modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
 
+        "hyprland/workspaces" = {
+          format = "<sub>{icon}</sub> {windows}";
+          format-window-separator = " ";
+          window-rewrite-default = "?";
+          window-rewrite = {
+            "firefox" = "";
+            "code" = "󰨞";
+            "slack" = "󰒱";
+            "alacritty" = "";
+            "chromium" = "";
+          };
+        };
+
 
         "custom/mullvad" = {
           exec = lib.getExe (pkgs.writeShellApplication {
