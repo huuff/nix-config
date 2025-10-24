@@ -13,9 +13,10 @@
       clock = {
         layer = "top";
         position = "top";
-        margin-top = -25;
+        margin-top = -30;
         height = 35;
         exclusive = false;
+        mode = "overlay";
 
         modules-center = ["clock"];
 
@@ -136,7 +137,7 @@
 
 
       #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
-        background-color: rgba(70, 70, 60, 0.6);
+        background-color: rgba(70, 70, 60, 0.75);
         border-radius: 6px;
         padding: 0 10px;
         margin: 0 5px;
@@ -145,18 +146,15 @@
       #workspaces {
         margin-left: 5px;
         margin-right: 25px;
+        padding: 0;
       }
 
       #workspaces button {
-        padding: 0 8px;
-        background-color: transparent;
-        color: #ebdbb2;
         border: none;
       }
 
       #workspaces button.visible {
-        background-color: #689d6a;
-        color: #282828;
+        border-bottom: 3px solid white;   
       }
 
       #workspaces button:hover {
