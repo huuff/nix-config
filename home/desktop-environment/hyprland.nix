@@ -7,10 +7,6 @@
     settings = {
       "$mod" = "SUPER";
 
-      exec-once = [
-        "${lib.getExe pkgs.waybar}"
-      ];
-
       input = {
         kb_layout = "us,es";
         kb_options = "grp:alt_shift_toggle";
