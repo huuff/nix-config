@@ -8,6 +8,23 @@
     enable = true;
     systemd.enable = true;
     settings = {
+      # this bar is separated from the top bar so that its larger height
+      # doesn't also enlarge the main one
+      clock = {
+        layer = "top";
+        position = "top";
+        margin-top = -25;
+        height = 35;
+        exclusive = false;
+
+        modules-center = ["clock"];
+
+        clock = {
+          format = "<span size='x-small'>{0:%A, %d %B %Y}</span>\n<b>{0:%H:%M}</b>";
+          justify = "center";
+        };
+      };
+
       topBar = {
         layer = "top";
         position = "top";
@@ -15,12 +32,7 @@
 
         modules-left = [ "hyprland/workspaces" "group/hardware"];
         modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
-        modules-center = [ "clock" ];
 
-        clock = {
-          format = "{0:%A, %d %B %Y}\n<b>{0:%H:%M}</b>";
-          justify = "center";
-        };
 
         "custom/mullvad" = {
           exec = lib.getExe (pkgs.writeShellApplication {
@@ -48,7 +60,7 @@
           format-ethernet = "󰈀";
           format-disconnected = "󰖪";
           format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
-          max-length = 10;
+          max-length = 15;
           tooltip-format = "{essid}({ifname}): {ipaddr}/{cidr}";
         };
 
@@ -113,8 +125,21 @@
       }
 
       window#waybar {
-        background-color: rgba(40, 40, 40, 0.6);
+        background-color: rgba(0, 0, 0, 0);
         color: #ebdbb2;
+      }
+
+      /* HARDWARE GROUP */
+      #memory, #cpu, #disk {
+        margin: 0 2px;
+      }
+
+
+      #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
+        background-color: rgba(70, 70, 60, 0.6);
+        border-radius: 6px;
+        padding: 0 10px;
+        margin: 0 5px;
       }
 
       #workspaces {
@@ -127,21 +152,6 @@
         background-color: transparent;
         color: #ebdbb2;
         border: none;
-      }
-
-      #custom-mullvad, #network, #battery, #pulseaudio, #tray {
-        padding: 0px 10px;
-      } 
-
-      #hardware {
-        border-radius: 12px;
-        background-color: black;
-        border: 1px solid black;
-        padding: 0 10px;
-      }
-
-      #cpu, #memory, #disk {
-        padding: 0 3px;
       }
 
       #workspaces button.visible {
