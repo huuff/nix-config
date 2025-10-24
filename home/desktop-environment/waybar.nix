@@ -13,7 +13,7 @@
         position = "top";
         height = 25;
 
-        modules-left = [ "hyprland/workspaces" "group/hardware"];
+        modules-left = [ "hyprland/workspaces" ];
         modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
         modules-center = [ "clock" ];
 
