@@ -55,7 +55,6 @@
     irust
 
     cachix
-    xsel # managing Xorg clipboard
 
     # TODO: any way to just pick-up all packages from scripts? UPDATE: yeah, `lib.attrValues`?
     scripts.bakup # my own script to nicely backup files
