@@ -13,8 +13,8 @@
         position = "top";
         height = 25;
 
-        modules-left = [ "hyprland/workspaces" ];
-        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" ];
+        modules-left = [ "hyprland/workspaces" "group/hardware"];
+        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
         modules-center = [ "clock" ];
 
         clock = {
@@ -74,16 +74,6 @@
           };
           on-click = "pavucontrol";
         };
-      };
-
-      bottomBar = {
-        layer = "top";
-        position = "bottom";
-        height = 25;
-
-        modules-left = [ "cpu" "memory" "disk#root" "disk#home" ];
-        modules-right = [ "tray" ];
-        modules-center = [ ];
 
         "disk#root" = {
           path = "/";
@@ -105,6 +95,11 @@
           format = "󰍛 {percentage}%";
         };
 
+        "group/hardware" = {
+          orientation = "horizontal";
+          modules = ["cpu" "memory" "disk#root" "disk#home"];
+        };
+
         tray = {
           spacing = 10;
         };
@@ -122,21 +117,9 @@
         color: #ebdbb2;
       }
 
-      #clock,
-      #custom-mullvad,
-      #network,
-      #language,
-      #cpu,
-      #memory,
-      #battery,
-      #disk,
-      #pulseaudio,
-      #tray {
-        padding: 0 10px;
-      }
-
       #workspaces {
-        margin: 0 5px;
+        margin-left: 5px;
+        margin-right: 25px;
       }
 
       #workspaces button {
@@ -144,6 +127,21 @@
         background-color: transparent;
         color: #ebdbb2;
         border: none;
+      }
+
+      #custom-mullvad, #network, #battery, #pulseaudio, #tray {
+        padding: 0px 10px;
+      } 
+
+      #hardware {
+        border-radius: 12px;
+        background-color: black;
+        border: 1px solid black;
+        padding: 0 10px;
+      }
+
+      #cpu, #memory, #disk {
+        padding: 0 3px;
       }
 
       #workspaces button.visible {
