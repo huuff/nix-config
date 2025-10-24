@@ -8,6 +8,23 @@
     enable = true;
     systemd.enable = true;
     settings = {
+      # this bar is separated from the top bar so that its larger height
+      # doesn't also enlarge the main one
+      clock = {
+        layer = "top";
+        position = "top";
+        margin-top = -25;
+        height = 35;
+        exclusive = false;
+
+        modules-center = ["clock"];
+
+        clock = {
+          format = "<span size='x-small'>{0:%A, %d %B %Y}</span>\n<b>{0:%H:%M}</b>";
+          justify = "center";
+        };
+      };
+
       topBar = {
         layer = "top";
         position = "top";
@@ -15,12 +32,7 @@
 
         modules-left = [ "hyprland/workspaces" "group/hardware"];
         modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
-        modules-center = [ "clock" ];
 
-        clock = {
-          format = "<b>{0:%H:%M}</b>";
-          justify = "center";
-        };
 
         "custom/mullvad" = {
           exec = lib.getExe (pkgs.writeShellApplication {
@@ -121,6 +133,7 @@
       #memory, #cpu, #disk {
         margin: 0 2px;
       }
+
 
       #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
         background-color: rgba(70, 70, 60, 0.6);
