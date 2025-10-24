@@ -21,7 +21,6 @@
         };
 
         "custom/mullvad" = {
-          # exec = "mullvad status | grep -q Connected && echo '󰦝' || echo '󰦞'";
           exec = lib.getExe (pkgs.writeShellApplication {
             name = "mullvad-waybar";
             runtimeInputs = with pkgs; [ mullvad jq ];
@@ -51,6 +50,8 @@
 
         "hyprland/language" = {
           format = "⌨ {}";
+          format-en = "en";
+          format-es = "es";
           on-click = "hyprctl switchxkblayout video-bus next";
         };
 
