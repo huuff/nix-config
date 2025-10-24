@@ -40,14 +40,16 @@
           });
           interval = 5;
           tooltip-format = "Mullvad VPN";
+          max-length = 10;
         };
 
         network = {
-          format-wifi = "{icon} {ifname}";
-          format-ethernet = "󰈀 {ifname}";
+          format-wifi = "{icon} {essid}";
+          format-ethernet = "󰈀";
           format-disconnected = "󰖪";
           format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
-          tooltip-format = "{ifname}: {ipaddr}/{cidr}";
+          max-length = 10;
+          tooltip-format = "{essid}({ifname}): {ipaddr}/{cidr}";
         };
 
         "hyprland/language" = {
