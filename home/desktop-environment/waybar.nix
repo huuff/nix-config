@@ -17,7 +17,8 @@
         modules-center = [ "clock" ];
 
         clock = {
-          format = "{:%H:%M - %a %b %d}";
+          format = "{0:%a, %d %B %Y}\n<b>{0:%H:%M}</b>";
+          justify = "center";
         };
 
         "custom/mullvad" = {
