@@ -8,5 +8,6 @@
     ./screenlock.nix
     ./screenshot.nix
     ./launcher.nix
+    ./gtk.nix
   ];
 }
