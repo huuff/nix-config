@@ -121,9 +121,16 @@
           format = "󰍛 {percentage}%";
         };
 
+        temperature = {
+          format = "{icon} {temperatureC}°C";
+          critical-threshold = 80;
+          format-critical = " {temperatureC}°C";
+          format-icons = ["" "" "" "" ""];
+        };
+
         "group/hardware" = {
           orientation = "horizontal";
-          modules = ["cpu" "memory" "disk#root" "disk#home"];
+          modules = ["temperature" "cpu" "memory" "disk#root" "disk#home"];
         };
 
         tray = {
@@ -144,7 +151,7 @@
       }
 
       /* HARDWARE GROUP */
-      #memory, #cpu, #disk {
+      #memory, #cpu, #disk, #temperature {
         margin: 0 2px;
       }
 
