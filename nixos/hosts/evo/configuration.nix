@@ -4,7 +4,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../../flatpak.nix
-    ../../dark-theme.nix
     ./disko.nix
   ];
 

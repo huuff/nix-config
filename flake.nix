@@ -13,6 +13,12 @@
       url = "github:huuff/nix-scripts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.url = "nixpkgs";
+    };
+
     nix-soapui.url = "github:huuff/nix-soapui";
     nix-portable-shell.url = "github:huuff/nix-portable-shell";
 
@@ -58,6 +64,7 @@
     sops-nix,
     disko,
     paintings,
+    stylix,
   }:
   let
     system = "x86_64-linux";
@@ -107,7 +114,6 @@
         }
 
         ./nixos/user.nix
-        ./nixos/fonts.nix
         ./nixos/wayland.nix
         ./nixos/audio.nix
         ./nixos/java.nix
@@ -122,6 +128,7 @@
         ./nixos/secrets.nix
 
         disko.nixosModules.disko
+        stylix.nixosModules.stylix
 
         {
           # XXX: I have it enabled in home-manager but that seems to not be enough
@@ -135,7 +142,9 @@
           home-manager.extraSpecialArgs = specialArgs;
           home-manager.users.${user} = { lib, ... }: {
             imports = [./home/home.nix] 
+              ++ [stylix.homeModules.stylix]
               ++ lib.attrValues my-home-modules.homeManagerModules
+              # TODO: actually I should get only the main module right? not all
               ++ lib.attrValues sops-nix.homeManagerModules
               ++ lib.attrValues paintings.homeManagerModules;
           };
