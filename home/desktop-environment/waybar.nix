@@ -51,22 +51,23 @@
         "custom/mullvad" = {
           exec = lib.getExe (pkgs.writeShellApplication {
             name = "mullvad-waybar";
-            runtimeInputs = with pkgs; [ mullvad jq ];
+            runtimeInputs = with pkgs; [ mullvad jq jo ];
             text = ''
               status=$(mullvad status --json)
               location="$(echo "$status" | jq -r '"\(.details.location.country)"')"
               state="$(echo "$status" | jq -r .state)"
 
               if [ "$state" = "connected" ]; then
-                echo "󰦝 $location"
+                jo text="󰦝 $location" class=connected
               else
-                echo "󰦞 $location"
+                jo text="󰦝 $location" class=disconnected
               fi
             '';
           });
           interval = 5;
           tooltip-format = "Mullvad VPN";
           max-length = 10;
+          return-type = "json";
         };
 
         network = {
@@ -179,6 +180,10 @@
         border-radius: 6px;
         padding: 0 10px;
         margin: 0 5px;
+      }
+
+      #custom-mullvad.connected {
+        color: #b8bb26;
       }
 
       #workspaces {
