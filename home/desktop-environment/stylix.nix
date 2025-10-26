@@ -11,9 +11,22 @@
       dark = "Gruvbox-Plus-Dark";
     };
     fonts = {
-      monospace.package = pkgs.nerd-fonts.fira-code;
-      # serif.package = pkgs.nerd-fonts.fira-code;
-      # sansSerif.package = pkgs.nerd-fonts.fira-code;
+      # XXX I'd say setting the names is necessary, for example firefox seems not to pick the font if the name isn't set
+      monospace = {
+        package = pkgs.nerd-fonts.fira-code;
+        name = "FiraCode Nerd Font";
+      } ;
+
+      # TODO: definitely don't use the monospaced font everywher
+      # serif = {
+      #   package = pkgs.nerd-fonts.fira-code;
+      #   name = "FiraCode Nerd Font";
+      # } ;
+      #
+      # sansSerif = {
+      #   package = pkgs.nerd-fonts.fira-code;
+      #   name = "FiraCode Nerd Font";
+      # } ;
 
       sizes = {
         terminal = 10;
