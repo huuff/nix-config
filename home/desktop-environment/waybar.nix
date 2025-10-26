@@ -51,22 +51,23 @@
         "custom/mullvad" = {
           exec = lib.getExe (pkgs.writeShellApplication {
             name = "mullvad-waybar";
-            runtimeInputs = with pkgs; [ mullvad jq ];
+            runtimeInputs = with pkgs; [ mullvad jq jo ];
             text = ''
               status=$(mullvad status --json)
               location="$(echo "$status" | jq -r '"\(.details.location.country)"')"
               state="$(echo "$status" | jq -r .state)"
 
               if [ "$state" = "connected" ]; then
-                echo "󰦝 $location"
+                jo text="󰦝 $location" class=connected
               else
-                echo "󰦞 $location"
+                jo text="󰦝 $location" class=disconnected
               fi
             '';
           });
           interval = 5;
           tooltip-format = "Mullvad VPN";
           max-length = 10;
+          return-type = "json";
         };
 
         network = {
@@ -90,6 +91,10 @@
           format-icons = ["" "" "" "" ""];
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
+          states = {
+            warning = 30;
+            critical = 15;
+          };
         };
 
         pulseaudio = {
@@ -103,26 +108,42 @@
 
         "disk#root" = {
           path = "/";
-          format = "󰙅 <sub>{percentage_used}%</sub>";
+          format = "󰙅<sub> {percentage_used}%</sub>";
+          states = {
+            warning = 75;
+            critical = 90;
+          };
         };
 
         "disk#home" = {
           path = "/home";
-          format = "󰋜 <sub>{percentage_used}%</sub>";
+          format = "󰋜<sub> {percentage_used}%</sub>";
           unit = "GB";
+          states = {
+            warning = 75;
+            critical = 90;
+          };
         };
 
         cpu = {
-          format = "󰘚 <sub>{usage}%</sub>";
+          format = "󰘚<sub> {usage}%</sub>";
           tooltip = true;
+          states = {
+            warning = 75;
+            critical = 90;
+          };
         };
 
         memory = {
-          format = "󰍛 <sub>{percentage}%</sub>";
+          format = "󰍛<sub> {percentage}%</sub>";
+          states = {
+            warning = 75;
+            critical = 90;
+          };
         };
 
         temperature = {
-          format = "{icon} <sub>{temperatureC}°C</sub>";
+          format = "{icon}<sub> {temperatureC}°C</sub>";
           format-icons = ["" "" "" "" ""];
         };
 
@@ -161,6 +182,10 @@
         margin: 0 5px;
       }
 
+      #custom-mullvad.connected {
+        color: #b8bb26;
+      }
+
       #workspaces {
         margin-left: 5px;
         margin-right: 25px;
@@ -173,6 +198,14 @@
 
       #workspaces button.visible {
         border-bottom: 3px solid white;   
+      }
+
+      .warning {
+        color: #fe8019;
+      }
+
+      .critical {
+        color: #fb4934;
       }
 
       #workspaces button:hover {
