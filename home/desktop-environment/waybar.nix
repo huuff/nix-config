@@ -103,28 +103,26 @@
 
         "disk#root" = {
           path = "/";
-          format = "󰙅 {percentage_used}%";
+          format = "󰙅 <sub>{percentage_used}%</sub>";
         };
 
         "disk#home" = {
           path = "/home";
-          format = "󰋜 {percentage_used}%";
+          format = "󰋜 <sub>{percentage_used}%</sub>";
           unit = "GB";
         };
 
         cpu = {
-          format = "󰘚 {usage}%";
+          format = "󰘚 <sub>{usage}%</sub>";
           tooltip = true;
         };
 
         memory = {
-          format = "󰍛 {percentage}%";
+          format = "󰍛 <sub>{percentage}%</sub>";
         };
 
         temperature = {
-          format = "{icon} {temperatureC}°C";
-          critical-threshold = 80;
-          format-critical = " {temperatureC}°C";
+          format = "{icon} <sub>{temperatureC}°C</sub>";
           format-icons = ["" "" "" "" ""];
         };
 
@@ -152,7 +150,7 @@
 
       /* HARDWARE GROUP */
       #memory, #cpu, #disk, #temperature {
-        margin: 0 2px;
+        margin: 0 3px;
       }
 
 
