@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ./screens.nix
     ../../flatpak.nix
-    ../../dark-theme.nix
   ];
   # It gets too slow without this
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

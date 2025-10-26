@@ -1,9 +1,5 @@
 { pkgs, lib, ... }:
 {
-  home.packages = [
-    pkgs.nerd-fonts.fira-code
-  ];
-
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -80,7 +76,7 @@
         };
 
         "hyprland/language" = {
-          format = "⌨ {}";
+          format = "󰌌 {}";
           format-en = "en";
           format-es = "es";
           on-click = "hyprctl switchxkblayout video-bus next";
@@ -158,20 +154,10 @@
       };
     };
 
-    style = ''
-      * {
-        font-family: "FiraCode Nerd Font", monospace;
-        font-size: 13px;
-      }
-
+    style = lib.mkAfter ''
       window#waybar {
         background-color: rgba(0, 0, 0, 0);
         color: #ebdbb2;
-      }
-
-      /* HARDWARE GROUP */
-      #memory, #cpu, #disk, #temperature {
-        margin: 0 3px;
       }
 
 
