@@ -33,6 +33,12 @@
       };
     };
 
+    cursor = {
+      package = pkgs.phinger-cursors;
+      name = "phinger-cursors-dark";
+      size = 24;
+    };
+
     targets.firefox.profileNames = ["default"];
   };
 }
