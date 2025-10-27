@@ -43,7 +43,7 @@
               if [ "$state" = "connected" ]; then
                 jo text="󰦝 $location" class=connected
               else
-                jo text="󰦝 $location" class=disconnected
+                jo text="󰦞 $location" class=disconnected
               fi
             '';
           });
