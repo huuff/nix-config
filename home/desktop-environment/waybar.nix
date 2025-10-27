@@ -185,6 +185,11 @@
       #workspaces button:hover {
         background-color: #${config.lib.stylix.colors.base02};
       }
+
+      #workspaces button.urgent {
+        background-color: #${config.lib.stylix.colors.base09};
+        color: #${config.lib.stylix.colors.base00};
+      }
     '';
   };
 }
