@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -144,19 +144,20 @@
     style = lib.mkAfter ''
       window#waybar {
         background-color: rgba(0, 0, 0, 0);
-        color: #ebdbb2;
+        color: #${config.lib.stylix.colors.base05};
       }
 
 
       #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
-        background-color: rgba(70, 70, 60, 0.75);
+        background-color: #${config.lib.stylix.colors.base01};
+        opacity: 0.75;
         border-radius: 6px;
         padding: 0 10px;
         margin: 0 5px;
       }
 
       #custom-mullvad.connected {
-        color: #b8bb26;
+        color: #${config.lib.stylix.colors.base0B};
       }
 
       #workspaces {
@@ -170,19 +171,19 @@
       }
 
       #workspaces button.visible {
-        border-bottom: 3px solid white;   
+        border-bottom: 3px solid #${config.lib.stylix.colors.base05};
       }
 
       .warning {
-        color: #fe8019;
+        color: #${config.lib.stylix.colors.base09};
       }
 
       .critical {
-        color: #fb4934;
+        color: #${config.lib.stylix.colors.base08};
       }
 
       #workspaces button:hover {
-        background-color: #3c3836;
+        background-color: #${config.lib.stylix.colors.base02};
       }
     '';
   };
