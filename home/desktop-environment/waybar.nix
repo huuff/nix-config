@@ -147,7 +147,6 @@
         color: #${config.lib.stylix.colors.base05};
       }
 
-
       #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
         background-color: #${config.lib.stylix.colors.base01};
         opacity: 0.75;
@@ -158,6 +157,14 @@
 
       #custom-mullvad.connected {
         color: #${config.lib.stylix.colors.base0B};
+      }
+
+      .warning {
+        color: #${config.lib.stylix.colors.base09};
+      }
+
+      .critical {
+        color: #${config.lib.stylix.colors.base08};
       }
 
       #workspaces {
@@ -171,19 +178,11 @@
       }
 
       #workspaces button.visible {
-        border-bottom: 3px solid #${config.lib.stylix.colors.base05};
-      }
-
-      .warning {
-        color: #${config.lib.stylix.colors.base09};
-      }
-
-      .critical {
-        color: #${config.lib.stylix.colors.base08};
+        background-color: #${config.lib.stylix.colors.base02};
       }
 
       #workspaces button:hover {
-        background-color: #${config.lib.stylix.colors.base02};
+        background-color: #${config.lib.stylix.colors.base01};
       }
 
       #workspaces button.urgent {
