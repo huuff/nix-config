@@ -1,4 +1,7 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, osConfig, ... }:
+let
+  hasHomePartition = osConfig.fileSystems ? "/home";
+in
 {
   programs.waybar = {
     enable = true;
@@ -98,7 +101,7 @@
           };
         };
 
-        "disk#home" = {
+        "disk#home" = lib.mkIf hasHomePartition {
           path = "/home";
           format = "󰋜<sub> {percentage_used}%</sub>";
           unit = "GB";
@@ -132,7 +135,7 @@
 
         "group/hardware" = {
           orientation = "horizontal";
-          modules = ["temperature" "cpu" "memory" "disk#root" "disk#home"];
+          modules = ["temperature" "cpu" "memory" "disk#root"] ++ (lib.optional hasHomePartition "disk#home");
         };
 
         tray = {
