@@ -9,5 +9,6 @@
     ./screenshot.nix
     ./launcher.nix
     ./stylix.nix
+    ./notifications.nix
   ];
 }

@@ -39,6 +39,10 @@
       size = 24;
     };
 
+    opacity = {
+      popups = 0.75;
+    };
+
     targets.firefox.profileNames = ["default"];
   };
 }
