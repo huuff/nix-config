@@ -17,7 +17,7 @@
         name = "FiraCode Nerd Font";
       } ;
 
-      # TODO: definitely don't use the monospaced font everywher
+      # TODO: definitely don't use the monospaced font everywhere
       # serif = {
       #   package = pkgs.nerd-fonts.fira-code;
       #   name = "FiraCode Nerd Font";
