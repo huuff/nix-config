@@ -201,11 +201,11 @@ in
       }
 
       #workspaces button.visible {
-        background-color: #${config.lib.stylix.colors.base02};
+        border-bottom: 3px solid #${config.lib.stylix.colors.base05};
       }
 
       #workspaces button:hover {
-        background-color: #${config.lib.stylix.colors.base01};
+        background-color: #${config.lib.stylix.colors.base02};
       }
 
       #workspaces button.urgent {
