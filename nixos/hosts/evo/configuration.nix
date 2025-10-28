@@ -18,6 +18,10 @@
       kernelModules = [ "kvm-amd" ];
     };
 
+    # this hides some ugly ACPI errors during boot that garble the login screen
+    # and are totally useless
+    consoleLogLevel = 3;
+
     extraModulePackages = [];
   };
 
