@@ -58,8 +58,8 @@ in
 
         network = {
           format-wifi = "{icon} {essid}";
-          format-ethernet = "󰈀";
-          format-disconnected = "󰖪";
+          format-ethernet = "󰈀 Wired";
+          format-disconnected = "󰖪 No connection";
           format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
           max-length = 15;
           tooltip-format = "{essid}({ifname}): {ipaddr}/{cidr}";
