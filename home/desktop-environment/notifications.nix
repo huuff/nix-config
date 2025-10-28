@@ -15,6 +15,18 @@
     '';
     settings = {
       positionX = "left";
+      widgets = ["title" "dnd" "notifications" "volume" "backlight"];
+      widget-config = {
+        volume = {
+          label = "";
+        };
+
+        backlight = {
+          label = "";
+          # TODO: don't hardcode?
+          device = "amdgpu_bl1";
+        };
+      };
     };
   };
 
