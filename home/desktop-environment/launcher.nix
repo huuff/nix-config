@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 {
 
   programs.rofi = {
@@ -66,9 +66,14 @@
           border-radius = mkLiteral "16px";
         };
 
+        element-text = {
+          background-color = lib.mkForce (mkLiteral "transparent");
+        };
+
         element-icon = {
           size = mkLiteral "1em";
           vertical-align = mkLiteral "0.5";
+          background-color = lib.mkForce (mkLiteral "transparent");
         };
       };
   };
