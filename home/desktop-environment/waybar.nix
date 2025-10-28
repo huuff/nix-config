@@ -10,11 +10,33 @@ in
       topBar = {
         layer = "top";
         position = "top";
-        height = 25;
+        height = 35;
 
-        modules-left = [ "hyprland/workspaces" "group/hardware"];
+        modules-left = [ "custom/notification" "hyprland/workspaces" "group/hardware"];
         modules-center = ["clock"];
         modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
+
+        # stolen from https://haseebmajid.dev/posts/2024-03-15-til-how-to-get-swaync-to-play-nice-with-waybar/
+        "custom/notification" = {
+          tooltip = false;
+          format = "{icon}<sub> {text}</sub>";
+          format-icons = {
+            notification = "󱅫";
+            none = "";
+            dnd-notification = " ";
+            dnd-none = "󰂛";
+            inhibited-notification = " ";
+            inhibited-none = "";
+            dnd-inhibited-notification = " ";
+            dnd-inhibited-none = " ";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "sleep 0.1 && swaync-client -t -sw";
+          on-click-right = "sleep 0.1 && swaync-client -d -sw";
+          escape = true;
+        };
 
         "hyprland/workspaces" = {
           format = "<sub>{icon}</sub> {windows}";
@@ -150,12 +172,12 @@ in
         color: #${config.lib.stylix.colors.base05};
       }
 
-      #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
+      #custom-notification, #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
         background-color: #${config.lib.stylix.colors.base01};
         opacity: 0.75;
         border-radius: 6px;
         padding: 0 10px;
-        margin: 0 5px;
+        margin: 0 3px;
       }
 
       #custom-mullvad.connected {
@@ -171,8 +193,6 @@ in
       }
 
       #workspaces {
-        margin-left: 5px;
-        margin-right: 25px;
         padding: 0;
       }
 
