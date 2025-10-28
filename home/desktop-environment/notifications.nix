@@ -1,15 +1,20 @@
-{ ... }:
+{ lib, config, ... }:
 {
 
-  services.dunst = {
+  services.swaync = {
     enable = true;
+    # CONTRIB: Doesn't stylix set opacity? maybe I could write a PR
+    style = lib.mkAfter ''
+      .notification {
+        opacity: ${toString config.stylix.opacity.popups};
+      }
+
+      .control-center {
+        opacity: ${toString config.stylix.opacity.popups};
+      }
+    '';
     settings = {
-      global = {
-        corner_radius = 10;
-        frame_width = 1;
-        padding = 12;
-        horizontal_padding = 20;
-      };
+      positionX = "left";
     };
   };
 

@@ -40,7 +40,7 @@
     };
 
     opacity = {
-      popups = 0.75;
+      popups = 0.9;
     };
 
     targets.firefox.profileNames = ["default"];
