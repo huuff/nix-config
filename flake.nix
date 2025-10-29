@@ -47,6 +47,13 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # these two must come together
+    elephant.url = "github:abenz1267/elephant";
+    walker = {
+      url = "github:abenz1267/walker"; 
+      inputs.elephant.follows = "elephant";
+    };
   };
 
   outputs = {
@@ -65,6 +72,8 @@
     disko,
     paintings,
     stylix,
+    walker,
+    elephant,
   }:
   let
     system = "x86_64-linux";
@@ -143,6 +152,7 @@
           home-manager.users.${user} = { lib, ... }: {
             imports = [./home/home.nix] 
               ++ [stylix.homeModules.stylix]
+              ++ [walker.homeManagerModules.default]
               ++ lib.attrValues my-home-modules.homeManagerModules
               # TODO: actually I should get only the main module right? not all
               ++ lib.attrValues sops-nix.homeManagerModules

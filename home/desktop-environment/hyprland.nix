@@ -17,7 +17,7 @@
         "$mod, Return, exec, ${lib.getExe pkgs.alacritty}"
 
         # App launcher
-        "$mod, d, exec, ${lib.getExe pkgs.rofi} -show run"
+        "$mod, d, exec, ${lib.getExe pkgs.walker}"
 
         # Focus controls (i3-style with vim keys)
         "$mod, h, movefocus, l"
