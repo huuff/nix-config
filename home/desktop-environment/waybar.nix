@@ -50,6 +50,7 @@ in
             "chromium" = "";
             "tor browser" = "";
           };
+          # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {
             "eDP-1" = [1 3 5 7 9];
             "DP-1" = [2 4 6 8 0];
