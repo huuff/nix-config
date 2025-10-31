@@ -48,6 +48,7 @@ in
             "slack" = "󰒱";
             "alacritty" = "";
             "chromium" = "";
+            "tor browser" = "";
           };
         };
 
