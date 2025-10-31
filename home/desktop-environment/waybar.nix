@@ -50,6 +50,10 @@ in
             "chromium" = "";
             "tor browser" = "";
           };
+          persistent-workspaces = {
+            "eDP-1" = [1 3 5 7 9];
+            "DP-1" = [2 4 6 8 0];
+          };
         };
 
         clock = {
@@ -164,6 +168,7 @@ in
         tray = {
           spacing = 10;
         };
+
       };
     };
 
