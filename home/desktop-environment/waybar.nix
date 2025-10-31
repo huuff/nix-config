@@ -8,13 +8,14 @@ in
     systemd.enable = true;
     settings = {
       topBar = {
+        name = "topBar";
         layer = "top";
         position = "top";
         height = 35;
 
         modules-left = [ "custom/notification" "hyprland/workspaces" "group/hardware"];
         modules-center = ["clock"];
-        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language" "tray"];
+        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language"];
 
         # stolen from https://haseebmajid.dev/posts/2024-03-15-til-how-to-get-swaync-to-play-nice-with-waybar/
         "custom/notification" = {
@@ -49,6 +50,11 @@ in
             "alacritty" = "";
             "chromium" = "";
             "tor browser" = "";
+          };
+          # TODO: this is coupled to my laptop so not perfect
+          persistent-workspaces = {
+            "eDP-1" = [1 3 5 7 9];
+            "DP-1" = [2 4 6 8 0];
           };
         };
 
@@ -161,6 +167,19 @@ in
           modules = ["temperature" "cpu" "memory" "disk#root"] ++ (lib.optional hasHomePartition "disk#home");
         };
 
+
+      };
+
+      trayBar = {
+        name = "trayBar";
+        layer = "top";
+        position = "bottom";
+        exclusive = false;
+
+        modules-right = ["tray"];
+        margin-bottom = 6;
+        height = 25;
+
         tray = {
           spacing = 10;
         };
@@ -173,12 +192,20 @@ in
         color: #${config.lib.stylix.colors.base05};
       }
 
-      #custom-notification, #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language, #tray {
+      #custom-notification, #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language {
         background-color: #${config.lib.stylix.colors.base01};
         opacity: 0.75;
         border-radius: 6px;
         padding: 0 10px;
         margin: 0 3px;
+      }
+
+
+      window#waybar.trayBar #tray {
+        background-color: #${config.lib.stylix.colors.base00};
+        padding: 2px 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
       }
 
       #custom-mullvad.connected {
