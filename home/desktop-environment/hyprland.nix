@@ -34,6 +34,9 @@
         # Fullscreen (i3-style)
         "$mod, f, fullscreen, 0"
 
+        # Toggle floating
+        "$mod, Space, togglefloating"
+
         # Close window
         "$mod SHIFT, q, killactive"
 
@@ -60,6 +63,12 @@
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
+      ];
+
+      # Mouse bindings for floating windows
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
 
       decoration = {
