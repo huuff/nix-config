@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
 
   services.swaync = {
@@ -54,25 +54,9 @@
         padding: 0;
       }
 
-      /* Uncomment to enable specific urgency colors
-      .low {
-        background: yellow;
-        padding: 6px;
-        border-radius: 12px;
-      }
-
-      .normal {
-        background: green;
-        padding: 6px;
-        border-radius: 12px;
-      }
-
       .critical {
-        background: red;
-        padding: 6px;
-        border-radius: 12px;
+        background: #${config.lib.stylix.colors.base08};
       }
-      */
 
       .notification-content {
         background: transparent;
