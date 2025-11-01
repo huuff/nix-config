@@ -17,7 +17,9 @@
         "$mod, Return, exec, ${lib.getExe pkgs.alacritty}"
 
         # App launcher
-        "$mod, d, exec, ${lib.getExe pkgs.walker}"
+        # TODO: can't use the one from pkgs because it's different from the one that I get from the walker
+        # flake! so this depends on it being in scope, I need something better
+        "$mod, d, exec, walker"
 
         # Focus controls (i3-style with vim keys)
         "$mod, h, movefocus, l"
