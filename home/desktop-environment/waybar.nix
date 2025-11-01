@@ -88,7 +88,7 @@ in
         network = {
           format-wifi = "{icon} {essid}";
           format-ethernet = "󰈀 Wired";
-          format-disconnected = "󰖪 No connection";
+          format-disconnected = "󰖪 Disconnected";
           format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
           max-length = 15;
           tooltip-format = "{essid}({ifname}): {ipaddr}/{cidr}";
@@ -217,6 +217,10 @@ in
       }
 
       .critical {
+        color: #${config.lib.stylix.colors.base08};
+      }
+
+      #network.disconnected {
         color: #${config.lib.stylix.colors.base08};
       }
 
