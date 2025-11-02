@@ -1,8 +1,11 @@
-{ ... }:
+{ pkgs, lib, ... }:
 {
   programs.walker = {
     enable = true;
     runAsService = true;
+    config = {
+      app_launch_prefix = "${lib.getExe pkgs.app2unit} --";
+    };
   };
 
   # TODO: the provided home-manager module for configuring elephant is outdated
