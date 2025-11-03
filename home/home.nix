@@ -26,6 +26,7 @@
     ./llm.nix
     ./ssh.nix
     ./cli-essentials.nix
+    ./slack.nix
 
     ./crypto.nix
   ];
@@ -69,7 +70,6 @@
     ntfs3g # TODO: In nixos config?
     gnupg # TODO somewhere else with the rest of the config
     _1password-cli
-    slack
     derivations.soapui57
     inetutils # for telnet (TODO: In cli-essentials.nix?)
 
