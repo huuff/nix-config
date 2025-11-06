@@ -49,7 +49,8 @@
         james-yu.latex-workshop # latex all-in-one
         github.vscode-pull-request-github # do pr reviews in vscode
         vscodevim.vim # vim emulation layer
-        hashicorp.terraform 
+        hashicorp.terraform # terraform support
+
 
         # themes
         jdinhlife.gruvbox 
@@ -61,6 +62,13 @@
           publisher = "jsaulou";
           version = "1.3.0";
           sha256 = "VyXIGPraAABt5bOJH86qvWtbCY2Tp99z26w2qUOCcsQ=";
+        }
+
+        {
+          name = "vscode-mermaid-preview";
+          publisher = "vstirbu";
+          version = "2.1.2";
+          sha256 = "zTGFtYDGhqvhVjKvbLgwpduIPeWcZvh8QDjx/0HC+DM=";
         }
       ];
 
