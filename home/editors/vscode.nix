@@ -50,7 +50,7 @@
         github.vscode-pull-request-github # do pr reviews in vscode
         vscodevim.vim # vim emulation layer
         hashicorp.terraform # terraform support
-
+        streetsidesoftware.code-spell-checker # spell checker
 
         # themes
         jdinhlife.gruvbox 
@@ -69,6 +69,20 @@
           publisher = "vstirbu";
           version = "2.1.2";
           sha256 = "zTGFtYDGhqvhVjKvbLgwpduIPeWcZvh8QDjx/0HC+DM=";
+        }
+
+        {
+          name = "code-spell-checker-spanish";
+          publisher = "streetsidesoftware";
+          version = "2.3.9";
+          sha256 = "7HCEPy50L8QleOXsOUBGlB+wWF3eRJmvxeFTzn6wc8M=";
+        }
+
+        {
+          name = "excalidraw-editor";
+          publisher = "pomdtr";
+          version = "3.9.0";
+          sha256 = "DTmlHiMKnRUOEY8lsPe7JLASEAXmfqfUJdBkV0t08c0=";
         }
       ];
 
@@ -111,6 +125,8 @@
             "nix" = "Tokyo Night";
           };
         };
+
+        "excalidraw.theme" = "auto";
 
         "vim" = {
           "useSystemClipboard" = true;
