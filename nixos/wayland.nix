@@ -33,6 +33,7 @@
         exec ${uwsm} start default
       fi
     '';
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     security.pam.services.hyprlock.enable = true;
     programs.hyprlock.enable = true;
