@@ -10,5 +10,6 @@
     ./launcher.nix
     ./stylix.nix
     ./notifications.nix
+    ./bluelight.nix
   ];
 }
