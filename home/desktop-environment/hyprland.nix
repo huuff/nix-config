@@ -4,6 +4,7 @@
     enable = true;
     # XXX: conflicts with nixos-level UWSM (see https://wiki.hypr.land/Useful-Utilities/Systemd-start/#uwsm)
     systemd.enable = false;
+    plugins = [pkgs.hyprlandPlugins.hypr-dynamic-cursors];
     settings = {
       "$mod" = "SUPER";
 
@@ -83,6 +84,14 @@
 
       general = {
         allow_tearing = false;
+      };
+
+      "plugin:dynamic-cursors" = {
+        enabled = true;
+        mode = "none"; # I just want shake-to-find
+        shake = {
+          enabled = true;
+        };
       };
 
     };
