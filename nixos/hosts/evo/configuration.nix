@@ -22,6 +22,10 @@
     # and are totally useless
     consoleLogLevel = 3;
 
+    kernelParams = [
+      "usbcore.autosuspend=-1" # otherwise my mouse disconnects when used through a docking station
+    ];
+
     extraModulePackages = [];
   };
 
