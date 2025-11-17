@@ -38,7 +38,6 @@
 
     gh # github
 
-
     wl-clipboard # provides wl-copy and wl-paste
   ];
 
