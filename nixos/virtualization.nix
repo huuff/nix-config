@@ -4,7 +4,7 @@ with lib;
   config = {
     # I'm not sure whether this works, I have like 3 different ways of setting groups
     # in my previous files. Check it out.
-    users.users.${user}.extraGroups = [ "docker" "libvirtd" "vboxusers" ];
+    users.users.${user}.extraGroups = [ "docker" "libvirtd" "vboxusers" "kvm" ];
 
     # Necessary for virt-manager
     programs.dconf.enable = true;

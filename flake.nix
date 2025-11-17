@@ -139,6 +139,8 @@
         disko.nixosModules.disko
         stylix.nixosModules.stylix
 
+        ./nixos/android.nix
+
         {
           # XXX: I have it enabled in home-manager but that seems to not be enough
           # because of an assertion somewhere
