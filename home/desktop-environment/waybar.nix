@@ -50,6 +50,7 @@ in
             "alacritty" = "";
             "chromium" = "";
             "tor browser" = "";
+            "jetbrains-idea" = "";
           };
           # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {
