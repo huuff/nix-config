@@ -23,7 +23,9 @@
     consoleLogLevel = 3;
 
     kernelParams = [
-      "usbcore.autosuspend=-1" # otherwise my mouse disconnects when used through a docking station
+      # suppossedly can fix issues with everything that goes through a docking station disconnecting, but I'm not
+      # seeing any good results. I'm leaving it just in case there's any chance it helps
+      "usbcore.autosuspend=-1" 
     ];
 
     extraModulePackages = [];
