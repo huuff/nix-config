@@ -19,6 +19,8 @@
       xmlfmt = "xmllint --format -";
       # disable emacs splash screen, cannot do it from config file, so this will do
       emacs = "emacs --no-splash";
+      tf = "terraform";
+      postman = "hoppscotch"; # for muscle memory
     };
 
     scriptDir = "$HOME/scripts";

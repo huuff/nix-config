@@ -5,8 +5,6 @@
     ./editors/emacs
     ./editors/vscode.nix
 
-    ./postman.nix
-
     ./browsers/firefox.nix
     ./browsers/chromium.nix
 
@@ -50,6 +48,7 @@
     # -F: exit immediately if the entire output fits the screen
     # --mouse --wheel-lines: mouse scroll, speed
     LESS = "-XFr --mouse --wheel-lines=3";
+    XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS";
   };
 
   home.packages = with pkgs; [
@@ -89,10 +88,9 @@
     clang # I just need it to build tree-sitter grammars in emacs
 
     pgcli
-
     tor-browser
-
     libreoffice
+    hoppscotch
   ];
 
   programs.kubernetes = {
