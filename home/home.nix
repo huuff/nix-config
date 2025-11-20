@@ -48,6 +48,7 @@
     # -F: exit immediately if the entire output fits the screen
     # --mouse --wheel-lines: mouse scroll, speed
     LESS = "-XFr --mouse --wheel-lines=3";
+    # this makes tauri apps not look like shit
     XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS";
   };
 
