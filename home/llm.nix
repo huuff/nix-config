@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, lib, config, ... }: {
 
   sops.secrets.openrouterApiKey = {};
 
@@ -9,7 +9,6 @@
   ];
 
   programs = {
-    
     zsh = {
       enable = true;
 
@@ -27,6 +26,18 @@
         fi
       '';
     };
+  };
+
+  xdg.configFile."aichat/config.yaml".source = (pkgs.formats.yaml {}).generate "aichat-config" {
+    model = "openrouter:google/gemini-3-pro-preview";
+    clients = [
+      {
+        type = "openai-compatible";
+        name = "openrouter";
+        api_base = "https://openrouter.ai/api/v1";
+      }
+    ];
+    save_session = true;
   };
 
 }
