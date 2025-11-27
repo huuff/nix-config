@@ -2,7 +2,6 @@
 
 {
   # TODO: css modules
-  # TODO: Maybe remove blame for gitlens?
   programs.vscode = {
     enable = true;
     # prevents manually installing extensions, but also prevents nix-installed versions
@@ -51,6 +50,7 @@
         vscodevim.vim # vim emulation layer
         hashicorp.terraform # terraform support
         streetsidesoftware.code-spell-checker # spell checker
+        eamodio.gitlens
 
         # themes
         jdinhlife.gruvbox 
