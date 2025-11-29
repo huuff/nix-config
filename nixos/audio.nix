@@ -9,6 +9,9 @@
       };
 
       pulse.enable = true;
+
+      # my mic doesn't work in some computers without this
+      # (especially without jack, I think?)
       jack.enable = true;
       wireplumber.enable = true;
     };
