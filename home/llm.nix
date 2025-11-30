@@ -35,6 +35,17 @@
         type = "openai-compatible";
         name = "openrouter";
         api_base = "https://openrouter.ai/api/v1";
+        patch = {
+          chat_completions = {
+            ".*" = {
+              body = {
+                # remove <think> blocks which are just noise, I'd prefer if aichat had some setting
+                # to hide/show it, but this is my quickest solution
+                include_reasoning = false;
+              };
+            };
+          };
+        };
       }
     ];
     save_session = true;
