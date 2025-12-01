@@ -34,8 +34,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.fzf.enable = true;
-
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = user;
