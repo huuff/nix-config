@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     wget
@@ -14,7 +14,6 @@
     fd # find replacement (also needed for emacs)
     silver-searcher # grep replacement
 
-    fzf # TODO: Is it necessary here? I think it's enough to enable it through home-manager
     btop
     bat # cat replacement
     entr # run command on file changes
@@ -50,4 +49,13 @@
       blocks = [ "permission" "user" "group" "size" "date" "name" "git" ];
     };
   };
+
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
+  # ignores .gitinignore'd files
+  home.sessionVariables.FZF_CTRL_T_COMMAND = "${lib.getExe pkgs.fd} --type f";
 }
