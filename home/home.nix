@@ -56,12 +56,6 @@
     cachix
     devenv
 
-    # TODO: any way to just pick-up all packages from scripts? UPDATE: yeah, `lib.attrValues`?
-    scripts.bakup # my own script to nicely backup files
-    scripts.docker-nuke # cleanup everything docker
-    scripts.nix-nuke # cleanup everything nix
-    scripts.nuke-all #cleanup everything everything
-
     zathura # pdf reader
     scrot # making screenshots
     cloc # count lines of code
@@ -90,7 +84,7 @@
     tor-browser
     libreoffice
     hoppscotch
-  ];
+  ] ++ lib.attrValues scripts;
 
   programs.kubernetes = {
     enable = true;
