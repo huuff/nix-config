@@ -51,6 +51,7 @@ in
             "chromium" = "";
             "tor browser" = "";
             "jetbrains-idea" = "";
+            "Ledger Wallet" = "";
           };
           # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {
