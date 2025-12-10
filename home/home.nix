@@ -84,6 +84,7 @@
     tor-browser
     libreoffice
     hoppscotch
+
   ] ++ lib.attrValues scripts;
 
   programs.kubernetes = {
