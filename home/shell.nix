@@ -1,32 +1,5 @@
-{ modules, ... }:
 {
-  imports = [
-    modules.shell
-  ];
 
-  programs.shell = {
-    aliases = {
-      op-login = "eval $(op signin --account my.1password.com)";
-      ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
-      sudo= "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043 
-      watch = "watch "; # same as sudo
-      cloc = "cloc --vcs=git";
-      ag2 = "ag --context=2";
-      agi = "ag --ignore '*.sql' --ignore '*.svg' --ignore '*.afm' --ignore '*.ser' --ignore '*.ufm'";
-      duh = "du -h --max-depth=1";
-      k = "kubectl";
-      hf = "helmfile";
-      xmlfmt = "xmllint --format -";
-      # disable emacs splash screen, cannot do it from config file, so this will do
-      emacs = "emacs --no-splash";
-      tf = "terraform";
-      postman = "hoppscotch"; # for muscle memory
-    };
-
-    scriptDir = "$HOME/scripts";
-
-    completionsDir = {};
-  };
 
 
     ### BASH
@@ -65,6 +38,24 @@
       };
 
       defaultKeymap = "emacs";
+
+      shellAliases = {
+        op-login = "eval $(op signin --account my.1password.com)";
+        ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
+        sudo = "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043
+        watch = "watch "; # same as sudo
+        cloc = "cloc --vcs=git";
+        ag2 = "ag --context=2";
+        agi = "ag --ignore '*.sql' --ignore '*.svg' --ignore '*.afm' --ignore '*.ser' --ignore '*.ufm'";
+        duh = "du -h --max-depth=1";
+        k = "kubectl";
+        hf = "helmfile";
+        xmlfmt = "xmllint --format -";
+        # disable emacs splash screen, cannot do it from config file, so this will do
+        emacs = "emacs --no-splash";
+        tf = "terraform";
+        postman = "hoppscotch"; # for muscle memory
+      };
 
       # TODO: Check if some of these settings would be nice to improve my history
       # https://unix.stackexchange.com/a/273863/483246

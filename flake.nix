@@ -20,7 +20,6 @@
     };
 
     nix-soapui.url = "github:huuff/nix-soapui";
-    nix-portable-shell.url = "github:huuff/nix-portable-shell";
 
     my-home-modules = {
       url = "github:huuff/nix-home-modules";
@@ -64,7 +63,6 @@
     my-home-modules,
     nur,
     emacs-overlay,
-    nix-portable-shell,
     hm-kubernetes,
     scripts,
     nix-index-database,
@@ -92,7 +90,6 @@
           soapui57 = nix-soapui.packages.x86_64-linux.default;
         };
         modules = {
-          shell = nix-portable-shell.nixosModules.shell;
           kubernetes = hm-kubernetes.nixosModules.kubernetes;
         };
       };
