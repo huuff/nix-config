@@ -16,7 +16,7 @@
 
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.nixpkgs.url = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-soapui.url = "github:huuff/nix-soapui";
