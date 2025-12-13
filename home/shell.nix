@@ -1,6 +1,6 @@
+{ ... }:
 {
-
-
+    home.sessionPath = [ "$HOME/scripts" ];
 
     ### BASH
     programs.bash = {
