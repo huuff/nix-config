@@ -5,6 +5,7 @@
     jq # json inspection
     yq # like jq but for yaml, also provides xq for xml
     git
+    devenv
 
     zip
     unzip
@@ -46,7 +47,15 @@
     enableZshIntegration = true;
     settings = {
       classic = false;
-      blocks = [ "permission" "user" "group" "size" "date" "name" "git" ];
+      blocks = [
+        "permission"
+        "user"
+        "group"
+        "size"
+        "date"
+        "name"
+        "git"
+      ];
     };
   };
 
