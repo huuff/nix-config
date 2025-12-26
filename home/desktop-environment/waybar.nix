@@ -1,4 +1,10 @@
-{ pkgs, lib, config, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  osConfig,
+  ...
+}:
 let
   hasHomePartition = osConfig.fileSystems ? "/home";
 in
@@ -13,9 +19,19 @@ in
         position = "top";
         height = 35;
 
-        modules-left = [ "custom/notification" "hyprland/workspaces" "group/hardware"];
-        modules-center = ["clock"];
-        modules-right = [ "custom/mullvad" "network" "battery" "pulseaudio" "hyprland/language"];
+        modules-left = [
+          "custom/notification"
+          "hyprland/workspaces"
+          "group/hardware"
+        ];
+        modules-center = [ "clock" ];
+        modules-right = [
+          "custom/mullvad"
+          "network"
+          "battery"
+          "pulseaudio"
+          "hyprland/language"
+        ];
 
         # stolen from https://haseebmajid.dev/posts/2024-03-15-til-how-to-get-swaync-to-play-nice-with-waybar/
         "custom/notification" = {
@@ -52,11 +68,26 @@ in
             "tor browser" = "";
             "jetbrains-idea" = "";
             "Ledger Wallet" = "";
+            "hoppscotch" = "󰖟";
+            "Jellyfin" = "󰎁";
+            "pavucontrol" = "󰕾";
           };
           # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {
-            "eDP-1" = [1 3 5 7 9];
-            "DP-1" = [2 4 6 8 10];
+            "eDP-1" = [
+              1
+              3
+              5
+              7
+              9
+            ];
+            "DP-1" = [
+              2
+              4
+              6
+              8
+              10
+            ];
           };
         };
 
@@ -66,21 +97,27 @@ in
         };
 
         "custom/mullvad" = {
-          exec = lib.getExe (pkgs.writeShellApplication {
-            name = "mullvad-waybar";
-            runtimeInputs = with pkgs; [ mullvad jq jo ];
-            text = ''
-              status=$(mullvad status --json)
-              location="$(echo "$status" | jq -r '"\(.details.location.country)"')"
-              state="$(echo "$status" | jq -r .state)"
+          exec = lib.getExe (
+            pkgs.writeShellApplication {
+              name = "mullvad-waybar";
+              runtimeInputs = with pkgs; [
+                mullvad
+                jq
+                jo
+              ];
+              text = ''
+                status=$(mullvad status --json)
+                location="$(echo "$status" | jq -r '"\(.details.location.country)"')"
+                state="$(echo "$status" | jq -r .state)"
 
-              if [ "$state" = "connected" ]; then
-                jo text="󰦝 $location" class=connected
-              else
-                jo text="󰦞 $location" class=disconnected
-              fi
-            '';
-          });
+                if [ "$state" = "connected" ]; then
+                  jo text="󰦝 $location" class=connected
+                else
+                  jo text="󰦞 $location" class=disconnected
+                fi
+              '';
+            }
+          );
           interval = 5;
           tooltip-format = "Mullvad VPN";
           max-length = 10;
@@ -91,7 +128,13 @@ in
           format-wifi = "{icon} {essid}";
           format-ethernet = "󰈀 Wired";
           format-disconnected = "󰖪 Disconnected";
-          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           max-length = 15;
           tooltip-format = "{essid}({ifname}): {ipaddr}/{cidr}";
         };
@@ -105,7 +148,13 @@ in
 
         battery = {
           format = "{icon} {capacity}%";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
           states = {
@@ -118,7 +167,11 @@ in
           format = "{icon} {volume}%";
           format-muted = "󰖁 {volume}%";
           format-icons = {
-            default = ["󰕿" "󰖀" "󰕾"];
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
           };
           on-click = "pavucontrol";
         };
@@ -161,14 +214,25 @@ in
 
         temperature = {
           format = "{icon}<sub> {temperatureC}°C</sub>";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         "group/hardware" = {
           orientation = "horizontal";
-          modules = ["temperature" "cpu" "memory" "disk#root"] ++ (lib.optional hasHomePartition "disk#home");
+          modules = [
+            "temperature"
+            "cpu"
+            "memory"
+            "disk#root"
+          ]
+          ++ (lib.optional hasHomePartition "disk#home");
         };
-
 
       };
 
@@ -178,7 +242,7 @@ in
         position = "bottom";
         exclusive = false;
 
-        modules-right = ["tray"];
+        modules-right = [ "tray" ];
         margin-bottom = 6;
         height = 25;
 
