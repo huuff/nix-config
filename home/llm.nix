@@ -1,17 +1,10 @@
 {
-  pkgs,
-  lib,
   config,
   ...
 }:
 {
 
   sops.secrets.openrouterApiKey = { };
-
-  home.packages = [
-    # good for scripts with LLM interaction
-    pkgs.claude-code
-  ];
 
   programs = {
     aichat = {
@@ -37,6 +30,19 @@
           }
         ];
         save_session = true;
+      };
+    };
+
+    claude-code = {
+      enable = true;
+      settings = {
+        model = "sonnet";
+        enabledPlugins = {
+          "rust-analyzer-lsp@claude-plugins-official" = true;
+        };
+        permissions = {
+          defaultMode = "plan";
+        };
       };
     };
 
