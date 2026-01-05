@@ -16,6 +16,6 @@
     # mullvad-vpn.enable = true;
 
     # required for mullvad
-    # resolved.enable = true;
+    resolved.enable = true;
   };
 }
