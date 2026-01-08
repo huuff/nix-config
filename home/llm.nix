@@ -61,7 +61,7 @@
   home.file =
     let
       claudeSettings = builtins.toJSON {
-        model = "sonnet";
+        model = "opus";
         enabledPlugins = {
           "rust-analyzer-lsp@claude-plugins-official" = true;
         };
@@ -81,10 +81,32 @@
           ];
         };
       };
+
+      hacksRule = ''
+        # Writing one-off hacks
+        When you have to write a hack for a limitation in a library, and
+        especially if it's a bug or known issue, try to keep it away from the
+        main logic, and clearly marked. 
+
+        ## Keeping it away from the main logic
+        You could hide it behind a function with a descriptive name and call
+        that function, rather than inline the code of the hack within the main logic
+        or another function.
+
+        Do this unless it's too inconvenient, or the hack is very short itself.
+        If you have any doubts about whether this rule is applicable, ask me.
+
+        ## Marking it
+        Use a comment to mark it as a `// HACK`. Explain the reason why it's needed.
+        If there's an issue in GitHub, link it in the comment.
+      '';
     in
     {
       ".claude/personal/settings.json".text = claudeSettings;
       ".claude/work/settings.json".text = claudeSettings;
+
+      ".claude/personal/rules/hacks.md".text = hacksRule;
+      ".claude/work/rules/hacks.md".text = hacksRule;
     };
 
   programs.zsh.initExtra = ''
