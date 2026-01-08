@@ -68,6 +68,18 @@
         permissions = {
           defaultMode = "plan";
         };
+        hooks = {
+          Notification = [
+            {
+              hooks = [
+                {
+                  type = "command";
+                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Needs your attention'";
+                }
+              ];
+            }
+          ];
+        };
       };
     in
     {
