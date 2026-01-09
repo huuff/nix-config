@@ -100,6 +100,12 @@
         Use a comment to mark it as a `// HACK`. Explain the reason why it's needed.
         If there's an issue in GitHub, link it in the comment.
       '';
+      goodCode = ''
+        # Writing good code
+        - Try not to hardcode stuff. Whenever possible, get it from some single source of truth.
+          If not possible, don't extract it to a constant unless it's re-used, instead inline it
+          at the use-site.
+      '';
     in
     {
       ".claude/personal/settings.json".text = claudeSettings;
@@ -107,6 +113,9 @@
 
       ".claude/personal/rules/hacks.md".text = hacksRule;
       ".claude/work/rules/hacks.md".text = hacksRule;
+
+      ".claude/personal/rules/good-code.md".text = goodCode;
+      ".claude/work/rules/good-code.md".text = goodCode;
     };
 
   programs.zsh.initExtra = ''
