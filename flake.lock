@@ -1696,6 +1696,26 @@
         "type": "github"
       }
     },
+    "opencode": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768014645,
+        "narHash": "sha256-8TkSCt1a45NHmJmG4YIiMKJTG9k0CuRmBvj1IbnrhL4=",
+        "owner": "sst",
+        "repo": "opencode",
+        "rev": "7cba1ff7937130eb6087e7e766e8712f9c4f68c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sst",
+        "repo": "opencode",
+        "type": "github"
+      }
+    },
     "paintings": {
       "inputs": {
         "nix-checks": "nix-checks_3",
@@ -1988,6 +2008,7 @@
         "nix-soapui": "nix-soapui",
         "nixpkgs": "nixpkgs_12",
         "nur": "nur",
+        "opencode": "opencode",
         "paintings": "paintings",
         "scripts": "scripts",
         "sops-nix": "sops-nix",

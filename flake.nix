@@ -53,6 +53,11 @@
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
     };
+
+    opencode = {
+      url = "github:sst/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -73,6 +78,7 @@
       stylix,
       walker,
       elephant,
+      opencode,
     }:
     let
       system = "x86_64-linux";
@@ -91,6 +97,7 @@
             # TODO: Maybe it should be in an overlay?
             derivations = {
               soapui57 = nix-soapui.packages.x86_64-linux.default;
+              opencode = opencode.packages.x86_64-linux.default;
             };
             modules = {
               kubernetes = hm-kubernetes.nixosModules.kubernetes;

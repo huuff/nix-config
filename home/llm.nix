@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  derivations,
   ...
 }:
 {
@@ -50,82 +51,36 @@
     fi
   '';
 
-  # CLAUDE CODE
-  # XXX: This hack is the only way I've found to setup different auth for work and for
-  # my personal config. Any other choice is pure hell and doesn't seem like anthropic really
-  # wants to support that.
-  # I can't use the home manager module for claude code because it won't allow me to have two
-  # different dirs
-  home.packages = [ pkgs.claude-code ];
-
-  home.file =
-    let
-      claudeSettings = builtins.toJSON {
-        model = "opus";
-        enabledPlugins = {
-          "rust-analyzer-lsp@claude-plugins-official" = true;
-        };
-        permissions = {
-          defaultMode = "plan";
-        };
-        hooks = {
-          Notification = [
-            {
-              hooks = [
-                {
-                  type = "command";
-                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Needs your attention'";
-                }
-              ];
-            }
-          ];
-        };
-      };
-
-      hacksRule = ''
-        # Writing one-off hacks
-        When you have to write a hack for a limitation in a library, and
-        especially if it's a bug or known issue, try to keep it away from the
-        main logic, and clearly marked. 
-
-        ## Keeping it away from the main logic
-        You could hide it behind a function with a descriptive name and call
-        that function, rather than inline the code of the hack within the main logic
-        or another function.
-
-        Do this unless it's too inconvenient, or the hack is very short itself.
-        If you have any doubts about whether this rule is applicable, ask me.
-
-        ## Marking it
-        Use a comment to mark it as a `// HACK`. Explain the reason why it's needed.
-        If there's an issue in GitHub, link it in the comment.
-      '';
-      goodCode = ''
-        # Writing good code
-        - Try not to hardcode stuff. Whenever possible, get it from some single source of truth.
-          If not possible, don't extract it to a constant unless it's re-used, instead inline it
-          at the use-site.
-      '';
-    in
-    {
-      ".claude/personal/settings.json".text = claudeSettings;
-      ".claude/work/settings.json".text = claudeSettings;
-
-      ".claude/personal/rules/hacks.md".text = hacksRule;
-      ".claude/work/rules/hacks.md".text = hacksRule;
-
-      ".claude/personal/rules/good-code.md".text = goodCode;
-      ".claude/work/rules/good-code.md".text = goodCode;
+  # OPENCODE
+  programs.opencode = {
+    enable = true;
+    package = derivations.opencode;
+    settings = {
+      model = "anthropic/claude-opus-4-5-20250929";
+      autoupdate = false;
     };
+    rules = ''
+      # Writing one-off hacks
+      When you have to write a hack for a limitation in a library, and
+      especially if it's a bug or known issue, try to keep it away from the
+      main logic, and clearly marked.
 
-  programs.zsh.initExtra = ''
-    # Claude Code config switcher based on working directory
-    claude() {
-      if [[ "$PWD" == "$HOME/work"* ]]; then
-        CLAUDE_CONFIG_DIR=~/.claude/work command claude "$@"
-      else
-        CLAUDE_CONFIG_DIR=~/.claude/personal command claude "$@"
-      fi
-    }
-  '';
+      ## Keeping it away from the main logic
+      You could hide it behind a function with a descriptive name and call
+      that function, rather than inline the code of the hack within the main logic
+      or another function.
+
+      Do this unless it's too inconvenient, or the hack is very short itself.
+      If you have any doubts about whether this rule is applicable, ask me.
+
+      ## Marking it
+      Use a comment to mark it as a `// HACK`. Explain the reason why it's needed.
+      If there's an issue in GitHub, link it in the comment.
+
+      # Writing good code
+      - Try not to hardcode stuff. Whenever possible, get it from some single source of truth.
+        If not possible, don't extract it to a constant unless it's re-used, instead inline it
+        at the use-site.
+    '';
+  };
 }
