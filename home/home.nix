@@ -1,4 +1,11 @@
-{ pkgs, user, derivations, modules, scripts, ... }:
+{
+  pkgs,
+  user,
+  derivations,
+  modules,
+  scripts,
+  ...
+}:
 {
   imports = [
     ./editors/vim/nvim.nix
@@ -50,49 +57,52 @@
     XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS";
   };
 
-  home.packages = with pkgs; [
-    irust
+  home.packages =
+    with pkgs;
+    [
+      irust
 
-    cachix
-    devenv
+      cachix
+      devenv
 
-    zathura # pdf reader
-    scrot # making screenshots
-    cloc # count lines of code
-    pavucontrol
-    ntfs3g # TODO: In nixos config?
-    gnupg # TODO somewhere else with the rest of the config
-    _1password-cli
-    derivations.soapui57
-    inetutils # for telnet (TODO: In cli-essentials.nix?)
+      zathura # pdf reader
+      scrot # making screenshots
+      cloc # count lines of code
+      pavucontrol
+      ntfs3g # TODO: In nixos config?
+      gnupg # TODO somewhere else with the rest of the config
+      _1password-cli
+      soapui
+      inetutils # for telnet (TODO: In cli-essentials.nix?)
 
-    feh # image viewer
+      feh # image viewer
 
-    # TODO: Maybe these all in kubernetes-something
-    kubernetes-helm
-    helmfile
-    kustomize
+      # TODO: Maybe these all in kubernetes-something
+      kubernetes-helm
+      helmfile
+      kustomize
 
-    # TODO: Maybe in virtualization
-    podman-compose
+      # TODO: Maybe in virtualization
+      podman-compose
 
-    discord
+      discord
 
-    clang # I just need it to build tree-sitter grammars in emacs
+      clang # I just need it to build tree-sitter grammars in emacs
 
-    pgcli
-    tor-browser
-    libreoffice
-    hoppscotch
+      pgcli
+      tor-browser
+      libreoffice
+      hoppscotch
 
-  ] ++ lib.attrValues scripts;
+    ]
+    ++ lib.attrValues scripts;
 
   programs.kubernetes = {
     enable = true;
     krew = {
       enable = true;
 
-      plugins = [ 
+      plugins = [
         "ns"
         "ctx"
         "view-secret"
@@ -105,7 +115,6 @@
   programs.zoxide = {
     enable = true;
   };
-
 
   programs.mpv = {
     enable = true;

@@ -19,8 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-soapui.url = "github:huuff/nix-soapui";
-
     my-home-modules = {
       url = "github:huuff/nix-home-modules";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,7 +62,6 @@
     {
       self,
       nixpkgs,
-      nix-soapui,
       home-manager,
       my-home-modules,
       nur,
@@ -96,7 +93,6 @@
             scripts = scripts.packages.x86_64-linux;
             # TODO: Maybe it should be in an overlay?
             derivations = {
-              soapui57 = nix-soapui.packages.x86_64-linux.default;
               opencode = opencode.packages.x86_64-linux.default;
             };
             modules = {
