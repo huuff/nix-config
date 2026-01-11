@@ -86,6 +86,9 @@
       - Try not to hardcode stuff. Whenever possible, get it from some single source of truth.
         If not possible, don't extract it to a constant unless it's re-used, instead inline it
         at the use-site.
+      - Don't write obvious comments, comments that explain what is clearly visible from the code,
+        or comments that reflect the current conversation. Use comments sparingly, to explain
+        code that's complex, or to explain **why** some code exists, if it isn't obvious.
     '';
   };
 
