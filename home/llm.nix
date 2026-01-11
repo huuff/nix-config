@@ -58,6 +58,11 @@
     settings = {
       model = "anthropic/claude-opus-4-5-20250929";
       autoupdate = false;
+      permission = {
+        bash = {
+          "sops *" = "deny";
+        };
+      };
     };
     rules = ''
       # Writing one-off hacks
