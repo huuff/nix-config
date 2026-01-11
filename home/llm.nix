@@ -83,4 +83,17 @@
         at the use-site.
     '';
   };
+
+  # HACK: OpenCode doesn't support multiple auth profiles yet.
+  # This workaround uses different XDG_DATA_HOME dirs based on working directory.
+  # https://github.com/anomalyco/opencode/issues/5391#issuecomment-3649792123
+  programs.zsh.initExtra = ''
+    opencode() {
+      if [[ "$PWD" == "$HOME/work"* ]]; then
+        XDG_DATA_HOME=~/.local/share/opencode-work command opencode "$@"
+      else
+        XDG_DATA_HOME=~/.local/share/opencode-personal command opencode "$@"
+      fi
+    }
+  '';
 }
