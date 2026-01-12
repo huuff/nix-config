@@ -70,7 +70,7 @@
       cloc # count lines of code
       pavucontrol
       ntfs3g # TODO: In nixos config?
-      gnupg # TODO somewhere else with the rest of the config
+
       _1password-cli
       soapui
       inetutils # for telnet (TODO: In cli-essentials.nix?)
@@ -127,8 +127,6 @@
     enable = true;
     nix-direnv.enable = true;
   };
-
-  services.gpg-agent.enable = true;
 
   xdg.enable = true;
 
