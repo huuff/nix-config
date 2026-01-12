@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  
-  #services.pcscd.enable = true;
+  environment.systemPackages = [ pkgs.gnupg ];
+
   programs.gnupg.agent = {
     enable = true;
     # necessary for collecting entropy for generating keys
@@ -14,4 +14,3 @@
     };
   };
 }
-
