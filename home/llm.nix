@@ -60,7 +60,14 @@
       autoupdate = false;
       permission = {
         bash = {
+          # don't want it to see my secrets
           "sops *" = "deny";
+
+          # scary
+          "terraform destroy *" = "deny";
+          "tf destoy *" = "deny";
+          "terraform apply *" = "deny";
+          "tf apply *" = "deny";
         };
       };
       command = {
