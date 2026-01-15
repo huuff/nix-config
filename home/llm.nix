@@ -63,6 +63,17 @@
           "sops *" = "deny";
         };
       };
+      command = {
+        q = {
+          description = "answer a question";
+          agent = "plan";
+          template = ''
+            Answer the question. Consider the question isolated from the current directory
+            or repository unless some file is referenced. Don't explore. Don't edit anyting.
+            Try to provide sources and examples to your claims. The question is: $ARGUMENTS
+          '';
+        };
+      };
     };
     rules = ''
       # Writing one-off hacks
