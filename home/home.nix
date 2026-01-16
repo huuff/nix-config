@@ -28,7 +28,7 @@
 
     ./cloud.nix
     ./secrets.nix
-    ./llm.nix
+    ./llm
     ./ssh.nix
     ./cli-essentials.nix
     ./slack.nix

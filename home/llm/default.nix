@@ -80,6 +80,15 @@
             Try to provide sources and examples to your claims. The question is: $ARGUMENTS
           '';
         };
+        solve-issue = {
+          description = "solve a github issue";
+          agent = "plan";
+          template = ''
+            Solve the GitHub issue. If you get an issue argument, fetch it
+            with gh CLI. Otherwise, try to get it from the current branch name.
+            The issue is: "$ARGUMENTS"
+          '';
+        };
       };
     };
     rules = ''
@@ -108,6 +117,9 @@
         or comments that reflect our current conversation. Use comments sparingly, to explain
         code that's complex, or to explain **why** some code exists, if it isn't obvious.
     '';
+    skills = {
+      skill-creator = ./skills/skill-creator;
+    };
   };
 
   # HACK: OpenCode doesn't support multiple auth profiles yet.

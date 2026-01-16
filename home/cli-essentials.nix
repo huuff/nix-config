@@ -1,6 +1,8 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
+    python3 # too many scripts I download are in python
+
     wget
     jq # json inspection
     yq # like jq but for yaml, also provides xq for xml
