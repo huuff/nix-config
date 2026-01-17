@@ -89,6 +89,20 @@
             The issue is: "$ARGUMENTS"
           '';
         };
+        check-review = {
+          description = "check whether a PR review has been addressed";
+          agent = "plan";
+          template = ''
+            Check my previous review of a PR. See if my previous comments have been addressed and
+            resolved. Actually check the code changes that address them, not only whether they've been
+            marked as resolved. If they've been addressed, briefly describe how (changes in the code).
+            If I tell you a PR number, check that PR. Otherwise, try to find it from the current branch name.
+            I'll tell you whether to check all previous reviews ("all") or just the latest one ("last").
+            If I don' tell you anything, assume it's "all".
+            The PR is: "$2"
+            Check all/last review: "$1"
+          '';
+        };
       };
     };
     rules = ''
@@ -116,6 +130,12 @@
       - Don't write obvious comments, comments that explain what is clearly visible from the code,
         or comments that reflect our current conversation. Use comments sparingly, to explain
         code that's complex, or to explain **why** some code exists, if it isn't obvious.
+
+      # Debug summary
+      When you've solved a complex issue that required multi-step debugging, provide a summary of
+      steps you've taken to detect the source of the issue and to solve it. Don't be too verbose, I'll
+      ask more information if I need it. Assume average knowledge of the technologies involved, don't
+      be too in-depth nor too beginner friendly.
     '';
     skills = {
       skill-creator = ./skills/skill-creator;
