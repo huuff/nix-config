@@ -136,6 +136,11 @@
       steps you've taken to detect the source of the issue and to solve it. Don't be too verbose, I'll
       ask more information if I need it. Assume average knowledge of the technologies involved, don't
       be too in-depth nor too beginner friendly.
+
+      # Writing good Rust
+      - Whenever you use a function that uses `format_args!`, try to inline arguments inside the string, rather than
+        separate. That is, do: `println!("operation succeeded: {operation}")` instead of `println!("operation succeeded: {}", operation)`.
+        Do this whenever you can, unless at least one of the arguments can't be inlined, then don't inline any.
     '';
     skills = {
       skill-creator = ./skills/skill-creator;
