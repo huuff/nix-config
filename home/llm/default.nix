@@ -141,6 +141,11 @@
       - Whenever you use a function that uses `format_args!`, try to inline arguments inside the string, rather than
         separate. That is, do: `println!("operation succeeded: {operation}")` instead of `println!("operation succeeded: {}", operation)`.
         Do this whenever you can, unless at least one of the arguments can't be inlined, then don't inline any.
+      - Try to use OOP style and favor the usage of methods over free functions.
+
+      # Finding the current PR or issue
+      When I mention "the PR/issue" or "the current pr/issue" without specifying a number, try to get it from the current
+      branch name using the github CLI.
     '';
     skills = {
       skill-creator = ./skills/skill-creator;
