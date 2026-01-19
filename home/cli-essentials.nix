@@ -69,4 +69,12 @@
 
   # ignores .gitinignore'd files
   home.sessionVariables.FZF_CTRL_T_COMMAND = "${lib.getExe pkgs.fd} --type f";
+
+  # fzf-tab: replaces zsh completion menu with fzf (e.g. git checkout <TAB>)
+  programs.zsh.plugins = [
+    {
+      name = "fzf-tab";
+      src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+    }
+  ];
 }

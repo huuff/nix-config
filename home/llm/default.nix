@@ -146,6 +146,10 @@
       # Finding the current PR or issue
       When I mention "the PR/issue" or "the current pr/issue" without specifying a number, try to get it from the current
       branch name using the github CLI.
+
+      # Use nix for programs
+      It's unlikely that you'll have all the software you need available, but the system is NixOS so you 
+      can use the nix command to get anything you want
     '';
     skills = {
       skill-creator = ./skills/skill-creator;
