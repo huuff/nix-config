@@ -61,6 +61,7 @@
     with pkgs;
     [
       irust
+      remmina
 
       cachix
       devenv

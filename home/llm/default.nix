@@ -142,6 +142,8 @@
         separate. That is, do: `println!("operation succeeded: {operation}")` instead of `println!("operation succeeded: {}", operation)`.
         Do this whenever you can, unless at least one of the arguments can't be inlined, then don't inline any.
       - Try to use OOP style and favor the usage of methods over free functions.
+      - Don't implement `Default` on types that don't have a meaningful, semantic default value. In cases where you need a quick way to
+        construct an instance for testing, derive `fake::Dummy` instead.
 
       # Finding the current PR or issue
       When I mention "the PR/issue" or "the current pr/issue" without specifying a number, try to get it from the current

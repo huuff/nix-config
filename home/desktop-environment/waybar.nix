@@ -71,6 +71,8 @@ in
             "hoppscotch" = "󰖟";
             "Jellyfin" = "󰎁";
             "pavucontrol" = "󰕾";
+            "org.remmina.Remmina" = "󰢹";
+            "emulator" = "󰀲";
           };
           # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {

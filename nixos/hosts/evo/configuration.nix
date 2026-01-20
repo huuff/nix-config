@@ -1,4 +1,10 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -14,7 +20,14 @@
     };
 
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "thunderbolt"
+        "usb_storage"
+        "sd_mod"
+        "sdhci_pci"
+      ];
       kernelModules = [ "kvm-amd" ];
     };
 
@@ -27,11 +40,14 @@
     kernelParams = [
       # suppossedly can fix issues with everything that goes through a docking station disconnecting, but I'm not
       # seeing any good results. I'm leaving it just in case there's any chance it helps
-      "usbcore.autosuspend=-1" 
+      "usbcore.autosuspend=-1"
     ];
 
-    extraModulePackages = [];
+    extraModulePackages = [ ];
   };
+
+  # mostly just use it for sending reminders to myself
+  services.atd.enable = true;
 
   programs.firejail.enable = true;
   # XXX laptop keyboard and touchpad stop working after a suspend without this
@@ -90,4 +106,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-
