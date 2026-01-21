@@ -63,6 +63,14 @@
           # don't want it to see my secrets
           "sops *" = "deny";
 
+          # don't like it committing without my permission
+          "git commit *" = "ask";
+          "git push *" = "deny";
+
+          # I don't like it reviewing its own work, prefer to check
+          # snapshots myself
+          "cargo insta *" = "ask";
+
           # scary
           "terraform destroy *" = "deny";
           "tf destoy *" = "deny";

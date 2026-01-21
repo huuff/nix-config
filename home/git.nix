@@ -1,6 +1,6 @@
-{  config, ... }:
+{ config, ... }:
 {
-  sops.secrets.gitWorkConfig = {};
+  sops.secrets.gitWorkConfig = { };
 
   programs.git = {
     enable = true;
@@ -50,6 +50,10 @@
         # TODO: Remove this? ff should cover it
         rebase = "false";
       };
+      # re-use older conflict resolutions
+      # totally necessary when working on long-lived branches or
+      # you'll go crazy
+      rerere.enabled = true;
     };
 
     includes = [
