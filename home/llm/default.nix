@@ -138,6 +138,8 @@
       - Don't write obvious comments, comments that explain what is clearly visible from the code,
         or comments that reflect our current conversation. Use comments sparingly, to explain
         code that's complex, or to explain **why** some code exists, if it isn't obvious.
+      - Within a file, put the most important piece of code at the top, and any helper functions
+        and utilities at the bottom.
 
       # Debug summary
       When you've solved a complex issue that required multi-step debugging, provide a summary of
