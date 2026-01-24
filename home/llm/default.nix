@@ -159,6 +159,8 @@
       - Don't implement `Default` on types that don't have a meaningful, semantic default value. In cases where you need a quick way to
         construct an instance for testing, derive `fake::Dummy` instead.
       - Don't give expressions a type if it can be inferred.
+      - Try to never silence warnings, if they're pre-existing and you want to solve them, ask for permission first. If you think they're
+        unsolvable, ask for permission to silence them, but always prefer `#[expect]` to `#[allow]`
 
       # Finding the current PR or issue
       When I mention "the PR/issue" or "the current pr/issue" without specifying a number, try to get it from the current
