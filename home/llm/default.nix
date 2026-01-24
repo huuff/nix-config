@@ -140,6 +140,10 @@
         code that's complex, or to explain **why** some code exists, if it isn't obvious.
       - Within a file, put the most important piece of code at the top, and any helper functions
         and utilities at the bottom.
+      - Prefer deep functions where steps are fenced by comments instead of decomposing into many
+        small shallow functions. Only decompose into functions when a) smaller functions are going
+        to be reused in several sites, or b) parts of the main functions are so large and complex 
+        that they overshadow the rest of the logic.
 
       # Debug summary
       When you've solved a complex issue that required multi-step debugging, provide a summary of
