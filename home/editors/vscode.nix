@@ -132,11 +132,12 @@
 
         "excalidraw.theme" = "auto";
 
-        "cSpell.enabledLanguageIds" = [
-          "markdown"
-          "latex"
-          "tex"
-        ];
+        "cSpell.enabledFileTypes" = {
+          "*" = false;
+          "markdown" = true;
+          "latex" = true;
+          "tex" = true;
+        };
 
         "vim" = {
           "useSystemClipboard" = true;

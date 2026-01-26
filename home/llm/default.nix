@@ -78,6 +78,16 @@
           "tf apply *" = "deny";
         };
       };
+      agent = {
+        careful = {
+          description = "Ask before running any command";
+          mode = "primary";
+          permission = {
+            bash."*" = "ask";
+            edit = "ask";
+          };
+        };
+      };
       command = {
         q = {
           description = "answer a question";
