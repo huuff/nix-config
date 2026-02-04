@@ -58,6 +58,21 @@
     settings = {
       model = "anthropic/claude-opus-4-5-20250929";
       autoupdate = false;
+      mcp = {
+        playwright = {
+          type = "local";
+          command = [
+            "${pkgs.nodejs}/bin/npx"
+            "-y"
+            "@playwright/mcp"
+            "--executable-path"
+            "${pkgs.chromium}/bin/chromium"
+          ];
+          environment = {
+            PATH = "${pkgs.nodejs}/bin:/run/current-system/sw/bin";
+          };
+        };
+      };
       permission = {
         bash = {
           # don't want it to see my secrets
