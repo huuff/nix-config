@@ -3,7 +3,7 @@
   sops = {
     defaultSopsFile = ../secrets.yaml;
     secrets = {
-      wpaSupplicantConf = {};
+      iwdNetworks = { };
     };
 
     age = {

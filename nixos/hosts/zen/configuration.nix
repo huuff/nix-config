@@ -1,4 +1,4 @@
-{  pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -27,16 +27,13 @@
         3000 # next.js applications
       ];
     };
-    interfaces = {
-      wlp1s0.useDHCP = true;
-    };
+
   };
 
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -46,4 +43,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 }
-

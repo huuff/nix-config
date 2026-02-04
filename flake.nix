@@ -182,21 +182,18 @@
       nixosConfigurations = {
         zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf" [
           ./nixos/wireless.nix
-          { haf.networking.interface = "wlp1s0"; }
           ./nixos/bluetooth.nix
           ./nixos/battery.nix
         ];
 
         evo = mkConfig ./nixos/hosts/evo/configuration.nix "haf" [
           ./nixos/wireless.nix
-          { haf.networking.interface = "wlp99s0"; }
           ./nixos/bluetooth.nix
           ./nixos/battery.nix
         ];
 
         mini-s = mkConfig ./nixos/hosts/mini-s/configuration.nix "haf" [
           ./nixos/wireless.nix
-          { haf.networking.interface = "wlo1"; }
           ./nixos/bluetooth.nix
         ];
       };

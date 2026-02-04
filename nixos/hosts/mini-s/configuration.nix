@@ -1,21 +1,17 @@
 { pkgs, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "coretemp" ]; 
+  boot.kernelModules = [ "coretemp" ];
 
   networking = {
     hostName = "mini-s";
-    
-    interfaces = {
-      wlo1.useDHCP = true;
-    };
+
   };
 
   time.timeZone = "Europe/Madrid";
@@ -31,7 +27,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    lm_sensors 
+    lm_sensors
   ];
 
   swapDevices = [
@@ -61,4 +57,3 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-

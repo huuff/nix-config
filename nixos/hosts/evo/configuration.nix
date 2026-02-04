@@ -68,9 +68,7 @@
         3000 # next.js applications
       ];
     };
-    interfaces = {
-      wlp99s0.useDHCP = true;
-    };
+
   };
 
   console = {
