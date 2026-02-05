@@ -54,6 +54,7 @@
           hashicorp.terraform # terraform support
           streetsidesoftware.code-spell-checker # spell checker
           eamodio.gitlens
+          github.copilot-chat # AI assistant
 
           # themes
           jdinhlife.gruvbox
