@@ -186,6 +186,7 @@
       - Don't give expressions a type if it can be inferred.
       - Try to never silence warnings, if they're pre-existing and you want to solve them, ask for permission first. If you think they're
         unsolvable, ask for permission to silence them, but always prefer `#[expect]` to `#[allow]`
+      - Prefer using `try_collect` and `collect_vec` from `itertools` to using `collect::<Result<_, _>>` and `collect::<Vec<_>>` 
 
       # Finding the current PR or issue
       When I mention "the PR/issue" or "the current pr/issue" without specifying a number, try to get it from the current
