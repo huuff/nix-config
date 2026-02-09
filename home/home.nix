@@ -23,6 +23,7 @@
     ./desktop-environment
 
     ./shell.nix
+    ./taskwarrior.nix
     ./virtualization.nix
     modules.kubernetes
 
