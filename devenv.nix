@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   languages.nix.enable = true;
@@ -13,4 +13,8 @@
   git-hooks.hooks = {
     treefmt.enable = true;
   };
+
+  packages = with pkgs; [
+    sops
+  ];
 }
