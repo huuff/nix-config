@@ -134,6 +134,7 @@
             ./nixos/virtualization.nix
             ./nixos/gnupg.nix
             ./nixos/scanner.nix
+            ./nixos/printing.nix
             ./nixos/vpn.nix
 
             sops-nix.nixosModules.sops

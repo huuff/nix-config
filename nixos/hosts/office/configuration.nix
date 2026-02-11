@@ -1,19 +1,17 @@
 { pkgs, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernelParams = [
+      "i915.force_probe=46a6"
+      "ibt=off" # otherwise VirtualBox breaks?
     ];
-
-
-    boot = {
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-      kernelParams = [ 
-        "i915.force_probe=46a6"
-        "ibt=off" # otherwise VirtualBox breaks?
-      ]; 
     # XXX: I had to use the latest kernel because of some driver incompatibility with the Alder Lake CPU
     kernelPackages = pkgs.linuxPackages_latest;
   };
@@ -44,26 +42,11 @@
     keyMap = "es";
   };
 
-
   services = {
-    printing.enable = true;
-    avahi = {
-      enable = true;
-      openFirewall = true;
-      #nssmdns = true;
-      publish = {
-        enable = true;
-        addresses = true;
-        domain = true;
-        hinfo = true;
-        userServices = true;
-        workstation = true;
-      };
-    };
     xserver.displayManager.setupCommands = ''
-        LEFT='DP-1'
-        RIGHT='HDMI-1'
-        ${pkgs.xorg.xrandr}/bin/xrandr --output "$LEFT" --left-of "$RIGHT"
+      LEFT='DP-1'
+      RIGHT='HDMI-1'
+      ${pkgs.xorg.xrandr}/bin/xrandr --output "$LEFT" --left-of "$RIGHT"
     '';
 
     # TODO: I need this shit for postman since they broke nixpkgs, maybe I should put this for all?
@@ -72,18 +55,10 @@
 
   # this shit is necessary for flatpack
   xdg.portal = {
-    enable = true;  
+    enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "gtk";
   };
-
-  # XXX: Fix nssmdns issues (https://discourse.nixos.org/t/help-with-local-dns-resolution/20305/6?u=haf)
-  system.nssModules = pkgs.lib.optional true pkgs.nssmdns;
-  system.nssDatabases.hosts = pkgs.lib.optionals true (pkgs.lib.mkMerge [
-    (pkgs.lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ]) # before resolve
-    (pkgs.lib.mkAfter [ "mdns4" ]) # after dns
-  ]);
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -94,4 +69,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
