@@ -73,6 +73,7 @@ in
             "pavucontrol" = "󰕾";
             "org.remmina.Remmina" = "󰢹";
             "emulator" = "󰀲";
+            "monero-core" = "ɱ";
           };
           # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {

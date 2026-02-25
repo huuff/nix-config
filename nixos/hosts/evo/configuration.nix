@@ -46,6 +46,9 @@
     extraModulePackages = [ ];
   };
 
+  # todo put this somewhere else
+  hardware.ledger.enable = true;
+
   # mostly just use it for sending reminders to myself
   services.atd.enable = true;
 
