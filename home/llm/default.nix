@@ -77,6 +77,8 @@
         bash = {
           # don't want it to see my secrets
           "sops *" = "deny";
+          # in case the command has the "sops" string by chance
+          "*sops *" = "ask";
 
           # don't like it committing without my permission
           "git commit *" = "ask";
