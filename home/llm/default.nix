@@ -195,6 +195,11 @@
       # Use nix for programs
       It's unlikely that you'll have all the software you need available, but the system is NixOS so you 
       can use the nix command to get anything you want
+
+      # Don't snoop into my secrets
+      NEVER run `sops` commands to decrypt my secrets, not directly and not through `nix run` nor anything like that.
+      NEVER open my .env files. You're free to know what my secrets are (e.g. reading encrypted sops secrets) but not their actual
+      contents.
     '';
     skills = {
       skill-creator = ./skills/skill-creator;
