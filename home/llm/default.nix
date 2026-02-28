@@ -89,10 +89,12 @@
           "cargo insta *" = "ask";
 
           # scary
-          "terraform destroy *" = "deny";
-          "tf destoy *" = "deny";
-          "terraform apply *" = "deny";
-          "tf apply *" = "deny";
+          "*terraform destroy*" = "deny";
+          "*terraform *" = "ask";
+          "*tofu destroy*" = "deny";
+          "*tofu *" = "ask";
+          "*tf destroy*" = "deny";
+          "*tf *" = "ask";
         };
       };
       agent = {
