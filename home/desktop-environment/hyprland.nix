@@ -89,8 +89,8 @@
         allow_tearing = false;
       };
 
-      windowrulev2 = [
-        "float, class:^(Emulator)$"
+      windowrule = [
+        "float, match:class ^(Emulator)$"
       ];
 
       "plugin:dynamic-cursors" = {
