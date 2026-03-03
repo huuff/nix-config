@@ -43,7 +43,10 @@
       "usbcore.autosuspend=-1"
     ];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [
+      # needed for ethernet I guess?
+      config.boot.kernelPackages.yt6801
+    ];
   };
 
   # todo put this somewhere else
@@ -64,7 +67,7 @@
   time.timeZone = "Europe/Madrid";
 
   networking = {
-    useDHCP = false;
+    useDHCP = true; # needed for wired Ethernet (WiFi DHCP is handled by iwd independently)
     firewall = {
       enable = true;
       allowedTCPPorts = [
