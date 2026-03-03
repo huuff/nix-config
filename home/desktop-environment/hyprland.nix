@@ -90,7 +90,7 @@
       };
 
       windowrule = [
-        "float, match:class ^(Emulator)$"
+        "float on, match:class ^(Emulator)$"
       ];
 
       "plugin:dynamic-cursors" = {
