@@ -4,7 +4,10 @@
     enable = true;
     # XXX: conflicts with nixos-level UWSM (see https://wiki.hypr.land/Useful-Utilities/Systemd-start/#uwsm)
     systemd.enable = false;
-    plugins = [ pkgs.hyprlandPlugins.hypr-dynamic-cursors ];
+    # HACK: hypr-dynamic-cursors is broken with Hyprland 0.54.0 (removed SCallbackInfo API)
+    # https://github.com/VirtCode/hypr-dynamic-cursors/issues
+    plugins = [ ];
+
     settings = {
       "$mod" = "SUPER";
 

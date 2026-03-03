@@ -1,5 +1,9 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    git-wt
+  ];
+
   sops.secrets.gitWorkConfig = { };
 
   programs.git = {
@@ -76,5 +80,13 @@
       side-by-side = true; # FUTURE: Wait for (https://github.com/dandavison/delta/issues/359)
     };
   };
+
+  # git-wt shell integration: enables `git wt` to cd into worktrees
+  programs.bash.initExtra = ''
+    eval "$(git-wt --init bash)"
+  '';
+  programs.zsh.initContent = ''
+    eval "$(git-wt --init zsh)"
+  '';
 
 }
