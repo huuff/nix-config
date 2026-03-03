@@ -55,6 +55,11 @@
     opencode = {
       url = "github:sst/opencode?ref=v1.2.14";
     };
+
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
   };
 
   outputs =
@@ -75,6 +80,7 @@
       walker,
       elephant,
       opencode,
+      superpowers,
     }:
     let
       system = "x86_64-linux";
@@ -94,6 +100,7 @@
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
             };
+            inherit superpowers;
             modules = {
               kubernetes = hm-kubernetes.nixosModules.kubernetes;
             };

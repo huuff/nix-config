@@ -5,6 +5,8 @@
   ...
 }:
 {
+  imports = [ ./superpowers.nix ];
+
   # AICHAT
   sops.secrets.openrouterApiKey = { };
 
