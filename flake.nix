@@ -60,11 +60,15 @@
       url = "github:obra/superpowers";
       flake = false;
     };
+
+    playwright-cli-src = {
+      url = "github:microsoft/playwright-cli";
+      flake = false;
+    };
   };
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       my-home-modules,
@@ -78,9 +82,10 @@
       paintings,
       stylix,
       walker,
-      elephant,
       opencode,
       superpowers,
+      playwright-cli-src,
+      ...
     }:
     let
       system = "x86_64-linux";
@@ -99,8 +104,15 @@
             # TODO: Maybe it should be in an overlay?
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
+              playwright-cli = pkgs.buildNpmPackage {
+                pname = "playwright-cli";
+                version = "0.1.1";
+                src = playwright-cli-src;
+                npmDepsHash = "sha256-4x3ozVrST6LtLoHl9KtmaOKrkYwCK84fwEREaoNaESc=";
+                dontNpmBuild = true;
+              };
             };
-            inherit superpowers;
+            inherit superpowers playwright-cli-src;
             modules = {
               kubernetes = hm-kubernetes.nixosModules.kubernetes;
             };
@@ -167,9 +179,9 @@
                 {
                   imports = [
                     ./home/home.nix
+                    stylix.homeModules.stylix
+                    walker.homeManagerModules.default
                   ]
-                  ++ [ stylix.homeModules.stylix ]
-                  ++ [ walker.homeManagerModules.default ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all
                   ++ lib.attrValues sops-nix.homeManagerModules

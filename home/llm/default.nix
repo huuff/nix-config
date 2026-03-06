@@ -2,10 +2,13 @@
   config,
   pkgs,
   derivations,
+  playwright-cli-src,
   ...
 }:
 {
   imports = [ ./superpowers.nix ];
+
+  home.packages = [ derivations.playwright-cli ];
 
   # AICHAT
   sops.secrets.openrouterApiKey = { };
@@ -51,6 +54,9 @@
       # needed for llm
       export OPENROUTER_KEY="$(cat ${config.sops.secrets.openrouterApiKey.path})"
     fi
+
+    # playwright-cli uses this to find the browser
+    export PLAYWRIGHT_MCP_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
   '';
 
   # OPENCODE
@@ -60,23 +66,12 @@
     settings = {
       model = "anthropic/claude-opus-4-5-20250929";
       autoupdate = false;
-      mcp = {
-        playwright = {
-          type = "local";
-          command = [
-            "${pkgs.nodejs}/bin/npx"
-            "-y"
-            "@playwright/mcp"
-            "--executable-path"
-            "${pkgs.chromium}/bin/chromium"
-          ];
-          environment = {
-            PATH = "${pkgs.nodejs}/bin:/run/current-system/sw/bin";
-          };
-        };
-      };
+      mcp = { };
       permission = {
         bash = {
+          # playwright-cli is safe to auto-allow (browser automation via skill)
+          "playwright-cli *" = "allow";
+
           # don't want it to see my secrets
           "sops *" = "deny";
           # in case the command has the "sops" string by chance
@@ -210,6 +205,13 @@
     skills = {
       skill-creator = ./skills/skill-creator;
     };
+  };
+
+  # programs.opencode.skills doesn't handle string-interpolated store paths
+  # correctly (lib.isPath returns false), so we use xdg.configFile directly.
+  xdg.configFile."opencode/skill/playwright-cli" = {
+    source = "${playwright-cli-src}/skills/playwright-cli";
+    recursive = true;
   };
 
   # HACK: OpenCode doesn't support multiple auth profiles yet.

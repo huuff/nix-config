@@ -1,6 +1,9 @@
-{ superpowers, ... }:
+{
+  superpowers,
+  ...
+}:
 let
-  skillNames = builtins.attrNames (builtins.readDir "${superpowers}/skills");
+  superpowersSkillNames = builtins.attrNames (builtins.readDir "${superpowers}/skills");
 in
 {
   # programs.opencode.skills only recognizes Nix path literals as directories
@@ -15,7 +18,7 @@ in
           source = "${superpowers}/skills/${name}";
           recursive = true;
         };
-      }) skillNames
+      }) superpowersSkillNames
     )
     // {
       "opencode/plugins/superpowers.js".source = "${superpowers}/.opencode/plugins/superpowers.js";
