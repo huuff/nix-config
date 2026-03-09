@@ -37,10 +37,15 @@
     # and are totally useless
     consoleLogLevel = 3;
 
+    resumeDevice = "/dev/mapper/cryptroot";
+
     kernelParams = [
       # suppossedly can fix issues with everything that goes through a docking station disconnecting, but I'm not
       # seeing any good results. I'm leaving it just in case there's any chance it helps
       "usbcore.autosuspend=-1"
+      # necessary for hibernate, run
+      # `sudo btrfs inspect-internal map-swapfile -r /.swapfile`
+      "resume_offset=74196224"
     ];
 
     extraModulePackages = [
@@ -48,6 +53,8 @@
       config.boot.kernelPackages.yt6801
     ];
   };
+
+  services.logind.lidSwitch = "hibernate";
 
   # todo put this somewhere else
   hardware.ledger.enable = true;
@@ -85,22 +92,9 @@
   swapDevices = [
     {
       device = "/.swapfile";
-      size = 16 * 1024; # 16 GB
+      size = 34 * 1024; # 34 GB — must be >= RAM (32 GB) for hibernation
     }
   ];
-
-  system.activationScripts.setupRootSwapfile = {
-    text = ''
-      if [ ! -e /.swapfile ]; then
-        touch /.swapfile
-        # remove CoW, necessary for swap on btrfs
-        ${pkgs.e2fsprogs}/bin/chattr +C /.swapfile
-        fallocate -l 16G /.swapfile 
-        chmod 600 /.swapfile
-        mkswap /.swapfile
-      fi
-    '';
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
