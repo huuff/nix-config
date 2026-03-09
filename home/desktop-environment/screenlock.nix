@@ -1,7 +1,5 @@
 { pkgs, lib, ... }:
 {
-  # MAYBE put here the caffeine config?
-
   programs.hyprlock = {
     enable = true;
   };
@@ -18,13 +16,17 @@
 
       listener = [
         {
-          timeout = 300; # 5 minutes
+          timeout = 180; # 3 minutes
           on-timeout = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
         }
         {
-          timeout = 600; # 10 minutes
+          timeout = 300; # 5 minutes
           on-timeout = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms off";
           on-resume = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms on";
+        }
+        {
+          timeout = 600; # 10 minutes
+          on-timeout = "${lib.getExe' pkgs.systemd "systemctl"} hibernate";
         }
       ];
     };
