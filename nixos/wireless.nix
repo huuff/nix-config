@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 {
   config = {
+    environment.systemPackages = [
+      pkgs.impala # TUI for wifi
+    ];
+
     networking.wireless.iwd = {
       enable = true;
       settings = {
