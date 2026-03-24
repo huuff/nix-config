@@ -65,6 +65,11 @@
       url = "github:microsoft/playwright-cli";
       flake = false;
     };
+
+    sentry-cli-src = {
+      url = "github:getsentry/cli";
+      flake = false;
+    };
   };
 
   outputs =
@@ -85,6 +90,7 @@
       opencode,
       superpowers,
       playwright-cli-src,
+      sentry-cli-src,
       ...
     }:
     let
@@ -112,7 +118,7 @@
                 dontNpmBuild = true;
               };
             };
-            inherit superpowers playwright-cli-src;
+            inherit superpowers playwright-cli-src sentry-cli-src;
             modules = {
               kubernetes = hm-kubernetes.nixosModules.kubernetes;
             };

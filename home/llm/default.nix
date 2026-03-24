@@ -3,6 +3,7 @@
   pkgs,
   derivations,
   playwright-cli-src,
+  sentry-cli-src,
   ...
 }:
 {
@@ -211,6 +212,13 @@
   # correctly (lib.isPath returns false), so we use xdg.configFile directly.
   xdg.configFile."opencode/skill/playwright-cli" = {
     source = "${playwright-cli-src}/skills/playwright-cli";
+    recursive = true;
+  };
+
+  # The .cursor/skills/sentry-cli path contains a symlink that breaks with
+  # recursive xdg.configFile, so we point to the real location instead.
+  xdg.configFile."opencode/skill/sentry-cli" = {
+    source = "${sentry-cli-src}/plugins/sentry-cli/skills/sentry-cli";
     recursive = true;
   };
 

@@ -2009,6 +2009,7 @@
         "paintings": "paintings",
         "playwright-cli-src": "playwright-cli-src",
         "scripts": "scripts",
+        "sentry-cli-src": "sentry-cli-src",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "superpowers": "superpowers",
@@ -2036,6 +2037,22 @@
       "original": {
         "owner": "huuff",
         "repo": "nix-scripts",
+        "type": "github"
+      }
+    },
+    "sentry-cli-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773648223,
+        "narHash": "sha256-/+UQvOlypBkB8Jj64PIB+D80bH0UXDe9zRwewHmp01I=",
+        "owner": "getsentry",
+        "repo": "cli",
+        "rev": "a3c6a91d59eb6c01b31d33b69210c303c8919452",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getsentry",
+        "repo": "cli",
         "type": "github"
       }
     },
