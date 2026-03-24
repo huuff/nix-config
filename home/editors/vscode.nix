@@ -202,6 +202,13 @@
             "italic" = false;
           }
         ];
+
+        # uncomment to disable vscode inline suggestions
+        # "github.copilot.enable" = {
+        #   "*" = false;
+        # };
+        # "github.copilot.inlineSuggest.enable" = false;
+        # "editor.inlineSuggest.enabled" = false;
       };
     };
   };
