@@ -2,6 +2,7 @@
   pkgs,
   user,
   scripts,
+  derivations,
   ...
 }:
 {
@@ -62,7 +63,7 @@
       irust
       remmina
 
-      nono
+      derivations.nono
 
       cachix
       devenv

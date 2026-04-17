@@ -2,6 +2,8 @@
 .aider*
 .vscode
 
+result
+
 # Devenv
 .devenv*
 devenv.local.nix

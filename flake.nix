@@ -108,6 +108,7 @@
             # TODO: Maybe it should be in an overlay?
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
+              nono = pkgs.callPackage ./derivations/nono.nix { };
               playwright-cli = pkgs.buildNpmPackage {
                 pname = "playwright-cli";
                 version = "0.1.1";
