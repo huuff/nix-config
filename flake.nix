@@ -23,7 +23,6 @@
       url = "github:huuff/nix-home-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hm-kubernetes.url = "github:huuff/hm-kubernetes";
 
     paintings = {
       url = "github:huuff/paintings";
@@ -53,7 +52,7 @@
     };
 
     opencode = {
-      url = "github:sst/opencode?ref=v1.2.14";
+      url = "github:sst/opencode?ref=v1.4.2";
     };
 
     superpowers = {
@@ -79,7 +78,6 @@
       my-home-modules,
       nur,
       emacs-overlay,
-      hm-kubernetes,
       scripts,
       nix-index-database,
       sops-nix,
@@ -119,9 +117,6 @@
               };
             };
             inherit superpowers playwright-cli-src sentry-cli-src;
-            modules = {
-              kubernetes = hm-kubernetes.nixosModules.kubernetes;
-            };
           };
 
           modules = [

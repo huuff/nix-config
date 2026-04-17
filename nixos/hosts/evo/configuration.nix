@@ -54,6 +54,10 @@
     ];
   };
 
+  # apparently this makes many dynamically-linked executables *just work*
+  # without nixos wizardry
+  programs.nix-ld.enable = true;
+
   services.logind.lidSwitch = "hibernate";
 
   # todo put this somewhere else

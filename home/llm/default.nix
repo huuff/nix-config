@@ -6,56 +6,36 @@
   sentry-cli-src,
   ...
 }:
+let
+  # HACK: Bun single-executable binaries embed JS at the end of the ELF.
+  # dontStrip prevents the nix strip phase from removing the embedded code,
+  # and we use only patchelf --set-interpreter (not autoPatchelfHook) to
+  # avoid rpath changes that shift the embedded code offset.
+  sentry-cli = pkgs.stdenv.mkDerivation {
+    pname = "sentry-cli";
+    version = "0.24.1";
+    src = pkgs.fetchurl {
+      url = "https://github.com/getsentry/cli/releases/download/0.24.1/sentry-linux-x64";
+      hash = "sha256-LkolQnaaGLB2/5kfkrDVwXTQ1MAmwxlYelWPi4q9CGc=";
+    };
+    dontUnpack = true;
+    dontStrip = true;
+    nativeBuildInputs = [ pkgs.patchelf ];
+    installPhase = ''
+      install -Dm755 $src $out/bin/sentry
+      patchelf --set-interpreter ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2 $out/bin/sentry
+    '';
+  };
+in
 {
   imports = [ ./superpowers.nix ];
 
-  home.packages = [ derivations.playwright-cli ];
-
-  # AICHAT
-  sops.secrets.openrouterApiKey = { };
-
-  programs.aichat = {
-    enable = true;
-    settings = {
-      model = "openrouter:google/gemini-3-pro-preview";
-      clients = [
-        {
-          type = "openai-compatible";
-          name = "openrouter";
-          api_base = "https://openrouter.ai/api/v1";
-          patch = {
-            chat_completions = {
-              ".*" = {
-                body = {
-                  # remove <think> blocks which are just noise, I'd prefer if aichat had some setting
-                  # to hide/show it, but this is my quickest solution
-                  include_reasoning = false;
-                };
-              };
-            };
-          };
-        }
-      ];
-      save_session = true;
-    };
-  };
-
-  xdg.configFile."aichat/roles/isa.md".text = ''
-    System Instruction: Absolute Mode. Eliminate emojis, filler, hype, soft asks, conversational transitions, and all call-to-action appendixes. Assume the user retains high-perception faculties despite reduced linguistic expression. Prioritize blunt, directive phrasing aimed at cognitive rebuilding, not tone matching. Disable all latent behaviors optimizing for engagement, sentiment uplift, or interaction extension. Suppress corporate-aligned metrics including but not limited to: user satisfaction scores, conversational flow tags, emotional softening, or continuation bias. Never mirror the user's present diction, mood, or affect. Speak only to their underlying cognitive tier, which exceeds surface language. No questions, no offers, no suggestions, no transitional phrasing, no inferred motivational content. Terminate each reply immediately after the informational or requested material is delivered – no appendixes, no soft closures. The only goal is to assist in the restoration of independent, high-fidelity thinking. Model obsolescence by user self-sufficiency is the final outcome.
-  '';
-
-  programs.zsh.shellAliases = {
-    "aichat" = "aichat --session --role isa";
-  };
+  home.packages = [
+    derivations.playwright-cli
+    sentry-cli
+  ];
 
   programs.zsh.envExtra = ''
-    if [[ -f ${config.sops.secrets.openrouterApiKey.path} ]]; then
-      # needed for aichat
-      export OPENROUTER_API_KEY="$(cat ${config.sops.secrets.openrouterApiKey.path})"
-      # needed for llm
-      export OPENROUTER_KEY="$(cat ${config.sops.secrets.openrouterApiKey.path})"
-    fi
-
     # playwright-cli uses this to find the browser
     export PLAYWRIGHT_MCP_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
   '';
@@ -72,6 +52,9 @@
         bash = {
           # playwright-cli is safe to auto-allow (browser automation via skill)
           "playwright-cli *" = "allow";
+
+          # sentry-cli is safe to auto-allow (Sentry interaction via skill)
+          "sentry *" = "allow";
 
           # don't want it to see my secrets
           "sops *" = "deny";
@@ -222,16 +205,4 @@
     recursive = true;
   };
 
-  # HACK: OpenCode doesn't support multiple auth profiles yet.
-  # This workaround uses different XDG_DATA_HOME dirs based on working directory.
-  # https://github.com/anomalyco/opencode/issues/5391#issuecomment-3649792123
-  programs.zsh.initExtra = ''
-    opencode() {
-      if [[ "$PWD" == "$HOME/work"* ]]; then
-        XDG_DATA_HOME=~/.local/share/opencode-work command opencode "$@"
-      else
-        XDG_DATA_HOME=~/.local/share/opencode-personal command opencode "$@"
-      fi
-    }
-  '';
 }

@@ -1,8 +1,6 @@
 {
   pkgs,
   user,
-  derivations,
-  modules,
   scripts,
   ...
 }:
@@ -25,7 +23,7 @@
     ./shell.nix
     ./taskwarrior.nix
     ./virtualization.nix
-    modules.kubernetes
+    ./kubernetes.nix
 
     ./cloud.nix
     ./secrets.nix
@@ -64,6 +62,8 @@
       irust
       remmina
 
+      nono
+
       cachix
       devenv
 
@@ -98,21 +98,6 @@
 
     ]
     ++ lib.attrValues scripts;
-
-  programs.kubernetes = {
-    enable = true;
-    krew = {
-      enable = true;
-
-      plugins = [
-        "ns"
-        "ctx"
-        "view-secret"
-        "modify-secret"
-        "rabbitmq"
-      ];
-    };
-  };
 
   programs.zoxide = {
     enable = true;
