@@ -9,6 +9,7 @@
   programs.git = {
     enable = true;
     signing.key = "7E66BB1D1107BA57";
+    signing.format = "openpgp";
 
     ignores = [
       "*~"

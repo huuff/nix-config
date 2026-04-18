@@ -1,5 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
+  gtk.gtk4.theme = config.gtk.theme;
+
   stylix = {
     enable = true;
     polarity = "dark";
@@ -15,7 +17,7 @@
       monospace = {
         package = pkgs.nerd-fonts.fira-code;
         name = "FiraCode Nerd Font";
-      } ;
+      };
 
       # TODO: definitely don't use the monospaced font everywhere
       # serif = {
@@ -43,6 +45,6 @@
       popups = 0.9;
     };
 
-    targets.firefox.profileNames = ["default"];
+    targets.firefox.profileNames = [ "default" ];
   };
 }

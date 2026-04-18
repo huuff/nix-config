@@ -7,6 +7,9 @@
     vimAlias = true;
     viAlias = true;
 
+    withRuby = true;
+    withPython3 = true;
+
     withNodeJs = true;
 
     # TODO: The appended config is for coc... shall I merge with config.vim?
