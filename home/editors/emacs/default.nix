@@ -1,7 +1,7 @@
 { pkgs, emacs-overlay, ... }:
 
 {
-  nixpkgs.overlays = [ 
+  nixpkgs.overlays = [
     emacs-overlay.overlay
   ];
 
@@ -9,25 +9,27 @@
     pkgs.emacs-lsp-booster
     (
       (pkgs.emacsWithPackagesFromUsePackage {
-        config = builtins.concatStringsSep "\n" (map builtins.readFile [ 
-          ./libs.el
-          ./util.el
-          ./compilation.el
-          ./window-management.el
+        config = builtins.concatStringsSep "\n" (
+          map builtins.readFile [
+            ./libs.el
+            ./util.el
+            ./compilation.el
+            ./window-management.el
 
-          (pkgs.replaceVars ./init.el {
-            # XXX: dape (for debugging) needs the vscode LLDB adapter
-            # so I just substitute it into the elisp from here
-             codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-          })
+            (pkgs.replaceVars ./init.el {
+              # XXX: dape (for debugging) needs the vscode LLDB adapter
+              # so I just substitute it into the elisp from here
+              codelldb = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+            })
 
-          ./safe-locals.el
+            ./safe-locals.el
 
-          ./tabs.el
+            ./tabs.el
 
-          ./multicursor.el
-          ./keybindings.el
-        ]);
+            ./multicursor.el
+            ./keybindings.el
+          ]
+        );
 
         defaultInitFile = true;
 

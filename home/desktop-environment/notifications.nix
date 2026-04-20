@@ -291,7 +291,13 @@
     '';
     settings = {
       positionX = "left";
-      widgets = ["title" "dnd" "notifications" "volume" "backlight"];
+      widgets = [
+        "title"
+        "dnd"
+        "notifications"
+        "volume"
+        "backlight"
+      ];
       notification-center.close-on-unfocus = false;
       widget-config = {
         volume = {

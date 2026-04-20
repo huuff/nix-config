@@ -1,25 +1,24 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
   networking.hostName = "desktop";
- 
+
   time.timeZone = "Europe/Madrid";
 
   networking.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = true;
 
   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "es";
-   };
+    font = "Lat2-Terminus16";
+    keyMap = "es";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -30,4 +29,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-

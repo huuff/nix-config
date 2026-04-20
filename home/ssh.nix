@@ -1,6 +1,7 @@
-{ config, ... }: {
+{ config, ... }:
+{
   sops.secrets = {
-    sshMatchBlocks = {};
+    sshMatchBlocks = { };
   };
 
   programs.ssh = {

@@ -18,6 +18,6 @@
           --add-flags "--enable-features=WaylandWindowDecorations" \
           --add-flags "--disable-features=WaylandFractionalScaleV1"
       '';
-    }) 
+    })
   ];
 }

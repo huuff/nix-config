@@ -29,7 +29,10 @@
                   type = "btrfs";
                   extraArgs = [ "-f" ];
                   mountpoint = "/";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
                 };
               };
             };
@@ -55,7 +58,10 @@
                   type = "btrfs";
                   extraArgs = [ "-f" ];
                   mountpoint = "/home";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "compress=zstd"
+                    "noatime"
+                  ];
                 };
               };
             };
