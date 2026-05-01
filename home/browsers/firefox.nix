@@ -11,6 +11,9 @@ in
       default = {
         id = 0;
         isDefault = true;
+        # autofirma-nix integrates AutoFirma into the firefox profiles configured below
+        # via `programs.autofirma.firefoxIntegration.profiles`. See ./autofirma.nix
+
         search = {
           default = "ddg";
           force = true;

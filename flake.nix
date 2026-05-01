@@ -69,6 +69,11 @@
       url = "github:getsentry/cli";
       flake = false;
     };
+
+    autofirma-nix = {
+      url = "github:nix-community/autofirma-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -89,6 +94,7 @@
       superpowers,
       playwright-cli-src,
       sentry-cli-src,
+      autofirma-nix,
       ...
     }:
     let
@@ -183,6 +189,7 @@
                     ./home/home.nix
                     stylix.homeModules.stylix
                     walker.homeManagerModules.default
+                    autofirma-nix.homeManagerModules.autofirma
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all
