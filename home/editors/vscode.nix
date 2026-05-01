@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  enableCodeSuggestions = true;
+in
 {
   # TODO: css modules
   programs.vscode = {
@@ -203,13 +206,19 @@
           }
         ];
 
-        # uncomment to disable vscode inline suggestions
-        # "github.copilot.enable" = {
-        #   "*" = false;
-        # };
-        # "github.copilot.inlineSuggest.enable" = false;
-        # "editor.inlineSuggest.enabled" = false;
-      };
+      }
+      // (
+        if !enableCodeSuggestions then
+          {
+            "github.copilot.enable" = {
+              "*" = false;
+            };
+            "github.copilot.inlineSuggest.enable" = false;
+            "editor.inlineSuggest.enabled" = false;
+          }
+        else
+          { }
+      );
     };
   };
 }
