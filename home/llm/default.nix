@@ -40,12 +40,13 @@ in
     export PLAYWRIGHT_MCP_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
   '';
 
-  # OPENCODE
+  programs.claude-code.enable = true;
+
   programs.opencode = {
     enable = true;
     package = derivations.opencode;
     settings = {
-      model = "anthropic/claude-opus-4-5-20250929";
+      model = "anthropic/claude-opus-4-7";
       autoupdate = false;
       mcp = { };
       permission = {

@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     scripts = {
       url = "github:huuff/nix-scripts";
@@ -82,7 +81,6 @@
       home-manager,
       my-home-modules,
       nur,
-      emacs-overlay,
       scripts,
       nix-index-database,
       sops-nix,
@@ -108,7 +106,7 @@
           inherit system;
 
           specialArgs = {
-            inherit user emacs-overlay nur;
+            inherit user nur;
 
             scripts = scripts.packages.x86_64-linux;
             # TODO: Maybe it should be in an overlay?
@@ -119,7 +117,7 @@
                 pname = "playwright-cli";
                 version = "0.1.1";
                 src = playwright-cli-src;
-                npmDepsHash = "sha256-DK+nTRdVKznerAMK7McCCgr2OK4GXymbmgyR9qU/aH4=";
+                npmDepsHash = "sha256-Ulp6IttsZcOOA7LaYDpVKkBYbe2j4RFG8lJARWifOSk=";
                 dontNpmBuild = true;
               };
             };

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  enableCodeSuggestions = true;
+  enableCodeSuggestions = false;
 in
 {
   # TODO: css modules
