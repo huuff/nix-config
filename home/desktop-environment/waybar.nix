@@ -27,6 +27,7 @@ in
         modules-center = [ "clock" ];
         modules-right = [
           "custom/mullvad"
+          "custom/tailscale"
           "network"
           "battery"
           "pulseaudio"
@@ -124,6 +125,42 @@ in
           interval = 5;
           tooltip-format = "Mullvad VPN";
           max-length = 10;
+          return-type = "json";
+        };
+
+        "custom/tailscale" = {
+          exec = lib.getExe (
+            pkgs.writers.writeNuBin "tailscale-waybar" ''
+              let result = (^${lib.getExe pkgs.tailscale} status --json | complete)
+              let status = if $result.exit_code == 0 { $result.stdout | from json } else { {} }
+
+              let backend = ($status.BackendState? | default "Stopped")
+
+              if $backend == "Running" {
+                let tailnet = ($status.CurrentTailnet?.Name? | default "unknown")
+                let exit_node_id = ($status.ExitNodeStatus?.ID? | default "")
+
+                if ($exit_node_id | is-empty) {
+                  {text: $"󰛳 ($tailnet)", tooltip: $"Tailnet: ($tailnet)", class: "connected"} | to json -r
+                } else {
+                  let exit_node_host = (
+                    $status.Peer?
+                    | default {}
+                    | values
+                    | where ID == $exit_node_id
+                    | get HostName?
+                    | get 0?
+                    | default "?"
+                  )
+                  {text: $"󰛳 ($tailnet) → ($exit_node_host)", tooltip: $"Tailnet: ($tailnet)\nExit node: ($exit_node_host)", class: "exit-node"} | to json -r
+                }
+              } else {
+                {text: "󰛳 Offline", tooltip: $"Tailscale: ($backend)", class: "disconnected"} | to json -r
+              }
+            ''
+          );
+          interval = 5;
+          max-length = 30;
           return-type = "json";
         };
 
@@ -261,7 +298,7 @@ in
         color: #${config.lib.stylix.colors.base05};
       }
 
-      #custom-notification, #hardware, #workspaces, #clock, #custom-mullvad, #network, #battery, #pulseaudio, #language {
+      #custom-notification, #hardware, #workspaces, #clock, #custom-mullvad, #custom-tailscale, #network, #battery, #pulseaudio, #language {
         background-color: #${config.lib.stylix.colors.base01};
         opacity: 0.75;
         border-radius: 6px;
@@ -279,6 +316,14 @@ in
 
       #custom-mullvad.connected {
         color: #${config.lib.stylix.colors.base0B};
+      }
+
+      #custom-tailscale.exit-node {
+        color: #${config.lib.stylix.colors.base0D};
+      }
+
+      #custom-tailscale.disconnected {
+        color: #${config.lib.stylix.colors.base03};
       }
 
       .warning {
