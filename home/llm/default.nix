@@ -246,9 +246,14 @@ in
     };
   };
 
-  # programs.opencode.skills doesn't handle string-interpolated store paths
-  # correctly (lib.isPath returns false), so we use xdg.configFile directly.
+  # programs.opencode.skills and programs.claude-code.skills don't handle
+  # string-interpolated store paths correctly (lib.isPath returns false), so
+  # we use xdg.configFile / home.file directly.
   xdg.configFile."opencode/skill/playwright-cli" = {
+    source = "${playwright-cli-src}/skills/playwright-cli";
+    recursive = true;
+  };
+  home.file.".claude/skills/playwright-cli" = {
     source = "${playwright-cli-src}/skills/playwright-cli";
     recursive = true;
   };
