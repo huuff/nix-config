@@ -26,6 +26,8 @@ let
       patchelf --set-interpreter ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2 $out/bin/sentry
     '';
   };
+
+  nono-hook = pkgs.callPackage ./nono-hook.nix { };
 in
 {
   imports = [ ./superpowers.nix ];
@@ -40,7 +42,59 @@ in
     export PLAYWRIGHT_MCP_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
   '';
 
-  programs.claude-code.enable = true;
+  programs.claude-code = {
+    enable = true;
+    settings = {
+      permissions.deny = [
+        "Read(**/.env)"
+        "Read(**/.env.local)"
+      ];
+      hooks.PostToolUseFailure = [
+        {
+          matcher = "Read|Write|Edit|Bash";
+          hooks = [
+            {
+              type = "command";
+              command = "${nono-hook}/bin/nono-hook";
+            }
+          ];
+        }
+      ];
+      skipDangerousModePermissionPrompt = true;
+      skipAutoPermissionPrompt = true;
+    };
+    mcpServers.stape-mcp-server = {
+      type = "stdio";
+      # mcp-remote's npx-fetched deps use `#!/usr/bin/env node` shebangs, so
+      # node must be on PATH. Scoping it here keeps node out of global PATH.
+      command = "${pkgs.writeShellScript "stape-mcp-launcher" ''
+        export PATH=${pkgs.nodejs}/bin:$PATH
+        exec ${pkgs.nodejs}/bin/npx -y mcp-remote \
+          https://mcp.stape.ai/mcp \
+          --header "Authorization: ''${STAPE_API_KEY}" \
+          --header "X-Stape-Region: EU"
+      ''}";
+    };
+    mcpServers.google-tag-manager = {
+      type = "stdio";
+      command = "${pkgs.writeShellScript "gtm-mcp-launcher" ''
+        export PATH=${pkgs.nodejs}/bin:$PATH
+        exec ${pkgs.nodejs}/bin/npx -y mcp-remote https://gtm-mcp.stape.ai/mcp
+      ''}";
+    };
+    # mcpServers.google-analytics = {
+    #   type = "stdio";
+    #   # Google's official GA4 MCP (github.com/googleanalytics/google-analytics-mcp).
+    #   # Auth: gcloud Application Default Credentials. One-time setup:
+    #   #   gcloud auth application-default login \
+    #   #     --scopes=https://www.googleapis.com/auth/analytics.readonly,openid
+    #   # Properties are discovered at runtime via the MCP's own tools, so no
+    #   # GA4_PROPERTY_ID is needed here.
+    #   command = "${pkgs.writeShellScript "ga4-mcp-launcher" ''
+    #     exec ${pkgs.pipx}/bin/pipx run analytics-mcp
+    #   ''}";
+    # };
+  };
 
   programs.opencode = {
     enable = true;

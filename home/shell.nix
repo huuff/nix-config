@@ -78,4 +78,9 @@
         source "$EAT_SHELL_INTEGRATION_DIR/zsh"
     '';
   };
+
+  ### NUSHELL
+  programs.nushell = {
+    enable = true;
+  };
 }
