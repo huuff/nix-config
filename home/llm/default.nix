@@ -82,18 +82,6 @@ in
         exec ${pkgs.nodejs}/bin/npx -y mcp-remote https://gtm-mcp.stape.ai/mcp
       ''}";
     };
-    # mcpServers.google-analytics = {
-    #   type = "stdio";
-    #   # Google's official GA4 MCP (github.com/googleanalytics/google-analytics-mcp).
-    #   # Auth: gcloud Application Default Credentials. One-time setup:
-    #   #   gcloud auth application-default login \
-    #   #     --scopes=https://www.googleapis.com/auth/analytics.readonly,openid
-    #   # Properties are discovered at runtime via the MCP's own tools, so no
-    #   # GA4_PROPERTY_ID is needed here.
-    #   command = "${pkgs.writeShellScript "ga4-mcp-launcher" ''
-    #     exec ${pkgs.pipx}/bin/pipx run analytics-mcp
-    #   ''}";
-    # };
   };
 
   programs.opencode = {
