@@ -168,7 +168,6 @@
             stylix.nixosModules.stylix
 
             ./nixos/android.nix
-            ./nixos/jellyfin.nix
 
             {
               # XXX: I have it enabled in home-manager but that seems to not be enough

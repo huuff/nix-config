@@ -90,6 +90,7 @@
       podman-compose
 
       discord
+      jellyfin-desktop
 
       clang # I just need it to build tree-sitter grammars in emacs
 

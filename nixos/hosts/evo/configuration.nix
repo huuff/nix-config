@@ -66,7 +66,6 @@
   # mostly just use it for sending reminders to myself
   services.atd.enable = true;
 
-  programs.firejail.enable = true;
   # XXX laptop keyboard and touchpad stop working after a suspend without this
   powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin/modprobe atkbd reset=1";
 
