@@ -33,13 +33,10 @@ in
             decentraleyes
             languagetool
             privacy-badger
-            react-devtools
             wallabagger
             darkreader
             onepassword-password-manager
-            bitwarden
             istilldontcareaboutcookies
-            libredirect
             youtube-no-translation
           ]
           ++ [
