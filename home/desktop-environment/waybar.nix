@@ -319,7 +319,8 @@ in
       }
 
       #custom-tailscale.exit-node {
-        color: #${config.lib.stylix.colors.base0D};
+        color: #${config.lib.stylix.colors.base09};
+        font-weight: bold;
       }
 
       #custom-tailscale.disconnected {
