@@ -58,7 +58,7 @@
   # without nixos wizardry
   programs.nix-ld.enable = true;
 
-  services.logind.lidSwitch = "hibernate";
+  services.logind.settings.Login.HandleLidSwitch = "hibernate";
 
   # todo put this somewhere else
   hardware.ledger.enable = true;

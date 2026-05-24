@@ -166,7 +166,7 @@ in
         };
       };
     };
-    rules = ''
+    context = ''
       # Writing one-off hacks
       When you have to write a hack for a limitation in a library, and
       especially if it's a bug or known issue, try to keep it away from the
