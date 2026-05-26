@@ -33,8 +33,6 @@
     ./slack.nix
 
     ./crypto.nix
-
-    ./autofirma.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
