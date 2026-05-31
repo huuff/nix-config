@@ -44,6 +44,7 @@ in
 
   programs.claude-code = {
     enable = true;
+    package = derivations.claude-code;
     settings = {
       permissions.deny = [
         "Read(**/.env)"

@@ -54,6 +54,13 @@
       url = "github:sst/opencode?ref=v1.4.2";
     };
 
+    # nixpkgs lags behind claude-code releases; this flake tracks the latest
+    # release within hours, which we need for new model support (e.g. Opus 4.8).
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     superpowers = {
       url = "github:obra/superpowers";
       flake = false;
@@ -84,6 +91,7 @@
       stylix,
       walker,
       opencode,
+      claude-code,
       superpowers,
       playwright-cli-src,
       sentry-cli-src,
@@ -106,6 +114,7 @@
             # TODO: Maybe it should be in an overlay?
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
+              claude-code = claude-code.packages.x86_64-linux.default;
               nono = pkgs.callPackage ./derivations/nono.nix { };
               playwright-cli = pkgs.buildNpmPackage {
                 pname = "playwright-cli";
