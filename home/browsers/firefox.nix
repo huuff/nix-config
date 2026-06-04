@@ -36,6 +36,7 @@ in
             onepassword-password-manager
             istilldontcareaboutcookies
             youtube-no-translation
+            multi-account-containers
           ]
           ++ [
             # TODO: WTF! home-manager doesn't pick this! it's driving me crazy
