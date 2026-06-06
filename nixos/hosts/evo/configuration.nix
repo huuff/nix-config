@@ -31,7 +31,11 @@
       kernelModules = [ "kvm-amd" ];
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    # NOTE: was `pkgs.linuxPackages_latest`, but that silently rolls onto every
+    # new mainline kernel on each flake update. Kernel 7.0.x introduced a
+    # hibernate-resume regression (works after resume, then hard-freezes). Pin
+    # to the default LTS kernel instead, which is far better tested for suspend.
+    kernelPackages = pkgs.linuxPackages;
 
     # this hides some ugly ACPI errors during boot that garble the login screen
     # and are totally useless
