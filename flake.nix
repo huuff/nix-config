@@ -207,12 +207,6 @@
     {
 
       nixosConfigurations = {
-        zen = mkConfig ./nixos/hosts/zen/configuration.nix "haf" [
-          ./nixos/wireless.nix
-          ./nixos/bluetooth.nix
-          ./nixos/battery.nix
-        ];
-
         evo = mkConfig ./nixos/hosts/evo/configuration.nix "haf" [
           ./nixos/wireless.nix
           ./nixos/bluetooth.nix
