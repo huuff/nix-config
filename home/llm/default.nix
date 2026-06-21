@@ -64,6 +64,14 @@ in
       skipDangerousModePermissionPrompt = true;
       skipAutoPermissionPrompt = true;
     };
+    context = ''
+      # Use nix for programs
+      It's unlikely that you'll have all the software you need available, but the system is NixOS so you
+      can use the nix command to get anything you want. Some ways to do it:
+      - Run a one-off command: `nix run nixpkgs#<pkg> -- <args>`
+      - Get a shell with the tools on PATH: `nix shell nixpkgs#<pkg1> nixpkgs#<pkg2> -c <command>`
+      - Search for a package: `nix search nixpkgs <term>`
+    '';
     mcpServers.stape-mcp-server = {
       type = "stdio";
       # mcp-remote's npx-fetched deps use `#!/usr/bin/env node` shebangs, so
