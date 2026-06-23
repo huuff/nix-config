@@ -47,6 +47,11 @@
         # choosing a mainline branch
         ff = "false";
       };
+      push = {
+        # Automatically set up the upstream remote on first push, so
+        # `git push` works on new branches without `--set-upstream`.
+        autoSetupRemote = true;
+      };
       pull = {
         # Only enable fast-forward pulls by default, and force choosing between
         # rebasing and merging if there are conflicts, to ensure you can choose
