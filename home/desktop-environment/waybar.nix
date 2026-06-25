@@ -75,6 +75,13 @@ in
             "org.remmina.Remmina" = "󰢹";
             "emulator" = "󰀲";
             "monero-core" = "ɱ";
+            "libreoffice-startcenter" = "󰏆";
+            "libreoffice-writer" = "󰈬";
+            "libreoffice-calc" = "󰈛";
+            "libreoffice-impress" = "󰈧";
+            "libreoffice-draw" = "󰽉";
+            "libreoffice-base" = "󰆼";
+            "libreoffice-math" = "󰪚";
           };
           # TODO: this is coupled to my laptop so not perfect
           persistent-workspaces = {
