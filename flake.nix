@@ -75,6 +75,13 @@
       url = "github:getsentry/cli";
       flake = false;
     };
+
+    # Official Anthropic Claude Code plugins; we pull the frontend-design skill
+    # out of it (plugins/frontend-design/skills/frontend-design).
+    claude-plugins-src = {
+      url = "github:anthropics/claude-plugins-official";
+      flake = false;
+    };
   };
 
   outputs =
@@ -95,6 +102,7 @@
       superpowers,
       playwright-cli-src,
       sentry-cli-src,
+      claude-plugins-src,
       ...
     }:
     let
@@ -124,7 +132,12 @@
                 dontNpmBuild = true;
               };
             };
-            inherit superpowers playwright-cli-src sentry-cli-src;
+            inherit
+              superpowers
+              playwright-cli-src
+              sentry-cli-src
+              claude-plugins-src
+              ;
           };
 
           modules = [

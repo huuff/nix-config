@@ -4,6 +4,7 @@
   derivations,
   playwright-cli-src,
   sentry-cli-src,
+  claude-plugins-src,
   ...
 }:
 let
@@ -252,6 +253,13 @@ in
   };
   home.file.".claude/skills/playwright-cli" = {
     source = "${playwright-cli-src}/skills/playwright-cli";
+    recursive = true;
+  };
+
+  # Anthropic's official frontend-design skill, vendored straight from the
+  # plugins repo instead of going through the /plugin marketplace.
+  home.file.".claude/skills/frontend-design" = {
+    source = "${claude-plugins-src}/plugins/frontend-design/skills/frontend-design";
     recursive = true;
   };
 
