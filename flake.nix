@@ -82,6 +82,12 @@
       url = "github:anthropics/claude-plugins-official";
       flake = false;
     };
+
+    # My own skills; every directory under skills/ is linked into ~/.claude/skills
+    vibe-army-src = {
+      url = "github:huuff/vibe-army";
+      flake = false;
+    };
   };
 
   outputs =
@@ -103,6 +109,7 @@
       playwright-cli-src,
       sentry-cli-src,
       claude-plugins-src,
+      vibe-army-src,
       ...
     }:
     let
@@ -137,6 +144,7 @@
               playwright-cli-src
               sentry-cli-src
               claude-plugins-src
+              vibe-army-src
               ;
           };
 

@@ -1981,6 +1981,7 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "superpowers": "superpowers",
+        "vibe-army-src": "vibe-army-src",
         "walker": "walker"
       }
     },
@@ -2886,6 +2887,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vibe-army-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1783446505,
+        "narHash": "sha256-O6KDZYvt7CnxPZENqClW70ZLI+qGM7Jp5PTWSpicjGU=",
+        "owner": "huuff",
+        "repo": "vibe-army",
+        "rev": "4e608ff661bee2b269ac5b4680d7ecd027f0d4ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "vibe-army",
         "type": "github"
       }
     },

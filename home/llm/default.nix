@@ -1,10 +1,12 @@
 {
   config,
+  lib,
   pkgs,
   derivations,
   playwright-cli-src,
   sentry-cli-src,
   claude-plugins-src,
+  vibe-army-src,
   ...
 }:
 let
@@ -251,17 +253,28 @@ in
     source = "${playwright-cli-src}/skills/playwright-cli";
     recursive = true;
   };
-  home.file.".claude/skills/playwright-cli" = {
-    source = "${playwright-cli-src}/skills/playwright-cli";
-    recursive = true;
-  };
+  home.file = {
+    ".claude/skills/playwright-cli" = {
+      source = "${playwright-cli-src}/skills/playwright-cli";
+      recursive = true;
+    };
 
-  # Anthropic's official frontend-design skill, vendored straight from the
-  # plugins repo instead of going through the /plugin marketplace.
-  home.file.".claude/skills/frontend-design" = {
-    source = "${claude-plugins-src}/plugins/frontend-design/skills/frontend-design";
-    recursive = true;
-  };
+    # Anthropic's official frontend-design skill, vendored straight from the
+    # plugins repo instead of going through the /plugin marketplace.
+    ".claude/skills/frontend-design" = {
+      source = "${claude-plugins-src}/plugins/frontend-design/skills/frontend-design";
+      recursive = true;
+    };
+  }
+  # my own skills: every directory under vibe-army's skills/ becomes a skill,
+  # so new ones only need a `nix flake update vibe-army-src`
+  // lib.mapAttrs' (
+    name: _:
+    lib.nameValuePair ".claude/skills/${name}" {
+      source = "${vibe-army-src}/skills/${name}";
+      recursive = true;
+    }
+  ) (lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${vibe-army-src}/skills"));
 
   # The .cursor/skills/sentry-cli path contains a symlink that breaks with
   # recursive xdg.configFile, so we point to the real location instead.
