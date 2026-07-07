@@ -2893,11 +2893,11 @@
     "vibe-army-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1783446505,
-        "narHash": "sha256-O6KDZYvt7CnxPZENqClW70ZLI+qGM7Jp5PTWSpicjGU=",
+        "lastModified": 1783452069,
+        "narHash": "sha256-3WaVKRLEDHJCLB8Df3JtaKup6Db3hGl5NZcC4Etqb8M=",
         "owner": "huuff",
         "repo": "vibe-army",
-        "rev": "4e608ff661bee2b269ac5b4680d7ecd027f0d4ea",
+        "rev": "ed3cd5ef6f685c67b85af603d72653da8ec85228",
         "type": "github"
       },
       "original": {
