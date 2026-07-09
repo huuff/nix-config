@@ -13,7 +13,7 @@
     ./browsers/firefox.nix
     ./browsers/chromium.nix
 
-    ./terminal-emulators/alacritty.nix
+    ./terminal-emulators/ghostty.nix
 
     ./git.nix
     ./prompt.nix

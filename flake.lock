@@ -1981,7 +1981,7 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "superpowers": "superpowers",
-        "vibe-army-src": "vibe-army-src",
+        "vibe-army": "vibe-army",
         "walker": "walker"
       }
     },
@@ -2890,14 +2890,18 @@
         "type": "github"
       }
     },
-    "vibe-army-src": {
-      "flake": false,
+    "vibe-army": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1783550142,
-        "narHash": "sha256-kWnOpQybKSxCo7t3dCzA5CsNV9oZyUYj0tAGDTFih24=",
+        "lastModified": 1783615693,
+        "narHash": "sha256-9TsYQHKhkkMPOngo2VnK6LzTz+mt+xwHUs//YkuS68A=",
         "owner": "huuff",
         "repo": "vibe-army",
-        "rev": "8e36ce3e3e99fbb83284021109358674a6a65a7e",
+        "rev": "8fbd2cb7800742cccfbd2584dc815836458d6b51",
         "type": "github"
       },
       "original": {

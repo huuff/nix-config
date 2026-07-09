@@ -83,10 +83,10 @@
       flake = false;
     };
 
-    # My own skills; every directory under skills/ is linked into ~/.claude/skills
-    vibe-army-src = {
+    # My own skills; exposes a home-manager module that links them into ~/.claude/skills
+    vibe-army = {
       url = "github:huuff/vibe-army";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -109,7 +109,7 @@
       playwright-cli-src,
       sentry-cli-src,
       claude-plugins-src,
-      vibe-army-src,
+      vibe-army,
       ...
     }:
     let
@@ -144,7 +144,6 @@
               playwright-cli-src
               sentry-cli-src
               claude-plugins-src
-              vibe-army-src
               ;
           };
 
@@ -210,6 +209,7 @@
                     ./home/home.nix
                     stylix.homeModules.stylix
                     walker.homeManagerModules.default
+                    vibe-army.homeManagerModules.default
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all

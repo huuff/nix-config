@@ -64,7 +64,7 @@ in
             "firefox" = "";
             "code" = "󰨞";
             "slack" = "󰒱";
-            "alacritty" = "";
+            "ghostty" = "";
             "chromium" = "";
             "tor browser" = "";
             "jetbrains-idea" = "";

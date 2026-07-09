@@ -18,7 +18,7 @@
 
       bind = [
         # Terminal
-        "$mod, Return, exec, ${lib.getExe pkgs.app2unit} -- ${lib.getExe pkgs.alacritty}"
+        "$mod, Return, exec, ${lib.getExe pkgs.app2unit} -- ${lib.getExe pkgs.ghostty}"
 
         # App launcher
         # TODO: can't use the one from pkgs because it's different from the one that I get from the walker
