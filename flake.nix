@@ -130,12 +130,12 @@
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
               claude-code = claude-code.packages.x86_64-linux.default;
-              nono = pkgs.callPackage ./derivations/nono.nix { };
+              nono = pkgs.nono;
               playwright-cli = pkgs.buildNpmPackage {
                 pname = "playwright-cli";
                 version = "0.1.1";
                 src = playwright-cli-src;
-                npmDepsHash = "sha256-Ulp6IttsZcOOA7LaYDpVKkBYbe2j4RFG8lJARWifOSk=";
+                npmDepsHash = "sha256-ZrO8yIqMYMQUlsQraejVgKRZ7klC5/8UsV3/H1EqYtA=";
                 dontNpmBuild = true;
               };
             };

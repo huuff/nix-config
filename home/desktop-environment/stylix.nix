@@ -1,7 +1,5 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
-  gtk.gtk4.theme = config.gtk.theme;
-
   stylix = {
     enable = true;
     polarity = "dark";

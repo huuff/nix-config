@@ -30,7 +30,6 @@ let
     '';
   };
 
-  nono-hook = pkgs.callPackage ./nono-hook.nix { };
 in
 {
   imports = [ ./superpowers.nix ];
@@ -52,17 +51,6 @@ in
       permissions.deny = [
         "Read(**/.env)"
         "Read(**/.env.local)"
-      ];
-      hooks.PostToolUseFailure = [
-        {
-          matcher = "Read|Write|Edit|Bash";
-          hooks = [
-            {
-              type = "command";
-              command = "${nono-hook}/bin/nono-hook";
-            }
-          ];
-        }
       ];
       skipDangerousModePermissionPrompt = true;
       skipAutoPermissionPrompt = true;

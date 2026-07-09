@@ -52,7 +52,6 @@ in
           bradlc.vscode-tailwindcss # tailwind class autocomplete
           vadimcn.vscode-lldb # rust debugger
           james-yu.latex-workshop # latex all-in-one
-          github.vscode-pull-request-github # do pr reviews in vscode
           vscodevim.vim # vim emulation layer
           hashicorp.terraform # terraform support
           streetsidesoftware.code-spell-checker # spell checker
@@ -65,6 +64,14 @@ in
           arcticicestudio.nord-visual-studio-code
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            # do pr reviews in vscode; pinned to a newer version than nixpkgs provides
+            name = "vscode-pull-request-github";
+            publisher = "github";
+            version = "0.156.0";
+            sha256 = "Go9yiqCPZoJkHgHAaH42mawnZOCVlqMp5I+NG68RrPE=";
+          }
+
           {
             name = "theme-by-language";
             publisher = "jsaulou";

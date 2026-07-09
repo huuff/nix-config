@@ -15,7 +15,7 @@
     bc # CLI calculator
 
     fd # find replacement (also needed for emacs)
-    silver-searcher # grep replacement
+    silver-searcher-ng # grep replacement
 
     btop
     bat # cat replacement
