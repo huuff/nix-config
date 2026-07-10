@@ -1,5 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
+  # Stylix only writes font *names* into app configs; it exposes the packages
+  # via the read-only stylix.fonts.packages but doesn't install them itself.
+  fonts.fontconfig.enable = true;
+  home.packages = config.stylix.fonts.packages;
+
   stylix = {
     enable = true;
     polarity = "dark";
