@@ -27,6 +27,7 @@
 
     ./cloud.nix
     ./secrets.nix
+    ./keyloader.nix
     ./llm
     ./ssh.nix
     ./cli-essentials.nix

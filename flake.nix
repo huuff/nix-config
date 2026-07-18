@@ -88,6 +88,12 @@
       url = "github:huuff/vibe-army";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Loads GPG/SSH keys from 1Password into gpg-agent/ssh-agent without writing them to disk
+    vibe-keyloader = {
+      url = "github:huuff/vibe-keyloader";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -110,6 +116,7 @@
       sentry-cli-src,
       claude-plugins-src,
       vibe-army,
+      vibe-keyloader,
       ...
     }:
     let
@@ -123,7 +130,7 @@
           inherit system;
 
           specialArgs = {
-            inherit user nur;
+            inherit user nur vibe-keyloader;
 
             scripts = scripts.packages.x86_64-linux;
             # TODO: Maybe it should be in an overlay?
@@ -210,6 +217,7 @@
                     stylix.homeModules.stylix
                     walker.homeManagerModules.default
                     vibe-army.homeManagerModules.default
+                    vibe-keyloader.homeManagerModules.default
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all

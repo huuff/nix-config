@@ -1982,6 +1982,7 @@
         "stylix": "stylix",
         "superpowers": "superpowers",
         "vibe-army": "vibe-army",
+        "vibe-keyloader": "vibe-keyloader",
         "walker": "walker"
       }
     },
@@ -2897,16 +2898,36 @@
         ]
       },
       "locked": {
-        "lastModified": 1783615693,
-        "narHash": "sha256-9TsYQHKhkkMPOngo2VnK6LzTz+mt+xwHUs//YkuS68A=",
+        "lastModified": 1784365420,
+        "narHash": "sha256-SK8Ogsmb/IgcndaRDIqrW7lVdyPQEBisA7IKYwpJaVE=",
         "owner": "huuff",
         "repo": "vibe-army",
-        "rev": "8fbd2cb7800742cccfbd2584dc815836458d6b51",
+        "rev": "57d41c2658be9af63bb00a7e28b0c622f69fb69e",
         "type": "github"
       },
       "original": {
         "owner": "huuff",
         "repo": "vibe-army",
+        "type": "github"
+      }
+    },
+    "vibe-keyloader": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784363655,
+        "narHash": "sha256-tnfu1YQ/FbYXzXz5Jk5vJ4Ga2w/RC08aLWSFl9JlX4k=",
+        "owner": "huuff",
+        "repo": "vibe-keyloader",
+        "rev": "e315525fb4d8cd60a4ba23d71874468a9df5edb2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "vibe-keyloader",
         "type": "github"
       }
     },
