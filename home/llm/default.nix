@@ -51,6 +51,45 @@ in
       ];
       skipDangerousModePermissionPrompt = true;
       skipAutoPermissionPrompt = true;
+      # Renders the segments directly rather than shelling out to starship: driving
+      # starship from a statusline meant fighting its shell-prompt assumptions
+      # (STARSHIP_SHELL escapes, --path vs --logical-path, a profile that only
+      # exists to strip modules), and it renders a prompt for a *process*, which a
+      # statusline isn't. Claude Code only re-renders on events (new message,
+      # model/mode change), so without refreshInterval the branch goes stale when
+      # it changes in another terminal.
+      statusLine = {
+        type = "command";
+        refreshInterval = 5;
+        command = "${pkgs.writers.writeNu "claude-statusline" ''
+          # Any uncaught error exits non-zero with empty stdout, which Claude Code
+          # renders as a blank line — hence the try/catch, `?`s and `complete`.
+          # writeNu's shebang omits --stdin so $in is nothing; read /dev/stdin.
+          # `into record` also rejects the string that `from json` returns for
+          # some non-JSON input instead of erroring.
+          let p = (try { open --raw /dev/stdin | from json | into record } catch { {} })
+          let dir = ($p.workspace?.current_dir? | default ($p.cwd? | default $env.PWD))
+          let model = ($p.model?.display_name? | default "" | str replace --regex ' \(.*\)$' "")
+
+          # One git call: line 1 is `## branch...upstream [ahead n, behind m]`,
+          # any further lines mean a dirty tree.
+          let git = (^${pkgs.git}/bin/git -C $dir status --porcelain --branch | complete)
+          let lines = ($git.stdout | lines)
+          let head = ($lines | first | default "")
+          let branch = ($head | parse --regex '^## (?<b>[^ .]+)' | get b.0? | default "")
+          let ahead = ($head | parse --regex 'ahead (?<n>\d+)' | get n.0? | default "")
+          let behind = ($head | parse --regex 'behind (?<n>\d+)' | get n.0? | default "")
+
+          [
+            (if $model != "" { $model })
+            (if $dir == $env.HOME { "~" } else { $dir | path basename })
+            (if $branch != "" { $"\u{f418} ($branch)" })
+            (if ($lines | length) > 1 { "*" })
+            (if $ahead != "" { $"\u{21e1}($ahead)" })
+            (if $behind != "" { $"\u{21e3}($behind)" })
+          ] | compact | str join " " | print --no-newline
+        ''}";
+      };
     };
     context = ''
       # Use nix for programs
