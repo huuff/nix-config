@@ -7,6 +7,24 @@
   ...
 }:
 let
+  # Not in nixpkgs. The npm tarball ships a self-contained bundle
+  # (`bun build --target=node`), no runtime deps, so no buildNpmPackage needed.
+  ccstatusline =
+    let
+      bundle = pkgs.stdenv.mkDerivation {
+        pname = "ccstatusline";
+        version = "2.2.27";
+        src = pkgs.fetchurl {
+          url = "https://registry.npmjs.org/ccstatusline/-/ccstatusline-2.2.27.tgz";
+          hash = "sha256-T2Cb3tENjBBkUWzvuQLtWTkasru6l9WT6KEtB+LaWMI=";
+        };
+        installPhase = "install -Dm644 dist/ccstatusline.js $out/lib/ccstatusline.js";
+      };
+    in
+    pkgs.writeShellScriptBin "ccstatusline" ''
+      exec ${pkgs.nodejs}/bin/node ${bundle}/lib/ccstatusline.js "$@"
+    '';
+
   # HACK: Bun single-executable binaries embed JS at the end of the ELF.
   # dontStrip prevents the nix strip phase from removing the embedded code,
   # and we use only patchelf --set-interpreter (not autoPatchelfHook) to
@@ -34,6 +52,8 @@ in
   home.packages = [
     derivations.playwright-cli
     sentry-cli
+    # on PATH for its interactive config TUI; run `ccstatusline` to customize
+    ccstatusline
   ];
 
   programs.zsh.envExtra = ''
@@ -51,44 +71,14 @@ in
       ];
       skipDangerousModePermissionPrompt = true;
       skipAutoPermissionPrompt = true;
-      # Renders the segments directly rather than shelling out to starship: driving
-      # starship from a statusline meant fighting its shell-prompt assumptions
-      # (STARSHIP_SHELL escapes, --path vs --logical-path, a profile that only
-      # exists to strip modules), and it renders a prompt for a *process*, which a
-      # statusline isn't. Claude Code only re-renders on events (new message,
-      # model/mode change), so without refreshInterval the branch goes stale when
-      # it changes in another terminal.
+      # ccstatusline stores its widget/theme config statefully in
+      # ~/.config/ccstatusline/settings.json (edit via the `ccstatusline` TUI).
+      # refreshInterval because Claude Code only re-renders on events, so the
+      # branch would go stale when it changes in another terminal.
       statusLine = {
         type = "command";
         refreshInterval = 5;
-        command = "${pkgs.writers.writeNu "claude-statusline" ''
-          # Any uncaught error exits non-zero with empty stdout, which Claude Code
-          # renders as a blank line — hence the try/catch, `?`s and `complete`.
-          # writeNu's shebang omits --stdin so $in is nothing; read /dev/stdin.
-          # `into record` also rejects the string that `from json` returns for
-          # some non-JSON input instead of erroring.
-          let p = (try { open --raw /dev/stdin | from json | into record } catch { {} })
-          let dir = ($p.workspace?.current_dir? | default ($p.cwd? | default $env.PWD))
-          let model = ($p.model?.display_name? | default "" | str replace --regex ' \(.*\)$' "")
-
-          # One git call: line 1 is `## branch...upstream [ahead n, behind m]`,
-          # any further lines mean a dirty tree.
-          let git = (^${pkgs.git}/bin/git -C $dir status --porcelain --branch | complete)
-          let lines = ($git.stdout | lines)
-          let head = ($lines | first | default "")
-          let branch = ($head | parse --regex '^## (?<b>[^ .]+)' | get b.0? | default "")
-          let ahead = ($head | parse --regex 'ahead (?<n>\d+)' | get n.0? | default "")
-          let behind = ($head | parse --regex 'behind (?<n>\d+)' | get n.0? | default "")
-
-          [
-            (if $model != "" { $model })
-            (if $dir == $env.HOME { "~" } else { $dir | path basename })
-            (if $branch != "" { $"\u{f418} ($branch)" })
-            (if ($lines | length) > 1 { "*" })
-            (if $ahead != "" { $"\u{21e1}($ahead)" })
-            (if $behind != "" { $"\u{21e3}($behind)" })
-          ] | compact | str join " " | print --no-newline
-        ''}";
+        command = "${ccstatusline}/bin/ccstatusline";
       };
     };
     context = ''
