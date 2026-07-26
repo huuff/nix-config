@@ -65,6 +65,7 @@ in
     enable = true;
     package = derivations.claude-code;
     settings = {
+      model = "claude-fable-5";
       permissions.deny = [
         "Read(**/.env)"
         "Read(**/.env.local)"
