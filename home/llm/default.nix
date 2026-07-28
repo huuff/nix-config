@@ -72,6 +72,8 @@ in
       ];
       skipDangerousModePermissionPrompt = true;
       skipAutoPermissionPrompt = true;
+      # flicker-free alt-screen renderer with virtualized scrollback
+      tui = "fullscreen";
       # ccstatusline stores its widget/theme config statefully in
       # ~/.config/ccstatusline/settings.json (edit via the `ccstatusline` TUI).
       # refreshInterval because Claude Code only re-renders on events, so the
