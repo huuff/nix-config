@@ -217,6 +217,7 @@
                     stylix.homeModules.stylix
                     walker.homeManagerModules.default
                     vibe-army.homeManagerModules.default
+                    good-vibes-only.homeManagerModules.nono
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all

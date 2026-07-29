@@ -118,6 +118,30 @@ in
     };
   };
 
+  programs.nono = {
+    enable = true;
+    package = derivations.nono;
+    profiles.claude-haf = {
+      extends = "claude-code";
+      meta.description = "claude-code pack + ccstatusline, sentry, playwright and cargo access";
+      filesystem = {
+        read = [
+          "$XDG_CONFIG_HOME/ccstatusline"
+          "$HOME/.cargo"
+        ];
+        allow = [
+          "$HOME/.sentry"
+          "$HOME/.cache/ms-playwright"
+        ];
+      };
+    };
+    wrappers.vibe-claude = {
+      profile = "claude-haf";
+      command = "claude --dangerously-skip-permissions";
+      extraFlags = [ "--allow-cwd" ];
+    };
+  };
+
   # settings left empty so no config.toml is generated and codex can manage
   # its own state in ~/.codex
   programs.codex = {

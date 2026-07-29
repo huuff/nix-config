@@ -63,8 +63,6 @@
       irust
       remmina
 
-      derivations.nono
-
       cachix
       devenv
 
