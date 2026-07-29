@@ -84,6 +84,11 @@ in
         command = "${ccstatusline}/bin/ccstatusline";
       };
     };
+    # command is not a store path so the repo devshell can resolve it
+    lspServers.rust-analyzer = {
+      command = "rust-analyzer";
+      extensionToLanguage.".rs" = "rust";
+    };
     context = ''
       # Use nix for programs
       It's unlikely that you'll have all the software you need available, but the system is NixOS so you
