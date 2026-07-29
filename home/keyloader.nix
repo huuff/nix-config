@@ -1,9 +1,12 @@
-{ vibe-keyloader, ... }:
 {
-  # The module's default package is pkgs.keyloader, which comes from the overlay
-  nixpkgs.overlays = [ vibe-keyloader.overlays.default ];
-
-  programs.keyloader.enable = true;
+  good-vibes-only,
+  pkgs,
+  ...
+}:
+{
+  home.packages = [
+    good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
 
   # keyloader needs allow-preset-passphrase to preset key passphrases into gpg-agent
   services.gpg-agent = {

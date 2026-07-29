@@ -728,7 +728,49 @@
         "type": "github"
       }
     },
+    "good-vibes-only": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785352843,
+        "narHash": "sha256-xROnNFl6ZX2C3CYJpZIubnGkEqHRHAeeNNEjPKH5cVM=",
+        "owner": "huuff",
+        "repo": "good-vibes-only",
+        "rev": "5c6389f8f7fe9c713399aaabdd43743a1118d545",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "good-vibes-only",
+        "type": "github"
+      }
+    },
     "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "good-vibes-only",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785306346,
+        "narHash": "sha256-DScBkW0fOgpGPK2trNoX3ryLTlaC14+gglFo/BhGJ4g=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "e705714e918c3b11affcdd15db2cbe3a070420a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -1968,7 +2010,8 @@
         "claude-plugins-src": "claude-plugins-src",
         "disko": "disko",
         "elephant": "elephant",
-        "home-manager": "home-manager",
+        "good-vibes-only": "good-vibes-only",
+        "home-manager": "home-manager_2",
         "my-home-modules": "my-home-modules",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_9",
@@ -1982,7 +2025,6 @@
         "stylix": "stylix",
         "superpowers": "superpowers",
         "vibe-army": "vibe-army",
-        "vibe-keyloader": "vibe-keyloader",
         "walker": "walker"
       }
     },
@@ -2908,26 +2950,6 @@
       "original": {
         "owner": "huuff",
         "repo": "vibe-army",
-        "type": "github"
-      }
-    },
-    "vibe-keyloader": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1784363655,
-        "narHash": "sha256-tnfu1YQ/FbYXzXz5Jk5vJ4Ga2w/RC08aLWSFl9JlX4k=",
-        "owner": "huuff",
-        "repo": "vibe-keyloader",
-        "rev": "e315525fb4d8cd60a4ba23d71874468a9df5edb2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "huuff",
-        "repo": "vibe-keyloader",
         "type": "github"
       }
     },
