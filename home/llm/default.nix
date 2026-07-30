@@ -131,7 +131,9 @@ in
         ];
         # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
         read_file = [ "$HOME/.config/sops-nix/secrets/gitWorkConfig" ];
+        # base packs only grant write on /tmp, not read
         allow = [
+          "/tmp"
           "$HOME/.sentry"
           "$HOME/.cache/ms-playwright"
         ];
@@ -144,6 +146,8 @@ in
         read = [ "$HOME/.cargo" ];
         # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
         read_file = [ "$HOME/.config/sops-nix/secrets/gitWorkConfig" ];
+        # base packs only grant write on /tmp, not read
+        allow = [ "/tmp" ];
       };
     };
     wrappers.vibe-claude = {
