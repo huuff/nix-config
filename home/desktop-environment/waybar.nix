@@ -61,8 +61,11 @@ in
           format-window-separator = " ";
           window-rewrite-default = "?";
           window-rewrite = {
+            # Claude Code retitles the terminal "<spinner> <task>"; a bare shell never does.
+            "class<[^>]*ghostty[^>]*> title<[^\\x00-\\x7f]+ .*>" = "✳";
             "firefox" = "";
-            "code" = "󰨞";
+            # scoped: the title<> rule above makes waybar match bare keys against titles too
+            "class<[^>]*code[^>]*>" = "󰨞";
             "slack" = "󰒱";
             "ghostty" = "";
             "chromium" = "";
