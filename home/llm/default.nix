@@ -129,6 +129,8 @@ in
           "$XDG_CONFIG_HOME/ccstatusline"
           "$HOME/.cargo"
         ];
+        # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
+        read_file = [ "$HOME/.config/sops-nix/secrets/gitWorkConfig" ];
         allow = [
           "$HOME/.sentry"
           "$HOME/.cache/ms-playwright"
