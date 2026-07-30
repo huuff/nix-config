@@ -137,9 +137,24 @@ in
         ];
       };
     };
+    profiles.codex-haf = {
+      extends = "codex";
+      meta.description = "codex pack + cargo access";
+      filesystem = {
+        read = [ "$HOME/.cargo" ];
+        # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
+        read_file = [ "$HOME/.config/sops-nix/secrets/gitWorkConfig" ];
+      };
+    };
     wrappers.vibe-claude = {
       profile = "claude-haf";
       command = "claude --dangerously-skip-permissions";
+      extraFlags = [ "--allow-cwd" ];
+    };
+    wrappers.vibe-codex = {
+      profile = "codex-haf";
+      # nono is the sandbox, so codex's own approvals/sandbox get bypassed
+      command = "codex --dangerously-bypass-approvals-and-sandbox";
       extraFlags = [ "--allow-cwd" ];
     };
   };
