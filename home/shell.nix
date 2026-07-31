@@ -41,7 +41,6 @@
     defaultKeymap = "emacs";
 
     shellAliases = {
-      op-login = "eval $(op signin --account my.1password.com)";
       ssh = "TERM=xterm-256color command ssh"; # for some servers that don't accept my terminals
       sudo = "sudo "; # https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo/22043#22043
       watch = "watch "; # same as sudo
