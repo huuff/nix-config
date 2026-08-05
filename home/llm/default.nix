@@ -8,24 +8,6 @@
   ...
 }:
 let
-  # Not in nixpkgs. The npm tarball ships a self-contained bundle
-  # (`bun build --target=node`), no runtime deps, so no buildNpmPackage needed.
-  ccstatusline =
-    let
-      bundle = pkgs.stdenv.mkDerivation {
-        pname = "ccstatusline";
-        version = "2.2.27";
-        src = pkgs.fetchurl {
-          url = "https://registry.npmjs.org/ccstatusline/-/ccstatusline-2.2.27.tgz";
-          hash = "sha256-T2Cb3tENjBBkUWzvuQLtWTkasru6l9WT6KEtB+LaWMI=";
-        };
-        installPhase = "install -Dm644 dist/ccstatusline.js $out/lib/ccstatusline.js";
-      };
-    in
-    pkgs.writeShellScriptBin "ccstatusline" ''
-      exec ${pkgs.nodejs}/bin/node ${bundle}/lib/ccstatusline.js "$@"
-    '';
-
   # HACK: Bun single-executable binaries embed JS at the end of the ELF.
   # dontStrip prevents the nix strip phase from removing the embedded code,
   # and we use only patchelf --set-interpreter (not autoPatchelfHook) to
@@ -48,13 +30,14 @@ let
 
 in
 {
-  imports = [ ./ponytail.nix ];
+  imports = [
+    ./ponytail.nix
+    ./ccstatusline.nix
+  ];
 
   home.packages = [
     derivations.playwright-cli
     sentry-cli
-    # on PATH for its interactive config TUI; run `ccstatusline` to customize
-    ccstatusline
   ];
 
   programs.zsh.envExtra = ''
@@ -76,15 +59,10 @@ in
       skipAutoPermissionPrompt = true;
       # flicker-free alt-screen renderer with virtualized scrollback
       tui = "fullscreen";
-      # ccstatusline stores its widget/theme config statefully in
-      # ~/.config/ccstatusline/settings.json (edit via the `ccstatusline` TUI).
       # refreshInterval because Claude Code only re-renders on events, so the
       # branch would go stale when it changes in another terminal.
-      statusLine = {
-        type = "command";
-        refreshInterval = 5;
-        command = "${ccstatusline}/bin/ccstatusline";
-      };
+      # type/command come from programs.ccstatusline.
+      statusLine.refreshInterval = 5;
     };
     # command is not a store path so the repo devshell can resolve it
     lspServers.rust-analyzer = {

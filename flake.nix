@@ -218,6 +218,7 @@
                     walker.homeManagerModules.default
                     vibe-army.homeManagerModules.default
                     good-vibes-only.homeManagerModules.nono
+                    good-vibes-only.homeManagerModules.ccstatusline
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all
