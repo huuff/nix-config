@@ -71,6 +71,24 @@
         "$mod SHIFT, 0, movetoworkspace, 10"
       ];
 
+      # Media controls with an on-screen indicator from SwayOSD. Locked
+      # bindings work while the session is locked; repeating bindings allow
+      # volume keys to be held down.
+      bindl = [
+        ", XF86AudioPlay, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl play-pause"
+        ", XF86AudioPause, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl pause"
+        ", XF86AudioNext, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl next"
+        ", XF86AudioPrev, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl prev"
+        ", XF86AudioStop, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl stop"
+        ", XF86AudioMute, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --output-volume mute-toggle"
+        ", XF86AudioMicMute, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --input-volume mute-toggle"
+      ];
+
+      bindel = [
+        ", XF86AudioRaiseVolume, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --output-volume +5 --max-volume 100"
+        ", XF86AudioLowerVolume, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --output-volume -5"
+      ];
+
       # Mouse bindings for floating windows
       bindm = [
         "$mod, mouse:272, movewindow"

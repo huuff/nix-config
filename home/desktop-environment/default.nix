@@ -12,4 +12,6 @@
     ./notifications.nix
     ./bluelight.nix
   ];
+
+  services.swayosd.enable = true;
 }
