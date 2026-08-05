@@ -186,7 +186,6 @@
             ./nixos/nixconf.nix
             ./nixos/ssh.nix
             ./nixos/virtualization.nix
-            ./nixos/gnupg.nix
             ./nixos/scanner.nix
             ./nixos/printing.nix
             ./nixos/vpn.nix
