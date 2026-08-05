@@ -133,12 +133,14 @@ in
     wrappers.nono-claude = {
       profile = "claude-haf";
       command = "claude --dangerously-skip-permissions";
+      allowGitCommonDir = true;
       extraFlags = [ "--allow-cwd" ];
     };
     wrappers.nono-codex = {
       profile = "codex-haf";
       # nono is the sandbox, so codex's own approvals/sandbox get bypassed
       command = "codex --dangerously-bypass-approvals-and-sandbox";
+      allowGitCommonDir = true;
       extraFlags = [ "--allow-cwd" ];
     };
   };
