@@ -1749,6 +1749,22 @@
         "type": "github"
       }
     },
+    "ponytail": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784151135,
+        "narHash": "sha256-Y7d4s7uqjH6IbEXhqAiQ+yaxr6iiGcv2X64LuMtG1T8=",
+        "owner": "DietrichGebert",
+        "repo": "ponytail",
+        "rev": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DietrichGebert",
+        "repo": "ponytail",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -2019,6 +2035,7 @@
         "opencode": "opencode",
         "paintings": "paintings",
         "playwright-cli-src": "playwright-cli-src",
+        "ponytail": "ponytail",
         "scripts": "scripts",
         "sentry-cli-src": "sentry-cli-src",
         "sops-nix": "sops-nix",

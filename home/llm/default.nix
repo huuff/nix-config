@@ -1,6 +1,7 @@
 {
   pkgs,
   derivations,
+  superpowers,
   playwright-cli-src,
   sentry-cli-src,
   claude-plugins-src,
@@ -47,7 +48,7 @@ let
 
 in
 {
-  imports = [ ./superpowers.nix ];
+  imports = [ ./ponytail.nix ];
 
   home.packages = [
     derivations.playwright-cli
@@ -64,6 +65,7 @@ in
   programs.claude-code = {
     enable = true;
     package = derivations.claude-code;
+    plugins = [ superpowers ];
     settings = {
       model = "claude-fable-5";
       permissions.deny = [

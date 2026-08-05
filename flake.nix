@@ -43,7 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # these two must come together
     elephant.url = "github:abenz1267/elephant";
     walker = {
       url = "github:abenz1267/walker";
@@ -54,8 +53,6 @@
       url = "github:sst/opencode?ref=v1.4.2";
     };
 
-    # nixpkgs lags behind claude-code releases; this flake tracks the latest
-    # release within hours, which we need for new model support (e.g. Opus 4.8).
     claude-code = {
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +60,11 @@
 
     superpowers = {
       url = "github:obra/superpowers";
+      flake = false;
+    };
+
+    ponytail = {
+      url = "github:DietrichGebert/ponytail";
       flake = false;
     };
 
@@ -76,20 +78,16 @@
       flake = false;
     };
 
-    # Official Anthropic Claude Code plugins; we pull the frontend-design skill
-    # out of it (plugins/frontend-design/skills/frontend-design).
     claude-plugins-src = {
       url = "github:anthropics/claude-plugins-official";
       flake = false;
     };
 
-    # My own skills; exposes a home-manager module that links them into ~/.claude/skills
     vibe-army = {
       url = "github:huuff/vibe-army";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Loads GPG/SSH keys from 1Password into gpg-agent/ssh-agent without writing them to disk
     good-vibes-only = {
       url = "github:huuff/good-vibes-only";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -112,6 +110,7 @@
       opencode,
       claude-code,
       superpowers,
+      ponytail,
       playwright-cli-src,
       sentry-cli-src,
       claude-plugins-src,
@@ -148,6 +147,7 @@
             };
             inherit
               superpowers
+              ponytail
               playwright-cli-src
               sentry-cli-src
               claude-plugins-src
