@@ -736,11 +736,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785956704,
-        "narHash": "sha256-cu1zfspf1N/VumbRh0EKEmLmxCa/SroftGr0QysVW/k=",
+        "lastModified": 1786002705,
+        "narHash": "sha256-1Df9n9LNn9gZUp8r+WOD4/Bgk/V/qumUYoe9OmA/VtU=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "6670780bfbbef35e300c12790697b4b07969f16b",
+        "rev": "121797bfe83c2e44c6eb849d5b25f3d5b75ebc2b",
         "type": "github"
       },
       "original": {
