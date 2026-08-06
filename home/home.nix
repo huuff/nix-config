@@ -3,6 +3,7 @@
   user,
   scripts,
   derivations,
+  good-vibes-only,
   ...
 }:
 {
@@ -95,6 +96,9 @@
       tor-browser
       libreoffice
       hoppscotch
+
+      good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.keyloader
+      good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.llm-usage
 
     ]
     ++ lib.attrValues scripts;

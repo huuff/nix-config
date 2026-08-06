@@ -1,13 +1,5 @@
+{ pkgs, ... }:
 {
-  good-vibes-only,
-  pkgs,
-  ...
-}:
-{
-  home.packages = [
-    good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.keyloader
-  ];
-
   programs.gpg.enable = true;
 
   services.gpg-agent = {
