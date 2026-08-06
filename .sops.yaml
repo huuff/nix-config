@@ -1,7 +1,6 @@
 keys:
   - &my_pgp A5D50328091D738706BA18A07E66BB1D1107BA57
   - &zen_age age1pqrdd9zatkycl5vykjs5tt84zy4cfwx3kzk3eshqjpsn747lgf0sy0ef8f
-  - &mini-s_age age1nk3d6l0gftpg0sesqh8c2zm0eu7cw4r2nfnxaa299jpg0nwkja4su8q6py
   - &evo_age age1xsph5jqwp62gjtx46qnpdkw4k283vrxhhuwph33p2ewvmlntvulsv2gxt3
 creation_rules:
   - path_regex: secrets.yaml
@@ -10,5 +9,4 @@ creation_rules:
         - *my_pgp
         age:
         - *zen_age
-        - *mini-s_age
         - *evo_age

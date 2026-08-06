@@ -242,10 +242,6 @@
           ./nixos/battery.nix
         ];
 
-        mini-s = mkConfig ./nixos/hosts/mini-s/configuration.nix "haf" [
-          ./nixos/wireless.nix
-          ./nixos/bluetooth.nix
-        ];
       };
     };
 }
