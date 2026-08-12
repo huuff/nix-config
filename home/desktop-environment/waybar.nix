@@ -17,22 +17,14 @@ in
         name = "topBar";
         layer = "top";
         position = "top";
-        height = 35;
+        height = 30;
+        margin-top = 4;
+        margin-left = 14;
+        margin-right = 14;
 
-        modules-left = [
-          "custom/notification"
-          "hyprland/workspaces"
-          "group/hardware"
-        ];
-        modules-center = [ "clock" ];
-        modules-right = [
-          "custom/mullvad"
-          "custom/tailscale"
-          "network"
-          "battery"
-          "pulseaudio"
-          "hyprland/language"
-        ];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "group/islandCenter" ];
+        modules-right = [ "group/islandRight" ];
 
         # stolen from https://haseebmajid.dev/posts/2024-03-15-til-how-to-get-swaync-to-play-nice-with-waybar/
         "custom/notification" = {
@@ -106,8 +98,7 @@ in
         };
 
         clock = {
-          format = "<span size='x-small'>{0:%A, %d %B %Y}</span>\n<b>{0:%H:%M}</b>";
-          justify = "center";
+          format = "<b>{0:%H:%M}</b> <span size='small'>{0:%a %d %b}</span>";
         };
 
         "custom/mullvad" = {
@@ -226,6 +217,53 @@ in
           on-click = "pavucontrol";
         };
 
+        "group/islandCenter" = {
+          orientation = "horizontal";
+          modules = [
+            "clock"
+            "custom/notification"
+          ];
+        };
+
+        "group/islandRight" = {
+          orientation = "horizontal";
+          modules = [
+            "custom/mullvad"
+            "custom/tailscale"
+            "network"
+            "pulseaudio"
+            "battery"
+            "hyprland/language"
+          ];
+        };
+
+      };
+
+      # docked corner chips: vitals bottom-left, tray bottom-right; windows slide behind
+      bottomBar = {
+        name = "bottomBar";
+        layer = "top";
+        position = "bottom";
+        exclusive = false;
+        height = 30;
+        margin-bottom = 0;
+        margin-left = 0;
+        margin-right = 0;
+
+        modules-left = [ "group/vitals" ];
+        modules-right = [ "tray" ];
+
+        "group/vitals" = {
+          orientation = "horizontal";
+          modules = [
+            "temperature"
+            "cpu"
+            "memory"
+            "disk#root"
+          ]
+          ++ (lib.optional hasHomePartition "disk#home");
+        };
+
         "disk#root" = {
           path = "/";
           format = "󰙅<sub> {percentage_used}%</sub>";
@@ -273,29 +311,6 @@ in
           ];
         };
 
-        "group/hardware" = {
-          orientation = "horizontal";
-          modules = [
-            "temperature"
-            "cpu"
-            "memory"
-            "disk#root"
-          ]
-          ++ (lib.optional hasHomePartition "disk#home");
-        };
-
-      };
-
-      trayBar = {
-        name = "trayBar";
-        layer = "top";
-        position = "bottom";
-        exclusive = false;
-
-        modules-right = [ "tray" ];
-        margin-bottom = 6;
-        height = 25;
-
         tray = {
           spacing = 10;
         };
@@ -308,23 +323,47 @@ in
         color: #${config.lib.stylix.colors.base05};
       }
 
-      #custom-notification, #hardware, #workspaces, #clock, #custom-mullvad, #custom-tailscale, #network, #battery, #pulseaudio, #language {
-        background-color: #${config.lib.stylix.colors.base01};
-        opacity: 0.75;
-        border-radius: 6px;
-        padding: 0 10px;
-        margin: 0 3px;
+      /* the three glass islands */
+      #workspaces, #islandCenter, #islandRight {
+        background-color: alpha(#${config.lib.stylix.colors.base00}, 0.68);
+        border: 1px solid alpha(#${config.lib.stylix.colors.base05}, 0.14);
+        border-radius: 15px;
+        padding: 0 6px;
       }
 
-
-      window#waybar.trayBar #tray {
-        background-color: #${config.lib.stylix.colors.base00};
-        padding: 2px 10px;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+      /* bottom corner chips */
+      #vitals, window#waybar.bottomBar #tray {
+        background-color: alpha(#${config.lib.stylix.colors.base00}, 0.85);
+        border-top: 1px solid alpha(#${config.lib.stylix.colors.base05}, 0.14);
+        padding: 0 12px;
       }
 
-      #custom-mullvad.connected {
+      #vitals {
+        border-right: 1px solid alpha(#${config.lib.stylix.colors.base05}, 0.14);
+        border-radius: 0 12px 0 0;
+      }
+
+      window#waybar.bottomBar #tray {
+        border-left: 1px solid alpha(#${config.lib.stylix.colors.base05}, 0.14);
+        border-radius: 12px 0 0 0;
+      }
+
+      #custom-notification, #clock, #custom-mullvad, #custom-tailscale, #network,
+      #battery, #pulseaudio, #language, #tray {
+        padding: 0 8px;
+      }
+
+      #temperature, #cpu, #memory, #disk {
+        padding: 0 3px;
+      }
+
+      #clock {
+        border-right: 1px solid alpha(#${config.lib.stylix.colors.base05}, 0.18);
+        margin: 7px 4px;
+        padding: 0 12px;
+      }
+
+      #custom-mullvad.connected, #custom-tailscale.connected {
         color: #${config.lib.stylix.colors.base0B};
       }
 
@@ -349,24 +388,35 @@ in
         color: #${config.lib.stylix.colors.base08};
       }
 
-      #workspaces {
-        padding: 0;
+      /* .modules-left prefix + full border shorthand: stylix ships
+         .modules-left #workspaces button.active { border-bottom: 3px solid },
+         which outranks bare #workspaces selectors */
+      .modules-left #workspaces button {
+        border: 1px solid transparent;
+        border-radius: 12px;
+        padding: 0 10px;
+        margin: 3px 1px;
+        color: #${config.lib.stylix.colors.base03};
       }
 
-      #workspaces button {
-        border: none;
+      .modules-left #workspaces button.active {
+        background-color: alpha(#${config.lib.stylix.colors.base09}, 0.18);
+        border: 1px solid alpha(#${config.lib.stylix.colors.base09}, 0.55);
+        color: #${config.lib.stylix.colors.base05};
       }
 
-      #workspaces button.visible {
-        border-bottom: 3px solid #${config.lib.stylix.colors.base05};
+      .modules-left #workspaces button.visible {
+        border: 1px solid alpha(#${config.lib.stylix.colors.base05}, 0.25);
+        color: #${config.lib.stylix.colors.base05};
       }
 
-      #workspaces button:hover {
+      .modules-left #workspaces button:hover {
         background-color: #${config.lib.stylix.colors.base02};
       }
 
-      #workspaces button.urgent {
+      .modules-left #workspaces button.urgent {
         background-color: #${config.lib.stylix.colors.base09};
+        border: 1px solid transparent;
         color: #${config.lib.stylix.colors.base00};
       }
     '';

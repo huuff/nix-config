@@ -105,10 +105,17 @@
 
       general = {
         allow_tearing = false;
+        # top, right, bottom, left — bottom lets windows tuck slightly behind the docked chips
+        gaps_out = "12, 10, 20, 10";
       };
 
       windowrule = [
         "float on, match:class ^(Emulator)$"
+      ];
+
+      layerrule = [
+        "blur on, match:namespace waybar"
+        "ignore_alpha 0.3, match:namespace waybar"
       ];
 
       "plugin:dynamic-cursors" = {
