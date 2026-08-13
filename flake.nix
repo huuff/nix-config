@@ -63,6 +63,11 @@
       flake = false;
     };
 
+    open-design = {
+      url = "github:nexu-io/open-design";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ponytail = {
       url = "github:DietrichGebert/ponytail";
       flake = false;
@@ -105,6 +110,7 @@
       opencode,
       claude-code,
       superpowers,
+      open-design,
       ponytail,
       playwright-cli-src,
       sentry-cli-src,
@@ -212,6 +218,7 @@
                     good-vibes-only.homeManagerModules.nono
                     good-vibes-only.homeManagerModules.ccstatusline
                     good-vibes-only.homeManagerModules.skills
+                    open-design.homeManagerModules.default
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all

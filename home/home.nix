@@ -121,6 +121,12 @@
 
   xdg.enable = true;
 
+  services.open-design = {
+    enable = true;
+    autoStart = true;
+    webFrontend.enable = true;
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
