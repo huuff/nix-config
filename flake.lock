@@ -117,16 +117,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1784654975,
-        "narHash": "sha256-/r4mBoJhHB1v5NTA4Hk565/D5B0deYJf9xJW330hyf0=",
+        "lastModified": 1786063808,
+        "narHash": "sha256-NKeOxp9vLcx7tpghqhpS3ocPqUDP2PircNwkJNpHBPo=",
         "owner": "openai",
         "repo": "codex",
-        "rev": "25af12f7e61572b0bc18ddb1008be543b91519b0",
+        "rev": "be6e8eac029b183056b7e4402879f15d2c85f61b",
         "type": "github"
       },
       "original": {
         "owner": "openai",
-        "ref": "rust-v0.145.0",
+        "ref": "rust-v0.147.0",
         "repo": "codex",
         "type": "github"
       }
@@ -837,11 +837,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1786653025,
-        "narHash": "sha256-ZC1MKWUPyLktnjc4ik2M5YFqPxx6gEQwmNg6q3OxYGA=",
+        "lastModified": 1786655211,
+        "narHash": "sha256-MXzNrtVzct8fBpwpbcEg+EHN1batLCQZb5JilQDfoGE=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "42371ade3cbe0410b8d4a2f849cae72a8923b3ca",
+        "rev": "32bd284c090a51e80e89df2e8671ad77c0b60dda",
         "type": "github"
       },
       "original": {
