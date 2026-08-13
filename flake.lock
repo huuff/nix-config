@@ -105,6 +105,47 @@
         "type": "github"
       }
     },
+    "codex": {
+      "inputs": {
+        "nixpkgs": [
+          "good-vibes-only",
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "good-vibes-only",
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784654975,
+        "narHash": "sha256-/r4mBoJhHB1v5NTA4Hk565/D5B0deYJf9xJW330hyf0=",
+        "owner": "openai",
+        "repo": "codex",
+        "rev": "25af12f7e61572b0bc18ddb1008be543b91519b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openai",
+        "ref": "rust-v0.145.0",
+        "repo": "codex",
+        "type": "github"
+      }
+    },
+    "crane": {
+      "locked": {
+        "lastModified": 1785782307,
+        "narHash": "sha256-MPaRdVkf6zZP5fCPxYCi8Dr4pZzgmXzg8T9nVEbp3Mw=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "2c71e194474d13de031d729b729c968ddbe3507f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -730,17 +771,20 @@
     },
     "good-vibes-only": {
       "inputs": {
+        "codex": "codex",
+        "crane": "crane",
         "home-manager": "home-manager",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1786640223,
-        "narHash": "sha256-cuBvIP1yvoQ8LPURb6xCFblSJR9SeXcdJkS6fztlZKc=",
+        "lastModified": 1786653025,
+        "narHash": "sha256-ZC1MKWUPyLktnjc4ik2M5YFqPxx6gEQwmNg6q3OxYGA=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "7e156b4cca0ca9a2ca4cc268bc2efb729a8e1a8e",
+        "rev": "42371ade3cbe0410b8d4a2f849cae72a8923b3ca",
         "type": "github"
       },
       "original": {
@@ -2042,6 +2086,27 @@
         "stylix": "stylix",
         "superpowers": "superpowers",
         "walker": "walker"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "good-vibes-only",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786638241,
+        "narHash": "sha256-KJhq0HYg2gIZjpsj47z1kWrjoUUAqSqdD2mMWAsOg4k=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "892c035d7c2ff75acd5da10424a47ab454e1f3dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "scripts": {

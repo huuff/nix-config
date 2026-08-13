@@ -5,6 +5,7 @@
   playwright-cli-src,
   sentry-cli-src,
   claude-plugins-src,
+  good-vibes-only,
   ...
 }:
 let
@@ -130,6 +131,7 @@ in
   # its own state in ~/.codex
   programs.codex = {
     enable = true;
+    package = good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.codex-trust-state;
     context = ''
       # Use nix for programs
       It's unlikely that you'll have all the software you need available, but the system is NixOS so you
