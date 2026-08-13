@@ -736,11 +736,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786049357,
-        "narHash": "sha256-jw0GVwyr1zvFfvgVtF2a1X36zZ1yzwNsutZ2b+yDdaA=",
+        "lastModified": 1786640223,
+        "narHash": "sha256-cuBvIP1yvoQ8LPURb6xCFblSJR9SeXcdJkS6fztlZKc=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "282dfd47fbb9281a5b69f78a8223c867b71fd514",
+        "rev": "7e156b4cca0ca9a2ca4cc268bc2efb729a8e1a8e",
         "type": "github"
       },
       "original": {
@@ -2041,7 +2041,6 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "superpowers": "superpowers",
-        "vibe-army": "vibe-army",
         "walker": "walker"
       }
     },
@@ -2947,26 +2946,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "vibe-army": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1784365420,
-        "narHash": "sha256-SK8Ogsmb/IgcndaRDIqrW7lVdyPQEBisA7IKYwpJaVE=",
-        "owner": "huuff",
-        "repo": "vibe-army",
-        "rev": "57d41c2658be9af63bb00a7e28b0c622f69fb69e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "huuff",
-        "repo": "vibe-army",
         "type": "github"
       }
     },

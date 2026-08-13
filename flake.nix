@@ -83,11 +83,6 @@
       flake = false;
     };
 
-    vibe-army = {
-      url = "github:huuff/vibe-army";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     good-vibes-only = {
       url = "github:huuff/good-vibes-only";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -114,7 +109,6 @@
       playwright-cli-src,
       sentry-cli-src,
       claude-plugins-src,
-      vibe-army,
       good-vibes-only,
       ...
     }:
@@ -215,9 +209,9 @@
                     ./home/home.nix
                     stylix.homeModules.stylix
                     walker.homeManagerModules.default
-                    vibe-army.homeManagerModules.default
                     good-vibes-only.homeManagerModules.nono
                     good-vibes-only.homeManagerModules.ccstatusline
+                    good-vibes-only.homeManagerModules.skills
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules
                   # TODO: actually I should get only the main module right? not all

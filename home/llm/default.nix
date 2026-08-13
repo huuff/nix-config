@@ -316,8 +316,8 @@ in
     };
   };
 
-  # my own skills; opencode also discovers ~/.claude/skills, so this covers both
-  vibe-army.claude-code.enable = true;
+  # opencode also discovers ~/.claude/skills, so this covers both harnesses.
+  programs.agent-skills.claude-code.enable = true;
 
   # The .cursor/skills/sentry-cli path contains a symlink that breaks with
   # recursive xdg.configFile, so we point to the real location instead.
