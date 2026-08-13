@@ -77,25 +77,6 @@ in
       - Get a shell with the tools on PATH: `nix shell nixpkgs#<pkg1> nixpkgs#<pkg2> -c <command>`
       - Search for a package: `nix search nixpkgs <term>`
     '';
-    mcpServers.stape-mcp-server = {
-      type = "stdio";
-      # mcp-remote's npx-fetched deps use `#!/usr/bin/env node` shebangs, so
-      # node must be on PATH. Scoping it here keeps node out of global PATH.
-      command = "${pkgs.writeShellScript "stape-mcp-launcher" ''
-        export PATH=${pkgs.nodejs}/bin:$PATH
-        exec ${pkgs.nodejs}/bin/npx -y mcp-remote \
-          https://mcp.stape.ai/mcp \
-          --header "Authorization: ''${STAPE_API_KEY}" \
-          --header "X-Stape-Region: EU"
-      ''}";
-    };
-    mcpServers.google-tag-manager = {
-      type = "stdio";
-      command = "${pkgs.writeShellScript "gtm-mcp-launcher" ''
-        export PATH=${pkgs.nodejs}/bin:$PATH
-        exec ${pkgs.nodejs}/bin/npx -y mcp-remote https://gtm-mcp.stape.ai/mcp
-      ''}";
-    };
   };
 
   programs.nono = {
