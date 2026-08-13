@@ -66,6 +66,7 @@
 
       cachix
       devenv
+      bubblewrap # required by OpenDesign
 
       zathura # pdf reader
       scrot # making screenshots
