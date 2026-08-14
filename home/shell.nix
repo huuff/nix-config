@@ -55,6 +55,7 @@
       emacs = "emacs --no-splash";
       tf = "terraform";
       postman = "hoppscotch"; # for muscle memory
+      op-signin = ''eval "$(op signin)"'';
     };
 
     # TODO: Check if some of these settings would be nice to improve my history
