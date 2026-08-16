@@ -170,7 +170,8 @@
     "dream2nix": {
       "inputs": {
         "nixpkgs": [
-          "open-design",
+          "good-vibes-only",
+          "opendesign",
           "nixpkgs"
         ],
         "purescript-overlay": "purescript-overlay",
@@ -495,7 +496,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_7"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -834,14 +835,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "opendesign": "opendesign",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1786655211,
-        "narHash": "sha256-MXzNrtVzct8fBpwpbcEg+EHN1batLCQZb5JilQDfoGE=",
+        "lastModified": 1786918157,
+        "narHash": "sha256-GuRTpe7CqSTkimWbhsO8xdJU5+NxNyX0P1iQw2RD1eE=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "32bd284c090a51e80e89df2e8671ad77c0b60dda",
+        "rev": "b241078488ef371e894f76f501d02dc76035dce8",
         "type": "github"
       },
       "original": {
@@ -892,33 +894,12 @@
         "type": "github"
       }
     },
-    "home-manager_3": {
-      "inputs": {
-        "nixpkgs": [
-          "open-design",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777679572,
-        "narHash": "sha256-egYNbRrkn+6SwTHinhdb6WUfzzdC3nXfCRqS321VylY=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "9cb587ade2aa1b4a7257f0238d41072690b0ca4f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "my-derivations": {
       "inputs": {
         "nix-checks": "nix-checks_2",
         "nixpkgs": "nixpkgs_4",
         "pre-commit": "pre-commit_2",
-        "systems": "systems_4",
+        "systems": "systems_5",
         "treefmt": "treefmt_2",
         "utils": "utils_2"
       },
@@ -989,7 +970,7 @@
           "nixpkgs"
         ],
         "pre-commit": "pre-commit_4",
-        "systems": "systems_6",
+        "systems": "systems_7",
         "treefmt": "treefmt_4",
         "utils": "utils_4"
       },
@@ -1082,7 +1063,7 @@
           "nixpkgs"
         ],
         "pre-commit": "pre-commit_3",
-        "systems": "systems_5",
+        "systems": "systems_6",
         "treefmt": "treefmt_3",
         "utils": "utils_3"
       },
@@ -1109,7 +1090,7 @@
           "nixpkgs"
         ],
         "pre-commit": "pre-commit",
-        "systems": "systems_3",
+        "systems": "systems_4",
         "treefmt": "treefmt",
         "utils": "utils"
       },
@@ -1811,29 +1792,6 @@
         "type": "github"
       }
     },
-    "open-design": {
-      "inputs": {
-        "dream2nix": "dream2nix",
-        "flake-utils": "flake-utils_2",
-        "home-manager": "home-manager_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786639036,
-        "narHash": "sha256-9h5jO37QpklqaM4no5vqgXNc0V8JSKpBsrI+5ENf2w8=",
-        "owner": "nexu-io",
-        "repo": "open-design",
-        "rev": "9a402b2e4c8e8b709207e89e5a87934c658bd8f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nexu-io",
-        "repo": "open-design",
-        "type": "github"
-      }
-    },
     "opencode": {
       "inputs": {
         "nixpkgs": "nixpkgs_11"
@@ -1852,6 +1810,31 @@
         "repo": "opencode",
         "type": "github"
       }
+    },
+    "opendesign": {
+      "inputs": {
+        "dream2nix": "dream2nix",
+        "flake-utils": "flake-utils_2",
+        "home-manager": [
+          "good-vibes-only",
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "good-vibes-only",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./forks/opendesign",
+        "type": "path"
+      },
+      "original": {
+        "path": "./forks/opendesign",
+        "type": "path"
+      },
+      "parent": [
+        "good-vibes-only"
+      ]
     },
     "paintings": {
       "inputs": {
@@ -1912,7 +1895,7 @@
     },
     "pre-commit": {
       "inputs": {
-        "flake-compat": "flake-compat",
+        "flake-compat": "flake-compat_2",
         "gitignore": "gitignore",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable"
@@ -1997,7 +1980,7 @@
     },
     "pre-commit_2": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat_3",
         "gitignore": "gitignore_2",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable_2"
@@ -2018,7 +2001,7 @@
     },
     "pre-commit_3": {
       "inputs": {
-        "flake-compat": "flake-compat_3",
+        "flake-compat": "flake-compat_4",
         "gitignore": "gitignore_3",
         "nixpkgs": "nixpkgs_7"
       },
@@ -2038,7 +2021,7 @@
     },
     "pre-commit_4": {
       "inputs": {
-        "flake-compat": "flake-compat_4",
+        "flake-compat": "flake-compat_5",
         "gitignore": "gitignore_4",
         "nixpkgs": [
           "my-home-modules",
@@ -2167,9 +2150,10 @@
     },
     "purescript-overlay": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
+        "flake-compat": "flake-compat",
         "nixpkgs": [
-          "open-design",
+          "good-vibes-only",
+          "opendesign",
           "dream2nix",
           "nixpkgs"
         ],
@@ -2192,7 +2176,8 @@
     "pyproject-nix": {
       "inputs": {
         "nixpkgs": [
-          "open-design",
+          "good-vibes-only",
+          "opendesign",
           "dream2nix",
           "nixpkgs"
         ]
@@ -2223,7 +2208,6 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_9",
         "nur": "nur",
-        "open-design": "open-design",
         "opencode": "opencode",
         "paintings": "paintings",
         "playwright-cli-src": "playwright-cli-src",
@@ -2300,7 +2284,8 @@
     "slimlock": {
       "inputs": {
         "nixpkgs": [
-          "open-design",
+          "good-vibes-only",
+          "opendesign",
           "dream2nix",
           "purescript-overlay",
           "nixpkgs"
@@ -2541,16 +2526,16 @@
     },
     "systems_3": {
       "locked": {
-        "lastModified": 1680978846,
-        "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
-        "repo": "x86_64-linux",
-        "rev": "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "x86_64-linux",
+        "repo": "default",
         "type": "github"
       }
     },
@@ -2601,16 +2586,16 @@
     },
     "systems_7": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "lastModified": 1680978846,
+        "narHash": "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
         "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "repo": "x86_64-linux",
+        "rev": "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default",
+        "repo": "x86_64-linux",
         "type": "github"
       }
     },
