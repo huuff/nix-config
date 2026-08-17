@@ -14,11 +14,11 @@
         "superpowers": "superpowers"
       },
       "locked": {
-        "lastModified": 1787001955,
-        "narHash": "sha256-ZUBH82la5U0tGiQZ4oA+scb0La20za+oJ0e4w+PEXGs=",
+        "lastModified": 1787004097,
+        "narHash": "sha256-eFJ/N26epZKxta01brBvYAEOuooAAbgGs+vgpg3GzAc=",
         "owner": "huuff",
         "repo": "agent-skills",
-        "rev": "17478a948d3e887dae7544f4343f28e886868d6f",
+        "rev": "7ab55f5a0485a5ef288d4da08b15ae0c243648db",
         "type": "github"
       },
       "original": {
@@ -866,11 +866,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1786918157,
-        "narHash": "sha256-GuRTpe7CqSTkimWbhsO8xdJU5+NxNyX0P1iQw2RD1eE=",
+        "lastModified": 1787005108,
+        "narHash": "sha256-MrlFQeDvUOFhfE4DgGq+duKzHG9+xaHRkEbliSZBKOI=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "b241078488ef371e894f76f501d02dc76035dce8",
+        "rev": "5714d822e83fa91cd2611551eb80c84c5185e8b9",
         "type": "github"
       },
       "original": {
@@ -2345,11 +2345,11 @@
     "sentry-cli": {
       "flake": false,
       "locked": {
-        "lastModified": 1786996111,
-        "narHash": "sha256-hEBpN5q+wl2xW4tz+bwq81Tz9rBiYtE9/KVAAwETb0U=",
+        "lastModified": 1787001342,
+        "narHash": "sha256-31b9rrICQXMzR6ZQxfTNT2BzvPmmrF0qni60BiIjSrk=",
         "owner": "getsentry",
         "repo": "cli",
-        "rev": "087b05bdd3509ca166b752b2f33eda0936da1421",
+        "rev": "d38b68a213b32e079a04e1b2b61974f538b073a0",
         "type": "github"
       },
       "original": {

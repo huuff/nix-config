@@ -5,28 +5,6 @@
   good-vibes-only,
   ...
 }:
-let
-  # HACK: Bun single-executable binaries embed JS at the end of the ELF.
-  # dontStrip prevents the nix strip phase from removing the embedded code,
-  # and we use only patchelf --set-interpreter (not autoPatchelfHook) to
-  # avoid rpath changes that shift the embedded code offset.
-  sentry-cli = pkgs.stdenv.mkDerivation {
-    pname = "sentry-cli";
-    version = "0.24.1";
-    src = pkgs.fetchurl {
-      url = "https://github.com/getsentry/cli/releases/download/0.24.1/sentry-linux-x64";
-      hash = "sha256-LkolQnaaGLB2/5kfkrDVwXTQ1MAmwxlYelWPi4q9CGc=";
-    };
-    dontUnpack = true;
-    dontStrip = true;
-    nativeBuildInputs = [ pkgs.patchelf ];
-    installPhase = ''
-      install -Dm755 $src $out/bin/sentry
-      patchelf --set-interpreter ${pkgs.glibc}/lib64/ld-linux-x86-64.so.2 $out/bin/sentry
-    '';
-  };
-
-in
 {
   imports = [
     ./ccstatusline.nix
@@ -34,7 +12,7 @@ in
 
   home.packages = [
     derivations.playwright-cli
-    sentry-cli
+    good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.sentry-cli
   ];
 
   programs.zsh.envExtra = ''
