@@ -60,7 +60,7 @@ in
             "chromium" = "";
             "tor browser" = "";
             "jetbrains-idea" = "";
-            "Ledger Wallet" = "";
+            "ledger-wallet" = "";
             "hoppscotch" = "󰖟";
             "Jellyfin" = "󰎁";
             "pavucontrol" = "󰕾";
