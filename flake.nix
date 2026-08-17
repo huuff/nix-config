@@ -58,33 +58,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    superpowers = {
-      url = "github:obra/superpowers";
-      flake = false;
-    };
-
-    ponytail = {
-      url = "github:DietrichGebert/ponytail";
-      flake = false;
-    };
-
     playwright-cli-src = {
       url = "github:microsoft/playwright-cli";
       flake = false;
     };
 
-    sentry-cli-src = {
-      url = "github:getsentry/cli";
-      flake = false;
-    };
-
-    claude-plugins-src = {
-      url = "github:anthropics/claude-plugins-official";
-      flake = false;
-    };
-
     good-vibes-only = {
       url = "github:huuff/good-vibes-only";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agent-skills = {
+      url = "github:huuff/agent-skills";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -104,12 +89,9 @@
       walker,
       opencode,
       claude-code,
-      superpowers,
-      ponytail,
       playwright-cli-src,
-      sentry-cli-src,
-      claude-plugins-src,
       good-vibes-only,
+      agent-skills,
       ...
     }:
     let
@@ -139,13 +121,8 @@
                 dontNpmBuild = true;
               };
             };
-            inherit
-              superpowers
-              ponytail
-              playwright-cli-src
-              sentry-cli-src
-              claude-plugins-src
-              ;
+            # ccstatusline's widget script; reuse agent-skills' locked copy
+            ponytail = agent-skills.inputs.ponytail;
           };
 
           modules = [
@@ -211,7 +188,7 @@
                     walker.homeManagerModules.default
                     good-vibes-only.homeManagerModules.nono
                     good-vibes-only.homeManagerModules.ccstatusline
-                    good-vibes-only.homeManagerModules.skills
+                    agent-skills.homeManagerModules.default
                     good-vibes-only.homeManagerModules.open-design
                   ]
                   ++ lib.attrValues my-home-modules.homeManagerModules

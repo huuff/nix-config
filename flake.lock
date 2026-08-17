@@ -1,5 +1,32 @@
 {
   "nodes": {
+    "agent-skills": {
+      "inputs": {
+        "claude-plugins": "claude-plugins",
+        "home-manager": "home-manager",
+        "i-have-adhd": "i-have-adhd",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "playwright-cli": "playwright-cli",
+        "ponytail": "ponytail",
+        "sentry-cli": "sentry-cli",
+        "superpowers": "superpowers"
+      },
+      "locked": {
+        "lastModified": 1787001955,
+        "narHash": "sha256-ZUBH82la5U0tGiQZ4oA+scb0La20za+oJ0e4w+PEXGs=",
+        "owner": "huuff",
+        "repo": "agent-skills",
+        "rev": "17478a948d3e887dae7544f4343f28e886868d6f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "agent-skills",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -89,14 +116,14 @@
         "type": "github"
       }
     },
-    "claude-plugins-src": {
+    "claude-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1783555809,
-        "narHash": "sha256-s9Yc0Or7DM85m5GbHjCumV2BhX6Sxqv7B7UG7NtGBJU=",
+        "lastModified": 1786996661,
+        "narHash": "sha256-k6KOet4aH1fq34s9CS1O2kN2HH6Vpp/JM72efRfvIMA=",
         "owner": "anthropics",
         "repo": "claude-plugins-official",
-        "rev": "8d9e142e4ec5665f6561efef0ec10b3955e747dd",
+        "rev": "8aa2f06489538f7b4eb660f47731f84edacf006f",
         "type": "github"
       },
       "original": {
@@ -831,7 +858,7 @@
       "inputs": {
         "codex": "codex",
         "crane": "crane",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -855,6 +882,27 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "agent-skills",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786929086,
+        "narHash": "sha256-kzpwMyT7i2fTQ41tf/WlsIHuJtf3e0leRBEPkBhUzBY=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "aac4965ddb7ea2ff0f3cadd9502c7042b7aa07ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
           "good-vibes-only",
           "nixpkgs"
         ]
@@ -873,24 +921,40 @@
         "type": "github"
       }
     },
-    "home-manager_2": {
+    "home-manager_3": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1783550008,
-        "narHash": "sha256-qbbZUk9IG9dLNwCPwdPBs6I5clxwugRpP+1YU+GPK20=",
+        "lastModified": 1786999651,
+        "narHash": "sha256-MTGMFlLDTklsXhCp4r5GXB4VAVadPdalXLvUjd/K7h0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f4d01c1d87c7c2ec909549165d5a8338f1bd3315",
+        "rev": "353742587cbaf079b3caee743115d037bc51fea6",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "ref": "master",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "i-have-adhd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786988294,
+        "narHash": "sha256-8NQ9mrzY/EPcK4niuK/DqKSeIORRTy5rD9H+v1xvEa8=",
+        "owner": "ayghri",
+        "repo": "i-have-adhd",
+        "rev": "7680cebf7e0ee3bdd5f7c44104baab573b6b3d5d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ayghri",
+        "repo": "i-have-adhd",
         "type": "github"
       }
     },
@@ -1861,6 +1925,22 @@
         "type": "github"
       }
     },
+    "playwright-cli": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786646365,
+        "narHash": "sha256-zu+3RAaj7i4oSCuiqWsqHvttCQjg7b+CXHksgBIk7Gc=",
+        "owner": "microsoft",
+        "repo": "playwright-cli",
+        "rev": "4f9d85a9472fc6d0c9a91ac62f3f3ecc24c16de2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "microsoft",
+        "repo": "playwright-cli",
+        "type": "github"
+      }
+    },
     "playwright-cli-src": {
       "flake": false,
       "locked": {
@@ -1880,11 +1960,11 @@
     "ponytail": {
       "flake": false,
       "locked": {
-        "lastModified": 1784151135,
-        "narHash": "sha256-Y7d4s7uqjH6IbEXhqAiQ+yaxr6iiGcv2X64LuMtG1T8=",
+        "lastModified": 1786139041,
+        "narHash": "sha256-bGdXvzhWPwGdz3T2Yh2h6lf+3PBRFAfdBxP5pESmCHI=",
         "owner": "DietrichGebert",
         "repo": "ponytail",
-        "rev": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+        "rev": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
         "type": "github"
       },
       "original": {
@@ -2198,12 +2278,12 @@
     },
     "root": {
       "inputs": {
+        "agent-skills": "agent-skills",
         "claude-code": "claude-code",
-        "claude-plugins-src": "claude-plugins-src",
         "disko": "disko",
         "elephant": "elephant",
         "good-vibes-only": "good-vibes-only",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager_3",
         "my-home-modules": "my-home-modules",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_9",
@@ -2211,12 +2291,9 @@
         "opencode": "opencode",
         "paintings": "paintings",
         "playwright-cli-src": "playwright-cli-src",
-        "ponytail": "ponytail",
         "scripts": "scripts",
-        "sentry-cli-src": "sentry-cli-src",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "superpowers": "superpowers",
         "walker": "walker"
       }
     },
@@ -2265,14 +2342,14 @@
         "type": "github"
       }
     },
-    "sentry-cli-src": {
+    "sentry-cli": {
       "flake": false,
       "locked": {
-        "lastModified": 1783514099,
-        "narHash": "sha256-cnLmbeDgmwvylU1zUDRMSc/pPiNHSwhxKCwHItMc6Vw=",
+        "lastModified": 1786996111,
+        "narHash": "sha256-hEBpN5q+wl2xW4tz+bwq81Tz9rBiYtE9/KVAAwETb0U=",
         "owner": "getsentry",
         "repo": "cli",
-        "rev": "0ca437ed62ce38495f608654652d59961fe2733c",
+        "rev": "087b05bdd3509ca166b752b2f33eda0936da1421",
         "type": "github"
       },
       "original": {
@@ -2361,11 +2438,11 @@
     "superpowers": {
       "flake": false,
       "locked": {
-        "lastModified": 1785266736,
-        "narHash": "sha256-fnl+HbPL2qD5Zgz8a1NctjFJSqu6UsyHJAhQMLQNXXc=",
+        "lastModified": 1786553601,
+        "narHash": "sha256-EsGNO0dULWf5Bx6bGrCv2kI2Z8aKH0kRvGiuN23wChQ=",
         "owner": "obra",
         "repo": "superpowers",
-        "rev": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+        "rev": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
         "type": "github"
       },
       "original": {

@@ -2,10 +2,6 @@
   config,
   pkgs,
   derivations,
-  superpowers,
-  playwright-cli-src,
-  sentry-cli-src,
-  claude-plugins-src,
   good-vibes-only,
   ...
 }:
@@ -33,7 +29,6 @@ let
 in
 {
   imports = [
-    ./ponytail.nix
     ./ccstatusline.nix
   ];
 
@@ -67,6 +62,8 @@ in
             "$HOME/.od"
             "$HOME/.sentry"
             "$HOME/.cache/ms-playwright"
+            # /ponytail <level> persists the default mode here
+            "$XDG_CONFIG_HOME/ponytail"
           ];
         };
       };
@@ -123,7 +120,6 @@ in
     enable = true;
     enableMcpIntegration = true;
     package = derivations.claude-code;
-    plugins = [ superpowers ];
     settings = {
       model = "claude-fable-5";
       permissions.deny = [
@@ -169,34 +165,20 @@ in
     };
   };
 
-  # programs.opencode.skills and programs.claude-code.skills don't handle
-  # string-interpolated store paths correctly (lib.isPath returns false), so
-  # we use xdg.configFile / home.file directly.
-  xdg.configFile."opencode/skill/playwright-cli" = {
-    source = "${playwright-cli-src}/skills/playwright-cli";
-    recursive = true;
-  };
-  home.file = {
-    ".claude/skills/playwright-cli" = {
-      source = "${playwright-cli-src}/skills/playwright-cli";
-      recursive = true;
+  programs.agent-skills = {
+    claude-code.enable = true;
+    codex.enable = true;
+    opencode = {
+      enable = true;
+      # opencode uses the singular directory, unlike the module default
+      directory = ".config/opencode/skill";
     };
-
-    # Anthropic's official frontend-design skill, vendored straight from the
-    # plugins repo instead of going through the /plugin marketplace.
-    ".claude/skills/frontend-design" = {
-      source = "${claude-plugins-src}/plugins/frontend-design/skills/frontend-design";
-      recursive = true;
+    skills = {
+      playwright-cli.enable = true;
+      sentry-cli.enable = true;
+      claude-plugins = [ "frontend-design" ];
+      superpowers.enable = true;
+      ponytail.enable = true;
     };
   };
-
-  programs.agent-skills.claude-code.enable = true;
-
-  # The .cursor/skills/sentry-cli path contains a symlink that breaks with
-  # recursive xdg.configFile, so we point to the real location instead.
-  xdg.configFile."opencode/skill/sentry-cli" = {
-    source = "${sentry-cli-src}/plugins/sentry-cli/skills/sentry-cli";
-    recursive = true;
-  };
-
 }
