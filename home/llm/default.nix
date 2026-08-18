@@ -154,7 +154,7 @@
     skills = {
       playwright-cli.enable = true;
       sentry-cli.enable = true;
-      claude-plugins = [ "frontend-design" ];
+      claude-plugins.frontend-design.enable = true;
       superpowers.enable = true;
       ponytail = {
         enable = true;
