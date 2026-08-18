@@ -155,7 +155,13 @@
       playwright-cli.enable = true;
       sentry-cli.enable = true;
       claude-plugins.frontend-design.enable = true;
-      superpowers.enable = true;
+      superpowers = {
+        enable = true;
+        harnesses = [
+          "claude-code"
+          "opencode"
+        ];
+      };
       ponytail = {
         enable = true;
         harnesses = [
