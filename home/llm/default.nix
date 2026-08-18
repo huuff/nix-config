@@ -156,7 +156,13 @@
       sentry-cli.enable = true;
       claude-plugins = [ "frontend-design" ];
       superpowers.enable = true;
-      ponytail.enable = true;
+      ponytail = {
+        enable = true;
+        harnesses = [
+          "claude-code"
+          "opencode"
+        ];
+      };
     };
   };
 }

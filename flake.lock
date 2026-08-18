@@ -14,11 +14,11 @@
         "superpowers": "superpowers"
       },
       "locked": {
-        "lastModified": 1787004097,
-        "narHash": "sha256-eFJ/N26epZKxta01brBvYAEOuooAAbgGs+vgpg3GzAc=",
+        "lastModified": 1787062703,
+        "narHash": "sha256-LEMUJJNrSwE7JZ1Ex1XkJ3kNaVNCzbRztD95oSHAKA4=",
         "owner": "huuff",
         "repo": "agent-skills",
-        "rev": "7ab55f5a0485a5ef288d4da08b15ae0c243648db",
+        "rev": "101e5c91bfffc84da4c11c41c444c992e2e38529",
         "type": "github"
       },
       "original": {
