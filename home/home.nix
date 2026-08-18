@@ -1,7 +1,6 @@
 {
   pkgs,
   user,
-  scripts,
   derivations,
   good-vibes-only,
   ...
@@ -22,6 +21,7 @@
     ./desktop-environment
 
     ./shell.nix
+    ./scripts.nix
     ./taskwarrior.nix
     ./virtualization.nix
     ./kubernetes.nix
@@ -58,51 +58,48 @@
     XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS";
   };
 
-  home.packages =
-    with pkgs;
-    [
-      irust
-      remmina
+  home.packages = with pkgs; [
+    irust
+    remmina
 
-      cachix
-      devenv
-      bubblewrap # required by OpenDesign
+    cachix
+    devenv
+    bubblewrap # required by OpenDesign
 
-      zathura # pdf reader
-      scrot # making screenshots
-      cloc # count lines of code
-      pavucontrol
-      ntfs3g # TODO: In nixos config?
+    zathura # pdf reader
+    scrot # making screenshots
+    cloc # count lines of code
+    pavucontrol
+    ntfs3g # TODO: In nixos config?
 
-      _1password-cli
-      soapui
-      inetutils # for telnet (TODO: In cli-essentials.nix?)
+    _1password-cli
+    soapui
+    inetutils # for telnet (TODO: In cli-essentials.nix?)
 
-      feh # image viewer
+    feh # image viewer
 
-      # TODO: Maybe these all in kubernetes-something
-      kubernetes-helm
-      helmfile
-      kustomize
+    # TODO: Maybe these all in kubernetes-something
+    kubernetes-helm
+    helmfile
+    kustomize
 
-      # TODO: Maybe in virtualization
-      podman-compose
+    # TODO: Maybe in virtualization
+    podman-compose
 
-      discord
-      jellyfin-desktop
+    discord
+    jellyfin-desktop
 
-      clang # I just need it to build tree-sitter grammars in emacs
+    clang # I just need it to build tree-sitter grammars in emacs
 
-      pgcli
-      tor-browser
-      libreoffice
-      hoppscotch
+    pgcli
+    tor-browser
+    libreoffice
+    hoppscotch
 
-      good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.keyloader
-      good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.llm-usage
+    good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.keyloader
+    good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.llm-usage
 
-    ]
-    ++ lib.attrValues scripts;
+  ];
 
   programs.zoxide = {
     enable = true;

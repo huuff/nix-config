@@ -8,11 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    scripts = {
-      url = "github:huuff/nix-scripts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,7 +75,6 @@
       home-manager,
       my-home-modules,
       nur,
-      scripts,
       nix-index-database,
       sops-nix,
       disko,
@@ -107,7 +101,6 @@
           specialArgs = {
             inherit user nur good-vibes-only;
 
-            scripts = scripts.packages.x86_64-linux;
             # TODO: Maybe it should be in an overlay?
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
