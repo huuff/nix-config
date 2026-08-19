@@ -13,7 +13,33 @@
   home.packages = [
     derivations.playwright-cli
     good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.sentry-cli
+    # Herdr can only inspect the host-visible nono process, so set its agent
+    # hint before entering the sandbox rather than in the wrapped command.
+    (pkgs.writeShellScriptBin "nono-claude" ''
+      exec env HERDR_AGENT=claude nono-claude-sandboxed "$@"
+    '')
+    (pkgs.writeShellScriptBin "nono-codex" ''
+      exec env HERDR_AGENT=codex nono-codex-sandboxed "$@"
+    '')
   ];
+
+  programs.herdr = {
+    enable = true;
+    package = pkgs.herdr;
+    integrations = {
+      claude.enable = true;
+      codex.enable = true;
+      opencode.enable = true;
+    };
+    settings = {
+      onboarding = false;
+      session = {
+        # Herdr would resume with `claude` or `codex`, bypassing the nono wrappers.
+        # This does not affect detach/reattach, which leaves agents running.
+        resume_agents_on_restore = false;
+      };
+    };
+  };
 
   programs.zsh.envExtra = ''
     # playwright-cli uses this to find the browser
@@ -61,13 +87,13 @@
       };
     };
     wrappers = {
-      nono-claude = {
+      nono-claude-sandboxed = {
         profile = "claude-haf";
         command = "claude --dangerously-skip-permissions";
         allowGitCommonDir = true;
         extraFlags = [ "--allow-cwd" ];
       };
-      nono-codex = {
+      nono-codex-sandboxed = {
         profile = "codex-haf";
         # nono is the sandbox, so codex's own approvals/sandbox get bypassed
         command = "codex --dangerously-bypass-approvals-and-sandbox";

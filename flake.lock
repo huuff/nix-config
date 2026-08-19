@@ -708,11 +708,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1787005108,
-        "narHash": "sha256-MrlFQeDvUOFhfE4DgGq+duKzHG9+xaHRkEbliSZBKOI=",
+        "lastModified": 1787166388,
+        "narHash": "sha256-b0P3ivkCV12RwGjzQDUhCfl4IXCgnQVf0MXS5d00W8Q=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "5714d822e83fa91cd2611551eb80c84c5185e8b9",
+        "rev": "c25575f0d8f35996a13170c21a4da0441c0f74e2",
         "type": "github"
       },
       "original": {

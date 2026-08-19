@@ -181,6 +181,7 @@
                     walker.homeManagerModules.default
                     good-vibes-only.homeManagerModules.nono
                     good-vibes-only.homeManagerModules.ccstatusline
+                    good-vibes-only.homeManagerModules.herdr
                     agent-skills.homeManagerModules.default
                     good-vibes-only.homeManagerModules.open-design
                   ]

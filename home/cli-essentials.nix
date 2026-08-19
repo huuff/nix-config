@@ -15,6 +15,7 @@
     bc # CLI calculator
 
     fd # find replacement (also needed for emacs)
+    ripgrep # provides rg, used heavily by coding agents
     silver-searcher-ng # grep replacement
 
     btop
