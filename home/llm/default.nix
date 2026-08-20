@@ -13,13 +13,20 @@
   home.packages = [
     derivations.playwright-cli
     good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.sentry-cli
-    # Herdr can only inspect the host-visible nono process, so set its agent
-    # hint before entering the sandbox rather than in the wrapped command.
+    # nono makes itself non-dumpable, so herdr can't read HERDR_AGENT from
+    # /proc/<nono>/environ. Re-exec so this wrapper carries the hint in its
+    # own exec-time environ and stays alive as the readable job leader.
     (pkgs.writeShellScriptBin "nono-claude" ''
-      exec env HERDR_AGENT=claude nono-claude-sandboxed "$@"
+      if [ -z "''${HERDR_AGENT:-}" ]; then
+        exec env HERDR_AGENT=claude "$0" "$@"
+      fi
+      nono-claude-sandboxed "$@"
     '')
     (pkgs.writeShellScriptBin "nono-codex" ''
-      exec env HERDR_AGENT=codex nono-codex-sandboxed "$@"
+      if [ -z "''${HERDR_AGENT:-}" ]; then
+        exec env HERDR_AGENT=codex "$0" "$@"
+      fi
+      nono-codex-sandboxed "$@"
     '')
   ];
 
