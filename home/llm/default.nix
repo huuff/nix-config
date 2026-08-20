@@ -126,6 +126,7 @@
     package = derivations.claude-code;
     settings = {
       model = "claude-fable-5";
+      outputStyle = "Concise";
       permissions.deny = [
         "Read(**/.env)"
         "Read(**/.env.local)"
