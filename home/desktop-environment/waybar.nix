@@ -181,7 +181,7 @@ in
           format = "󰌌 {}";
           format-en = "en";
           format-es = "es";
-          on-click = "hyprctl switchxkblayout video-bus next";
+          on-click = "hyprctl switchxkblayout all next";
         };
 
         battery = {

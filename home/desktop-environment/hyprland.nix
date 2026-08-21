@@ -13,8 +13,19 @@
 
       input = {
         kb_layout = "us,es";
-        kb_options = "grp:alt_shift_toggle";
       };
+
+      bindn = [
+        # Layout toggle on every keyboard at once — Hyprland layouts are
+        # per-device, so XKB's grp:alt_shift_toggle desyncs multiple keyboards
+        # Keep the modifier events visible to applications. Otherwise Slack's
+        # Electron shell sees a lone Alt press and moves focus out of the editor.
+        # all four side combos; the pressed mod is not yet in the mask at match time
+        "ALT, Shift_L, exec, hyprctl switchxkblayout all next"
+        "ALT, Shift_R, exec, hyprctl switchxkblayout all next"
+        "SHIFT, Alt_L, exec, hyprctl switchxkblayout all next"
+        "SHIFT, Alt_R, exec, hyprctl switchxkblayout all next"
+      ];
 
       bind = [
         # Terminal
