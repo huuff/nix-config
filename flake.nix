@@ -106,12 +106,8 @@
               opencode = opencode.packages.x86_64-linux.default;
               claude-code = claude-code.packages.x86_64-linux.default;
               nono = pkgs.nono;
-              playwright-cli = pkgs.buildNpmPackage {
-                pname = "playwright-cli";
-                version = "0.1.1";
+              playwright-cli = pkgs.callPackage ./pkgs/playwright-cli.nix {
                 src = playwright-cli-src;
-                npmDepsHash = "sha256-ZrO8yIqMYMQUlsQraejVgKRZ7klC5/8UsV3/H1EqYtA=";
-                dontNpmBuild = true;
               };
             };
             # ccstatusline's widget script; reuse agent-skills' locked copy
