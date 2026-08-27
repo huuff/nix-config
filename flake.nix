@@ -141,6 +141,7 @@
 
             ./nixos/user.nix
             ./nixos/wayland.nix
+            ./nixos/keyring.nix
             ./nixos/audio.nix
             ./nixos/java.nix
             ./nixos/nixconf.nix
@@ -178,6 +179,7 @@
                     good-vibes-only.homeManagerModules.nono
                     good-vibes-only.homeManagerModules.ccstatusline
                     good-vibes-only.homeManagerModules.herdr
+                    good-vibes-only.homeManagerModules.orca
                     agent-skills.homeManagerModules.default
                     good-vibes-only.homeManagerModules.open-design
                   ]

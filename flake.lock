@@ -690,11 +690,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1787166388,
-        "narHash": "sha256-b0P3ivkCV12RwGjzQDUhCfl4IXCgnQVf0MXS5d00W8Q=",
+        "lastModified": 1787854040,
+        "narHash": "sha256-TrwteYS3ANWSOFtewdvVnuqZhiWjlMvx/nJoyGvqedQ=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "c25575f0d8f35996a13170c21a4da0441c0f74e2",
+        "rev": "2259356e8e5e4fb59cc94a819032106632e862bf",
         "type": "github"
       },
       "original": {

@@ -48,6 +48,14 @@
     };
   };
 
+  programs.orca = {
+    enable = true;
+    integrations = {
+      claude.enable = true;
+      codex.enable = true;
+    };
+  };
+
   programs.zsh.envExtra = ''
     # playwright-cli uses this to find the browser
     export PLAYWRIGHT_MCP_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
@@ -71,6 +79,7 @@
           allow = [
             "/tmp"
             "$HOME/.od"
+            "$HOME/.orca"
             "$HOME/.sentry"
             "$HOME/.cache/ms-playwright"
             # /ponytail <level> persists the default mode here
@@ -89,6 +98,7 @@
           allow = [
             "/tmp"
             "$HOME/.od"
+            "$HOME/.orca"
           ];
         };
       };
