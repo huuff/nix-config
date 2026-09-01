@@ -74,7 +74,10 @@
             "$HOME/.cargo"
           ];
           # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
-          read_file = [ "$HOME/.config/sops-nix/secrets/gitWorkConfig" ];
+          read_file = [
+            "$HOME/.config/sops-nix/secrets/gitWorkConfig"
+            "$XDG_CONFIG_HOME/orca/agent-hooks/endpoint.env"
+          ];
           # base packs only grant write on /tmp, not read
           allow = [
             "/tmp"
@@ -93,12 +96,16 @@
         filesystem = {
           read = [ "$HOME/.cargo" ];
           # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
-          read_file = [ "$HOME/.config/sops-nix/secrets/gitWorkConfig" ];
+          read_file = [
+            "$HOME/.config/sops-nix/secrets/gitWorkConfig"
+            "$XDG_CONFIG_HOME/orca/agent-hooks/endpoint.env"
+          ];
           # base packs only grant write on /tmp, not read
           allow = [
             "/tmp"
             "$HOME/.od"
             "$HOME/.orca"
+            "$XDG_CONFIG_HOME/orca/codex-runtime-home/home"
           ];
         };
       };
