@@ -57,6 +57,7 @@ in
             "class<[^>]*code[^>]*>" = "󰨞";
             "slack" = "󰒱";
             "ghostty" = "";
+            "orca" = "󱚝";
             "chromium" = "";
             "tor browser" = "";
             "jetbrains-idea" = "";
