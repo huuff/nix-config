@@ -132,6 +132,7 @@
     enable = true;
     package = good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.codex-trust-state;
     enableMcpIntegration = true;
+    settings.model_reasoning_effort = "medium";
     context = ''
       # Use nix for programs
       It's unlikely that you'll have all the software you need available, but the system is NixOS so you
