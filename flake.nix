@@ -53,6 +53,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    codex-cli = {
+      url = "github:sadjow/codex-cli-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     playwright-cli-src = {
       url = "github:microsoft/playwright-cli";
       flake = false;
@@ -83,6 +88,7 @@
       walker,
       opencode,
       claude-code,
+      codex-cli,
       playwright-cli-src,
       good-vibes-only,
       agent-skills,
@@ -105,6 +111,7 @@
             derivations = {
               opencode = opencode.packages.x86_64-linux.default;
               claude-code = claude-code.packages.x86_64-linux.default;
+              codex = codex-cli.packages.x86_64-linux.default;
               nono = pkgs.nono;
               playwright-cli = pkgs.callPackage ./pkgs/playwright-cli.nix {
                 src = playwright-cli-src;

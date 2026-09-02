@@ -130,7 +130,7 @@
   # Home Manager generates config.toml for the shared Open Design MCP server.
   programs.codex = {
     enable = true;
-    package = good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.codex-trust-state;
+    package = derivations.codex;
     enableMcpIntegration = true;
     settings.model_reasoning_effort = "medium";
     context = ''
@@ -142,6 +142,15 @@
       - Search for a package: `nix search github:NixOS/nixpkgs/nixos-unstable <term>`
       Use this direct flake reference instead of the `nixpkgs#<pkg>` shorthand. Nix's indirect registry
       lookup opens `/`, which is denied inside the nono sandbox.
+    '';
+  };
+
+  # Codex persists project and hook trust in config.toml. Keep Home Manager's
+  # generated config as the source, then copy it to a regular writable file.
+  home.file.".codex/config.toml" = {
+    target = ".codex/config_source.toml";
+    onChange = ''
+      install --mode 600 "$HOME/.codex/config_source.toml" "$HOME/.codex/config.toml"
     '';
   };
 
