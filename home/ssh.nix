@@ -24,4 +24,12 @@
     };
   };
 
+  # Sandboxed apps (bwrap/flatpak) see the store symlink as owned by nobody; ssh rejects it
+  home.file.".ssh/config" = {
+    target = ".ssh/config_source";
+    onChange = ''
+      install --mode 400 ~/.ssh/config_source ~/.ssh/config
+    '';
+  };
+
 }
