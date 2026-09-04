@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  enableCodeSuggestions = false;
-in
 {
   # TODO: css modules
   programs.vscode = {
@@ -56,7 +53,6 @@ in
           hashicorp.terraform # terraform support
           streetsidesoftware.code-spell-checker # spell checker
           eamodio.gitlens
-          github.copilot-chat # AI assistant
 
           # themes
           jdinhlife.gruvbox
@@ -213,19 +209,7 @@ in
           }
         ];
 
-      }
-      // (
-        if !enableCodeSuggestions then
-          {
-            "github.copilot.enable" = {
-              "*" = false;
-            };
-            "github.copilot.inlineSuggest.enable" = false;
-            "editor.inlineSuggest.enabled" = false;
-          }
-        else
-          { }
-      );
+      };
     };
   };
 }
