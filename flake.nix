@@ -151,6 +151,7 @@
             ./nixos/keyring.nix
             ./nixos/audio.nix
             ./nixos/java.nix
+            ./nixos/llm.nix
             ./nixos/nixconf.nix
             ./nixos/ssh.nix
             ./nixos/virtualization.nix
