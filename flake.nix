@@ -186,6 +186,7 @@
                     stylix.homeModules.stylix
                     walker.homeManagerModules.default
                     good-vibes-only.homeManagerModules.nono
+                    good-vibes-only.homeManagerModules.playwright-cli
                     good-vibes-only.homeManagerModules.ccstatusline
                     good-vibes-only.homeManagerModules.herdr
                     good-vibes-only.homeManagerModules.orca

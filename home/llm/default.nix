@@ -11,7 +11,6 @@
   ];
 
   home.packages = [
-    derivations.playwright-cli
     good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.sentry-cli
     # nono makes itself non-dumpable, so herdr can't read HERDR_AGENT from
     # /proc/<nono>/environ. Re-exec so this wrapper carries the hint in its
@@ -56,10 +55,16 @@
     };
   };
 
-  programs.zsh.envExtra = ''
-    # playwright-cli uses this to find the browser
-    export PLAYWRIGHT_MCP_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
-  '';
+  programs.playwright-cli = {
+    enable = true;
+    package = derivations.playwright-cli;
+    chromium = {
+      enable = true;
+      # Uses the NixOS setuid helper configured in nixos/llm.nix.
+      sandbox = true;
+    };
+    camoufox.enable = true;
+  };
 
   programs.nono = {
     enable = true;
@@ -69,7 +74,7 @@
         extends = "claude-code";
         meta.description = "claude-code pack + ccstatusline, sentry, playwright and cargo access";
         filesystem = {
-          read = [
+          read = config.programs.playwright-cli.filesystem.read ++ [
             "$XDG_CONFIG_HOME/ccstatusline"
             "$HOME/.cargo"
           ];
@@ -78,13 +83,10 @@
             "$HOME/.config/sops-nix/secrets/gitWorkConfig"
             "$XDG_CONFIG_HOME/orca/agent-hooks/endpoint.env"
           ];
-          # base packs only grant write on /tmp, not read
-          allow = [
-            "/tmp"
+          allow = config.programs.playwright-cli.filesystem.write ++ [
             "$HOME/.od"
             "$HOME/.orca"
             "$HOME/.sentry"
-            "$HOME/.cache/ms-playwright"
             # /ponytail <level> persists the default mode here
             "$XDG_CONFIG_HOME/ponytail"
           ];
@@ -94,15 +96,13 @@
         extends = "codex";
         meta.description = "codex pack + cargo access";
         filesystem = {
-          read = [ "$HOME/.cargo" ];
+          read = config.programs.playwright-cli.filesystem.read ++ [ "$HOME/.cargo" ];
           # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
           read_file = [
             "$HOME/.config/sops-nix/secrets/gitWorkConfig"
             "$XDG_CONFIG_HOME/orca/agent-hooks/endpoint.env"
           ];
-          # base packs only grant write on /tmp, not read
-          allow = [
-            "/tmp"
+          allow = config.programs.playwright-cli.filesystem.write ++ [
             "$HOME/.od"
             "$HOME/.orca"
             "$XDG_CONFIG_HOME/orca/codex-runtime-home/home"
