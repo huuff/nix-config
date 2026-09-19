@@ -29,24 +29,6 @@
     '')
   ];
 
-  programs.herdr = {
-    enable = true;
-    package = pkgs.herdr;
-    integrations = {
-      claude.enable = true;
-      codex.enable = true;
-      opencode.enable = true;
-    };
-    settings = {
-      onboarding = false;
-      session = {
-        # Herdr would resume with `claude` or `codex`, bypassing the nono wrappers.
-        # This does not affect detach/reattach, which leaves agents running.
-        resume_agents_on_restore = false;
-      };
-    };
-  };
-
   programs.orca = {
     enable = true;
     integrations = {
@@ -132,7 +114,10 @@
     enable = true;
     package = derivations.codex;
     enableMcpIntegration = true;
-    settings.model_reasoning_effort = "medium";
+    settings = {
+      model = "gpt-5.6-sol";
+      model_reasoning_effort = "medium";
+    };
     context = ''
       # Use nix for programs
       It's unlikely that you'll have all the software you need available, but the system is NixOS so you
