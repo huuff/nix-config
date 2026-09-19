@@ -142,6 +142,13 @@
       - Search for a package: `nix search github:NixOS/nixpkgs/nixos-unstable <term>`
       Use this direct flake reference instead of the `nixpkgs#<pkg>` shorthand. Nix's indirect registry
       lookup opens `/`, which is denied inside the nono sandbox.
+
+      # README policy
+      Do not create or add to README files unless the user explicitly asks for README documentation.
+      In particular, do not add READMEs that merely explain obvious code, project structure, or agent
+      instructions. READMEs are for human users of the project, not for agents. If README documentation
+      is explicitly requested, write concise, useful prose for those users and avoid generic LLM-generated
+      filler.
     '';
   };
 
