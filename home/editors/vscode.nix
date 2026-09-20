@@ -115,6 +115,14 @@
           "strings" = true;
         };
 
+        # Keep Copilot available without automatic code or edit suggestions.
+        "github.copilot.enable" = {
+          "*" = false;
+        };
+        "github.copilot.nextEditSuggestions.enabled" = false;
+        "github.copilot.nextEditSuggestions.fixes" = false;
+        "github.copilot.renameSuggestions.triggerAutomatically" = false;
+
         "git.autofetch" = true;
 
         "nix" = {
