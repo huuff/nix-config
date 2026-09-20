@@ -642,15 +642,16 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "opendesign-node-nixpkgs": "opendesign-node-nixpkgs",
         "opendesign-src": "opendesign-src",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1789814099,
-        "narHash": "sha256-H5Gro82Bpiky4IQutQlwaPJpTUkDX/FGs7OzWTMzubc=",
+        "lastModified": 1789896455,
+        "narHash": "sha256-4eRWw6UO24BMUTxljgEMotb0MDmKwYz4knAkibMG61Q=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "b325a47c52bed69efd9ce8717af548ad5b91cdb1",
+        "rev": "327a304f486f942bbd648efe1ceaef63e77373a4",
         "type": "github"
       },
       "original": {
@@ -1393,6 +1394,22 @@
         "owner": "sst",
         "ref": "v1.4.2",
         "repo": "opencode",
+        "type": "github"
+      }
+    },
+    "opendesign-node-nixpkgs": {
+      "locked": {
+        "lastModified": 1785090369,
+        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "624af665418d3c65d544145b4d34ad696439570e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "624af665418d3c65d544145b4d34ad696439570e",
         "type": "github"
       }
     },
