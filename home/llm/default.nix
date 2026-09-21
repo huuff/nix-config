@@ -12,21 +12,6 @@
 
   home.packages = [
     good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.sentry-cli
-    # nono makes itself non-dumpable, so herdr can't read HERDR_AGENT from
-    # /proc/<nono>/environ. Re-exec so this wrapper carries the hint in its
-    # own exec-time environ and stays alive as the readable job leader.
-    (pkgs.writeShellScriptBin "nono-claude" ''
-      if [ -z "''${HERDR_AGENT:-}" ]; then
-        exec env HERDR_AGENT=claude "$0" "$@"
-      fi
-      nono-claude-sandboxed "$@"
-    '')
-    (pkgs.writeShellScriptBin "nono-codex" ''
-      if [ -z "''${HERDR_AGENT:-}" ]; then
-        exec env HERDR_AGENT=codex "$0" "$@"
-      fi
-      nono-codex-sandboxed "$@"
-    '')
   ];
 
   programs.orca = {
@@ -93,13 +78,13 @@
       };
     };
     wrappers = {
-      nono-claude-sandboxed = {
+      nono-claude = {
         profile = "claude-haf";
         command = "claude --dangerously-skip-permissions";
         allowGitCommonDir = true;
         extraFlags = [ "--allow-cwd" ];
       };
-      nono-codex-sandboxed = {
+      nono-codex = {
         profile = "codex-haf";
         # nono is the sandbox, so codex's own approvals/sandbox get bypassed
         command = "codex --dangerously-bypass-approvals-and-sandbox";
