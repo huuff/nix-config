@@ -11,7 +11,7 @@
       general = {
         lock_cmd = "pidof hyprlock || ${lib.getExe pkgs.hyprlock}";
         before_sleep_cmd = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
-        after_sleep_cmd = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms on";
+        after_sleep_cmd = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch 'hl.dsp.dpms({ action = \"on\" })'";
       };
 
       listener = [
@@ -21,8 +21,8 @@
         }
         {
           timeout = 300; # 5 minutes
-          on-timeout = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms off";
-          on-resume = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms on";
+          on-timeout = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+          on-resume = "${lib.getExe' pkgs.hyprland "hyprctl"} dispatch 'hl.dsp.dpms({ action = \"on\" })'";
         }
         {
           timeout = 600; # 10 minutes
