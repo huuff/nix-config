@@ -179,6 +179,8 @@
       ];
       env.OD_DATA_DIR = toString config.services.open-design.dataDir;
     };
+    # Stape's hosted GTM server; OAuth login happens in Claude Code via /mcp
+    servers.google-tag-manager.url = "https://gtm-mcp.stape.ai/mcp";
   };
 
   programs.agent-skills = {
