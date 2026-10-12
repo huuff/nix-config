@@ -12,6 +12,7 @@
 
   home.packages = [
     good-vibes-only.packages.${pkgs.stdenv.hostPlatform.system}.sentry-cli
+    (pkgs.callPackage ../../pkgs/claude-swap.nix { })
   ];
 
   programs.orca = {
