@@ -114,6 +114,47 @@ let
       '';
     };
 
+    # Scans flatbed pages one at a time into a single PDF
+    # (Enter = scan next page, Ctrl+D = finish).
+    # scanimage comes from hardware.sane, not runtimeInputs, so it sees the
+    # system backend config.
+    scan2pdf = writeNuApplication {
+      name = "scan2pdf";
+      runtimeInputs = with pkgs; [
+        ocrmypdf
+        poppler-utils
+      ];
+      text = ''
+        def main [
+          output: path                 # destination PDF
+          --mode: string = "Color"     # Color, Gray or Lineart
+          --resolution: int = 300      # dpi
+          --ocr                        # make the PDF searchable with ocrmypdf
+          --lang: string = "eng"       # tesseract language(s) for --ocr, e.g. spa+eng
+          --device: string = "pixma"   # SANE device or backend name, see `scanimage -L`
+        ] {
+          let tmp = (mktemp --directory)
+
+          scanimage --device-name $device --format pdf $"--batch=($tmp)/page-%03d.pdf" --batch-prompt --mode $mode --resolution $resolution
+
+          let pages = (glob $"($tmp)/page-*.pdf" | sort)
+          if ($pages | is-empty) {
+            rm -rf $tmp
+            error make { msg: "No pages scanned" }
+          }
+
+          pdfunite ...$pages $"($tmp)/out.pdf"
+          if $ocr {
+            ocrmypdf --language $lang $"($tmp)/out.pdf" $output
+          } else {
+            mv $"($tmp)/out.pdf" $output
+          }
+          rm -rf $tmp
+          print $"Wrote ($pages | length) page\(s) to ($output)"
+        }
+      '';
+    };
+
     # Removes a key from SSH known hosts.
     ssh-removekey = writeNuApplication {
       name = "ssh-removekey";
