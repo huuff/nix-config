@@ -196,6 +196,7 @@
       playwright-cli.enable = true;
       sentry-cli.enable = true;
       claude-plugins.frontend-design.enable = true;
+      matt-pocock.enable = true;
       superpowers = {
         enable = true;
         harnesses = [

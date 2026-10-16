@@ -5,20 +5,22 @@
         "claude-plugins": "claude-plugins",
         "home-manager": "home-manager",
         "i-have-adhd": "i-have-adhd",
+        "matt-pocock-skills": "matt-pocock-skills",
         "nixpkgs": [
           "nixpkgs"
         ],
         "playwright-cli": "playwright-cli",
         "ponytail": "ponytail",
+        "security-audit": "security-audit",
         "sentry-cli": "sentry-cli",
         "superpowers": "superpowers"
       },
       "locked": {
-        "lastModified": 1788266787,
-        "narHash": "sha256-aPOBjTev4LobntbrBhR7PkRxWeirkAZ3n4/JKp00oF0=",
+        "lastModified": 1792046859,
+        "narHash": "sha256-w+rpJExGcZaeIs2lVpGoMsB2L33UL3FwgSS+1VD0lYU=",
         "owner": "huuff",
         "repo": "agent-skills",
-        "rev": "259266aa629aa881beaf28546ec190bc2ce9dbd9",
+        "rev": "b46b5ee7f8e997ed5f79c2897b7761d51884ee66",
         "type": "github"
       },
       "original": {
@@ -119,11 +121,11 @@
     "claude-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1786996661,
-        "narHash": "sha256-k6KOet4aH1fq34s9CS1O2kN2HH6Vpp/JM72efRfvIMA=",
+        "lastModified": 1789656961,
+        "narHash": "sha256-km1AOHgEKW+YuCMgEbQo26IjDhl99Deq35RSj4JlGWI=",
         "owner": "anthropics",
         "repo": "claude-plugins-official",
-        "rev": "8aa2f06489538f7b4eb660f47731f84edacf006f",
+        "rev": "1aa8f02ec8327f513686934f458a620f83db91ed",
         "type": "github"
       },
       "original": {
@@ -726,16 +728,32 @@
     "i-have-adhd": {
       "flake": false,
       "locked": {
-        "lastModified": 1786988294,
-        "narHash": "sha256-8NQ9mrzY/EPcK4niuK/DqKSeIORRTy5rD9H+v1xvEa8=",
+        "lastModified": 1789572625,
+        "narHash": "sha256-wnD5crIal23Vtk6GReG2vCkjDuhrpmhWXvrNUq5mZfE=",
         "owner": "ayghri",
         "repo": "i-have-adhd",
-        "rev": "7680cebf7e0ee3bdd5f7c44104baab573b6b3d5d",
+        "rev": "b15d0be58f55b33972ba3e39709e0e5208ef30cb",
         "type": "github"
       },
       "original": {
         "owner": "ayghri",
         "repo": "i-have-adhd",
+        "type": "github"
+      }
+    },
+    "matt-pocock-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789726349,
+        "narHash": "sha256-L3CpIT2DeI+fUFl9fcygojtQo2DzEen69rMD1XqR1vM=",
+        "owner": "mattpocock",
+        "repo": "skills",
+        "rev": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattpocock",
+        "repo": "skills",
         "type": "github"
       }
     },
@@ -1454,11 +1472,11 @@
     "playwright-cli": {
       "flake": false,
       "locked": {
-        "lastModified": 1786646365,
-        "narHash": "sha256-zu+3RAaj7i4oSCuiqWsqHvttCQjg7b+CXHksgBIk7Gc=",
+        "lastModified": 1789421152,
+        "narHash": "sha256-MSBXygESmOlZi8qryAsUN6jb30RbysdEZRBXocrXZ14=",
         "owner": "microsoft",
         "repo": "playwright-cli",
-        "rev": "4f9d85a9472fc6d0c9a91ac62f3f3ecc24c16de2",
+        "rev": "12228454ed024c9ac89abd59df3b706ed9135fd9",
         "type": "github"
       },
       "original": {
@@ -1486,11 +1504,11 @@
     "ponytail": {
       "flake": false,
       "locked": {
-        "lastModified": 1786139041,
-        "narHash": "sha256-bGdXvzhWPwGdz3T2Yh2h6lf+3PBRFAfdBxP5pESmCHI=",
+        "lastModified": 1789396482,
+        "narHash": "sha256-PES5XrSYx0VBXWVHEDRykGy0SAmJfV/luzy8Gfg0aAQ=",
         "owner": "DietrichGebert",
         "repo": "ponytail",
-        "rev": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
+        "rev": "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156",
         "type": "github"
       },
       "original": {
@@ -1711,14 +1729,30 @@
         "type": "github"
       }
     },
+    "security-audit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789414134,
+        "narHash": "sha256-oVVACjotkHvllQGxEP8yWaEt4c3GxT0d909TUM5P3NM=",
+        "owner": "cloudflare",
+        "repo": "security-audit-skill",
+        "rev": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cloudflare",
+        "repo": "security-audit-skill",
+        "type": "github"
+      }
+    },
     "sentry-cli": {
       "flake": false,
       "locked": {
-        "lastModified": 1787001342,
-        "narHash": "sha256-31b9rrICQXMzR6ZQxfTNT2BzvPmmrF0qni60BiIjSrk=",
+        "lastModified": 1789571667,
+        "narHash": "sha256-rOMGnBBmeWulxzIecPMaFlYfql275lutayhHjvS+Kpc=",
         "owner": "getsentry",
         "repo": "cli",
-        "rev": "d38b68a213b32e079a04e1b2b61974f538b073a0",
+        "rev": "936c2cdc2ac13978ca9a843b24a0583e9309af8e",
         "type": "github"
       },
       "original": {
