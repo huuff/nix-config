@@ -4,6 +4,8 @@
     defaultSopsFile = ../secrets.yaml;
     secrets = {
       iwdNetworks = { };
+      # one ssid per line; mullvad lockdown is relaxed only on these
+      trustedNetworks = { };
     };
 
     age = {

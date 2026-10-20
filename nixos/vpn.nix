@@ -1,4 +1,9 @@
-{ ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   services = {
     tailscale = {
@@ -39,5 +44,75 @@
         }
       '';
     };
+  };
+
+  # lockdown stays on by default; this only relaxes it on trusted ssids (fail closed)
+  systemd.services.mullvad-trusted-networks = {
+    description = "Toggle mullvad lockdown mode based on the connected wifi network";
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "iwd.service"
+      "mullvad-daemon.service"
+    ];
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = 5;
+    };
+    script = lib.getExe (
+      pkgs.writers.writeNuBin "mullvad-trusted-networks"
+        {
+          makeWrapperArgs = [
+            "--prefix"
+            "PATH"
+            ":"
+            (lib.makeBinPath (
+              with pkgs;
+              [
+                mullvad
+                dbus
+                systemd
+              ]
+            ))
+          ];
+        }
+        ''
+          let trusted = "${config.sops.secrets.trustedNetworks.path}"
+
+          def connected-ssid [] {
+            let objects = (
+              busctl --json=short call net.connman.iwd / org.freedesktop.DBus.ObjectManager GetManagedObjects
+              | from json
+              | get data.0
+              | transpose path ifaces
+            )
+            let station = (
+              $objects
+              | where ($it.ifaces."net.connman.iwd.Station"?.State?.data? == "connected")
+              | get -o 0.ifaces."net.connman.iwd.Station"
+            )
+            if $station == null { return null }
+            $objects
+            | where path == $station.ConnectedNetwork.data
+            | get 0.ifaces."net.connman.iwd.Network".Name.data
+          }
+
+          def apply [] {
+            let ssid = (connected-ssid)
+            let want = if $ssid != null and $ssid in (open $trusted | lines) { "off" } else { "on" }
+            let current = (mullvad lockdown-mode get | parse "{_}: {state}" | get 0.state | str trim)
+            if $current != $want {
+              print $"ssid=($ssid | default '<none>') lockdown=($want)"
+              mullvad lockdown-mode set $want
+            }
+          }
+
+          apply
+          dbus-monitor --system "type='signal',sender='net.connman.iwd',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged',path_namespace='/net/connman/iwd'"
+          | lines
+          | where $it =~ 'string "(State|ConnectedNetwork)"'
+          | each { apply }
+          | ignore
+        ''
+    );
   };
 }
