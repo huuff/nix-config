@@ -195,6 +195,7 @@
     skills = {
       playwright-cli.enable = true;
       sentry-cli.enable = true;
+      ai-assisted-code-review.enable = true;
       claude-plugins.frontend-design.enable = true;
       matt-pocock.enable = true;
       superpowers = {
