@@ -2,6 +2,7 @@
   "nodes": {
     "agent-skills": {
       "inputs": {
+        "ai-assisted-code-review": "ai-assisted-code-review",
         "claude-plugins": "claude-plugins",
         "home-manager": "home-manager",
         "i-have-adhd": "i-have-adhd",
@@ -16,16 +17,32 @@
         "superpowers": "superpowers"
       },
       "locked": {
-        "lastModified": 1792858368,
-        "narHash": "sha256-JxcTcVHn8rQQs/fM0CWKGvGXf5IqhyTtQVIlGnMa7jo=",
+        "lastModified": 1792860191,
+        "narHash": "sha256-Ijlc66tG6aQF53Z/jW+tTw3SjAj8/0Vly1pNttoFze0=",
         "owner": "huuff",
         "repo": "agent-skills",
-        "rev": "e4650a7f5b70bd535043eed0af130f08b69a4423",
+        "rev": "3ff8f7c6c43173f0d920ae72cba8f493a8fab5d3",
         "type": "github"
       },
       "original": {
         "owner": "huuff",
         "repo": "agent-skills",
+        "type": "github"
+      }
+    },
+    "ai-assisted-code-review": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792859455,
+        "narHash": "sha256-3GIxB6BZiuOXlXdgWQKH9CfJgvWjqs1gnY+rxiPDGIc=",
+        "owner": "huuff",
+        "repo": "ai-assisted-code-review",
+        "rev": "5f4ae4c9bdb4517a362d9696e7dc31f15a6e191f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huuff",
+        "repo": "ai-assisted-code-review",
         "type": "github"
       }
     },
