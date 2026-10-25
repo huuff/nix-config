@@ -46,7 +46,8 @@
     };
   };
 
-  # lockdown stays on by default; this only relaxes it on trusted ssids (fail closed)
+  # lockdown stays on by default; this only relaxes it on trusted ssids (fail closed).
+  # no wifi (hibernate, roaming) leaves it as is; only a connected ssid decides
   systemd.services.mullvad-trusted-networks = {
     description = "Toggle mullvad lockdown mode based on the connected wifi network";
     wantedBy = [ "multi-user.target" ];
@@ -98,10 +99,11 @@
 
           def apply [] {
             let ssid = (connected-ssid)
-            let want = if $ssid != null and $ssid in (open $trusted | lines) { "off" } else { "on" }
+            if $ssid == null { return }
+            let want = if $ssid in (open $trusted | lines) { "off" } else { "on" }
             let current = (mullvad lockdown-mode get | parse "{_}: {state}" | get 0.state | str trim)
             if $current != $want {
-              print $"ssid=($ssid | default '<none>') lockdown=($want)"
+              print $"ssid=($ssid) lockdown=($want)"
               mullvad lockdown-mode set $want
             }
           }
