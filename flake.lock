@@ -666,11 +666,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1792086156,
-        "narHash": "sha256-yDap60nOj28pxyxuC/G/AqEquEFvnZy5shZf//5EU04=",
+        "lastModified": 1793383961,
+        "narHash": "sha256-UIBMQffoSdUJLlzqVUJP52LQpYaomDMSc5Wg6siWlO8=",
         "owner": "huuff",
         "repo": "good-vibes-only",
-        "rev": "be8837a09d7872fe3703be491355e40e41c1240d",
+        "rev": "b707e2c9a96d3f482708a2bab6481d6827faed96",
         "type": "github"
       },
       "original": {
