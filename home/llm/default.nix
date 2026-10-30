@@ -19,7 +19,6 @@
     enable = true;
     integrations = {
       claude.enable = true;
-      codex.enable = true;
     };
   };
 
@@ -60,23 +59,6 @@
           ];
         };
       };
-      codex-haf = {
-        extends = "codex";
-        meta.description = "codex pack + cargo access";
-        filesystem = {
-          read = config.programs.playwright-cli.filesystem.read ++ [ "$HOME/.cargo" ];
-          # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
-          read_file = [
-            "$HOME/.config/sops-nix/secrets/gitWorkConfig"
-            "$XDG_CONFIG_HOME/orca/agent-hooks/endpoint.env"
-          ];
-          allow = config.programs.playwright-cli.filesystem.write ++ [
-            "$HOME/.od"
-            "$HOME/.orca"
-            "$XDG_CONFIG_HOME/orca/codex-runtime-home/home"
-          ];
-        };
-      };
     };
     wrappers = {
       nono-claude = {
@@ -85,51 +67,7 @@
         allowGitCommonDir = true;
         extraFlags = [ "--allow-cwd" ];
       };
-      nono-codex = {
-        profile = "codex-haf";
-        # nono is the sandbox, so codex's own approvals/sandbox get bypassed
-        command = "codex --dangerously-bypass-approvals-and-sandbox";
-        allowGitCommonDir = true;
-        extraFlags = [ "--allow-cwd" ];
-      };
     };
-  };
-
-  # Home Manager generates config.toml for the shared Open Design MCP server.
-  programs.codex = {
-    enable = true;
-    package = derivations.codex;
-    enableMcpIntegration = true;
-    settings = {
-      model = "gpt-5.6-sol";
-      model_reasoning_effort = "medium";
-    };
-    context = ''
-      # Use nix for programs
-      It's unlikely that you'll have all the software you need available, but the system is NixOS so you
-      can use the nix command to get anything you want. Some ways to do it:
-      - Run a one-off command: `nix run github:NixOS/nixpkgs/nixos-unstable#<pkg> -- <args>`
-      - Get a shell with tools on PATH: `nix shell github:NixOS/nixpkgs/nixos-unstable#<pkg1> github:NixOS/nixpkgs/nixos-unstable#<pkg2> -c <command>`
-      - Search for a package: `nix search github:NixOS/nixpkgs/nixos-unstable <term>`
-      Use this direct flake reference instead of the `nixpkgs#<pkg>` shorthand. Nix's indirect registry
-      lookup opens `/`, which is denied inside the nono sandbox.
-
-      # README policy
-      Do not create or add to README files unless the user explicitly asks for README documentation.
-      In particular, do not add READMEs that merely explain obvious code, project structure, or agent
-      instructions. READMEs are for human users of the project, not for agents. If README documentation
-      is explicitly requested, write concise, useful prose for those users and avoid generic LLM-generated
-      filler.
-    '';
-  };
-
-  # Codex persists project and hook trust in config.toml. Keep Home Manager's
-  # generated config as the source, then copy it to a regular writable file.
-  home.file.".codex/config.toml" = {
-    target = ".codex/config_source.toml";
-    onChange = ''
-      install --mode 600 "$HOME/.codex/config_source.toml" "$HOME/.codex/config.toml"
-    '';
   };
 
   programs.claude-code = {
@@ -186,7 +124,6 @@
 
   programs.agent-skills = {
     claude-code.enable = true;
-    codex.enable = true;
     opencode = {
       enable = true;
       # opencode uses the singular directory, unlike the module default
