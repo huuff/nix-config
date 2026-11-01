@@ -127,9 +127,10 @@
 
         "nix" = {
           "enableLanguageServer" = true;
-          "serverPath" = "nil"; # don't provide path from `pkgs` so the binary is taken from devshell
+          "serverPath" = "nixd"; # don't provide path from `pkgs` so the binary is taken from devshell
+          # per-project option sources (nixd.options) live in each repo's .vscode/settings.json
           "serverSettings" = {
-            "nil" = {
+            "nixd" = {
               "formatting" = {
                 "command" = [ "nixfmt" ]; # same as above
               };
