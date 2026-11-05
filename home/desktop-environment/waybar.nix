@@ -3,6 +3,7 @@
   lib,
   config,
   osConfig,
+  derivations,
   ...
 }:
 let
@@ -11,6 +12,7 @@ in
 {
   programs.waybar = {
     enable = true;
+    package = derivations.waybar;
     systemd.enable = true;
     settings = {
       topBar = {

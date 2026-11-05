@@ -59,6 +59,13 @@
       flake = false;
     };
 
+    # HACK: the hyprland lua config only accepts `hl.dsp.*` dispatches, and waybar 0.15.0
+    # (the latest release) still sends hyprlang ones, so workspace clicks fail. Master has the fix.
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     good-vibes-only = {
       url = "github:huuff/good-vibes-only";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +92,7 @@
       opencode,
       claude-code,
       playwright-cli-src,
+      waybar,
       good-vibes-only,
       agent-skills,
       ...
@@ -107,6 +115,10 @@
               opencode = opencode.packages.x86_64-linux.default;
               claude-code = claude-code.packages.x86_64-linux.default;
               nono = pkgs.nono;
+              # upstream's nix packaging lags its cava wrap; cava is unused here anyway
+              waybar = waybar.packages.${system}.default.override {
+                waybar = pkgs.waybar.override { cavaSupport = false; };
+              };
               playwright-cli = pkgs.callPackage ./pkgs/playwright-cli.nix {
                 src = playwright-cli-src;
               };

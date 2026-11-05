@@ -1,7 +1,13 @@
 { pkgs, lib, ... }:
+let
+  app2unit = lib.getExe pkgs.app2unit;
+  ghostty = lib.getExe pkgs.ghostty;
+  swayosd = lib.getExe' pkgs.swayosd "swayosd-client";
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
     # XXX: conflicts with nixos-level UWSM (see https://wiki.hypr.land/Useful-Utilities/Systemd-start/#uwsm)
     systemd.enable = false;
     # HACK: hypr-dynamic-cursors is broken with Hyprland 0.54.0 (removed SCallbackInfo API)
@@ -9,134 +15,103 @@
     plugins = [ ];
 
     settings = {
-      "$mod" = "SUPER";
-
-      input = {
-        kb_layout = "us,es";
-      };
-
-      bindn = [
-        # Layout toggle on every keyboard at once — Hyprland layouts are
-        # per-device, so XKB's grp:alt_shift_toggle desyncs multiple keyboards
-        # Keep the modifier events visible to applications. Otherwise Slack's
-        # Electron shell sees a lone Alt press and moves focus out of the editor.
-        # all four side combos; the pressed mod is not yet in the mask at match time
-        "ALT, Shift_L, exec, hyprctl switchxkblayout all next"
-        "ALT, Shift_R, exec, hyprctl switchxkblayout all next"
-        "SHIFT, Alt_L, exec, hyprctl switchxkblayout all next"
-        "SHIFT, Alt_R, exec, hyprctl switchxkblayout all next"
-      ];
-
-      bind = [
-        # Terminal
-        "$mod, Return, exec, ${lib.getExe pkgs.app2unit} -- ${lib.getExe pkgs.ghostty}"
-
-        # App launcher
-        # TODO: can't use the one from pkgs because it's different from the one that I get from the walker
-        # flake! so this depends on it being in scope, I need something better
-        "$mod, d, exec, walker"
-
-        # Focus controls (i3-style with vim keys)
-        "$mod, h, movefocus, l"
-        "$mod, j, movefocus, d"
-        "$mod, k, movefocus, u"
-        "$mod, l, movefocus, r"
-
-        # Move windows (i3-style with vim keys)
-        "$mod SHIFT, h, movewindow, l"
-        "$mod SHIFT, j, movewindow, d"
-        "$mod SHIFT, k, movewindow, u"
-        "$mod SHIFT, l, movewindow, r"
-
-        # Fullscreen (i3-style)
-        "$mod, f, fullscreen, 0"
-
-        # Toggle floating
-        "$mod, Space, togglefloating"
-
-        # Close window
-        "$mod SHIFT, q, killactive"
-
-        # Workspace switching (i3-style)
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod, 0, workspace, 10"
-
-        # Move window to workspace (i3-style)
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-        "$mod SHIFT, 6, movetoworkspace, 6"
-        "$mod SHIFT, 7, movetoworkspace, 7"
-        "$mod SHIFT, 8, movetoworkspace, 8"
-        "$mod SHIFT, 9, movetoworkspace, 9"
-        "$mod SHIFT, 0, movetoworkspace, 10"
-      ];
-
-      # Media controls with an on-screen indicator from SwayOSD. Locked
-      # bindings work while the session is locked; repeating bindings allow
-      # volume keys to be held down.
-      bindl = [
-        ", XF86AudioPlay, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl play-pause"
-        ", XF86AudioPause, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl pause"
-        ", XF86AudioNext, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl next"
-        ", XF86AudioPrev, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl prev"
-        ", XF86AudioStop, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --playerctl stop"
-        ", XF86AudioMute, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --output-volume mute-toggle"
-        ", XF86AudioMicMute, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --input-volume mute-toggle"
-      ];
-
-      bindel = [
-        ", XF86AudioRaiseVolume, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --output-volume +5 --max-volume 100"
-        ", XF86AudioLowerVolume, exec, ${lib.getExe' pkgs.swayosd "swayosd-client"} --output-volume -5"
-      ];
-
-      # Mouse bindings for floating windows
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-
-      decoration = {
-        blur = {
+      config = {
+        input.kb_layout = "us,es";
+        decoration.blur = {
           enabled = true;
           size = 8;
           passes = 3;
         };
-      };
-
-      general = {
-        allow_tearing = false;
-        # top, right, bottom, left — bottom lets windows tuck slightly behind the docked chips
-        gaps_out = "12, 10, 20, 10";
-      };
-
-      windowrule = [
-        "float on, match:class ^(Emulator)$"
-      ];
-
-      layerrule = [
-        "blur on, match:namespace waybar"
-        "ignore_alpha 0.3, match:namespace waybar"
-      ];
-
-      "plugin:dynamic-cursors" = {
-        enabled = true;
-        mode = "none"; # I just want shake-to-find
-        shake = {
-          enabled = true;
+        general = {
+          allow_tearing = false;
+          # bottom lets windows tuck slightly behind the docked chips
+          gaps_out = {
+            top = 12;
+            right = 10;
+            bottom = 20;
+            left = 10;
+          };
         };
       };
 
+      window_rule = [
+        {
+          match.class = "^(Emulator)$";
+          float = true;
+        }
+      ];
+
+      layer_rule = [
+        {
+          match.namespace = "waybar";
+          blur = true;
+          ignore_alpha = 0.3;
+        }
+      ];
     };
+
+    extraConfig = ''
+      local mod = "SUPER"
+      local osd = "${swayosd}"
+
+      -- Layout toggle on every keyboard at once — Hyprland layouts are
+      -- per-device, so XKB's grp:alt_shift_toggle desyncs multiple keyboards
+      -- Keep the modifier events visible to applications. Otherwise Slack's
+      -- Electron shell sees a lone Alt press and moves focus out of the editor.
+      -- all four side combos; the pressed mod is not yet in the mask at match time
+      for _, keys in ipairs({ "ALT + Shift_L", "ALT + Shift_R", "SHIFT + Alt_L", "SHIFT + Alt_R" }) do
+        hl.bind(keys, hl.dsp.exec_cmd("hyprctl switchxkblayout all next"), { non_consuming = true })
+      end
+
+      -- Terminal
+      hl.bind(mod .. " + Return", hl.dsp.exec_cmd("${app2unit} -- ${ghostty}"))
+
+      -- App launcher
+      -- TODO: can't use the one from pkgs because it's different from the one that I get from the walker
+      -- flake! so this depends on it being in scope, I need something better
+      hl.bind(mod .. " + d", hl.dsp.exec_cmd("walker"))
+
+      -- Fullscreen (i3-style)
+      hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+
+      -- Toggle floating
+      hl.bind(mod .. " + Space", hl.dsp.window.float())
+
+      -- Close window
+      hl.bind(mod .. " + SHIFT + q", hl.dsp.window.close())
+
+      -- Mouse bindings for floating windows
+      hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+      hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+      -- Focus and move windows (i3-style with vim keys)
+      for key, dir in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+        hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = dir }))
+        hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = dir }))
+      end
+
+      -- Workspace switching and moving (i3-style)
+      for n = 1, 10 do
+        hl.bind(mod .. " + " .. n % 10, hl.dsp.focus({ workspace = n }))
+        hl.bind(mod .. " + SHIFT + " .. n % 10, hl.dsp.window.move({ workspace = n }))
+      end
+
+      -- Media controls with an on-screen indicator from SwayOSD. Locked
+      -- bindings work while the session is locked; repeating bindings allow
+      -- volume keys to be held down.
+      for key, args in pairs({
+        XF86AudioPlay = "--playerctl play-pause",
+        XF86AudioPause = "--playerctl pause",
+        XF86AudioNext = "--playerctl next",
+        XF86AudioPrev = "--playerctl prev",
+        XF86AudioStop = "--playerctl stop",
+        XF86AudioMute = "--output-volume mute-toggle",
+        XF86AudioMicMute = "--input-volume mute-toggle",
+      }) do
+        hl.bind(key, hl.dsp.exec_cmd(osd .. " " .. args), { locked = true })
+      end
+      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(osd .. " --output-volume +5 --max-volume 100"), { locked = true, repeating = true })
+      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(osd .. " --output-volume -5"), { locked = true, repeating = true })
+    '';
   };
 }
