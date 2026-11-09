@@ -1,33 +1,7 @@
 { config, pkgs, ... }:
-let
-  # Shell functions (not scripts) so the git-wt shell hook can still cd into the worktree.
-  # Same-repo PRs only; fork branches are not fetchable by name.
-  gitWtFns = ''
-    git-wt-pr() {
-      local branch
-      branch=$(gh pr list --json number,title,headRefName \
-        --jq '.[] | "\(.number)\t\(.title)\t\(.headRefName)"' \
-        | fzf --delimiter '\t' --with-nth 1,2 | cut -f3)
-      [ -n "$branch" ] || return 1
-      git fetch origin "$branch" && git wt "$branch"
-    }
-
-    # Pick an issue, reuse its linked branch or create one via `gh issue develop`.
-    git-wt-issue() {
-      local issue branch
-      issue=$(gh issue list --json number,title \
-        --jq '.[] | "\(.number)\t\(.title)"' | fzf | cut -f1)
-      [ -n "$issue" ] || return 1
-      branch=$(gh issue develop --list "$issue" | head -1 | cut -f1)
-      [ -n "$branch" ] || branch=$(gh issue develop "$issue" | sed 's|.*/tree/||')
-      [ -n "$branch" ] || return 1
-      git fetch origin "$branch" && git wt "$branch"
-    }
-  '';
-in
 {
   home.packages = with pkgs; [
-    git-wt
+    worktrunk
   ];
 
   sops.secrets.gitWorkConfig = { };
@@ -90,10 +64,6 @@ in
       # totally necessary when working on long-lived branches or
       # you'll go crazy
       rerere.enabled = true;
-      # git-wt: copy .gitignore'd files (e.g. .env) into new worktrees
-      wt.copyignored = true;
-      # git-wt: trust .envrc in new worktrees so direnv loads without a prompt
-      wt.hook = "! test -f .envrc || direnv allow";
     };
 
     includes = [
@@ -117,14 +87,23 @@ in
     };
   };
 
-  # git-wt shell integration: enables `git wt` to cd into worktrees
+  # Pipeline so .env etc. exist before direnv runs. Blocking (pre-start) so the shell lands in a ready worktree.
+  xdg.configFile."worktrunk/config.toml".text = ''
+    [[pre-start]]
+    copy-ignored = "wt step copy-ignored"
+
+    [[pre-start]]
+    direnv = "! test -f .envrc || direnv allow"
+    # theme-by-language writes the theme into .vscode/settings.json; keep that out of commits
+    vscode-settings = "git update-index --assume-unchanged .vscode/settings.json 2>/dev/null || true"
+  '';
+
+  # worktrunk shell integration: lets `wt switch` cd into worktrees
   programs.bash.initExtra = ''
-    eval "$(git-wt --init bash)"
-    ${gitWtFns}
+    eval "$(wt config shell init bash)"
   '';
   programs.zsh.initContent = ''
-    eval "$(git-wt --init zsh)"
-    ${gitWtFns}
+    eval "$(wt config shell init zsh)"
   '';
 
 }
