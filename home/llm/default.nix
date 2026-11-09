@@ -73,7 +73,7 @@
     enableMcpIntegration = true;
     package = derivations.claude-code;
     settings = {
-      model = "claude-fable-5-1";
+      model = "fable";
       outputStyle = "Concise";
       permissions.deny = [
         "Read(**/.env)"
