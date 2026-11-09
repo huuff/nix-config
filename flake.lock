@@ -17,16 +17,16 @@
         "superpowers": "superpowers"
       },
       "locked": {
-        "lastModified": 1792867343,
-        "narHash": "sha256-kSmgXsfwBgUtrJi4isfQzCKIDzFGG/1gdfY6IwCG0p0=",
+        "lastModified": 1794240822,
+        "narHash": "sha256-/0ALfyv6ugQE6TgmxKrLfcK7UL2E+NUJuHVf7ly9bpk=",
         "owner": "huuff",
-        "repo": "agent-skills",
-        "rev": "bccbcfc3880b1a2fcf331819d8be6e8425b37ea7",
+        "repo": "nix-agent-skills",
+        "rev": "962e73c6d6eace71c7ff8d7238843560d7d2a3a9",
         "type": "github"
       },
       "original": {
         "owner": "huuff",
-        "repo": "agent-skills",
+        "repo": "nix-agent-skills",
         "type": "github"
       }
     },

@@ -54,8 +54,6 @@
             "$HOME/.od"
             "$HOME/.orca"
             "$HOME/.sentry"
-            # /ponytail <level> persists the default mode here
-            "$XDG_CONFIG_HOME/ponytail"
           ];
         };
       };
@@ -133,22 +131,7 @@
       playwright-cli.enable = true;
       sentry-cli.enable = true;
       ai-assisted-code-review.enable = true;
-      claude-plugins.frontend-design.enable = true;
       matt-pocock.enable = true;
-      superpowers = {
-        enable = true;
-        harnesses = [
-          "claude-code"
-          "opencode"
-        ];
-      };
-      ponytail = {
-        enable = true;
-        harnesses = [
-          "claude-code"
-          "opencode"
-        ];
-      };
     };
   };
 }

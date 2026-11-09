@@ -72,7 +72,7 @@
     };
 
     agent-skills = {
-      url = "github:huuff/agent-skills";
+      url = "github:huuff/nix-agent-skills";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -123,8 +123,6 @@
                 src = playwright-cli-src;
               };
             };
-            # ccstatusline's widget script; reuse agent-skills' locked copy
-            ponytail = agent-skills.inputs.ponytail;
           };
 
           modules = [

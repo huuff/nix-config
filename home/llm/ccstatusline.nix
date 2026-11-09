@@ -1,13 +1,9 @@
-{
-  pkgs,
-  ponytail,
-  ...
-}:
+{ ... }:
 {
   programs.ccstatusline = {
     enable = true;
     settings = {
-      # default layout (see SettingsSchema in ccstatusline) + LLM controls
+      # default layout (see SettingsSchema in ccstatusline) + thinking effort
       lines = [
         [
           {
@@ -26,16 +22,6 @@
           }
           {
             id = "4";
-            type = "separator";
-          }
-          {
-            id = "ponytail";
-            type = "custom-command";
-            commandPath = "${pkgs.bash}/bin/bash ${ponytail}/hooks/ponytail-statusline.sh";
-            preserveColors = true;
-          }
-          {
-            id = "ponytail-separator";
             type = "separator";
           }
           {
