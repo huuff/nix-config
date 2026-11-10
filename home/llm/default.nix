@@ -74,6 +74,9 @@
     package = derivations.claude-code;
     settings = {
       model = "fable";
+      effortLevel = "high";
+      # top-level effortLevel is ignored for models newer than fable 5.1
+      modelSettings.fable.effortLevel = "high";
       outputStyle = "Concise";
       permissions.deny = [
         "Read(**/.env)"
