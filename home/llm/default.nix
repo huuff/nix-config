@@ -44,6 +44,10 @@
           read = config.programs.playwright-cli.filesystem.read ++ [
             "$XDG_CONFIG_HOME/ccstatusline"
             "$HOME/.cargo"
+            # $EDITOR; read-only so the sandbox can't plant plugins
+            "$XDG_CONFIG_HOME/nvim"
+            "$XDG_CONFIG_HOME/coc"
+            "$HOME/.local/share/nvim"
           ];
           # gitconfig's includeIf for ~/work; git hard-fails on unreadable includes
           read_file = [
@@ -54,7 +58,15 @@
             "$HOME/.od"
             "$HOME/.orca"
             "$HOME/.sentry"
+            # SECURITY: sandbox can read and tamper with all nvim history:
+            # yanks, changed lines (incl. secrets), open buffers, file paths.
+
+            # nvim shada/swap/undo
+            "$HOME/.local/state/nvim"
+            "$HOME/.undodir"
           ];
+          # coc crashes at startup if it can't write this
+          allow_file = [ "$XDG_CONFIG_HOME/coc/memos.json" ];
         };
       };
     };
@@ -78,10 +90,6 @@
       # top-level effortLevel is ignored for models newer than fable 5.1
       modelSettings.fable.effortLevel = "high";
       outputStyle = "Concise";
-      permissions.deny = [
-        "Read(**/.env)"
-        "Read(**/.env.local)"
-      ];
       skipDangerousModePermissionPrompt = true;
       skipAutoPermissionPrompt = true;
       # flicker-free alt-screen renderer with virtualized scrollback
