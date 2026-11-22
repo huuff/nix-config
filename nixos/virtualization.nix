@@ -29,6 +29,16 @@ with lib;
       docker = {
         enable = true;
         autoPrune.enable = true;
+        # Docker's default 172.17.0.0/16 conflicts with my mobile hotspot (172.17.96.0/24)
+        daemon.settings = {
+          bip = "10.200.0.1/24";
+          default-address-pools = [
+            {
+              base = "10.201.0.0/16";
+              size = 24;
+            }
+          ];
+        };
       };
       libvirtd.enable = true;
       podman.enable = true;
